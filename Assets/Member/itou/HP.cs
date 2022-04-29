@@ -34,10 +34,10 @@ public class HP : MonoBehaviour
         //現在値　/　最大値
         hptext.text = currentHp.ToString() + " / " + maxHp.ToString();　//ToSTring = 文字化
 
-       /* if (currentHp == 0)
+       if (currentHp == 0)
         {
-            SceneManager.LoadScene("Gameover");
-        }*/
+            SceneManager.LoadScene("OP");
+        }
     }
 
     //ダメージ
