@@ -23,10 +23,10 @@ public class MyWindow : EditorWindow
 
     Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>();
 
-    //GameObject gameObject;
+    GameObject gameObject;
 
     //取得したパスが入る配列
-    Texture2D asset,buttonTex;
+    public Texture2D asset,buttonTex;
     string[] filePathArray; 
 
     [MenuItem("test/MyWindow")]
@@ -41,12 +41,16 @@ public class MyWindow : EditorWindow
     private void OnGUI()
     {
 
-       
 
-       
+        var parentObject = Selection.activeGameObject;
+        Debug.Log(parentObject);
         Add();
 
         GUILayout.Box(buttonTex, GUILayout.Width(100), GUILayout.Height(100));
+        parentObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(buttonTex, new Rect(0, 0, 100, 100), Vector2.zero);
+
+
+
 
         /*
         if (GUILayout.Button("更新", GUILayout.Width(60)))
@@ -79,12 +83,29 @@ public class MyWindow : EditorWindow
 
         dicNum = EditorGUILayout.IntField(dicNum);
 
-        int k=0;
+
+        /*ボタンでプレハブ生成の名残
+        
+        gameObject = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Member/Seki/imageee/Emp.prefab");
+
+        if (GUILayout.Button("PPPP"))
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(buttonTex,new Rect(0,0,1,1),Vector2.zero);
+            gameObject.name =buttonTex.ToString();
+            Debug.Log(gameObject);
+            PrefabUtility.SaveAsPrefabAsset(gameObject, directoryPath);
+        }
+        */
+
+
+        //四角
+        int k =0;
         for(int j=0;j<Masu;j++)
         {
             for (int i = 0; i < Masu; i++)
             {
-                Draw(i * sq, j*sq);
+                //Draw(i * sq, j*sq);
+                GUILayout.Box(AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Member/Seki/imageee/White.png"), GUILayout.Width(50), GUILayout.Height(50));
                 Debug.Log(k);
                 dic[k]= new List<int> { i * sq, j * sq, 0, 0 };
                 k++;
@@ -161,7 +182,11 @@ public class MyWindow : EditorWindow
         Event e = Event.current;
         if (e.type == EventType.MouseDown)
         {
-           // Debug.Log(Event.current.mousePosition);
+           Debug.Log(Event.current.mousePosition);
+
+            EditorGUILayout.LabelField(new GUIContent(buttonTex));
+
+            GUILayout.Box(buttonTex);
         }
 
         
@@ -233,25 +258,22 @@ public class MyWindow : EditorWindow
     }
 }
 
-public class Sample : EditorWindow
+public class Sample
 {
+
+    MyWindow myWindow;
+
    
-    [MenuItem("test/Sample")]
-
-
-
-    static void Open()
+    public Texture2D Hoge()
     {
-        Sample sample = GetWindow<Sample>();
-        sample.titleContent = new GUIContent("サンプル");
+        myWindow = new MyWindow();
+        Texture2D tex=null;
+
+        tex = myWindow.buttonTex;
+
+        return tex;
     }
 
-
-    void OnGUI()
-    {
-
-
-    }
 
 
 }
