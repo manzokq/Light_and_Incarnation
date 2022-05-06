@@ -14,7 +14,7 @@ public class MyWindow : EditorWindow
     static string directoryPath = "Assets/Member/Seki/imageee";
     const int weight = 2;
     const int sq = 50;
-    int Masu,dicNum = 0;
+    int x,y = 0;
     Vector2 scrollPosition = new Vector2(0, 0);
     List<Texture2D> assetList = new List<Texture2D>();
     //List<GameObject> gameObjects = new List<GameObject>();
@@ -25,6 +25,8 @@ public class MyWindow : EditorWindow
 
     GameObject gameObject;
 
+    [SerializeField]
+    GameObject Emp;
     //取得したパスが入る配列
     public Texture2D asset,buttonTex;
     string[] filePathArray; 
@@ -41,25 +43,51 @@ public class MyWindow : EditorWindow
     private void OnGUI()
     {
 
+        x = EditorGUILayout.IntField("X",x);
 
-        var parentObject = Selection.activeGameObject;
-        Debug.Log(parentObject);
+        y = EditorGUILayout.IntField("Y",y);
+        Emp = EditorGUILayout.ObjectField("Emp",Emp,typeof(GameObject),true) as GameObject;
+
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Box(buttonTex, GUILayout.Width(100), GUILayout.Height(100));
+        EditorGUILayout.EndHorizontal();
+
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
+
         Add();
 
-        GUILayout.Box(buttonTex, GUILayout.Width(100), GUILayout.Height(100));
-        parentObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(buttonTex, new Rect(0, 0, 100, 100), Vector2.zero);
+
+        EditorGUILayout.EndScrollView();
+
+
+        //オブジェクトの画像変更
 
 
 
 
-        /*
-        if (GUILayout.Button("更新", GUILayout.Width(60)))
+
+        if (GUILayout.Button("生成", GUILayout.Width(60)))
         {
-            Add();
+            for(int i=0;i<y;i++)
+            {
+
+                for(int j=0;j<x; j++)
+                {
+                    Instantiate(Emp, new Vector2(j-9, i-5), Quaternion.identity);
+                }
+
+                
+            }
+            Debug.Log(Emp);
+            //PrefabUtility.InstantiatePrefab(Emp);
+           
            
         }
-        */
+        
 
+        /*
         Masu = EditorGUILayout.IntField(Masu);
 
 
@@ -71,7 +99,7 @@ public class MyWindow : EditorWindow
         splitterRect.width = position.width;*/
 
         //GUILayout.BeginArea(new Rect(50, 50, 100+(sq * Masu), 100 +(sq * Masu)));
-
+        /*
         EditorGUILayout.BeginHorizontal(GUI.skin.box);
         scrollPosition = EditorGUILayout.BeginScrollView(new Vector2(Masu,Masu),GUI.skin.box);
         for (int i = 0; i < Masu; i++)
@@ -79,10 +107,10 @@ public class MyWindow : EditorWindow
            // EditorGUI.DrawRect(new Rect(new Vector2(10, 10+(sq*i)), new Vector2(sq * Masu, weight)), Color.Lerp(Color.white, Color.white, 0.7f));
             //GUILayout.Space(sq*i/2);
         }
-
-
+        */
+        /*
         dicNum = EditorGUILayout.IntField(dicNum);
-
+        */
 
         /*ボタンでプレハブ生成の名残
         
@@ -99,6 +127,7 @@ public class MyWindow : EditorWindow
 
 
         //四角
+        /*
         int k =0;
         for(int j=0;j<Masu;j++)
         {
@@ -112,7 +141,7 @@ public class MyWindow : EditorWindow
                 
             }
         }
-
+        
         //EditorGUILayout.LabelField(ToStr));
         //dic[]
   
@@ -127,7 +156,7 @@ public class MyWindow : EditorWindow
         }
         EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.EndScrollView();
+        EditorGUILayout.EndScrollView();*/
         /*
         if (GUILayout.Button("hoge"))
         {
@@ -137,7 +166,7 @@ public class MyWindow : EditorWindow
         //GUILayout.EndArea();
 
 
-       
+
         for (int j = 0; j < 20; j++) 
         {
             EditorGUILayout.BeginHorizontal();
@@ -222,6 +251,13 @@ public class MyWindow : EditorWindow
                     Debug.Log(asset);
 
                     buttonTex = asset;
+
+
+
+                    var Object = Selection.activeGameObject;
+                    Debug.Log(Object);
+                    if (Object != null && buttonTex != null)
+                        Object.GetComponent<SpriteRenderer>().sprite = Sprite.Create(buttonTex, new Rect(0, 0, 100, 100), Vector2.zero);
                     //EditorGUILayout.LabelField(new GUIContent(asset));
                     //GUI.DrawTexture(new Rect(new Vector2(100,100),new Vector2(100,100)), asset);
                     /*
