@@ -23,16 +23,16 @@ public class Move1 : MonoBehaviour
 	//自身の座標をx方向に-1移動させる
 	//Time.deltaTimeは前回のフレームからの経過秒数
         //this.transform.Translate(new Vector3 (-5f * Time.deltaTime,0f,0f));
-	//Wキーが押された時
+	//↑キーが押された時
 	if(Input.GetKeyDown(KeyCode.UpArrow)&&num!=1)
 	{
-	   this.transform.Translate(new Vector3 (0f,0.5f,0f));
+	   this.transform.Translate(new Vector3 (0f,0.45f,0f));
 	   num-=1;
 	}
-	//Sキーが押された時
+	//↓キーが押された時
 	if(Input.GetKeyDown(KeyCode.DownArrow)&&num!=3)
 	{
-	   this.transform.Translate(new Vector3 (0f,-0.5f,0f));
+	   this.transform.Translate(new Vector3 (0f,-0.45f,0f));
 	   num+=1;
 	}
 
