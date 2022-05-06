@@ -9,4 +9,5 @@ public class EnemyDate : ScriptableObject
     public string enemyName;
     public int hp;
     public int atk;
+    public float speed;
 }
