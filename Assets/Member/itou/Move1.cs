@@ -30,12 +30,21 @@ public class Move1 : MonoBehaviour
 	   num-=1;
 	}
 	//↓キーが押された時
-	if(Input.GetKeyDown(KeyCode.DownArrow)&&num!=3)
+	if(Input.GetKeyDown(KeyCode.DownArrow))
 	{
 	   this.transform.Translate(new Vector3 (0f,-0.45f,0f));
 	   num+=1;
 	}
-
+	if(num!>3)
+	{
+	   this.transform.Translate(new Vector3 (0f,1.35f,0f));
+	   num-=3;
+	}
+    /*if(Input.GetKeyDown(KeyCode.DownArrow)&&num!=3)
+	{
+	   this.transform.Translate(new Vector3 (0f,-0.45f,0f));
+	   num+=1;
+	}*/
 	if(Input.GetKeyDown(KeyCode.Return))
 	{
 		switch(num)

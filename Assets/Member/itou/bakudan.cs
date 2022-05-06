@@ -17,6 +17,7 @@ public class bakudan : MonoBehaviour
         time = 0;
         Debug.Log("Player entered!");
         btime = false;
+        Destroy(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
