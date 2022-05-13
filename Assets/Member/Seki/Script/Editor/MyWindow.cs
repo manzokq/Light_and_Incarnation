@@ -25,6 +25,11 @@ public class MyWindow : EditorWindow
 
     GameObject gameObject;
 
+    bool dragF;
+ 
+
+
+
     [SerializeField]
     GameObject Emp;
     //取得したパスが入る配列
@@ -38,6 +43,12 @@ public class MyWindow : EditorWindow
     {
         MyWindow window = GetWindow<MyWindow>();
         window.titleContent = new GUIContent("ウィンドウ");
+    }
+
+    private void OnOccurredEventOnSceneView(SceneView scene)
+    {
+        //発生したイベントの種類をログで表示
+        Debug.Log(Event.current.type);
     }
 
     private void OnGUI()
@@ -64,10 +75,40 @@ public class MyWindow : EditorWindow
 
         //オブジェクトの画像変更
 
+        Selection.selectionChanged += () => 
+        {
+            if (true) 
+            { 
+                Debug.Log(Selection.activeGameObject); 
+            } 
+        };
 
 
+ 
+
+        SceneView.duringSceneGui += (SceneView sceneView) =>
+         {
+            Event e = Event.current;
+            if (e.type == EventType.MouseDrag)
+            {
+                //Debug.Log("a");
+               
+       
+            }
+             //Debug.Log("modifierKeysChanged");
+
+             Vector3 mousePosition = Event.current.mousePosition;
+
+             //シーン上の座標に変換
+             mousePosition.y = SceneView.currentDrawingSceneView.camera.pixelHeight - mousePosition.y;
+             mousePosition = SceneView.currentDrawingSceneView.camera.ScreenToWorldPoint(mousePosition);
 
 
+             //Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
+         };
+        
+
+   
         if (GUILayout.Button("生成", GUILayout.Width(60)))
         {
             for(int i=0;i<y;i++)
@@ -75,14 +116,15 @@ public class MyWindow : EditorWindow
 
                 for(int j=0;j<x; j++)
                 {
-                    Instantiate(Emp, new Vector2(j-9, i-5), Quaternion.identity);
+                    
+                   var obj= Instantiate(Emp, new Vector2(j-8.5f, i-4.5f), Quaternion.identity);
+                    //obj.GetComponent<SpriteRenderer>
                 }
 
                 
             }
             Debug.Log(Emp);
             //PrefabUtility.InstantiatePrefab(Emp);
-           
            
         }
         
@@ -207,7 +249,7 @@ public class MyWindow : EditorWindow
 
        
 
-
+        /*
         Event e = Event.current;
         if (e.type == EventType.MouseDown)
         {
@@ -218,7 +260,7 @@ public class MyWindow : EditorWindow
             GUILayout.Box(buttonTex);
         }
 
-        
+        */
 
     }
 
@@ -256,8 +298,8 @@ public class MyWindow : EditorWindow
 
                     var Object = Selection.activeGameObject;
                     Debug.Log(Object);
-                    if (Object != null && buttonTex != null)
-                        Object.GetComponent<SpriteRenderer>().sprite = Sprite.Create(buttonTex, new Rect(0, 0, 100, 100), Vector2.zero);
+                    if (Object != null && asset != null)
+                        Object.GetComponent<SpriteRenderer>().sprite = Sprite.Create(asset, new Rect(0,0,100,100), new Vector2(0.5f,0.5f));
                     //EditorGUILayout.LabelField(new GUIContent(asset));
                     //GUI.DrawTexture(new Rect(new Vector2(100,100),new Vector2(100,100)), asset);
                     /*
