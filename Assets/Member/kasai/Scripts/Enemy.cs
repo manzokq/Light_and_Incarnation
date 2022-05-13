@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject playerObject;//プレイヤー
-    private float playerRange;//プレイヤーとの距離
-
     public EnemyDate enemyDate;//EnemyDateから体力などの情報を呼んでくる
     private string Name = null;
     [HideInInspector] public int Hp = 0;
     private int Atk = 0;
     private float Speed = 0;
 
-    //アニメーター
-    public Animator Anim;
-
+   
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -35,8 +30,7 @@ public class Enemy : MonoBehaviour
             //
             this.gameObject.SetActive(false);
         }
-        //プレイヤーまでの距離を出す
-        this.playerRange = Vector2.Distance(playerObject.transform.position, transform.position);
+        
         
     }
 }

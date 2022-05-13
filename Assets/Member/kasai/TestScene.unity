@@ -153,9 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f06d23daf245e4cbed89e12b60e81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
   enemyDate: {fileID: 11400000, guid: bab79f49250fbbd488f805cfa9e7bb6b, type: 2}
   Hp: 0
+  playerObject: {fileID: 0}
+  poison: {fileID: 0}
   Anim: {fileID: 0}
 --- !u!212 &232118685
 SpriteRenderer:
