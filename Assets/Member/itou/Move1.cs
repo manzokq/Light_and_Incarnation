@@ -56,7 +56,7 @@ public class Move1 : MonoBehaviour
 			SceneManager.LoadScene("Next");  
 			break;
 			case 3:
-
+			SceneManager.LoadScene("Sinario");
 			break;
 
 			default:
