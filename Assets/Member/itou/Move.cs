@@ -20,22 +20,22 @@ public class Move : MonoBehaviour
 	//Time.deltaTimeは前回のフレームからの経過秒数
         //this.transform.Translate(new Vector3 (-5f * Time.deltaTime,0f,0f));
 	//Aキーが押された時
-	if(Input.GetKey(KeyCode.A))
+	if(Input.GetKey(KeyCode.LeftArrow))
 	{
 	   this.transform.Translate(new Vector3 (-5f * Time.deltaTime,0f,0f));
 	}
 	//Dキーが押された時
-	if(Input.GetKey(KeyCode.D))
+	if(Input.GetKey(KeyCode.RightArrow))
 	{
 	   this.transform.Translate(new Vector3 (5f * Time.deltaTime,0f,0f));
 	}
 	//Wキーが押された時
-	if(Input.GetKey(KeyCode.W))
+	if(Input.GetKey(KeyCode.UpArrow))
 	{
 	   this.transform.Translate(new Vector3 (0f,5f * Time.deltaTime,0f));
 	}
 	//Sキーが押された時
-	if(Input.GetKey(KeyCode.S))
+	if(Input.GetKey(KeyCode.DownArrow))
 	{
 	   this.transform.Translate(new Vector3 (0f,-5f * Time.deltaTime,0f));
 	}
