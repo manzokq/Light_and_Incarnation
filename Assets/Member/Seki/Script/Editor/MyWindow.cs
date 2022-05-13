@@ -25,9 +25,9 @@ public class MyWindow : EditorWindow
 
     GameObject gameObject;
 
-    bool dragF;
+    bool dragF = false;
  
-
+    object[] hierarchyList;
 
 
     [SerializeField]
@@ -77,35 +77,43 @@ public class MyWindow : EditorWindow
 
         Selection.selectionChanged += () => 
         {
-            if (true) 
-            { 
-                Debug.Log(Selection.activeGameObject); 
-            } 
+          
+            //Debug.Log(Selection.activeGameObject); 
+             
         };
 
 
  
 
         SceneView.duringSceneGui += (SceneView sceneView) =>
-         {
+        {
             Event e = Event.current;
-            if (e.type == EventType.MouseDrag)
+            if (e.type == EventType.MouseDown)
             {
-                //Debug.Log("a");
-               
+                 Debug.Log("a");
+                 //dragF = true;
        
             }
              //Debug.Log("modifierKeysChanged");
+            if(dragF)
+            {
+                Vector3 mousePosition = Event.current.mousePosition;
 
-             Vector3 mousePosition = Event.current.mousePosition;
-
-             //シーン上の座標に変換
-             mousePosition.y = SceneView.currentDrawingSceneView.camera.pixelHeight - mousePosition.y;
-             mousePosition = SceneView.currentDrawingSceneView.camera.ScreenToWorldPoint(mousePosition);
+                //シーン上の座標に変換
+                mousePosition.y = SceneView.currentDrawingSceneView.camera.pixelHeight - mousePosition.y;
+                mousePosition = SceneView.currentDrawingSceneView.camera.ScreenToWorldPoint(mousePosition);
 
 
-             //Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
-         };
+                Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
+
+            }
+            e = Event.current;
+            if (e.type == EventType.MouseUp)
+            {
+                Debug.Log("はなした");
+                dragF = false;
+            }
+        };
         
 
    
@@ -127,8 +135,30 @@ public class MyWindow : EditorWindow
             //PrefabUtility.InstantiatePrefab(Emp);
            
         }
-        
 
+        if (GUILayout.Button("消す", GUILayout.Width(60)))
+        {
+            hierarchyList = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+
+            for (int i = 0; i < hierarchyList.Length; i++)
+            {
+                GameObject obj = (GameObject)hierarchyList[i];
+
+                if(obj.name== "Emp(Clone)")
+                {
+                    // Destroy((GameObject)hierarchyList[i]);
+                    Selection.objects = new GameObject[] { (GameObject)hierarchyList[i]};
+                }
+            }
+
+            GameObject target = GameObject.Find("Emp(Clone)");
+
+            //取得したゲームオブジェクトを選択する
+
+        }
+
+
+        
         /*
         Masu = EditorGUILayout.IntField(Masu);
 
