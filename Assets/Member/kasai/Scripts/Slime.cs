@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    [SerializeField] private GameObject playerObject;//プレイヤー
+    private GameObject playerObject;//プレイヤー
     private float playerRange;//プレイヤーとの距離
+
+    Vector2 force;
+
     //生成する毒
     [SerializeField] GameObject poison = null;
 
@@ -16,26 +19,17 @@ public class Slime : Enemy
 
     private bool inCamera;
 
-    //public enum SlimeState
-    //{
-    //    Move,
-    //    Charge,
-    //    Poison,
-    //    Explosion,
-    //    Damaged,
-    //    Null
-    //}
-    //public SlimeState slimestate = SlimeState.Null;
+    EnemySearch enemySearch = new EnemySearch();
+
+    private bool slimeSearch=false;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-
-        
+        playerObject = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();
@@ -43,8 +37,9 @@ public class Slime : Enemy
         this.playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
         ////弾生成関数を呼び出し
         //InstPoison(transform.position, transform.rotation);
+        slimeSearch = enemySearch.Search;
 
-        if(playerRange<2)
+        if (playerRange<2)
         {
             StartCoroutine(Charge());
         }
@@ -64,6 +59,13 @@ public class Slime : Enemy
         if(playerRange<2)
         {
 
+        }
+        else if(playerRange>2)
+        {
+            if(!slimeSearch)
+            {
+
+            }
         }
         if(true)//障害物orその先に床がないなら反転
             yield return null;
