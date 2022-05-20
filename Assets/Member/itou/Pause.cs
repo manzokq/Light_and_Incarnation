@@ -16,7 +16,7 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("q")){
+        if(Input.GetKeyDown("p")){
             if(PauseUIInstance == null){
                PauseUIInstance = GameObject.Instantiate (pauseUIPrefab) as GameObject;
                Time.timeScale = 0f;
