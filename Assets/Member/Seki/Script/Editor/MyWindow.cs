@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+
+[InitializeOnLoad]
 public class MyWindow : EditorWindow
 {
 
@@ -54,9 +56,9 @@ public class MyWindow : EditorWindow
     private void OnGUI()
     {
 
-        x = EditorGUILayout.IntField("X",x);
+        x = EditorGUILayout.IntField( x, GUILayout.Width(30));
 
-        y = EditorGUILayout.IntField("Y",y);
+        y = EditorGUILayout.IntField(y, GUILayout.Width(30));
         Emp = EditorGUILayout.ObjectField("Emp",Emp,typeof(GameObject),true) as GameObject;
 
 
@@ -66,8 +68,6 @@ public class MyWindow : EditorWindow
 
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
-
-        Add();
 
 
         EditorGUILayout.EndScrollView();
@@ -83,40 +83,51 @@ public class MyWindow : EditorWindow
         };
 
 
- 
 
-        SceneView.duringSceneGui += (SceneView sceneView) =>
+        Handles.BeginGUI();
+        SceneView.duringSceneGui += (SceneView scene) =>
         {
+
+
+            Add(scene.position.size);
+
+
             Event e = Event.current;
             if (e.type == EventType.MouseDown)
             {
-                 Debug.Log("a");
-                 //dragF = true;
+                if(dragF)
+                {
+                    dragF = false;
+                }
+                else
+                {
+                    dragF = true;
+                }
+               
+                Debug.Log(dragF);
+                 
        
             }
-             //Debug.Log("modifierKeysChanged");
-            if(dragF)
-            {
+
+
+            //Debug.Log("modifierKeysChanged");
+      
                 Vector3 mousePosition = Event.current.mousePosition;
 
                 //シーン上の座標に変換
                 mousePosition.y = SceneView.currentDrawingSceneView.camera.pixelHeight - mousePosition.y;
                 mousePosition = SceneView.currentDrawingSceneView.camera.ScreenToWorldPoint(mousePosition);
 
+            //var obj = Instantiate(Emp,mousePosition, Quaternion.identity);
+            //Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
 
-                Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
 
-            }
-            e = Event.current;
-            if (e.type == EventType.MouseUp)
-            {
-                Debug.Log("はなした");
-                dragF = false;
-            }
+
+
         };
-        
+        Handles.EndGUI();
 
-   
+
         if (GUILayout.Button("生成", GUILayout.Width(60)))
         {
             for(int i=0;i<y;i++)
@@ -304,8 +315,11 @@ public class MyWindow : EditorWindow
 
 
     }
-    void Add()
+    void Add(Vector2 sceneSize)
     {
+        var count = 10;
+        var buttonSize = 40;
+        int i = 0;
         //指定したディレクトリに入っている全ファイルを取得(子ディレクトリも含む)
         filePathArray = Directory.GetFiles
         (directoryPath, "*", SearchOption.AllDirectories);
@@ -313,12 +327,20 @@ public class MyWindow : EditorWindow
         //取得したパスの画像を
         foreach (string filePath in filePathArray)
         {
+
+            var rect = new Rect(
+             sceneSize.x / 2 - buttonSize * count / 2 + buttonSize * i,
+             sceneSize.y - buttonSize * 1.6f,
+             buttonSize,
+             buttonSize);
+
+
             asset = AssetDatabase.LoadAssetAtPath<Texture2D>(filePath);
             if (asset != null)
             {
                 assetList.Add(asset);
 
-                if (GUILayout.Button(asset, GUILayout.Width(60), GUILayout.Height(60)))
+                if (GUI.Button(rect,asset))
                 {
                     Debug.Log(asset);
 
@@ -340,8 +362,61 @@ public class MyWindow : EditorWindow
                     // Debug.Log(texture);
                 }
             }
+            i++;
         }
     }
+
+    /*
+    void Add(Vector2 sceneSize)
+    {
+        var count = 10;
+        var buttonSize = 40;
+        int i = 0;
+        //指定したディレクトリに入っている全ファイルを取得(子ディレクトリも含む)
+        filePathArray = Directory.GetFiles
+        (directoryPath, "*", SearchOption.AllDirectories);
+
+        //取得したパスの画像を
+        foreach (string filePath in filePathArray)
+        {
+
+            var rect = new Rect(
+             sceneSize.x / 2 - buttonSize * count / 2 + buttonSize * i,
+             sceneSize.y - buttonSize * 1.6f,
+             buttonSize,
+             buttonSize);
+
+
+            asset = AssetDatabase.LoadAssetAtPath<Texture2D>(filePath);
+            if (asset != null)
+            {
+                assetList.Add(asset);
+
+                if (GUILayout.Button(asset, GUILayout.Width(60), GUILayout.Height(60)))
+                {
+                    Debug.Log(asset);
+
+                    buttonTex = asset;
+
+
+
+                    var Object = Selection.activeGameObject;
+                    Debug.Log(Object);
+                    if (Object != null && asset != null)
+                        Object.GetComponent<SpriteRenderer>().sprite = Sprite.Create(asset, new Rect(0, 0, 100, 100), new Vector2(0.5f, 0.5f));
+                    //EditorGUILayout.LabelField(new GUIContent(asset));
+                    //GUI.DrawTexture(new Rect(new Vector2(100,100),new Vector2(100,100)), asset);
+                    /*
+                    Sprite sprite = Sprite.Create(asset, new Rect(0, 0, 1, 1), Vector2.zero);
+                    gameObject.AddComponent<SpriteRenderer>().sprite = sprite;
+
+                    PrefabUtility.SaveAsPrefabAsset(gameObject, "Assets");
+                    // Debug.Log(texture);
+                }
+            }
+            i++;
+        }
+    }*/
 
 
 
