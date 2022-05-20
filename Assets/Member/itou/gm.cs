@@ -10,10 +10,13 @@ public class gm : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-if(Input.GetKeyDown("q")) {
-            SceneManager.LoadScene("OP");
-	}
-    }
+    public void Button()
+   {
+    SceneManager.LoadScene("OP");
+   }
+
+   void update()
+   {
+       
+   }
 }
