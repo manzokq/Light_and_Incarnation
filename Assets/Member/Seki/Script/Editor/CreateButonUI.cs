@@ -15,6 +15,10 @@ public static class CreateButtonUi
     static string[] filePathArray;
     static GameObject emp;
 
+    static Vector2 Vec,changeVec;
+
+    static GameObject select;
+
     static CreateButtonUi()
     {
         seisei = new Seisei();
@@ -29,21 +33,39 @@ public static class CreateButtonUi
 
         Handles.EndGUI();
 
+        Vector2 mousePosition = Event.current.mousePosition;
+
+        //シーン上の座標に変換
+        mousePosition.y = SceneView.currentDrawingSceneView.camera.pixelHeight - mousePosition.y;
+        mousePosition = SceneView.currentDrawingSceneView.camera.ScreenToWorldPoint(mousePosition);
+
+
+        mousePosition.x = Mathf.Round(mousePosition.x);
+        mousePosition.y = Mathf.Round(mousePosition.y);
+
+        Vec = mousePosition;
+       
+        if (Vec != changeVec)
+        {
+            //Debug.Log("違う！");
+        }
+
         Event e = Event.current;
         if (e.type == EventType.MouseDown)
         {
+            Debug.Log(Vec);
+
+
             
-            Vector2 mousePosition = Event.current.mousePosition;
+           
+              
+            
 
-            //シーン上の座標に変換
-            mousePosition.y = SceneView.currentDrawingSceneView.camera.pixelHeight - mousePosition.y;
-            mousePosition = SceneView.currentDrawingSceneView.camera.ScreenToWorldPoint(mousePosition);
+            Debug.Log(changeVec);
 
-            Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
+            //Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
             //var empObj= (GameObject)PrefabUtility.InstantiatePrefab(emp);
 
-            mousePosition.x = Mathf.Round(mousePosition.x);
-            mousePosition.y = Mathf.Round(mousePosition.y);
 
             /*生成部分
             var go = seisei.Ins(emp,mousePosition);
@@ -52,6 +74,23 @@ public static class CreateButtonUi
             */
             Debug.Log("マウスクリック ");
         }
+
+        select = Selection.activeGameObject;
+        if (select != null&&tex!=null)
+        {
+
+            if(select.GetComponent<SpriteRenderer>().sprite.name != tex.name)
+            {
+                
+                Debug.Log(tex);
+                changeVec = mousePosition;
+                select.GetComponent<SpriteRenderer>().sprite =
+                Sprite.Create(tex, new Rect(0, 0, 100, 100), new Vector2(0.5f, 0.5f));
+            }
+         
+        }
+
+
 
     }
 
@@ -106,7 +145,7 @@ public static class CreateButtonUi
                 for (int j = 0; j < 150; j++)
                 {
 
-                    seisei.Ins(emp, new Vector2(j - 8.5f, k - 4.5f));
+                    seisei.Ins(emp, new Vector2(j - 8f, k - 4f));
                     //obj.GetComponent<SpriteRenderer>
                 }
 
