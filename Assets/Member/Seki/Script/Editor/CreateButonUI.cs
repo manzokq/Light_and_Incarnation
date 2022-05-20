@@ -7,16 +7,17 @@ using System.IO;
 [InitializeOnLoad]
 public static class CreateButtonUi
 {
-    
+    static Seisei seisei;
     static string directoryPath = "Assets/Member/Seki/imageee";
     static List<Texture2D> assetList = new List<Texture2D>();
 
-    static public Texture2D asset, buttonTex;
+    static public Texture2D asset, tex;
     static string[] filePathArray;
     static GameObject emp;
 
     static CreateButtonUi()
     {
+        seisei = new Seisei();
         SceneView.duringSceneGui += OnGui;
     }
 
@@ -31,12 +32,27 @@ public static class CreateButtonUi
         Event e = Event.current;
         if (e.type == EventType.MouseDown)
         {
+            
+            Vector2 mousePosition = Event.current.mousePosition;
+
+            //シーン上の座標に変換
+            mousePosition.y = SceneView.currentDrawingSceneView.camera.pixelHeight - mousePosition.y;
+            mousePosition = SceneView.currentDrawingSceneView.camera.ScreenToWorldPoint(mousePosition);
+
+            Debug.Log("座標 : " + mousePosition.x.ToString("F2") + ", " + mousePosition.y.ToString("F2"));
+            //var empObj= (GameObject)PrefabUtility.InstantiatePrefab(emp);
+
+            mousePosition.x = Mathf.Round(mousePosition.x);
+            mousePosition.y = Mathf.Round(mousePosition.y);
+
+            /*生成部分
+            var go = seisei.Ins(emp,mousePosition);
+            go.GetComponent<SpriteRenderer>().sprite =
+            Sprite.Create(tex, new Rect(0, 0, 100, 100), new Vector2(0.5f, 0.5f));
+            */
             Debug.Log("マウスクリック ");
         }
-        if(e.type == EventType.MouseUp)
-        {
-            Debug.Log("マウス離し");
-        }
+
     }
 
     private static void ShowButtons(Vector2 sceneSize)
@@ -70,28 +86,54 @@ public static class CreateButtonUi
                 {
                     Debug.Log(asset);
 
-                    buttonTex = asset;
+                    tex = asset;
 
-                    GameObject go;
-                    go= (GameObject)PrefabUtility.InstantiatePrefab(emp);
-                    Selection.activeGameObject = go;
-                    Undo.RegisterCreatedObjectUndo(go, "Create Character");
-                    go.GetComponent<SpriteRenderer>().sprite = 
-                        Sprite.Create(asset, new Rect(0, 0, 100, 100), new Vector2(0.5f, 0.5f));
-                    
+
                 }
             }
             i++;
         }
+        var rec = new Rect(
+            sceneSize.x / 2 - buttonSize * count / 2 + buttonSize * i,
+            sceneSize.y - buttonSize * 1.6f,
+            buttonSize,
+            buttonSize);
+        if (GUI.Button(rec,"生成"))
+        {
+            for (int k = 0; k < 50; k++)
+            {
 
+                for (int j = 0; j < 150; j++)
+                {
+
+                    seisei.Ins(emp, new Vector2(j - 8.5f, k - 4.5f));
+                    //obj.GetComponent<SpriteRenderer>
+                }
+
+
+            }
+        }
+
+    }
+
+    static void Inst()
+    {
+        GameObject go;
+        go = (GameObject)PrefabUtility.InstantiatePrefab(emp);
+        Selection.activeGameObject = go;
+        Undo.RegisterCreatedObjectUndo(go, "Create Character");
+        go.GetComponent<SpriteRenderer>().sprite =
+            Sprite.Create(asset, new Rect(0, 0, 100, 100), new Vector2(0.5f, 0.5f));
     }
 }
 
 class Seisei : MonoBehaviour
 {
-    void Ins(GameObject gameObject,Vector2 mousePosition)
+    public GameObject Ins(GameObject gameObject,Vector2 Pos)
     {
-        Instantiate(gameObject, mousePosition, Quaternion.identity);
-
+        GameObject go;
+        go = Instantiate(gameObject, Pos, Quaternion.identity);
+        return go;
     }
+
 }
