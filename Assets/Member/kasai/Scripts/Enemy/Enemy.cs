@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private Rigidbody2D rb;
     public EnemyDate enemyDate;//EnemyDate‚©‚ç‘Ì—Í‚È‚Ç‚Ìî•ñ‚ğŒÄ‚ñ‚Å‚­‚é
     private string Name = null;
     [HideInInspector] public int Hp = 0;
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         Name = enemyDate.enemyName;
         Hp = enemyDate.hp;
         Atk = enemyDate.atk;

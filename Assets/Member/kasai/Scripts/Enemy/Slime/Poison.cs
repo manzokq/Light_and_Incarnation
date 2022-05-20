@@ -19,7 +19,7 @@ public class Poison : MonoBehaviour
         {
             //dotˆ—
             count += 1;
-            magnification = Random.Range(randMin, randMax);
+            magnification = Random.Range(randMin, randMax);//atk12~18
             poisonAtk = (int)magnification * enemyDate.atk;
             //‘Ì—Í‚ðŒ¸‚ç‚·
             if (count>=5)

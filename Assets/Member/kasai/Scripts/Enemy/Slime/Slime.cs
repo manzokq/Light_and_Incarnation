@@ -5,6 +5,8 @@ using UnityEngine;
 public class Slime : Enemy
 {
     private GameObject playerObject;//プレイヤー
+    [SerializeField] private GameObject chargeObject;
+    [SerializeField] private GameObject explosionObject;
     private float playerRange;//プレイヤーとの距離
 
     Vector2 force;
@@ -23,11 +25,12 @@ public class Slime : Enemy
 
     private bool slimeSearch=false;
 
-    // Start is called before the first frame update
+    //private Rigidbody2D rb;
     protected override void Start()
     {
         base.Start();
         playerObject = GameObject.FindWithTag("Player");
+        //rb = GetComponent<Rigidbody2D>();
     }
 
     protected override void Update()
@@ -35,51 +38,90 @@ public class Slime : Enemy
         base.Update();
         //プレイヤーまでの距離を出す
         this.playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
-        ////弾生成関数を呼び出し
-        //InstPoison(transform.position, transform.rotation);
-        slimeSearch = enemySearch.Search;
+       
 
-        if (playerRange<2)
+        slimeSearch = enemySearch.Search;
+        if (inCamera)
         {
-            StartCoroutine(Charge());
+            if (playerRange < 2)
+            {
+                StartCoroutine(Charge());
+            }
+            else if(playerRange>4&&playerRange<7)
+            {
+                StartCoroutine(Poison());
+            }
+            else
+            {
+                StartCoroutine(Move());
+            }
+            //確率で爆発に派生
+
         }
-        else 
-        {
-            StartCoroutine(Move());
-        }
-        
     }
 
     public IEnumerator Move()//移動の処理
     {
-        if(inCamera)
+        Vector2 scale = transform.localScale;
+        if (playerRange<3)
         {
-            
-        }
-        if(playerRange<2)
-        {
+            //プレイヤー側に移動
+            Vector3 pv = playerObject.transform.position;
+            Vector3 ev = transform.position;
+
+            float p_vX = pv.x - ev.x;
+            float p_vY = pv.y - ev.y;
+
+            float vx = 0f;
+            float vy = 0f;
+
+            float sp = enemyDate.speed;
+
+            // 減算した結果がマイナスであればXは減算処理
+            if (p_vX < 0)
+            {
+                vx = -sp;
+            }
+            else
+            {
+                vx = sp;
+            }
+
+            //// 減算した結果がマイナスであればYは減算処理
+            //if (p_vY < 0)
+            //{
+            //    vy = -sp;
+            //}
+            //else
+            //{
+            //    vy = sp;
+            //}
+
+            transform.Translate(vx / 50, vy / 50, 0);
 
         }
         else if(playerRange>2)
         {
+            this.transform.Translate(Vector2.left * Time.deltaTime * enemyDate.speed);
             if(!slimeSearch)
             {
-
+                enemyDate.speed = enemyDate.speed * -1;
+                scale.x = scale.x * -1;
+             //進行方向の反転   
             }
         }
-        if(true)//障害物orその先に床がないなら反転
             yield return null;
     }
     public IEnumerator Charge()//突進した時の処理
     {
         //seを呼び出す
-        //
+        //atk10
         yield return null;
     }
     public IEnumerator Poison()//毒攻撃した時の処理
     {
         //seを呼び出す
-        //
+        Instpoison(playerObject.transform.position, playerObject.transform.rotation);
         //毒生成
         yield return null;
     }
@@ -106,19 +148,19 @@ public class Slime : Enemy
     public IEnumerator Explosion()//自爆した時の処理
     {
         //seを呼び出す
+        yield return new WaitForSeconds(3.0f);
+        //atk20
         //
-        yield return null;
     }
 
-    public IEnumerator Damaged()//被弾した時の処理
-    {
-        yield return null;
-    }
+    //public IEnumerator Damaged()//被弾した時の処理
+    //{
+    //    yield return null;
+    //}
     public IEnumerator Destroy()//踏まれた時の処理
     {
         this.Hp = 0;
         //seを呼び出す
-        //
         yield return null;
     }
 
@@ -131,5 +173,8 @@ public class Slime : Enemy
     {
         inCamera = true;
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        slimeSearch = false;
+    }
 }
