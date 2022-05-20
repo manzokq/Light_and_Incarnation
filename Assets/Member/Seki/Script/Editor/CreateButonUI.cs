@@ -7,7 +7,7 @@ using System.IO;
 [InitializeOnLoad]
 public static class CreateButtonUi
 {
-    static Test test;
+    
     static string directoryPath = "Assets/Member/Seki/imageee";
     static List<Texture2D> assetList = new List<Texture2D>();
 
@@ -83,6 +83,15 @@ public static class CreateButtonUi
             }
             i++;
         }
+
+    }
+}
+
+class Seisei : MonoBehaviour
+{
+    void Ins(GameObject gameObject,Vector2 mousePosition)
+    {
+        Instantiate(gameObject, mousePosition, Quaternion.identity);
 
     }
 }
