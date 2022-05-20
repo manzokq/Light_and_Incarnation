@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     private string Name = null;
     [HideInInspector] public int Hp = 0;
     private int Atk = 0;
-    private float Speed = 0;
+    public float Speed = 0;
 
    
     // Start is called before the first frame update

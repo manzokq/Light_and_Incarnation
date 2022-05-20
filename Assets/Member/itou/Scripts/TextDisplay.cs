@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class TextDisplay : MonoBehaviour
 {
-    
+    [SerializeField,Range(1,20)]
+    int TextSpeed = 1;
     public string[] texts;//Unity上で入力するstringの配列
     int textNumber;//何番目のtexts[]を表示させるか
     string displayText;//表示させるstring
@@ -24,7 +25,7 @@ public class TextDisplay : MonoBehaviour
         if(textStop == false)//テキストを表示させるif文
         {
             displayTextSpeed++;
-            if(displayTextSpeed % 200 == 0)//200回に一回プログラムを実行するif文
+            if(displayTextSpeed % (200 / TextSpeed) == 0)//200回に一回プログラムを実行するif文
             {
                 if(textCharNumber != texts[textNumber].Length)//もしtext[textNumber]の文字列の文字が最後の文字じゃなければ
             {
