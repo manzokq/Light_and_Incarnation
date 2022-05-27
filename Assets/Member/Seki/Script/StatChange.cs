@@ -7,7 +7,9 @@ public  class StatChange : MonoBehaviour
 {
     int num = 0;
     [SerializeField]
-    private GameObject direc;
+    private List<Sprite> playerTex = new List<Sprite>();
+
+    bool ltFrag=true;
 
 
     // Start is called before the first frame update
@@ -19,20 +21,34 @@ public  class StatChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        float tri = Input.GetAxis("L_R_Trigger");
+        if(tri <0&&ltFrag)
         {
+            ltFrag = false;
+            Debug.Log("‰Ÿ‚³‚ê‚½");
+
             num++;
 
-            if(Enum.IsDefined(typeof(States),num))
+            if (Enum.IsDefined(typeof(States), num))
             {
                 //Debug.Log("aaaaa");
-                
+
             }
             else
             {
                 num = 0;
             }
+
+            GetComponent<SpriteRenderer>().sprite = playerTex[num];
+        }
+        else if(tri ==0)
+        {
+            ltFrag=true;   
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+           
             
         }/*
         else if (Input.GetKeyDown(KeyCode.RightArrow))
