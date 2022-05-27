@@ -34,7 +34,7 @@ public  class StatChange : MonoBehaviour
                 num = 0;
             }
             
-        }
+        }/*
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             num--;
@@ -49,100 +49,112 @@ public  class StatChange : MonoBehaviour
                 num = 3;
             }
             
+        }*/
+
+        /*
+        if(Input.GetKeyDown(KeyCode.JoystickButton11))
+        {
+          
         }
         float LT = Input.GetAxis("LT");
-
-        if(LT != 0.0f)
+        if (LT != 0.0f)
         {
-            Debug.Log(LT);
-
-            float Horizontal = Input.GetAxis("HorizontalKey");
-            if (Horizontal < 0.0f)
-            {
-               
-               
-                //Horizontal = 3 - Horizontal;
-                //Debug.Log(Horizontal);
-            }
-            else if (Horizontal > 0.0f)
-            {
-                //Horizontal = 1 + Horizontal;
-            }
-
-            float Vertical = Input.GetAxis("VerticalKey");
-            if (Vertical < 0.0f)
-            {
-                //Vertical = 2 - Vertical;
-                //Debug.Log(Vertical);
-            }
-            else if (Vertical > 0.0f)
-            {
-
-            }
-
-            float radian = Mathf.Atan2(Vertical, Horizontal) * Mathf.Rad2Deg;
-
-            if (radian < 0)
-            {
-                radian += 360;
-            }
-            radian -= 90;
-            //Debug.Log(radian);
-
-            //var direction = new Vector2(Horizontal,Vertical);
-
-            direc.transform.localRotation = Quaternion.Euler(0,0,radian);
-            radian += 90;
-            radian /= 90;
-            //Debug.Log((int)radian);
-            switch ((States)Enum.ToObject(typeof(States), (int)radian))
-            {
-                case States.Girl:
-                    Debug.Log("­—‚Ìˆ—");
-                    break;
-
-                case States.SwordMan:
-                    Debug.Log("Œ•Žm‚Ìˆ—");
-                    break;
-
-                case States.Archer:
-                    Debug.Log("‹|Žg‚¢‚Ìˆ—");
-                    break;
-
-                case States.Wizard:
-                    Debug.Log("–‚–@Žg‚¢‚Ìˆ—");
-                    break;
-
-                default:
-                    break;
-            }
+            Debug.Log("ƒgƒŠƒK[");
         }
+        */
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            switch((States)Enum.ToObject(typeof(States),num))
+            /*
+            if(LT != 0.0f)
             {
-                case States.Girl:
-                    Debug.Log("­—‚Ìˆ—");
-                    break;
+                Debug.Log(LT);
 
-                case States.SwordMan:
-                    Debug.Log("Œ•Žm‚Ìˆ—");
-                    break;
+                float Horizontal = Input.GetAxis("HorizontalKey");
+                if (Horizontal < 0.0f)
+                {
 
-                case States.Archer:
-                    Debug.Log("‹|Žg‚¢‚Ìˆ—");
-                    break;
 
-                case States.Wizard:
-                    Debug.Log("–‚–@Žg‚¢‚Ìˆ—");
-                    break;
+                    //Horizontal = 3 - Horizontal;
+                    //Debug.Log(Horizontal);
+                }
+                else if (Horizontal > 0.0f)
+                {
+                    //Horizontal = 1 + Horizontal;
+                }
 
-                default:
-                    
-                    break;
+                float Vertical = Input.GetAxis("VerticalKey");
+                if (Vertical < 0.0f)
+                {
+                    //Vertical = 2 - Vertical;
+                    //Debug.Log(Vertical);
+                }
+                else if (Vertical > 0.0f)
+                {
+
+                }
+
+                float radian = Mathf.Atan2(Vertical, Horizontal) * Mathf.Rad2Deg;
+
+                if (radian < 0)
+                {
+                    radian += 360;
+                }
+                radian -= 90;
+                //Debug.Log(radian);
+
+                //var direction = new Vector2(Horizontal,Vertical);
+
+                direc.transform.localRotation = Quaternion.Euler(0,0,radian);
+                radian += 90;
+                radian /= 90;
+                //Debug.Log((int)radian);
+                switch ((States)Enum.ToObject(typeof(States), (int)radian))
+                {
+                    case States.Girl:
+                        Debug.Log("­—‚Ìˆ—");
+                        break;
+
+                    case States.SwordMan:
+                        Debug.Log("Œ•Žm‚Ìˆ—");
+                        break;
+
+                    case States.Archer:
+                        Debug.Log("‹|Žg‚¢‚Ìˆ—");
+                        break;
+
+                    case States.Wizard:
+                        Debug.Log("–‚–@Žg‚¢‚Ìˆ—");
+                        break;
+
+                    default:
+                        break;
+                }
             }
-        }
+            */
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                switch((States)Enum.ToObject(typeof(States),num))
+                {
+                   case States.Girl:
+                       Debug.Log("­—‚Ìˆ—");
+                       break;
+
+                   case States.SwordMan:
+                       Debug.Log("Œ•Žm‚Ìˆ—");
+                       break;
+
+                   case States.Archer:
+                       Debug.Log("‹|Žg‚¢‚Ìˆ—");
+                       break;
+
+                   case States.Wizard:
+                       Debug.Log("–‚–@Žg‚¢‚Ìˆ—");
+                       break;
+
+                   default:
+                       
+                       break;
+                }
+            }
     }
 
 
