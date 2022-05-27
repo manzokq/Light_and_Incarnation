@@ -6,7 +6,7 @@ public class zombiemove1 : MonoBehaviour
 {
 	[SerializeField]
 	public GameObject zombie;
-
+	public bool y = true;
 	
 
 	void Start()
@@ -14,12 +14,20 @@ public class zombiemove1 : MonoBehaviour
 		
 	}
 
-		void OnTriggerExit2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+		y = true;
+    }
+    void OnTriggerExit2D(Collider2D col)
 	{
 		Debug.Log("q");
 		if (col.gameObject.tag == "y")
-		{   //Wallタグのついたオブジェクトと衝突時
+		{   //yukaタグのついたオブジェクトと衝突時
 			zombie.GetComponent<zombiemove>().a *= -1;
+			if(zombie.GetComponent<zombiemove>().w == false)
+            {
+				y = false;
+            }
 		}
 	}
 }

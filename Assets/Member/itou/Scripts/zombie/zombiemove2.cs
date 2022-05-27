@@ -19,7 +19,10 @@ public class zombiemove2 : MonoBehaviour
 		if (b.gameObject.tag == "Player")
 		{   //Wallタグのついたオブジェクトと衝突時
 			Debug.Log("gg");
-			zombie.GetComponent<zombiemove>().w = true;
+			if (zombie.GetComponent<zombiemove>().z == true)
+			{
+				zombie.GetComponent<zombiemove>().w = true;
+			}
 		}
 	}
 }

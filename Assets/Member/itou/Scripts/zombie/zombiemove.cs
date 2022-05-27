@@ -9,6 +9,7 @@ public class zombiemove : Enemy
 	private SpriteRenderer sr = null;
 	public int a = 0;
 	public bool w = false;
+	public bool z = true;
 
 	protected override void Start()
 	{
@@ -18,7 +19,10 @@ public class zombiemove : Enemy
 
 	void FixedUpdate()
 	{
+		if (z)
+		{
 			this.transform.Translate(new Vector3(Speed * a * Time.deltaTime, 0f, 0f));
+		}
 		if (w)
 		{
 			if (transform.position.x < Circle.transform.position.x)

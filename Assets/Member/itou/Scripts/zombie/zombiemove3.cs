@@ -8,7 +8,9 @@ public class zombiemove3 : MonoBehaviour
     private GameObject Circle;
     [SerializeField]
     public GameObject zombie;
-
+    [SerializeField]
+    public GameObject yukahanntei;
+    bool a = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,6 @@ public class zombiemove3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     void OnTriggerEnter2D(Collider2D col)
     { //2DÇÃè’ìÀîªíË
@@ -31,16 +32,21 @@ public class zombiemove3 : MonoBehaviour
 
     void OnBecameVisible()
     {
-        if (transform.position.x < Circle.transform.position.x && zombie.GetComponent<zombiemove>().a == 1 || transform.position.x > Circle.transform.position.x && zombie.GetComponent<zombiemove>().a == -1)
+        if (yukahanntei.GetComponent<zombiemove1>().y == true)
         {
-            zombie.GetComponent<zombiemove>().w = true;
-        }
+            if (transform.position.x < Circle.transform.position.x && zombie.GetComponent<zombiemove>().a == 1 || transform.position.x > Circle.transform.position.x && zombie.GetComponent<zombiemove>().a == -1)
+            {
+                zombie.GetComponent<zombiemove>().w = true;
+            }
 
-        Debug.Log("âÊñ Ç…å©Ç¶ÇƒÇ¢ÇÈ");
+            Debug.Log("âÊñ Ç…å©Ç¶ÇƒÇ¢ÇÈ");
+        }
     }
 
     void OnBecameInvisible()
     {
         zombie.GetComponent<zombiemove>().w = false;
     }
+
+    
 }
