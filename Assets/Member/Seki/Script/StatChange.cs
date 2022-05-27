@@ -6,8 +6,7 @@ using System;
 public  class StatChange : MonoBehaviour 
 {
     int num = 0;
-    [SerializeField]
-    private GameObject direc;
+    
 
 
     // Start is called before the first frame update
