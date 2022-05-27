@@ -4,33 +4,37 @@ using UnityEngine;
 
 public class Orb : MonoBehaviour
 {
+    //オーブの数
+    public float Orb_score = 0;
 
+    private void Start()
+    {
+        //スコアリセット
+        Orb_score = 0;
+    }
+
+    // 2Dの場合のトリガー判定
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 物体がトリガーに接触しとき、１度だけ呼ばれる
+        Debug.Log("a");
+        //接触したオブジェクトのタグが"花"のとき
+        if (collision.gameObject.tag == ("flour"))
+        {
+            GameObject have = collision.gameObject;
+
+            if (have.GetComponent<flour>().touch == false)
+            {
+                Orb_score += have.GetComponent<flour>().Orb_count;
+                Debug.Log("d");
+            }
+
+            have.GetComponent<flour>().touch = true;
+
+            Debug.Log(Orb_score);
+        }
+    }
 
 }
 
 
-////スコアを付ける
-//[SerializeField, Header("スコア")]
-//public float score_ = 0;
-//// Start is called before the first frame update
-//void Start()
-//{
-
-//}
-
-//// Update is called once per frame
-//void Update()
-//{
-
-//}
-//// 2Dの場合のトリガー判定
-//private void OnTriggerEnter2D(Collider2D collision)
-//{
-//    // 物体がトリガーに接触しとき、１度だけ呼ばれる
-//    Debug.Log("b");
-//    //接触したオブジェクトのタグが"Orb"のとき
-//    if (collision.gameObject.tag == ("Player"))
-//    {
-//        Destroy(this.gameObject);
-//    }
-//}
