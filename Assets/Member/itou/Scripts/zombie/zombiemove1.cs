@@ -6,7 +6,7 @@ public class zombiemove1 : MonoBehaviour
 {
 	[SerializeField]
 	public GameObject zombie;
-	public bool y = true;
+	public bool y = false;
 	
 
 	void Start()
@@ -16,7 +16,7 @@ public class zombiemove1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-		y = true;
+		y = false;
     }
     void OnTriggerExit2D(Collider2D col)
 	{
@@ -26,7 +26,7 @@ public class zombiemove1 : MonoBehaviour
 			zombie.GetComponent<zombiemove>().a *= -1;
 			if(zombie.GetComponent<zombiemove>().w == false)
             {
-				y = false;
+				y = true;
             }
 		}
 	}

@@ -16,6 +16,7 @@ public class enemy : MonoBehaviour
     }
     bool G = false;
     bool wait = true;
+    bool zea = false;
     private void Update()
     {
 
@@ -23,15 +24,17 @@ public class enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         G = true;
-        if (wait) {
-            StartCoroutine(als(col));
-    }
+        if (wait)
+        {
+                StartCoroutine(als(col));
+
+        }
     }
     private void OnTriggerExit2D(Collider2D col)
     {
         G = false;
         wait = true;
-        if (wait)
+        if (zea)
         {
             StartCoroutine(asa());
         }
@@ -63,14 +66,20 @@ public class enemy : MonoBehaviour
             }
             yield return new WaitForSecondsRealtime(2);
             wait = true;
+            zea = true;
+
+            if (true)
+            {
+                
+            }
         }
     }
     private IEnumerator asa()
     {
-        wait = false;
-        yield return new WaitForSecondsRealtime(0.2f);
+        zea = false;
         zombie.GetComponent<zombiemove>().a *= -1;
         zombie.GetComponent<zombiemove>().z = true;
-        wait = true;
+        yield return new WaitForSecondsRealtime(0.01f);
+        zea = true;
     }
 }

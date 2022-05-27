@@ -377,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombie: {fileID: 187386620}
+  y: 1
 --- !u!61 &573788249
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1420,6 +1421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Circle: {fileID: 200008722}
   zombie: {fileID: 187386620}
+  Square: {fileID: 2096048207}
 --- !u!1 &2076289268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,3 +1681,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Circle: {fileID: 200008722}
   zombie: {fileID: 187386620}
+  yukahanntei: {fileID: 573788246}

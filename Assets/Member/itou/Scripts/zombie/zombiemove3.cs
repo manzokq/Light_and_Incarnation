@@ -32,7 +32,7 @@ public class zombiemove3 : MonoBehaviour
 
     void OnBecameVisible()
     {
-        if (yukahanntei.GetComponent<zombiemove1>().y == true)
+        if (yukahanntei.GetComponent<zombiemove1>().y == false)
         {
             if (transform.position.x < Circle.transform.position.x && zombie.GetComponent<zombiemove>().a == 1 || transform.position.x > Circle.transform.position.x && zombie.GetComponent<zombiemove>().a == -1)
             {
