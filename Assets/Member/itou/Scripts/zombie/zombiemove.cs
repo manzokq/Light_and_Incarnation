@@ -31,27 +31,4 @@ public class zombiemove : Enemy
 			}
 		}
 	}
-
-	void OnBecameVisible()
-    {
-		if (transform.position.x < Circle.transform.position.x && a == 1 || transform.position.x > Circle.transform.position.x && a ==-1)
-		{
-			w = true;
-		}
-		
-		Debug.Log("画面に見えている");
-	}
-
-	void OnBecameInvisible()
-	{
-		w = false;
-	}
-
-	void OnCollisionEnter2D(Collision2D col)
-	{ //2Dの衝突判定
-		if (col.gameObject.tag == "T")
-		{   //Wallタグのついたオブジェクトと衝突時
-			a *= -1;
-		}
-	}
 }

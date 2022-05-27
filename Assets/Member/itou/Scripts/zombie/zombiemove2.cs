@@ -5,7 +5,7 @@ using UnityEngine;
 public class zombiemove2 : MonoBehaviour
 {
 	[SerializeField]
-	public GameObject Square;
+	public GameObject zombie;
 
 	
 
@@ -19,7 +19,7 @@ public class zombiemove2 : MonoBehaviour
 		if (b.gameObject.tag == "Player")
 		{   //Wallタグのついたオブジェクトと衝突時
 			Debug.Log("gg");
-			Square.GetComponent<zombiemove>().w = true;
+			zombie.GetComponent<zombiemove>().w = true;
 		}
 	}
 }

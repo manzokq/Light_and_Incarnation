@@ -42,7 +42,7 @@ public class HP : MonoBehaviour
         //現在値　/　最大値
         hptext.text = currentHp.ToString() + " / " + maxHp.ToString();　//ToSTring = 文字化
 
-       if (currentHp == 0)
+       if (currentHp <= 0)
         {
            this.transform.position = S;
             currentHp = maxHp;
@@ -50,9 +50,9 @@ public class HP : MonoBehaviour
     }
 
     //ダメージ
-    public void Damage()
+    public void Damage(int D)
     {
         //currentHpからー10
-        currentHp -= 10;
+        currentHp -= D;
     }
 }

@@ -13,7 +13,8 @@ public class gm : MonoBehaviour
     public void Button()
    {
     SceneManager.LoadScene("OP");
-   }
+        Time.timeScale = 1f;
+    }
 
    void update()
    {
