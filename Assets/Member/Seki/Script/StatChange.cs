@@ -9,6 +9,9 @@ public  class StatChange : MonoBehaviour
     [SerializeField]
     private List<Sprite> playerTex = new List<Sprite>();
 
+    [SerializeField]
+    private GameObject direc;
+
     bool ltFrag=true;
 
 
@@ -79,10 +82,10 @@ public  class StatChange : MonoBehaviour
         }
         */
 
-            /*
-            if(LT != 0.0f)
+            
+            if(tri != 0.0f)
             {
-                Debug.Log(LT);
+                //Debug.Log(LT);
 
                 float Horizontal = Input.GetAxis("HorizontalKey");
                 if (Horizontal < 0.0f)
@@ -114,8 +117,10 @@ public  class StatChange : MonoBehaviour
                 {
                     radian += 360;
                 }
-                radian -= 90;
-                //Debug.Log(radian);
+
+            Debug.Log(radian);
+            radian -= 90;
+                //
 
                 //var direction = new Vector2(Horizontal,Vertical);
 
@@ -123,6 +128,7 @@ public  class StatChange : MonoBehaviour
                 radian += 90;
                 radian /= 90;
                 //Debug.Log((int)radian);
+                /*
                 switch ((States)Enum.ToObject(typeof(States), (int)radian))
                 {
                     case States.Girl:
@@ -143,9 +149,9 @@ public  class StatChange : MonoBehaviour
 
                     default:
                         break;
-                }
+                }*/
             }
-            */
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 switch((States)Enum.ToObject(typeof(States),num))
