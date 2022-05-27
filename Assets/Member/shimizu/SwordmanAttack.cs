@@ -6,8 +6,10 @@ public class SwordmanAttack : MonoBehaviour
 {
     private Animator animator;
     private Collider2D swordCollider;
+    private Animator anim;
+
     [SerializeField]
-    GameObject sword;
+    Animator animSword;
 
     private bool slashAble = true;
     private bool thrustAble = true;
@@ -19,13 +21,15 @@ public class SwordmanAttack : MonoBehaviour
     void Start()
     {
         
-        animator = sword.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         //swordCollider = GameObject.Find("swordnonamae").GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("Slash", false);
+        animSword.SetBool("Slash2", false);
         #region クールタイム処理
         if (slashAble == false)
         {
@@ -56,15 +60,15 @@ public class SwordmanAttack : MonoBehaviour
         }
         #endregion
         //Pを押すと斬撃
-        if (Input.GetKeyDown(KeyCode.U) && slashAble)
+        if (Input.GetKeyDown("joystick button 1") && slashAble)
         {
-            animator.SetBool("Slash", true);
+            //spren.enabled = false;
+            anim.SetBool("Slash", true);
+            animSword.SetBool("Slash2", true);
 
             ////ソードコライダーをオンにする
             //swordCollider.enabled = true;
-            ////
-            Invoke("ColliderReset",1f);
-            //slashAble = false;
+            //slashable = false;
         }
 
         ////Lを押すと突き
@@ -86,10 +90,6 @@ public class SwordmanAttack : MonoBehaviour
         //    Invoke("ColliderReset", 0.1f);
         //    chargeslashAble = false;
         //}
-    }
-    private void ColliderReset()
-    {
-        animator.SetBool("Slash", false);
     }
 }
 

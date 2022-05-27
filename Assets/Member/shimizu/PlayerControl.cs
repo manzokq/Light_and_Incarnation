@@ -10,10 +10,13 @@ public class PlayerControl : MonoBehaviour
     private BoxCollider2D boxcollider;
     private RectTransform rect;
     private bool isGround = false;
+    private bool isWallright = false;
+    private bool isWallleft = false;
     private bool climbcheck = true;
     private Vector2 scale = new Vector2(100, 100);
     private string wallTag = "Wall";
 
+    private bool coroutine_able = true;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -21,6 +24,8 @@ public class PlayerControl : MonoBehaviour
     private float jumpCount;
     [SerializeField] private float climbPower;
     [SerializeField] GroundCheck ground;
+    [SerializeField] WallCheck wallright;
+    [SerializeField] WallCheck wallleft;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,8 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         isGround = ground.IsGround();
+        isWallright = wallright.IsWall();
+        isWallleft = wallleft.IsWall();
         //â°à⁄ìÆ
         rbody.velocity = new Vector2(Input.GetAxis("Horizontal")
             * moveSpeed, rbody.velocity.y);
@@ -63,9 +70,11 @@ public class PlayerControl : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 0, 90);
             StartCoroutine("AngleRepair");
         }
-        if (isGround)
+        //ï«ìoÇË
+        if (isGround && isWallright && Input.GetAxis("L_Stick_V") != 0 && Input.GetKeyDown("joysick button 5"))
         {
-            climbcheck = true;
+            rbody.isKinematic = true;
+            StartCoroutine("Climb");
         }
 
 
@@ -89,12 +98,22 @@ public class PlayerControl : MonoBehaviour
     //ï«ìoÇËÅ@óvèCê≥(òAë≈ÇµÇ»Ç¢Ç∆îÚÇŒÇ»Ç¢
     private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log(climbcheck);
+        //Debug.Log(climbcheck);
         if (other.gameObject.tag == wallTag && Input.GetKeyDown(KeyCode.Q) && climbcheck)
         {
             Debug.Log("climb!");
             rbody.velocity = new Vector2(rbody.velocity.x, climbPower);
             climbcheck = false;
         }
+    }
+    IEnumerator Climb()
+    {
+        rbody.isKinematic = true;
+        for (int i = 0; i < 100; i++)
+        {
+            transform.Translate(0, 1, 0);
+            yield return new WaitForSeconds(0.01f);
+        }
+        coroutine_able = true;
     }
 }
