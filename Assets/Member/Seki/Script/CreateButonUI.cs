@@ -22,7 +22,7 @@ public static class CreateButtonUi
     static CreateButtonUi()
     {
         seisei = new Seisei();
-        SceneView.duringSceneGui += OnGui;
+        //SceneView.duringSceneGui += OnGui;
     }
 
     private static void OnGui(SceneView sceneView)
