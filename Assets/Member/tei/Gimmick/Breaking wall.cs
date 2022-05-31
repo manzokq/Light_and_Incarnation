@@ -15,8 +15,6 @@ public class Breakingwall : MonoBehaviour
     {
         
     }
-
-
     private void OnTriggerEnter2D(Collider2D Breaking)
     {
         if (Breaking.gameObject.tag == ("flour"))
