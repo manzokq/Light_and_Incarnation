@@ -62,6 +62,8 @@ public class SwordmanAttack : MonoBehaviour
         {
             anim.SetBool("Slash", true);
             animSword.SetTrigger("Slash2");
+            GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
+            GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
 
             //slashable = false;
         }

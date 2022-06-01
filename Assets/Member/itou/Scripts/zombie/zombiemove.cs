@@ -15,6 +15,9 @@ public class zombiemove : Enemy
 	{
 		base.Start();
 		sr = GetComponent<SpriteRenderer>();
+
+
+		Debug.Log(Hp);
 	}
 
 	void FixedUpdate()
@@ -34,5 +37,20 @@ public class zombiemove : Enemy
 				a = -1;
 			}
 		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D col)
+	{
+
+		//ŠÖ
+
+
+		if (col.CompareTag("PlayerAtk"))
+		{
+
+			Hp = GameManagement.Instance.PlayerAtk(Hp);
+			Debug.Log(Hp);
+		}
+
 	}
 }

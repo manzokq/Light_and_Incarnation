@@ -46,7 +46,7 @@ public class GroundCheck : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log(isGround);
+        //Debug.Log(isGround);
         if (collision.tag == groundTag)
         {
             isGroundExit = true;

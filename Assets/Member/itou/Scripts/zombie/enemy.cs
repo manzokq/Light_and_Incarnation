@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class enemy : Enemy
 {
     [SerializeField]
     private GameObject Circle;
@@ -10,17 +10,21 @@ public class enemy : MonoBehaviour
     private GameObject zombie;
     [SerializeField]
     private GameObject Square;
-    private void Start()
+
+
+   
+
+    protected override void Start()
     {
+        base.Start();
+
+        Debug.Log(Hp);
 
     }
     bool G = false;
     bool wait = true;
     bool zea = false;
-    private void Update()
-    {
 
-    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         G = true;
@@ -29,6 +33,18 @@ public class enemy : MonoBehaviour
                 StartCoroutine(als(col));
 
         }
+
+        //ŠÖ
+
+
+       
+        if(col.CompareTag("PlayerAtk"))
+        {
+
+            Hp = GameManagement.Instance.PlayerAtk(Hp);
+            Debug.Log(Hp);
+        }
+
     }
     private void OnTriggerExit2D(Collider2D col)
     {
@@ -46,14 +62,14 @@ public class enemy : MonoBehaviour
             zombie.GetComponent<zombiemove>().z = false;
             wait = false;
             int a = Random.Range(0, 2);
-            Debug.Log(a);
+            //Debug.Log(a);
             if (a == 0)
             {
-                Debug.Log("a");
+                //Debug.Log("a");
                 yield return new WaitForSecondsRealtime(1);
                 if (G)
                 {
-                    col.GetComponent<HP1>().Damage(8);
+                    //col.GetComponent<HP1>().Damage(8);
                 }
             }
             else if (a == 1)
@@ -61,7 +77,7 @@ public class enemy : MonoBehaviour
                 yield return new WaitForSecondsRealtime(3);
                 if (G)
                 {
-                    col.GetComponent<HP1>().Damage(20);
+                    //col.GetComponent<HP1>().Damage(20);
                 }
             }
             yield return new WaitForSecondsRealtime(2);

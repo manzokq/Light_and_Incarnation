@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour
         }
         //sliding_anim.SetBool("Sliding", false);
         //Debug.Log(coroutine_able);
-        Debug.Log(isWallright);
+        //Debug.Log(isWallright);
 
         //Debug.Log(coroutine_able);
         //Ú’n”»’è‚ÆÚ•Ç”»’è
