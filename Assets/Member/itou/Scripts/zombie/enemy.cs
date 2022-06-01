@@ -18,7 +18,7 @@ public class enemy : Enemy
     {
         base.Start();
 
-        Debug.Log(Hp);
+       
 
     }
     bool G = false;
@@ -34,16 +34,7 @@ public class enemy : Enemy
 
         }
 
-        //ŠÖ
-
-
-       
-        if(col.CompareTag("PlayerAtk"))
-        {
-
-            Hp = GameManagement.Instance.PlayerAtk(Hp);
-            Debug.Log(Hp);
-        }
+   
 
     }
     private void OnTriggerExit2D(Collider2D col)
@@ -69,7 +60,16 @@ public class enemy : Enemy
                 yield return new WaitForSecondsRealtime(1);
                 if (G)
                 {
-                    //col.GetComponent<HP1>().Damage(8);
+                    //ŠÖ
+
+
+
+                    if (col.CompareTag("Player"))
+                    {
+
+                        GameManagement.Instance.PlayerDamage(5);
+                        //Debug.Log("");
+                    }
                 }
             }
             else if (a == 1)

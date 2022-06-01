@@ -55,6 +55,10 @@ public class GameManagement : MonoBehaviour
     public void PlayerDamage(int Damage) //プレイヤーにダメージ
     {
         //プレイヤーを呼び出す
+        PlayerHP -= Damage;
+
+
+        Debug.Log(PlayerHP);
         //Player.Instance.PlayerHP -= Damage;
     }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ

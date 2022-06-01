@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     private bool coroutine_able = true;
     [SerializeField] private float num_climb, translate_climb,time_climb;
     
-    private Vector2 scale = new Vector2(100, 100);
+    private Vector2 scale = new Vector2(1, 1);
     
     private float jumpCount;
 
@@ -122,13 +122,13 @@ public class PlayerControl : MonoBehaviour
                 if (Input.GetAxis("Horizontal") > 0 && scale.x <0)
                 {
                     rbody.isKinematic = false;
-                    rbody.AddForce(new Vector2(1, 0) * 100);
+                    rbody.AddForce(new Vector2(1, 0) * 1);
                 
                 }
                 if (Input.GetAxis("Horizontal") < 0 && scale.x > 0)
                 {
                     rbody.isKinematic = false;
-                    rbody.AddForce(new Vector2(-1, 0) * 100);
+                    rbody.AddForce(new Vector2(-1, 0) * 1);
                 }
             }
         }
@@ -136,13 +136,13 @@ public class PlayerControl : MonoBehaviour
         //ç∂âEîΩì]
         if (rbody.velocity.x < 0)
         {
-            scale.x = -100;
+            scale.x = -1;
             transform.localScale = scale;
         }
         if (rbody.velocity.x > 0)
         {
 
-            scale.x = 100;
+            scale.x = 1;
             transform.localScale = scale; ;
         }
 
