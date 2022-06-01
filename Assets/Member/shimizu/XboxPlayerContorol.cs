@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+    Num_climb       :壁登り時の移動回数
+    Translate_climb :壁登り時の移動幅          →Num_climb * Translate_climb = 最終的に移動する距離
+    Time_climb      :壁登り時の移動の時間間隔　→Num_climb * Time_climb = 最終的に移動にかかる時間
+    MoveSpeed       :これいじれば移動の速さが変わる
+    JumpForce       :これいじればジャンプの高さが変わる
+    SlidhingForce   :
+    Wallright       :体の横についているやつをアタッチ
+    Ground          :体の下についてるやつをアタッチ
+ */
 
-public class PlayerControl : MonoBehaviour
+public class XboxPlayerContorol : MonoBehaviour
 {
     private Rigidbody2D rbody;
     private Animator sliding_anim;
     private bool sliding_judge = true;
-    private float changechara = 2;
 
     private bool isGround = false;
 
@@ -35,71 +44,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //キャラチェンジ
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            sliding_anim.SetBool("changeIncarnation", true);
-        }
-        if(Input.GetKeyDown(KeyCode.N))
-        {
-            changechara--;
-            Debug.Log(changechara);
-            if(changechara<1)
-            {
-                changechara = 3;
-            }
-            if(changechara == 1)
-            {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", true);
-
-            }
-            else if (changechara == 2)
-            {
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeSwordman", true);
-
-            }
-            else if (changechara == 3)
-            {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeArcher", true);
-
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            changechara++;
-            if(changechara> 3)
-            {
-                changechara = 1;
-            }
-            if (changechara == 1)
-            {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", true);
-
-            }
-            else if (changechara == 2)
-            {
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeSwordman", true);
-
-            }
-            else if (changechara == 3)
-            {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeArcher", true);
-
-            }
-        }
-        //sliding_anim.SetBool("Sliding", false);
         //Debug.Log(coroutine_able);
         Debug.Log(isWallright);
 
@@ -111,7 +55,7 @@ public class PlayerControl : MonoBehaviour
         //横移動
         if (coroutine_able)
         {
-            rbody.velocity = new Vector2(Input.GetAxis("Horizontal")
+            rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
                 * moveSpeed, rbody.velocity.y);
         }
         //壁登ってる最中の途中で壁から離れるため
@@ -119,13 +63,13 @@ public class PlayerControl : MonoBehaviour
         {
             if (isWallright)
             {
-                if (Input.GetAxis("Horizontal") > 0 && scale.x <0)
+                if (Input.GetAxis("L_Stick_H") > 0 && scale.x <0)
                 {
                     rbody.isKinematic = false;
                     rbody.AddForce(new Vector2(1, 0) * 100);
                 
                 }
-                if (Input.GetAxis("Horizontal") < 0 && scale.x > 0)
+                if (Input.GetAxis("L_Stick_H") < 0 && scale.x > 0)
                 {
                     rbody.isKinematic = false;
                     rbody.AddForce(new Vector2(-1, 0) * 100);
@@ -147,7 +91,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         //ジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2 && coroutine_able)
+        if (Input.GetKeyDown("joystick button 0") && jumpCount < 2 && coroutine_able)
         {
             jumpCount++;
             //Debug.Log("jump!");
@@ -159,15 +103,16 @@ public class PlayerControl : MonoBehaviour
         }
         
         //スライディング
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGround && coroutine_able && rbody.velocity.x != 0 && sliding_judge)
+        if (Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 5") && isGround && coroutine_able)
         {
+
             sliding_judge = false;
             //sliding_anim.SetTrigger("Sliding");
             Debug.Log("スライディング");
             //右向き
             if (rbody.velocity.x > 0)
             {
-                sliding_anim.SetBool("Sliding",true);
+                sliding_anim.SetBool("Sliding", true);
                 StartCoroutine("AngleRepairRight");
             }
             //左向き
@@ -177,15 +122,15 @@ public class PlayerControl : MonoBehaviour
                 StartCoroutine("AngleRepairLeft");
             }
         }
-        
 
         //壁登り
-        if (isGround && isWallright && coroutine_able && Input.GetKeyDown(KeyCode.RightShift))
+        if (isGround && isWallright && coroutine_able && Input.GetAxis("L_Stick_V") != 0 && Input.GetKeyDown("joystick button 5"))
         {
             Debug.Log("壁登り");
             coroutine_able = false;
             StartCoroutine("Climb");
         }
+
 
     }
     //ジャンプの挙動
@@ -195,15 +140,14 @@ public class PlayerControl : MonoBehaviour
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
     }
     //スライディングでの回転を直す
-    //右向いてる時
     IEnumerator AngleRepairRight()
     {
-        float j = Input.GetAxis("Horizontal");
-        for(int i = 0;i < 150; i++)
+        float j = Input.GetAxis("L_Stick_H");
+        for (int i = 0; i < 150; i++)
         {
-            if(Input.GetAxis("Horizontal") < j)
+            if (Input.GetAxis("L_Stick_H") < j)
             {
-                
+
                 sliding_anim.SetBool("Sliding", false);
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 sliding_judge = true;
@@ -214,15 +158,14 @@ public class PlayerControl : MonoBehaviour
         sliding_judge = true;
         sliding_anim.SetBool("Sliding", false);
     }
-    //左向いてる時
     IEnumerator AngleRepairLeft()
     {
-        float j = Input.GetAxis("Horizontal");
+        float j = Input.GetAxis("L_Stick_H");
         for (int i = 0; i < 150; i++)
         {
-            if (Input.GetAxis("Horizontal") > j)
+            if (Input.GetAxis("L_Stick_H") > j)
             {
-                
+
                 sliding_anim.SetBool("SlidingLeft", false);
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 sliding_judge = true;
@@ -260,5 +203,4 @@ public class PlayerControl : MonoBehaviour
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
-
 }

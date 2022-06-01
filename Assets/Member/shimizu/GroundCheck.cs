@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ‘«‚É‚Å‚à‚­‚Á‚Â‚¯‚Ä
+ */
 public class GroundCheck : MonoBehaviour
 {
     private string groundTag = "Ground";
     private bool isGround = false;
     private bool isGroundEnter, isGroundStay, isGroundExit;
 
+    //Ú’n”»’è‚ğ•Ô‚·
     public bool IsGround()
     {
         if (isGroundEnter || isGroundStay)
@@ -23,6 +27,7 @@ public class GroundCheck : MonoBehaviour
         isGroundExit = false;
         return isGround;
     }
+    //ˆÈ‰ºÚ’n”»’è
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(isGround);
