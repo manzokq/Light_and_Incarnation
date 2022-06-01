@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+    èH‚É‚­‚Á‚Â‚¯‚Ä
+ */
 public class WallCheck : MonoBehaviour
 {
     private string wallTag = "Wall";

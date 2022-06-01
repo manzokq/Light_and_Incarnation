@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SwordmanAttack : MonoBehaviour
 {
-    private Animator animator;
-    private Collider2D swordCollider;
     private Animator anim;
 
     [SerializeField]
@@ -60,36 +58,27 @@ public class SwordmanAttack : MonoBehaviour
         }
         #endregion
         //Pを押すと斬撃
-        if (Input.GetKeyDown("joystick button 1") && slashAble)
+        if (Input.GetKeyDown(KeyCode.P) && slashAble)
         {
-            //spren.enabled = false;
             anim.SetBool("Slash", true);
-            animSword.SetBool("Slash2", true);
+            animSword.SetTrigger("Slash2");
 
-            ////ソードコライダーをオンにする
-            //swordCollider.enabled = true;
             //slashable = false;
         }
 
-        ////Lを押すと突き
-        //if (Input.GetKeyDown(KeyCode.S) && thrustAble)
-        //{
-        //    animator.SetBool("Thrust", true);
-        //    //
-        //    swordCollider.enabled = true;
-        //    Invoke("ColliderReset", 0.1f);
-        //    thrustAble = false;
-        //}
+        //Lを押すと突き
+        if (Input.GetKeyDown(KeyCode.O) && thrustAble)
+        {
+            anim.SetTrigger("Thrust");
+            animSword.SetTrigger("Thrust2");
+        }
 
-        ////Oを押すとため切り
-        //if (Input.GetKeyDown(KeyCode.D) && chargeslashAble)
-        //{
-        //    animator.SetBool("ChargeSlash", true);
-        //    //
-        //    swordCollider.enabled = true;
-        //    Invoke("ColliderReset", 0.1f);
-        //    chargeslashAble = false;
-        //}
+        //Oを押すとため切り
+        if (Input.GetKeyDown(KeyCode.L) && chargeslashAble)
+        {
+            anim.SetTrigger("ChargeSlash");
+            animSword.SetTrigger("ChargeSlash2");
+        }
     }
 }
 
