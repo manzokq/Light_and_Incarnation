@@ -10,6 +10,8 @@ public class zombiemove : Enemy
 	public int a = 0;
 	public bool w = false;
 	public bool z = true;
+	
+
 
 	protected override void Start()
 	{
@@ -17,7 +19,6 @@ public class zombiemove : Enemy
 		sr = GetComponent<SpriteRenderer>();
 
 
-		Debug.Log(Hp);
 	}
 
 	void FixedUpdate()
@@ -48,9 +49,11 @@ public class zombiemove : Enemy
 		if (col.CompareTag("PlayerAtk"))
 		{
 
-			Hp = GameManagement.Instance.PlayerAtk(Hp);
-			Debug.Log(Hp);
+			this.enemyDate.hp = GameManagement.Instance.PlayerAtk(this.enemyDate.hp);
+		
 		}
+
+		//‚±‚±‚Ü‚ÅŠÖ
 
 	}
 }
