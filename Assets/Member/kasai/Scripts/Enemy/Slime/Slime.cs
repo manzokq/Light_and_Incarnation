@@ -85,9 +85,10 @@ public class Slime : Enemy
             process = true;
 
             //se‚ğŒÄ‚Ño‚·
-            yield return new WaitForSeconds(1.0f);
-            //atk10
+            GameManagement.Instance.PlayerDamage(enemyDate.atk);
+            
             //
+            yield return new WaitForSeconds(1.0f);
             process = false;
         }
     }
@@ -163,6 +164,10 @@ public class Slime : Enemy
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("PlayerAtk"))
+        {
+            this.enemyDate.hp = GameManagement.Instance.PlayerAtk(this.enemyDate.hp);
+        }
         
     }
 }

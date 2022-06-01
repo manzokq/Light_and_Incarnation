@@ -21,6 +21,7 @@ public class Poison : MonoBehaviour
             count += 1;
             magnification = Random.Range(randMin, randMax);//atk12~18 ”{—¦min0.6max1.8‚ð‘z’è
             poisonAtk = (int)magnification * enemyDate.atk;
+            GameManagement.Instance.PlayerDamage(poisonAtk);
             //‘Ì—Í‚ðŒ¸‚ç‚·
 
             if (count>=5)
