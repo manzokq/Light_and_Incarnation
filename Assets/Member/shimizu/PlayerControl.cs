@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    
+
 
     private Rigidbody2D rbody;
     private BoxCollider2D boxcollider;
     private RectTransform rect;
     private bool isGround = false;
     private bool climbcheck = true;
+    private Vector2 scale = new Vector2(100, 100);
     private string wallTag = "Wall";
+
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float slidingForce;
@@ -29,13 +32,23 @@ public class PlayerControl : MonoBehaviour
     {
         isGround = ground.IsGround();
         //横移動
-        rbody.velocity = new Vector2(Input.GetAxis("Horizontal") 
+        rbody.velocity = new Vector2(Input.GetAxis("Horizontal")
             * moveSpeed, rbody.velocity.y);
+        if (rbody.velocity.x < 0)
+        {
+            scale.x = -100;
+            transform.localScale = scale;
+        }
+        if (rbody.velocity.x > 0)
+        {
+            scale.x = 100;
+            transform.localScale = scale; ;
+        }
         //--ジャンプ--
-        if(Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
             jumpCount++;
-            Debug.Log("jump!");
+            //Debug.Log("jump!");
             Jump();
         }
         if (jumpCount > 1 && isGround)
@@ -44,16 +57,17 @@ public class PlayerControl : MonoBehaviour
         }
         //
         //スライディング
-        if(Input.GetKeyDown(KeyCode.LeftControl) && rbody.velocity.x != 0 && isGround)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && rbody.velocity.x != 0 && isGround)
         {
             Debug.Log("スライディング");
             transform.localRotation = Quaternion.Euler(0, 0, 90);
             StartCoroutine("AngleRepair");
         }
-        if(isGround)
+        if (isGround)
         {
             climbcheck = true;
         }
+
 
     }
     void Jump()
@@ -71,14 +85,16 @@ public class PlayerControl : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0, 0, 0);
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    //壁登り　要修正(連打しないと飛ばない
+    private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log("壁当たり");
-        //if (collision.tag == wallTag && Input.GetKeyDown(KeyCode.LeftShift) && climbcheck)
-        //{
-        //    Debug.Log("climb!");
-        //    rbody.velocity = new Vector2(rbody.velocity.x, climbPower);
-        //    climbcheck = false;
-        //}
+        Debug.Log(climbcheck);
+        if (other.gameObject.tag == wallTag && Input.GetKeyDown(KeyCode.Q) && climbcheck)
+        {
+            Debug.Log("climb!");
+            rbody.velocity = new Vector2(rbody.velocity.x, climbPower);
+            climbcheck = false;
+        }
     }
 }
