@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
+    //private Rigidbody2D rb;
     private GameObject playerObject;//プレイヤー
     [SerializeField] private GameObject chargeObject;
     [SerializeField] private GameObject explosionObject;
     private float playerRange;//プレイヤーとの距離
-
-    Vector2 force;
 
     //生成する毒
     [SerializeField] GameObject poison = null;
@@ -21,16 +20,15 @@ public class Slime : Enemy
 
     private bool inCamera;
 
-    EnemySearch enemySearch = new EnemySearch();
+    FloorSearch floorSearch = new();
 
     private bool slimeSearch=false;
-
-    //private Rigidbody2D rb;
+    private bool process = false;
     protected override void Start()
     {
         base.Start();
-        playerObject = GameObject.FindWithTag("Player");
         //rb = GetComponent<Rigidbody2D>();
+        playerObject = GameObject.FindWithTag("Player");
     }
 
     protected override void Update()
@@ -40,7 +38,7 @@ public class Slime : Enemy
         this.playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
        
 
-        slimeSearch = enemySearch.Search;
+        slimeSearch = floorSearch.Search;
         if (inCamera)
         {
             if (playerRange < 2)
@@ -51,7 +49,11 @@ public class Slime : Enemy
             {
                 StartCoroutine(Poison());
             }
-            else
+            //else if(true)
+            //{
+            //    StartCoroutine(Explosion());
+            //}
+            if(playerRange>3)
             {
                 StartCoroutine(Move());
             }
@@ -63,67 +65,43 @@ public class Slime : Enemy
     public IEnumerator Move()//移動の処理
     {
         Vector2 scale = transform.localScale;
-        if (playerRange<3)
+        if (inCamera)
         {
-            //プレイヤー側に移動
-            Vector3 pv = playerObject.transform.position;
-            Vector3 ev = transform.position;
+            rb.velocity = new Vector2(enemyDate.speed, rb.velocity.y);
 
-            float p_vX = pv.x - ev.x;
-            float p_vY = pv.y - ev.y;
-
-            float vx = 0f;
-            float vy = 0f;
-
-            float sp = enemyDate.speed;
-
-            // 減算した結果がマイナスであればXは減算処理
-            if (p_vX < 0)
-            {
-                vx = -sp;
-            }
-            else
-            {
-                vx = sp;
-            }
-
-            //// 減算した結果がマイナスであればYは減算処理
-            //if (p_vY < 0)
+            //if (!slimeSearch)
             //{
-            //    vy = -sp;
-            //}
-            //else
-            //{
-            //    vy = sp;
-            //}
-
-            transform.Translate(vx / 50, vy / 50, 0);
-
+            //    enemyDate.speed = enemyDate.speed * -1;
+            //    scale.x = scale.x * -1;
+            //    //進行方向の反転   
+            //}一時的に無効化
         }
-        else if(playerRange>2)
-        {
-            this.transform.Translate(Vector2.left * Time.deltaTime * enemyDate.speed);
-            if(!slimeSearch)
-            {
-                enemyDate.speed = enemyDate.speed * -1;
-                scale.x = scale.x * -1;
-             //進行方向の反転   
-            }
-        }
-            yield return null;
+        yield return null;
     }
     public IEnumerator Charge()//突進した時の処理
     {
-        //seを呼び出す
-        //atk10
-        yield return null;
+        if (!process)
+        {
+            process = true;
+
+            //seを呼び出す
+            yield return new WaitForSeconds(1.0f);
+            //atk10
+            //
+            process = false;
+        }
     }
     public IEnumerator Poison()//毒攻撃した時の処理
     {
-        //seを呼び出す
-        Instpoison(playerObject.transform.position, playerObject.transform.rotation);
-        //毒生成
-        yield return null;
+        if (!process)
+        {
+            process = true;
+            //seを呼び出す
+            Instpoison(playerObject.transform.position, playerObject.transform.rotation);
+            //毒生成
+            yield return new WaitForSeconds(1.0f);
+            process = false;
+        }
     }
 
     void Instpoison(Vector2 pos, Quaternion rotation)
@@ -147,19 +125,22 @@ public class Slime : Enemy
     }
     public IEnumerator Explosion()//自爆した時の処理
     {
-        //seを呼び出す
-        yield return new WaitForSeconds(3.0f);
-        //atk20
-        //
-    }
+        
+        if (!process)
+        {
+            process = true;
 
-    //public IEnumerator Damaged()//被弾した時の処理
-    //{
-    //    yield return null;
-    //}
+            //seを呼び出す
+            yield return new WaitForSeconds(1.0f);
+            //atk20
+            //
+            process = false;
+        }
+        
+    }
     public IEnumerator Destroy()//踏まれた時の処理
     {
-        this.Hp = 0;
+        this.enemyDate.hp = 0;
         //seを呼び出す
         yield return null;
     }
@@ -175,6 +156,13 @@ public class Slime : Enemy
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        slimeSearch = false;
+        if (collision.gameObject.tag != "Player")
+        {
+            slimeSearch = false;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }
