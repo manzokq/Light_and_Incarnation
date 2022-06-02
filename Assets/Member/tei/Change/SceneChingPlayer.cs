@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerSV : MonoBehaviour
+public class SceneChingPlayer : MonoBehaviour
 {
-    public static int tp = 0;
+    //入ったゲートを記憶する
+    public static int Gate_Number = 0;
+
     //プレーヤーが増殖しないように
-    public static PlayerSV Instance
+    public static SceneChingPlayer Instance
     {
         get;
         private set;
     }
-    //Start前に処理
-    private void Awake()
+    private void Awake()//Start前に処理
     {
         if (Instance != null)
         {
@@ -26,48 +27,50 @@ public class PlayerSV : MonoBehaviour
 
     void Start()
     {
-        tp = tpps.tps2();
+        //tpの値をリセット
+        Gate_Number = 0;
+        //tp = tpps.gate_Player();
     }
 
     //シーン切り替え
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("S" + tp);
-        //シーン遷移
+        Debug.Log("S" + Gate_Number);
+        //シーン遷移＆ゲート記憶
         //1から2へ
         if (collision.gameObject.name == ("Gate1"))
         {
-            tp = 1;
+            Gate_Number = 1;
             SceneManager.LoadScene("tei_tesuto_2");
-            //this.transform.position = new Vector3(2, 3, 1);
         }
         //2から1へ
         if (collision.gameObject.name == ("Gate2"))
         {
-            tp = 2;
+            Gate_Number = 2;
             SceneManager.LoadScene("tei_tesuto_1");
         }
         //2から3へ
         if (collision.gameObject.name == ("Gate3"))
         {
-            tp = 3;
+            Gate_Number = 3;
             SceneManager.LoadScene("tei_tesuto_3");
         }
         //3から1へ
         if (collision.gameObject.name == ("Gate4"))
         {
-            tp = 4;
+            Gate_Number = 4;
             SceneManager.LoadScene("tei_tesuto_1");
         }
         //1から3へ
         if (collision.gameObject.name == ("Gate5"))
         {
-            tp = 5;
+            Gate_Number = 5;
             SceneManager.LoadScene("tei_tesuto_3");
         }
     }
-    public static int tps1()
+    //記憶した数値をゲートに渡す
+    public static int Player_gate()
     {
-        return tp;
+        return Gate_Number;
     }
 }
