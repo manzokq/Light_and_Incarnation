@@ -24,14 +24,14 @@ public class GateChingScene : MonoBehaviour
             case 1:
                 {
                     Vector3 tmp = GameObject.Find("Gate2").transform.position;
-                    GameObject.Find("Player").transform.position = new Vector3(tmp.x, tmp.y - 3, tmp.z);
+                    GameObject.Find("chara").transform.position = new Vector3(tmp.x, tmp.y - 3, tmp.z);
                     Player_Gate = 0;
                     break;
                 }
             case 2:
                 {
                     Vector3 tmp = GameObject.Find("Gate1").transform.position;
-                    GameObject.Find("Player").transform.position = new Vector3(tmp.x+3, tmp.y, tmp.z);
+                    GameObject.Find("chara").transform.position = new Vector3(tmp.x+3, tmp.y, tmp.z);
                     Player_Gate = 0;
                     break;
                 }            
@@ -45,14 +45,14 @@ public class GateChingScene : MonoBehaviour
             case 4:
                 {
                     Vector3 tmp = GameObject.Find("Gate5").transform.position;
-                    GameObject.Find("Player").transform.position = new Vector3(tmp.x+3, tmp.y, tmp.z);
+                    GameObject.Find("chara").transform.position = new Vector3(tmp.x+3, tmp.y, tmp.z);
                     Player_Gate = 0;
                     break;
                 }         
             case 5:
                 {
                     Vector3 tmp = GameObject.Find("Gate4").transform.position;
-                    GameObject.Find("Player").transform.position = new Vector3(tmp.x+3, tmp.y, tmp.z);
+                    GameObject.Find("chara").transform.position = new Vector3(tmp.x+3, tmp.y, tmp.z);
                     Player_Gate = 0;
                     break;
                 }
