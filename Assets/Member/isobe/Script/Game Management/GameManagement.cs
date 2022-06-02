@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManagement : MonoBehaviour
 {
+    #region IDリスト
     public enum CharacterID
     {
         Girl = 0,
@@ -26,6 +27,7 @@ public class GameManagement : MonoBehaviour
         Atk2,
         Atk3
     }
+    #endregion
     #region 初期化  
     public static GameManagement Instance { get => _instance; }
     static GameManagement _instance;
@@ -43,16 +45,22 @@ public class GameManagement : MonoBehaviour
     public MapID Map;
     [SerializeField]
     public AtkID Atk;
+    [SerializeField]
+    private PlayerControl player;
     //プレイヤーのスクリプトを呼び出だす。
     #endregion
+    #region 処理
     private void Awake()
     {
         if (Instance == null)
         {
             _instance = this;
         }
-
-
+    }
+    private void Start()
+    {
+        //名前が変われば変更を行う!!
+        player = GameObject.Find("chara").GetComponent<PlayerControl>();
     }
     public void PlayerDamage(int Damage) //プレイヤーにダメージ
     {
@@ -112,4 +120,5 @@ public class GameManagement : MonoBehaviour
         }
         return EnemyHP;
     }
+    #endregion
 }

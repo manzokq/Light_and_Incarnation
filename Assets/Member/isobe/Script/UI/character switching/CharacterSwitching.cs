@@ -84,10 +84,7 @@ public class CharacterSwitching : MonoBehaviour
                         break;
                 }
                 break;
-                break;
         }
-
-        //}
     }
 
 }
