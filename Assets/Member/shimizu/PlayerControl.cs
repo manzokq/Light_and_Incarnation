@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    private SpriteRenderer spren;
     private Rigidbody2D rbody;
     private Animator anim;
     private bool sliding_judge = true;
@@ -28,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spren = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -261,4 +263,14 @@ public class PlayerControl : MonoBehaviour
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
+    public void DamageColor()
+    {
+        spren.color = new Color(1, 0, 0, 1);
+        StartCoroutine("RepairColor");
+    }
+    IEnumerator RepairColor()
+    {
+        yield return new WaitForSeconds(1f);
+        spren.color = new Color(1, 1, 1, 1);
+    }
 }

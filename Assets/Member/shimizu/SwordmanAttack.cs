@@ -57,6 +57,7 @@ public class SwordmanAttack : MonoBehaviour
             }
         }
         #endregion
+        GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
         //Pを押すと斬撃
         if (Input.GetKeyDown(KeyCode.P) && slashAble)
         {
@@ -99,7 +100,7 @@ public class SwordmanAttack : MonoBehaviour
 
         //----コントローラー操作----
         //斬撃
-        if (Input.GetKeyDown("joystick button 1") && slashAble)
+        if (Input.GetKeyDown("joystick button 1") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var swordman_judge = playerControl.changechara;
@@ -113,9 +114,9 @@ public class SwordmanAttack : MonoBehaviour
 
             //slashable = false;
         }
-
+        
         //突き
-        if (Input.GetKeyDown("joystick button 1") && thrustAble)
+        if (Input.GetKeyDown("joystick button 1") && thrustAble &&GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var swordman_judge = playerControl.changechara;
@@ -127,7 +128,7 @@ public class SwordmanAttack : MonoBehaviour
         }
 
         //ため切り
-        if (Input.GetKeyDown("joystick button 1") && chargeslashAble)
+        if (Input.GetKeyDown("joystick button 1") && chargeslashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var swordman_judge = playerControl.changechara;

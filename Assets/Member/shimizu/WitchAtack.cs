@@ -102,7 +102,7 @@ public class WitchAtack : MonoBehaviour
 
         //----コントローラー----
         //魔弾
-        if (Input.GetKeyDown("joystick button 1") && magicballAble)
+        if (Input.GetKeyDown("joystick button 1") && magicballAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var witch_judge = playerControl.changechara;
@@ -118,7 +118,7 @@ public class WitchAtack : MonoBehaviour
 
         }
         //氷弾
-        if (Input.GetKeyDown("joystick button 1") && iceballAble)
+        if (Input.GetKeyDown("joystick button 1") && iceballAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var witch_judge = GetComponent<PlayerControl>().changechara;
@@ -133,7 +133,7 @@ public class WitchAtack : MonoBehaviour
             //iceballAble = false;
         }
         //ブラックホール
-        if (Input.GetKeyDown("joystick button 1") && blackholeAble)
+        if (Input.GetKeyDown("joystick button 1") && blackholeAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var witch_judge = GetComponent<PlayerControl>().changechara;
