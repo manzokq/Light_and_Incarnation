@@ -324,6 +324,7 @@ MonoBehaviour:
   PlayerMP: 0
   PlayerOrb: 0
   PlayerCharacter: 0
+  Character: 0
   Map: 0
   Atk: 0
 --- !u!4 &937689323
@@ -12091,7 +12092,7 @@ TilemapCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
+  m_MaximumTileChangeCount: 1
   m_ExtrusionFactor: 0.00001
 --- !u!1001 &1397998638
 PrefabInstance:
