@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     private Rigidbody2D rbody;
-    private Animator sliding_anim;
+    private Animator anim;
     private bool sliding_judge = true;
-    private float changechara = 2;
+    public float changechara = 2;
 
     private bool isGround = false;
 
@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
-        sliding_anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         //キャラチェンジ
         if(Input.GetKeyDown(KeyCode.B))
         {
-            sliding_anim.SetBool("changeIncarnation", true);
+            anim.SetBool("changeIncarnation", true);
         }
         if(Input.GetKeyDown(KeyCode.N))
         {
@@ -50,23 +50,23 @@ public class PlayerControl : MonoBehaviour
             }
             if(changechara == 1)
             {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", true);
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", true);
 
             }
             else if (changechara == 2)
             {
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeSwordman", true);
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeSwordman", true);
 
             }
             else if (changechara == 3)
             {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeArcher", true);
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeArcher", true);
 
             }
         }
@@ -79,23 +79,23 @@ public class PlayerControl : MonoBehaviour
             }
             if (changechara == 1)
             {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", true);
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", true);
 
             }
             else if (changechara == 2)
             {
-                sliding_anim.SetBool("changeArcher", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeSwordman", true);
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeSwordman", true);
 
             }
             else if (changechara == 3)
             {
-                sliding_anim.SetBool("changeSwordman", false);
-                sliding_anim.SetBool("changeWitch", false);
-                sliding_anim.SetBool("changeArcher", true);
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeArcher", true);
 
             }
         }
@@ -167,13 +167,13 @@ public class PlayerControl : MonoBehaviour
             //右向き
             if (rbody.velocity.x > 0)
             {
-                sliding_anim.SetBool("Sliding",true);
+                anim.SetBool("Sliding",true);
                 StartCoroutine("AngleRepairRight");
             }
             //左向き
             if (rbody.velocity.x < 0)
             {
-                sliding_anim.SetBool("SlidingLeft", true);
+                anim.SetBool("SlidingLeft", true);
                 StartCoroutine("AngleRepairLeft");
             }
         }
@@ -204,7 +204,7 @@ public class PlayerControl : MonoBehaviour
             if(Input.GetAxis("Horizontal") < j)
             {
                 
-                sliding_anim.SetBool("Sliding", false);
+                anim.SetBool("Sliding", false);
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 sliding_judge = true;
                 yield break;
@@ -212,7 +212,7 @@ public class PlayerControl : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         sliding_judge = true;
-        sliding_anim.SetBool("Sliding", false);
+        anim.SetBool("Sliding", false);
     }
     //左向いてる時
     IEnumerator AngleRepairLeft()
@@ -223,7 +223,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetAxis("Horizontal") > j)
             {
                 
-                sliding_anim.SetBool("SlidingLeft", false);
+                anim.SetBool("SlidingLeft", false);
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 sliding_judge = true;
                 yield break;
@@ -231,7 +231,7 @@ public class PlayerControl : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         sliding_judge = true;
-        sliding_anim.SetBool("SlidingLeft", false);
+        anim.SetBool("SlidingLeft", false);
     }
     //壁登りの挙動
     IEnumerator Climb()

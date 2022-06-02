@@ -18,7 +18,7 @@ public class SwordmanAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //PlayerControl pcon = GetComponent<PlayerControl>();
         anim = GetComponent<Animator>();
         //swordCollider = GameObject.Find("swordnonamae").GetComponent<BoxCollider2D>();
     }
@@ -28,7 +28,7 @@ public class SwordmanAttack : MonoBehaviour
     {
         anim.SetBool("Slash", false);
         animSword.SetBool("Slash2", false);
-        #region クールタイム処理
+        #region クールタイム処理(未実装)
         if (slashAble == false)
         {
             slashTime += Time.deltaTime;
@@ -60,28 +60,86 @@ public class SwordmanAttack : MonoBehaviour
         //Pを押すと斬撃
         if (Input.GetKeyDown(KeyCode.P) && slashAble)
         {
-            anim.SetBool("Slash", true);
-            animSword.SetTrigger("Slash2");
-            GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
-            GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.changechara;
+            if (swordman_judge == 2)
+            {
+                anim.SetBool("Slash", true);
+                animSword.SetTrigger("Slash2");
+                GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
+                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+            }
 
             //slashable = false;
         }
 
         //Lを押すと突き
-        if (Input.GetKeyDown(KeyCode.O) && thrustAble)
+        if (Input.GetKeyDown(KeyCode.L) && thrustAble)
         {
-            anim.SetTrigger("Thrust");
-            animSword.SetTrigger("Thrust2");
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.changechara;
+            if (swordman_judge == 2)
+            {
+                anim.SetTrigger("Thrust");
+                animSword.SetTrigger("Thrust2");
+            }
         }
 
         //Oを押すとため切り
-        if (Input.GetKeyDown(KeyCode.L) && chargeslashAble)
+        if (Input.GetKeyDown(KeyCode.O) && chargeslashAble)
         {
-            anim.SetTrigger("ChargeSlash");
-            animSword.SetTrigger("ChargeSlash2");
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.changechara;
+            if (swordman_judge == 2)
+            {
+                anim.SetTrigger("ChargeSlash");
+                animSword.SetTrigger("ChargeSlash2");
+            }
+        }
+
+        //----コントローラー操作----
+        //斬撃
+        if (Input.GetKeyDown("joystick button 1") && slashAble)
+        {
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.changechara;
+            if (swordman_judge == 2)
+            {
+                anim.SetBool("Slash", true);
+                animSword.SetTrigger("Slash2");
+                GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
+                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+            }
+
+            //slashable = false;
+        }
+
+        //突き
+        if (Input.GetKeyDown("joystick button 1") && thrustAble)
+        {
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.changechara;
+            if (swordman_judge == 2)
+            {
+                anim.SetTrigger("Thrust");
+                animSword.SetTrigger("Thrust2");
+            }
+        }
+
+        //ため切り
+        if (Input.GetKeyDown("joystick button 1") && chargeslashAble)
+        {
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.changechara;
+            if (swordman_judge == 2)
+            {
+                anim.SetTrigger("ChargeSlash");
+                animSword.SetTrigger("ChargeSlash2");
+            }
         }
     }
+
+
 }
 
 //斬撃、突き、ため切り

@@ -15,8 +15,9 @@ using UnityEngine;
 public class XboxPlayerContorol : MonoBehaviour
 {
     private Rigidbody2D rbody;
-    private Animator sliding_anim;
+    private Animator anim;
     private bool sliding_judge = true;
+    public float changechara = 2;
 
     private bool isGround = false;
 
@@ -38,15 +39,76 @@ public class XboxPlayerContorol : MonoBehaviour
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
-        sliding_anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(coroutine_able);
-        Debug.Log(isWallright);
+        //キャラチェンジ
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            anim.SetBool("changeIncarnation", true);
+        }
+        if (Input.GetAxis("L_R_Trigger") < 0)
+        {
+            changechara--;
+            Debug.Log(changechara);
+            if (changechara < 1)
+            {
+                changechara = 3;
+            }
+            if (changechara == 1)
+            {
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", true);
 
+            }
+            else if (changechara == 2)
+            {
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeSwordman", true);
+
+            }
+            else if (changechara == 3)
+            {
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeArcher", true);
+
+            }
+        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    changechara++;
+        //    if (changechara > 3)
+        //    {
+        //        changechara = 1;
+        //    }
+        //    if (changechara == 1)
+        //    {
+        //        anim.SetBool("changeSwordman", false);
+        //        anim.SetBool("changeArcher", false);
+        //        anim.SetBool("changeWitch", true);
+
+        //    }
+        //    else if (changechara == 2)
+        //    {
+        //        anim.SetBool("changeArcher", false);
+        //        anim.SetBool("changeWitch", false);
+        //        anim.SetBool("changeSwordman", true);
+
+        //    }
+        //    else if (changechara == 3)
+        //    {
+        //        anim.SetBool("changeSwordman", false);
+        //        anim.SetBool("changeWitch", false);
+        //        anim.SetBool("changeArcher", true);
+
+        //    }
+        //}
         //Debug.Log(coroutine_able);
         //接地判定と接壁判定
         isGround = ground.IsGround();
@@ -112,13 +174,13 @@ public class XboxPlayerContorol : MonoBehaviour
             //右向き
             if (rbody.velocity.x > 0)
             {
-                sliding_anim.SetBool("Sliding", true);
+                anim.SetBool("Sliding", true);
                 StartCoroutine("AngleRepairRight");
             }
             //左向き
             if (rbody.velocity.x < 0)
             {
-                sliding_anim.SetBool("SlidingLeft", true);
+                anim.SetBool("SlidingLeft", true);
                 StartCoroutine("AngleRepairLeft");
             }
         }
@@ -148,7 +210,7 @@ public class XboxPlayerContorol : MonoBehaviour
             if (Input.GetAxis("L_Stick_H") < j)
             {
 
-                sliding_anim.SetBool("Sliding", false);
+                anim.SetBool("Sliding", false);
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 sliding_judge = true;
                 yield break;
@@ -156,7 +218,7 @@ public class XboxPlayerContorol : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         sliding_judge = true;
-        sliding_anim.SetBool("Sliding", false);
+        anim.SetBool("Sliding", false);
     }
     IEnumerator AngleRepairLeft()
     {
@@ -166,7 +228,7 @@ public class XboxPlayerContorol : MonoBehaviour
             if (Input.GetAxis("L_Stick_H") > j)
             {
 
-                sliding_anim.SetBool("SlidingLeft", false);
+                anim.SetBool("SlidingLeft", false);
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 sliding_judge = true;
                 yield break;
@@ -174,7 +236,7 @@ public class XboxPlayerContorol : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         sliding_judge = true;
-        sliding_anim.SetBool("SlidingLeft", false);
+        anim.SetBool("SlidingLeft", false);
     }
     //壁登りの挙動
     IEnumerator Climb()
