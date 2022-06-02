@@ -72,7 +72,7 @@ public class PlayerControl : MonoBehaviour
                 anim.SetBool("changeArcher", true);
 
             }
-            GameManagement.Instance.PlayerCharacter = (GameManagement.Character)Enum.ToObject(typeof(GameManagement.Character), changechara);
+            GameManagement.Instance.PlayerCharacter = (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID), changechara);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {

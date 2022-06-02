@@ -67,7 +67,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetBool("Slash", true);
                 animSword.SetTrigger("Slash2");
-                GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
                 GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
             }
 
@@ -108,7 +108,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetBool("Slash", true);
                 animSword.SetTrigger("Slash2");
-                GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
                 GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
             }
 
