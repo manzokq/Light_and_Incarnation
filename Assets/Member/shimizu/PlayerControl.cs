@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -71,6 +72,7 @@ public class PlayerControl : MonoBehaviour
                 anim.SetBool("changeArcher", true);
 
             }
+            GameManagement.Instance.PlayerCharacter = (GameManagement.Character)Enum.ToObject(typeof(GameManagement.Character), changechara);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -270,7 +272,9 @@ public class PlayerControl : MonoBehaviour
     }
     IEnumerator RepairColor()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         spren.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("changeincarnation", false);
     }
 }

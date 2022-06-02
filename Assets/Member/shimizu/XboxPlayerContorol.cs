@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 /*
     Num_climb       :壁登り時の移動回数
     Translate_climb :壁登り時の移動幅          →Num_climb * Translate_climb = 最終的に移動する距離
@@ -18,6 +19,7 @@ public class XboxPlayerContorol : MonoBehaviour
     private Animator anim;
     private bool sliding_judge = true;
     public float changechara = 2;
+    public float changeatack = 1;
 
     private bool isGround = false;
 
@@ -53,7 +55,7 @@ public class XboxPlayerContorol : MonoBehaviour
         if (Input.GetAxis("L_R_Trigger") < 0)
         {
             changechara--;
-            Debug.Log(changechara);
+            //Debug.Log(changechara);
             if (changechara < 1)
             {
                 changechara = 3;
@@ -79,6 +81,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 anim.SetBool("changeArcher", true);
 
             }
+            GameManagement.Instance.PlayerCharacter = (GameManagement.Character)Enum.ToObject(typeof(GameManagement.Character), changechara);
         }
         //if (Input.GetKeyDown(KeyCode.M))
         //{
@@ -109,7 +112,18 @@ public class XboxPlayerContorol : MonoBehaviour
 
         //    }
         //}
-        //Debug.Log(coroutine_able);
+
+        //攻撃方法の変更
+        if (Input.GetKeyDown("joystick button 4"))
+        {
+            changeatack++;
+            if (changeatack > 3)
+            {
+                changeatack = 1;
+            }
+            GameManagement.Instance.Atk = (GameManagement.AtkID)Enum.ToObject(typeof(GameManagement.AtkID), changeatack); 
+        }
+
         //接地判定と接壁判定
         isGround = ground.IsGround();
         isWallright = wallright.IsWall();
