@@ -61,6 +61,7 @@ public class SwordmanAttack : MonoBehaviour
         //P‚ð‰Ÿ‚·‚ÆŽaŒ‚
         if (Input.GetKeyDown(KeyCode.P) && slashAble)
         {
+            
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var swordman_judge = playerControl.changechara;
             if (swordman_judge == 2)

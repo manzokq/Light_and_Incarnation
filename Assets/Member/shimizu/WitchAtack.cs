@@ -62,9 +62,9 @@ public class WitchAtack : MonoBehaviour
             {
                 anim.SetTrigger("MagicBall");
                 animWitch.SetTrigger("MagicBall2");
-                //ここ分かんなかったからコメントアウト
-                //GameManagement.Instance.PlayerCharacter = GameManagement.Character.Wizard;
-                //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                //分かる
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Wizard;
+                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
             }
             //magicballAble = false;
             

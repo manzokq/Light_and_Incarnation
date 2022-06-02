@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8957432067084204013}
   - component: {fileID: 2071289474934600749}
   m_Layer: 5
-  m_Name: chara 1
+  m_Name: 'chara '
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,6 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e2c7ff3308d274494253e5f5a8fd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changechara: 2
+  changeatack: 1
   num_climb: 100
   translate_climb: 0.05
   time_climb: 0.01
