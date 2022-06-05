@@ -7,7 +7,6 @@ public class SceneChingPlayer : MonoBehaviour
 {
     //入ったゲートを記憶する
     public static int Gate_Number = 0;
-
     //プレーヤーが増殖しないように
     public static SceneChingPlayer Instance
     {
@@ -46,10 +45,12 @@ public class SceneChingPlayer : MonoBehaviour
             Gate_Number = 1;
             if (SceneManager.GetActiveScene().name != "Map1")
             {
+               
                 SceneManager.LoadScene("Map1");
             }
             else
             {
+                
                 SceneManager.LoadScene("MapTutorial");
             }
             
@@ -60,6 +61,7 @@ public class SceneChingPlayer : MonoBehaviour
             Gate_Number = 2;
             if (SceneManager.GetActiveScene().name != "Map1")
             {
+               
                 SceneManager.LoadScene("Map1");
             }
             else
@@ -71,17 +73,21 @@ public class SceneChingPlayer : MonoBehaviour
         if (collision.gameObject.name == ("Gate3"))
         {
             Gate_Number = 3;
+
+            
             SceneManager.LoadScene("MapBoss");
         }
         //3から1へ
         if (collision.gameObject.name == ("Gate4"))
         {
+           
             Gate_Number = 4;
             SceneManager.LoadScene("tei_tesuto_1");
         }
         //1から3へ
         if (collision.gameObject.name == ("Gate5"))
         {
+            
             Gate_Number = 5;
             SceneManager.LoadScene("tei_tesuto_3");
         }
@@ -96,15 +102,15 @@ public class SceneChingPlayer : MonoBehaviour
     {
 
 
+        if(Gate_Number!=0)
+        {
+            Debug.Log("シーン繊維");
 
-        Debug.Log("シーン繊維");
-
-
-                this.gameObject.transform.position= new Vector3(
-                    GameObject.Find("Gate" + Gate_Number).transform.position.x+2,
-                    GameObject.Find("Gate" + Gate_Number).transform.position.y,
-                    GameObject.Find("Gate" + Gate_Number).transform.position.z);
-               
+            this.gameObject.transform.position = new Vector3(
+                GameObject.Find("Gate" + Gate_Number).transform.position.x + 2,
+                GameObject.Find("Gate" + Gate_Number).transform.position.y,
+                GameObject.Find("Gate" + Gate_Number).transform.position.z);
+        }          
         
     }
 

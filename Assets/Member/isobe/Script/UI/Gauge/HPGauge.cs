@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class HPGauge : MonoBehaviour
 {
     [SerializeField]
-    GameObject img;
+    Image img;
     public void Update()
     {
-        img.GetComponent<Image>().fillAmount = GameManagement.Instance.PlayerHP *0.01f;
+        img.fillAmount = GameManagement.Instance.PlayerHP *0.01f;
     }
 }

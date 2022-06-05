@@ -12,7 +12,6 @@ public class PlayerControl : MonoBehaviour
     public byte changechara = 1;
 
     private bool isGround = false;
-
     private bool isWallright = false;
     private bool coroutine_able = true;
     [SerializeField] private float num_climb, translate_climb, time_climb;
@@ -33,12 +32,6 @@ public class PlayerControl : MonoBehaviour
         spren = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        GameManagement.Instance.Character =
-              (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-              changechara);
-        GameManagement.Instance.Character =
-             (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-             0);
     }
 
     // Update is called once per frame
@@ -47,7 +40,7 @@ public class PlayerControl : MonoBehaviour
         //ƒLƒƒƒ‰ƒ`ƒFƒ“ƒW
         if (Input.GetKeyDown(KeyCode.B))
         {
-            anim.SetBool("changeIncarnation", true);
+            anim.SetBool("changeIncarnation", false);
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -58,37 +51,46 @@ public class PlayerControl : MonoBehaviour
                     {
                         case GameManagement.CharacterID.Swordsman:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+                            changechara = 1;
                             break;
                         case GameManagement.CharacterID.Bowman:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+                            changechara = 2;
                             break;
                         case GameManagement.CharacterID.Wizard:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Wizard;
+                            changechara = 3;
                             break;
                         default:
                             break;
                     }
-                    anim.SetBool("changeIncarnation", true);
+                    anim.SetBool("changeIncarnation",false); 
+                    anim.SetBool("changeArcher", false);
+                    anim.SetBool("changeWitch", false);
+                    anim.SetBool("changeSwordman", false);
                     GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
-                    changechara = 0;
+                    //changechara = 0;
                     break;
                 case GameManagement.CharacterID.Swordsman:
                     switch (GameManagement.Instance.PlayerCharacter)
                     {
                         case GameManagement.CharacterID.Girl:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
+                            changechara = 0;
                             break;
                         case GameManagement.CharacterID.Bowman:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+                            changechara = 2;
                             break;
                         case GameManagement.CharacterID.Wizard:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Wizard;
+                            changechara = 3;
                             break;
                         default:
                             break;
                     }
                     GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                    changechara = 1;
+                    anim.SetBool("changeIncarnation", true);
                     anim.SetBool("changeArcher", false);
                     anim.SetBool("changeWitch", false);
                     anim.SetBool("changeSwordman", true);
@@ -98,39 +100,45 @@ public class PlayerControl : MonoBehaviour
                     {
                         case GameManagement.CharacterID.Swordsman:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+                            changechara = 1;
                             break;
                         case GameManagement.CharacterID.Girl:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
+                            changechara = 0;
                             break;
                         case GameManagement.CharacterID.Wizard:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Wizard;
+                            changechara = 3;
                             break;
                         default:
                             break;
                     }
                     GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
-                    changechara = 2;
-                    anim.SetBool("changeArcher", true);
+                    anim.SetBool("changeIncarnation", true);
                     anim.SetBool("changeWitch", false);
                     anim.SetBool("changeSwordman", false);
+                    anim.SetBool("changeArcher", true);
                     break;
                 case GameManagement.CharacterID.Wizard:
                     switch (GameManagement.Instance.PlayerCharacter)
                     {
                         case GameManagement.CharacterID.Swordsman:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+                            changechara = 1;
                             break;
                         case GameManagement.CharacterID.Bowman:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+                            changechara = 2;
                             break;
                         case GameManagement.CharacterID.Girl:
                             GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
+                            changechara = 0;
                             break;
                         default:
                             break;
                     }
                     GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Wizard;
-                    changechara = 3;
+                    anim.SetBool("changeIncarnation", true);
                     anim.SetBool("changeSwordman", false);
                     anim.SetBool("changeArcher", false);
                     anim.SetBool("changeWitch", true);
@@ -146,6 +154,21 @@ public class PlayerControl : MonoBehaviour
             if (changechara > 3)
             {
                 changechara = 0;
+            }
+            if(GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+                changechara)|| 
+                GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+                changechara) ||
+                GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+                changechara) ||
+                GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+                changechara))
+            {
+                changechara++;
+                if (changechara > 3)
+                {
+                    changechara = 0;
+                }
             }
             GameManagement.Instance.Character =
                 (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
@@ -232,7 +255,7 @@ public class PlayerControl : MonoBehaviour
 
 
         //•Ç“o‚è
-        if (isGround && isWallright && coroutine_able && Input.GetKeyDown(KeyCode.RightShift))
+        if (isWallright && coroutine_able && Input.GetKeyDown(KeyCode.RightShift))
         {
             Debug.Log("•Ç“o‚è");
             coroutine_able = false;
