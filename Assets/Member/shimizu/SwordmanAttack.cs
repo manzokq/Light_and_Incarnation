@@ -12,6 +12,7 @@ public class SwordmanAttack : MonoBehaviour
     private bool slashAble = true;
     private bool thrustAble = true;
     private bool chargeslashAble = true;
+    private bool wallbreakAble = true;
     private float slashTime = 0;
     private float thrustTime = 0;
     private float chargeslashTime = 0;
@@ -99,12 +100,24 @@ public class SwordmanAttack : MonoBehaviour
             }
         }
 
+        //XÇâüÇ∑Ç∆ï«îjâÛ(ì¡éÍçUåÇ)
+        if(Input.GetKeyDown(KeyCode.J) && wallbreakAble)
+        {
+            PlayerControl playerContorol = GetComponent<PlayerControl>();
+            var swordman_judge = playerContorol.changechara;
+            if(swordman_judge == 2)
+            {
+                anim.SetTrigger("WallBreak");
+                animSword.SetTrigger("WallBreak2");
+            }
+        }
+
         //----ÉRÉìÉgÉçÅ[ÉâÅ[ëÄçÏ----
         //éaåÇ
         if (Input.GetKeyDown("joystick button 1") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1)
         {
-            PlayerControl playerControl = GetComponent<PlayerControl>();
-            var swordman_judge = playerControl.changechara;
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.changechara;
             if (swordman_judge == 2)
             {
                 anim.SetBool("Slash", true);
@@ -119,8 +132,8 @@ public class SwordmanAttack : MonoBehaviour
         //ìÀÇ´
         if (Input.GetKeyDown("joystick button 1") && thrustAble &&GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
-            PlayerControl playerControl = GetComponent<PlayerControl>();
-            var swordman_judge = playerControl.changechara;
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.changechara;
             if (swordman_judge == 2)
             {
                 anim.SetTrigger("Thrust");
@@ -131,12 +144,24 @@ public class SwordmanAttack : MonoBehaviour
         //ÇΩÇﬂêÿÇË
         if (Input.GetKeyDown("joystick button 1") && chargeslashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
         {
-            PlayerControl playerControl = GetComponent<PlayerControl>();
-            var swordman_judge = playerControl.changechara;
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.changechara;
             if (swordman_judge == 2)
             {
                 anim.SetTrigger("ChargeSlash");
                 animSword.SetTrigger("ChargeSlash2");
+            }
+        }
+
+        //ï«îjâÛ(ì¡éÍçUåÇ)
+        if (Input.GetKeyDown("joystick button 2") && wallbreakAble)
+        {
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.changechara;
+            if (swordman_judge == 2)
+            {
+                anim.SetTrigger("WallBreak");
+                animSword.SetTrigger("WallBreak2");
             }
         }
     }
