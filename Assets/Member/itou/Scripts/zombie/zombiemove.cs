@@ -40,20 +40,13 @@ public class zombiemove : Enemy
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D col)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-
-		//ŠÖ
-
-
-		if (col.CompareTag("PlayerAtk"))
+		if (collision.CompareTag("PlayerAtk"))
 		{
-
-			this.enemyDate.hp = GameManagement.Instance.PlayerAtk(this.enemyDate.hp);
-		
+			Debug.Log(Hp);
+			Hp = GameManagement.Instance.PlayerAtk(Hp);
 		}
-
-		//‚±‚±‚Ü‚ÅŠÖ
 
 	}
 }

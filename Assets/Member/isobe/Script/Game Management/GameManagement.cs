@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManagement : MonoBehaviour
 {
-    public enum Character
+    #region IDリスト
+    public enum CharacterID
     {
         Girl = 0,
         Swordsman,
@@ -26,6 +27,7 @@ public class GameManagement : MonoBehaviour
         Atk2,
         Atk3
     }
+    #endregion
     #region 初期化  
     public static GameManagement Instance { get => _instance; }
     static GameManagement _instance;
@@ -36,36 +38,45 @@ public class GameManagement : MonoBehaviour
     [SerializeField, Range(0, 100)]
     public int PlayerOrb;
     [SerializeField]
-    public Character PlayerCharacter;
+    public CharacterID PlayerCharacter;
+    [SerializeField]
+    public CharacterID Character;
     [SerializeField]
     public MapID Map;
     [SerializeField]
     public AtkID Atk;
+    [SerializeField]
+    private PlayerControl player;
     //プレイヤーのスクリプトを呼び出だす。
     #endregion
+    #region 処理
     private void Awake()
     {
         if (Instance == null)
         {
             _instance = this;
         }
-
-
+    }
+    private void Start()
+    {
+        //名前が変われば変更を行う!!
+        if(GameObject.Find("chara")!=null)
+        player = GameObject.Find("chara").GetComponent<PlayerControl>();
     }
     public void PlayerDamage(int Damage) //プレイヤーにダメージ
     {
         //プレイヤーを呼び出す
         PlayerHP -= Damage;
 
-
-        Debug.Log(PlayerHP);
+        
+        //Debug.Log("PlayerHP"+PlayerHP);
         //Player.Instance.PlayerHP -= Damage;
     }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ
     {
         switch (PlayerCharacter)
         {
-            case Character.Swordsman:
+            case CharacterID.Swordsman:
                 switch (Atk)
                 {
                     case AtkID.Atk1:
@@ -79,7 +90,7 @@ public class GameManagement : MonoBehaviour
                         break;
                 }
                 break;
-            case Character.Bowman:
+            case CharacterID.Bowman:
                 switch (Atk)
                 {
                     case AtkID.Atk1:
@@ -93,7 +104,7 @@ public class GameManagement : MonoBehaviour
                         break;
                 }
                 break;
-            case Character.Wizard:
+            case CharacterID.Wizard:
                 switch (Atk)
                 {
                     case AtkID.Atk1:
@@ -106,8 +117,12 @@ public class GameManagement : MonoBehaviour
                         EnemyHP -= 3;
                         break;
                 }
+                break;
+
+            default:
                 break;
         }
         return EnemyHP;
     }
+    #endregion
 }

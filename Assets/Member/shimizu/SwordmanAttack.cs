@@ -61,13 +61,14 @@ public class SwordmanAttack : MonoBehaviour
         //P‚ð‰Ÿ‚·‚ÆŽaŒ‚
         if (Input.GetKeyDown(KeyCode.P) && slashAble)
         {
+            
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var swordman_judge = playerControl.changechara;
             if (swordman_judge == 2)
             {
                 anim.SetBool("Slash", true);
                 animSword.SetTrigger("Slash2");
-                GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
                 GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
             }
 
@@ -108,7 +109,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetBool("Slash", true);
                 animSword.SetTrigger("Slash2");
-                GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
                 GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
             }
 

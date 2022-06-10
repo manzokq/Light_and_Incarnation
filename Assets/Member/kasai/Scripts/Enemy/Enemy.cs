@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     public EnemyDate enemyDate;//EnemyDate‚©‚ç‘Ì—Í‚È‚Ç‚Ìî•ñ‚ğŒÄ‚ñ‚Å‚­‚é
     private string Name = null;
-    private int Hp = 0;
+    
+    protected int Hp = 0;
     private int Atk = 0;
     public float Speed = 0;
 
@@ -25,6 +26,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+
+
+        //Debug.Log(Hp);
         //‘Ì—Í‚Ì”»’è
         if (this.Hp <= 0)
         {

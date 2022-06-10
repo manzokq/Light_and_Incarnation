@@ -6,8 +6,11 @@ public class Slime : Enemy
 {
     //private Rigidbody2D rb;
     private GameObject playerObject;//プレイヤー
+
+    /*
     [SerializeField] private GameObject chargeObject;
-    [SerializeField] private GameObject explosionObject;
+    [SerializeField] private GameObject explosionObject;*/
+
     private float playerRange;//プレイヤーとの距離
 
     //生成する毒
@@ -18,7 +21,7 @@ public class Slime : Enemy
     //アニメーター
     public Animator Anim;
 
-    private bool inCamera;
+    private bool inCamera =false;
 
     FloorSearch floorSearch = new();
 
@@ -29,6 +32,8 @@ public class Slime : Enemy
         base.Start();
         //rb = GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindWithTag("Player");
+
+        poisons= new GameObject("PlayerBullets").transform;
     }
 
     protected override void Update()
@@ -36,11 +41,10 @@ public class Slime : Enemy
         base.Update();
         //プレイヤーまでの距離を出す
         this.playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
-       
+        //Debug.Log(playerRange);
 
         slimeSearch = floorSearch.Search;
-        if (inCamera)
-        {
+    
             if (playerRange < 2)
             {
                 StartCoroutine(Charge());
@@ -55,27 +59,28 @@ public class Slime : Enemy
             //}
             if(playerRange>3)
             {
-                StartCoroutine(Move());
+            //Debug.Log("aaaa");
+            StartCoroutine(Move());
             }
             //確率で爆発に派生
 
-        }
+        
     }
 
     public IEnumerator Move()//移動の処理
     {
         Vector2 scale = transform.localScale;
-        if (inCamera)
-        {
-            rb.velocity = new Vector2(enemyDate.speed, rb.velocity.y);
 
-            //if (!slimeSearch)
-            //{
-            //    enemyDate.speed = enemyDate.speed * -1;
-            //    scale.x = scale.x * -1;
-            //    //進行方向の反転   
-            //}一時的に無効化
-        }
+        rb.velocity = new Vector2(enemyDate.speed, rb.velocity.y);
+
+        //if (!slimeSearch)
+        //{
+        //    enemyDate.speed = enemyDate.speed * -1;
+        //    scale.x = scale.x * -1;
+        //    //進行方向の反転   
+        //}
+        
+
         yield return null;
     }
     public IEnumerator Charge()//突進した時の処理
@@ -85,9 +90,10 @@ public class Slime : Enemy
             process = true;
 
             //seを呼び出す
-            yield return new WaitForSeconds(1.0f);
-            //atk10
+            GameManagement.Instance.PlayerDamage(enemyDate.atk);
+            
             //
+            yield return new WaitForSeconds(1.0f);
             process = false;
         }
     }
@@ -95,6 +101,7 @@ public class Slime : Enemy
     {
         if (!process)
         {
+            
             process = true;
             //seを呼び出す
             Instpoison(playerObject.transform.position, playerObject.transform.rotation);
@@ -163,6 +170,11 @@ public class Slime : Enemy
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("PlayerAtk"))
+        {
+           //Debug.Log(Hp);
+             Hp = GameManagement.Instance.PlayerAtk(Hp);
+        }
         
     }
 }
