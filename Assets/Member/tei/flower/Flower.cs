@@ -10,10 +10,15 @@ public class flour : MonoBehaviour
     [SerializeField,Header("色")]
     Color[] color;
 
-    [SerializeField, Header("オーブ数")]
+    [SerializeField, Header("オーブを生産数")]
     public int Orb_count;
 
     public bool touch = false;
+
+    [SerializeField, Header("復活時間")]
+    float ResponTime = 0;
+
+    float TimeCount = 0;
 
     private void Start()
     {
@@ -26,11 +31,26 @@ public class flour : MonoBehaviour
             //スイッチで色変える
             GetComponent<SpriteRenderer>().color = color[ID];
         }
-        else
+        else if (touch)
         {
-            GetComponent<SpriteRenderer>().color = color[0];
+            GetComponent<SpriteRenderer>().color = color[1];
+            Respon();
         }
     }
+
+    void Respon()
+    {
+
+        TimeCount += Time.deltaTime;
+        if(TimeCount >= ResponTime)
+        {
+            touch = false;
+            TimeCount = 0;
+
+
+        }
+    }
+
 
 
 }

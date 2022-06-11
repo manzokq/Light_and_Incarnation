@@ -17,21 +17,22 @@ public class Orb : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 物体がトリガーに接触しとき、１度だけ呼ばれる
-        Debug.Log("a");
+        Debug.Log("花に触った");
         //接触したオブジェクトのタグが"花"のとき
-        if (collision.gameObject.tag == ("flour"))
+        if (collision.gameObject.tag == ("Flower"))
         {
             GameObject have = collision.gameObject;
 
             if (have.GetComponent<flour>().touch == false)
             {
                 Orb_score += have.GetComponent<flour>().Orb_count;
-                Debug.Log("d");
+                Debug.Log("オーブを回収した");
             }
 
             have.GetComponent<flour>().touch = true;
 
-            Debug.Log(Orb_score);
+            Debug.Log("オーブを" + Orb_score + "持っている");
+
         }
     }
 

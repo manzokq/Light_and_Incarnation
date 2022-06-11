@@ -17,6 +17,7 @@ public class enemy : MonoBehaviour
     bool G = false;
     bool wait = true;
     bool zea = false;
+    bool Atc = false;
     private void Update()
     {
 
@@ -41,37 +42,42 @@ public class enemy : MonoBehaviour
     }
     private IEnumerator als(Collider2D col)
     {
-        if (col.CompareTag("Player") == true)
+        if (!Atc)
         {
-            zombie.GetComponent<zombiemove>().z = false;
-            wait = false;
-            int a = Random.Range(0, 2);
-            Debug.Log(a);
-            if (a == 0)
+            Atc = true;
+            if (col.CompareTag("Player") == true)
             {
-                Debug.Log("a");
-                yield return new WaitForSecondsRealtime(1);
-                if (G)
+                zombie.GetComponent<zombiemove>().z = false;
+                wait = false;
+                int a = Random.Range(0, 2);
+                Debug.Log(a);
+                if (a == 0)
                 {
-                    col.GetComponent<HP1>().Damage(8);
+                    Debug.Log("a");
+                    yield return new WaitForSecondsRealtime(1);
+                    if (G)
+                    {
+                        col.GetComponent<HP1>().Damage(8);
+                    }
                 }
-            }
-            else if (a == 1)
-            {
-                yield return new WaitForSecondsRealtime(3);
-                if (G)
+                else if (a == 1)
                 {
-                    col.GetComponent<HP1>().Damage(20);
+                    yield return new WaitForSecondsRealtime(3);
+                    if (G)
+                    {
+                        col.GetComponent<HP1>().Damage(20);
+                    }
                 }
-            }
-            yield return new WaitForSecondsRealtime(2);
-            wait = true;
-            zea = true;
+                yield return new WaitForSecondsRealtime(2);
+                wait = true;
+                zea = true;
 
-            if (true)
-            {
-                
+                if (true)
+                {
+
+                }
             }
+            Atc = false;
         }
     }
     private IEnumerator asa()
