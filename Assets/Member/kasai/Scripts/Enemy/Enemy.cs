@@ -11,8 +11,24 @@ public class Enemy : MonoBehaviour
     protected int Atk1 = 0;
     protected int Atk2 = 0;
     protected float Speed = 0;
-    private int _direction = 1;
+    /// <summary>
+    /// 右は1 左は-1
+    /// </summary>
+    private int _direction=1;
+    /// <summary>
+    /// 動くかどうかのフラグ
+    /// </summary>
     private bool _moveFrag = true;
+
+    
+
+    public enum Direction
+    {//方向のenum
+        Right = 0,
+        Left,
+    }
+    //↑の宣言
+    Direction direction;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -23,6 +39,10 @@ public class Enemy : MonoBehaviour
         Atk1 = enemyDate.atk1;
         Atk2 = enemyDate.atk2;
         Speed = enemyDate.speed;
+
+        _direction = 1;            //方向を右に初期化
+        direction= Direction.Right;//方向を右に初期化
+
     }
 
     // Update is called once per frame
@@ -43,16 +63,37 @@ public class Enemy : MonoBehaviour
     }
 
     void Move()
-    {
+    {//移動　アップデートで呼ばれてる
         Vector2 scale = transform.localScale;
         rb.velocity = new Vector2(enemyDate.speed * _direction, rb.velocity.y);
     }
+
+    /// <summary>
+    /// 反転する関数
+    /// 実行したら移動方向が逆になる
+    /// デフォは右向き
+    /// </summary>
     public void Reverse()
     {//反転したいときこれを呼ぶ
-        _direction *= -1;
-    }
+        if(direction ==Direction.Right)
+        {//右の時左に
+            direction = Direction.Left;
+            _direction =-1;
+            this.gameObject.transform.localRotation= Quaternion.Euler(0,-180,0);//オブジェクトの向き逆にしてる
+        }
+        else if(direction == Direction.Left)
+        {//逆
+            direction = Direction.Right;
+            _direction = 1;
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
 
-    public void Frag()
+    }
+    /// <summary>
+    /// 動くかどうかのフラグを切り替える関数
+    /// デフォはtrue
+    /// </summary>
+    public void MoveFragSwitch()
     {
         _moveFrag ^= false;
         Debug.Log("エネミーの移動フラグ"+_moveFrag);
