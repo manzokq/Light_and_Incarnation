@@ -1,35 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSearch : MonoBehaviour
 {
-    private GameObject searchObject;
-    private bool searcher = true;
-    [HideInInspector]public bool Search = true;
 
-    private void Start()
+    Slime slime;
+
+    private void Awake()
     {
-        searchObject = this.gameObject;   
+        slime = transform.parent.gameObject.GetComponent<Slime>();
     }
 
-    private void Update()
-    {
-        Search = searcher;
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        Debug.Log(collision.gameObject);
+        if (collision.gameObject.CompareTag("Player"))
         {
-            searcher = false;
+            Debug.Log("プレイヤーと接触");
+            slime.Reverse();
         }
-        
+
+
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
+       
+        if (collision.gameObject.CompareTag("Player"))
         {
-            searcher = true;
+            Debug.Log("プレイヤーと接触");
+            slime.Reverse();
         }
     }
 }
