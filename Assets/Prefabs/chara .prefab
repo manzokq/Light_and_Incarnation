@@ -444,16 +444,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd09b5a40a0c1094c812700ea7abfb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changechara: 0
+  changechara: 2
   atack_judge: 0
-  num_climb: 0
-  translate_climb: 0
-  time_climb: 0
-  moveSpeed: 0
-  jumpForce: 0
-  slidingForce: 0
-  wallright: {fileID: 0}
-  ground: {fileID: 0}
+  num_climb: 100
+  translate_climb: 0.05
+  time_climb: 0.01
+  moveSpeed: 3
+  jumpForce: 4
+  slidingForce: 6
+  wallright: {fileID: 8957432067686229947}
+  ground: {fileID: 8957432067292440002}
 --- !u!114 &8957432067084204012
 MonoBehaviour:
   m_ObjectHideFlags: 0
