@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class enemy : Enemy
 {
     [SerializeField]
     private GameObject Circle;
@@ -10,18 +10,21 @@ public class enemy : MonoBehaviour
     private GameObject zombie;
     [SerializeField]
     private GameObject Square;
-    private void Start()
+
+
+   
+
+    protected override void Start()
     {
+        base.Start();
+
+       
 
     }
     bool G = false;
     bool wait = true;
     bool zea = false;
-    bool Atc = false;
-    private void Update()
-    {
 
-    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         G = true;
@@ -30,6 +33,9 @@ public class enemy : MonoBehaviour
                 StartCoroutine(als(col));
 
         }
+
+   
+
     }
     private void OnTriggerExit2D(Collider2D col)
     {
@@ -42,42 +48,46 @@ public class enemy : MonoBehaviour
     }
     private IEnumerator als(Collider2D col)
     {
-        if (!Atc)
+        if (col.CompareTag("Player") == true)
         {
-            Atc = true;
-            if (col.CompareTag("Player") == true)
+            zombie.GetComponent<zombiemove>().z = false;
+            wait = false;
+            int a = Random.Range(0, 2);
+            //Debug.Log(a);
+            if (a == 0)
             {
-                zombie.GetComponent<zombiemove>().z = false;
-                wait = false;
-                int a = Random.Range(0, 2);
-                Debug.Log(a);
-                if (a == 0)
+                //Debug.Log("a");
+                yield return new WaitForSecondsRealtime(1);
+                if (G)
                 {
-                    Debug.Log("a");
-                    yield return new WaitForSecondsRealtime(1);
-                    if (G)
-                    {
-                        col.GetComponent<HP1>().Damage(8);
-                    }
-                }
-                else if (a == 1)
-                {
-                    yield return new WaitForSecondsRealtime(3);
-                    if (G)
-                    {
-                        col.GetComponent<HP1>().Damage(20);
-                    }
-                }
-                yield return new WaitForSecondsRealtime(2);
-                wait = true;
-                zea = true;
+                    //ŠÖ
 
-                if (true)
-                {
 
+
+                    if (col.CompareTag("Player"))
+                    {
+
+                        GameManagement.Instance.PlayerDamage(5);
+                        //Debug.Log("");
+                    }
                 }
             }
-            Atc = false;
+            else if (a == 1)
+            {
+                yield return new WaitForSecondsRealtime(3);
+                if (G)
+                {
+                    //col.GetComponent<HP1>().Damage(20);
+                }
+            }
+            yield return new WaitForSecondsRealtime(2);
+            wait = true;
+            zea = true;
+
+            if (true)
+            {
+                
+            }
         }
     }
     private IEnumerator asa()

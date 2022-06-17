@@ -23,7 +23,7 @@ public class zombiemove3 : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     { //2Dの衝突判定
-        Debug.Log("a");
+        //Debug.Log("a");
         if (col.gameObject.tag == "T")
         {   //Wallタグのついたオブジェクトと衝突時
             zombie.GetComponent<zombiemove>().a *= -1;

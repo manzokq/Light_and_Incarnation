@@ -1,0 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/*
+    ë´Ç…Ç≈Ç‡Ç≠Ç¡Ç¬ÇØÇƒ
+ */
+public class GroundCheck : MonoBehaviour
+{
+    private string groundTag = "Ground";
+    private bool isGround = false;
+    private bool isGroundEnter, isGroundStay, isGroundExit;
+
+    //ê⁄ínîªíËÇï‘Ç∑
+    public bool IsGround()
+    {
+        if (isGroundEnter || isGroundStay)
+        {
+            isGround = true;
+        }
+        else if(isGroundExit)
+        {
+            isGround = false;
+        }
+        isGroundEnter = false;
+        isGroundStay = false;
+        isGroundExit = false;
+        return isGround;
+    }
+    //à»â∫ê⁄ínîªíË
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log(isGround);
+        if (collision.tag == groundTag)
+        {
+            isGroundEnter = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //Debug.Log(isGround);
+        if (collision.tag == groundTag)
+        {
+            isGroundStay = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Debug.Log(isGround);
+        if (collision.tag == groundTag)
+        {
+            isGroundExit = true;
+        }
+    }
+}
