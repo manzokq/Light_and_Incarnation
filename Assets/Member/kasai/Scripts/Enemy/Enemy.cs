@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     protected Rigidbody2D rb;
+    //アニメーター
+    public Animator Anim;
     public EnemyDate enemyDate;//EnemyDateから体力などの情報を呼んでくる
     protected string Name = null;
     protected int Hp = 0;
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Anim = GetComponent<Animator>();
         Name = enemyDate.enemyName;
         Hp = enemyDate.hp;
         Atk1 = enemyDate.atk1;

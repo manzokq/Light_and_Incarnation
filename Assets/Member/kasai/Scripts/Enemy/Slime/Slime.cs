@@ -14,8 +14,7 @@ public class Slime : Enemy
 
     //弾を保持（プーリング）する空のオブジェクト
     Transform poisons;
-    //アニメーター
-    public Animator Anim;
+    
 
     //private bool inCamera;
 
