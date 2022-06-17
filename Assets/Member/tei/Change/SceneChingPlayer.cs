@@ -104,7 +104,7 @@ public class SceneChingPlayer : MonoBehaviour
 
         if(Gate_Number!=0)
         {
-            Debug.Log("シーン繊維");
+            Debug.Log("シーン遷移");
 
             this.gameObject.transform.position = new Vector3(
                 GameObject.Find("Gate" + Gate_Number).transform.position.x + 2,

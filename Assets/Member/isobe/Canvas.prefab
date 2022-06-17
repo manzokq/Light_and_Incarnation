@@ -694,13 +694,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587f8de9191f2b14b885e92c5b6c7d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imege1: {fileID: 8151049371413479699}
-  imege2: {fileID: 8151049372148235681}
   CharacterImage:
-  - {fileID: 21300000, guid: 34572309d493b7749928ef6c3e3f65a5, type: 3}
-  - {fileID: 21300000, guid: f0d7a5194ba0f244299949592433f594, type: 3}
-  - {fileID: 21300000, guid: 904798fa49011af499a7686a299de0eb, type: 3}
   - {fileID: 21300000, guid: 91de3189d538a0b48a15ec2f5c45abea, type: 3}
+  - {fileID: 21300000, guid: f0d7a5194ba0f244299949592433f594, type: 3}
+  - {fileID: 21300000, guid: 34572309d493b7749928ef6c3e3f65a5, type: 3}
+  - {fileID: 21300000, guid: 904798fa49011af499a7686a299de0eb, type: 3}
 --- !u!1 &8151049372148235681
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,13 +50,13 @@ public class Move1 : MonoBehaviour
 		switch(num)
 		{
 			case 1:
-			SceneManager.LoadScene("MapTutorial");   
+			SceneManager.LoadScene("SampleScene");   
 			break;
 			case 2:
-			SceneManager.LoadScene("MapTutorial");  
+			SceneManager.LoadScene("Next");  
 			break;
 			case 3:
-			SceneManager.LoadScene("MapTutorial");
+			SceneManager.LoadScene("Sinario");
 			break;
 
 			default:

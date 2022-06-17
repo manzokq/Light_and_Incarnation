@@ -16,7 +16,7 @@ public class AtkSwiching : MonoBehaviour
     {
         switch (GameManagement.Instance.PlayerCharacter)
         {
-            case GameManagement.CharacterID.Girl:
+            case GameManagement.Character.Girl:
                 switch (GameManagement.Instance.Atk)
                 {
                     case GameManagement.AtkID.Atk1:
@@ -33,7 +33,7 @@ public class AtkSwiching : MonoBehaviour
                         break;
                 }
                 break;
-            case GameManagement.CharacterID.Bowman:
+            case GameManagement.Character.Bowman:
                 switch (GameManagement.Instance.Atk)
                 {
                     case GameManagement.AtkID.Atk1:
@@ -50,7 +50,7 @@ public class AtkSwiching : MonoBehaviour
                         break;
                 }
                 break;
-            case GameManagement.CharacterID.Swordsman:
+            case GameManagement.Character.Swordsman:
                 switch (GameManagement.Instance.Atk)
                 {
                     case GameManagement.AtkID.Atk1:
@@ -67,7 +67,7 @@ public class AtkSwiching : MonoBehaviour
                         break;
                 }
                 break;
-            case GameManagement.CharacterID.Wizard:
+            case GameManagement.Character.Wizard:
                 switch (GameManagement.Instance.Atk)
                 {
                     case GameManagement.AtkID.Atk1:

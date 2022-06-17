@@ -10,8 +10,6 @@ public class zombiemove : Enemy
 	public int a = 0;
 	public bool w = false;
 	public bool z = true;
-	
-
 
 	protected override void Start()
 	{
@@ -19,6 +17,7 @@ public class zombiemove : Enemy
 		sr = GetComponent<SpriteRenderer>();
 
 
+		Debug.Log(Hp);
 	}
 
 	void FixedUpdate()
@@ -40,12 +39,17 @@ public class zombiemove : Enemy
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (collision.CompareTag("PlayerAtk"))
+
+		//ŠÖ
+
+
+		if (col.CompareTag("PlayerAtk"))
 		{
-			Debug.Log(Hp);
+
 			Hp = GameManagement.Instance.PlayerAtk(Hp);
+			Debug.Log(Hp);
 		}
 
 	}
