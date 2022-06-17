@@ -20,10 +20,6 @@ public class Flour : MonoBehaviour
 
     float TimeCount = 0;
 
-    private void Start()
-    {
-        
-    }
     private void Update()
     {
         if (!touch)
@@ -46,8 +42,6 @@ public class Flour : MonoBehaviour
         {
             touch = false;
             TimeCount = 0;
-
-
         }
     }
 
