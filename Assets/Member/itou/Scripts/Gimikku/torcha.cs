@@ -6,6 +6,7 @@ public class torcha : MonoBehaviour
  
     // フロア内スイッチ数カウント保持
     protected uint _switchCount = 0;
+    public bool flag = false;
     public uint SwitchCount
     {
         get { return _switchCount; }
@@ -70,6 +71,7 @@ public class torcha : MonoBehaviour
     {
         if (_flowSwitchNo == SwitchCount)
         {
+            flag = true;
            Debug.Log("Player entered!");
         }
     }

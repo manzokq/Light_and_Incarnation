@@ -20,7 +20,6 @@ public class zombiemove1 : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
 	{
-		//Debug.Log("q");
 		if (col.gameObject.tag == "y")
 		{   //yukaタグのついたオブジェクトと衝突時
 			zombie.GetComponent<zombiemove>().a *= -1;
