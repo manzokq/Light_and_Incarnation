@@ -8,6 +8,8 @@ public class ArcherAtack : MonoBehaviour
 
     [SerializeField]
     Animator animArcher;
+    [SerializeField]
+    GameObject arrow;
 
     private bool arrowAble = true;
     private bool firearrowAble = true;
@@ -27,8 +29,6 @@ public class ArcherAtack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("Arrow", false);
-        animArcher.SetBool("Arrow2", false);
         #region ÉNÅ[ÉãÉ^ÉCÉÄèàóù(ñ¢é¿ëï)
         if (arrowAble == false)
         {
@@ -62,29 +62,28 @@ public class ArcherAtack : MonoBehaviour
         //PÇâüÇ∑Ç∆í èÌã|çUåÇ
         if (Input.GetKeyDown(KeyCode.P) && arrowAble)
         {
-
             PlayerControl playerControl = GetComponent<PlayerControl>();
-            var swordman_judge = playerControl.changechara;
-            if (swordman_judge == 3)
+            var archer_judge = playerControl.atack_judge;
+            if (archer_judge == 2)
             {
-                anim.SetBool("Arrow", true);
+                anim.SetTrigger("Arrow");
                 animArcher.SetTrigger("Arrow2");
-                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
+                //.Instance.Atk = GameManagement.AtkID.Atk1;
             }
-
-            //slashable = false;
         }
 
         //LÇâüÇ∑Ç∆âŒñÓ
         if (Input.GetKeyDown(KeyCode.L) && firearrowAble)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
-            var swordman_judge = playerControl.changechara;
-            if (swordman_judge == 3)
+            var archer_judge = playerControl.atack_judge;
+            if (archer_judge == 2)
             {
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
+                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
+                //.Instance.Atk = GameManagement.AtkID.Atk1;
             }
         }
 
@@ -92,8 +91,8 @@ public class ArcherAtack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O) && doublearrowAble)
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
-            var swordman_judge = playerControl.changechara;
-            if (swordman_judge == 3)
+            var archer_judge = playerControl.atack_judge;
+            if (archer_judge == 2)
             {
                 anim.SetTrigger("DoubleArrow");
                 animArcher.SetTrigger("DoubleArrow2");
@@ -104,11 +103,13 @@ public class ArcherAtack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J) && longbowAble)
         {
             PlayerControl playerContorol = GetComponent<PlayerControl>();
-            var swordman_judge = playerContorol.changechara;
-            if (swordman_judge == 3)
+            var archer_judge = playerContorol.atack_judge;
+            if (archer_judge == 2)
             {
+                arrow.tag = "LongBow";
                 anim.SetTrigger("LongBow");
                 animArcher.SetTrigger("LongBow2");
+                StartCoroutine("TagReset");
             }
         }
 
@@ -117,8 +118,8 @@ public class ArcherAtack : MonoBehaviour
         if (Input.GetKeyDown("joystick button 1") && arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-            var swordman_judge = xboxPlayerContorol.changechara;
-            if (swordman_judge == 3)
+            var archer_judge = xboxPlayerContorol.atack_judge_con;
+            if (archer_judge == 2)
             {
                 anim.SetBool("Arrow", true);
                 animArcher.SetTrigger("Arrow2");
@@ -133,8 +134,8 @@ public class ArcherAtack : MonoBehaviour
         if (Input.GetKeyDown("joystick button 1") && firearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-            var swordman_judge = xboxPlayerContorol.changechara;
-            if (swordman_judge == 3)
+            var archer_judge = xboxPlayerContorol.atack_judge_con;
+            if (archer_judge == 2)
             {
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
@@ -145,8 +146,8 @@ public class ArcherAtack : MonoBehaviour
         if (Input.GetKeyDown("joystick button 1") && doublearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-            var swordman_judge = xboxPlayerContorol.changechara;
-            if (swordman_judge == 3)
+            var archer_judge = xboxPlayerContorol.atack_judge_con;
+            if (archer_judge == 2)
             {
                 anim.SetTrigger("DoubleArrow");
                 animArcher.SetTrigger("DoubleArrow2");
@@ -157,12 +158,21 @@ public class ArcherAtack : MonoBehaviour
         if (Input.GetKeyDown("joystick button 2") && longbowAble)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-            var swordman_judge = xboxPlayerContorol.changechara;
-            if (swordman_judge == 2)
+            var archer_judge = xboxPlayerContorol.atack_judge_con;
+            if (archer_judge == 2)
             {
+                Debug.Log("ì¡éÍçUåÇ");
+                arrow.tag = "LongBow";
                 anim.SetTrigger("LongBow");
                 animArcher.SetTrigger("LongBow2");
+                StartCoroutine("TagReset");
             }
         }
     }
+    private IEnumerator TagReset()
+    {
+        yield return new WaitForSeconds(1f);
+        arrow.tag = "Arrow";
+    }
 }
+//í èÌçUåÇÅAâŒñÓÅAìÒñÓ

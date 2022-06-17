@@ -8,6 +8,6 @@ public class HPGauge : MonoBehaviour
     Image img;
     public void Update()
     {
-        img.fillAmount = GameManagement.Instance.PlayerHP *0.01f;
+        //img.fillAmount = GameManagement.Instance.PlayerHP *0.01f;
     }
 }

@@ -419,9 +419,10 @@ MonoBehaviour:
   PlayerMP: 0
   PlayerOrb: 0
   PlayerCharacter: 0
-  Character: 1
+  Character: 2
   Map: 1
   Atk: 0
+  player: {fileID: 0}
 --- !u!4 &360875398
 Transform:
   m_ObjectHideFlags: 0
@@ -1113,7 +1114,7 @@ GameObject:
   - component: {fileID: 2048621376}
   m_Layer: 5
   m_Name: wall2
-  m_TagString: T
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1318,5 +1319,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: chara
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2071289474934600749, guid: d7a4f6cef14f27f41addf07dd4ae1f25, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7a4f6cef14f27f41addf07dd4ae1f25, type: 3}

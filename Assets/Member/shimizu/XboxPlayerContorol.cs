@@ -19,7 +19,9 @@ public class XboxPlayerContorol : MonoBehaviour
     private Animator anim;
     private bool sliding_judge = true;
     public float changechara = 2;
-    public float changeatack = 1;
+    private float changeatack = 1;
+
+    public float atack_judge_con;
 
     private bool isGround = false;
 
