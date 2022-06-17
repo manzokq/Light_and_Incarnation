@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
+    BoxCollider2D box;
     private bool EVflag;
     private float floar;
     [SerializeField]
@@ -18,6 +19,7 @@ public class Elevator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        box = GetComponent<BoxCollider2D>();
         floar = 1f;
         EVflag = false;
     }
@@ -43,8 +45,9 @@ public class Elevator : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)//エレベーターの中に入ったら
     {
-        if (torch.GetComponent<torcha>().flag == true)
+        if (torch.GetComponent<torcha>().flag == true && other.tag == "Player")
         {
+            box.size = new Vector3(2,2);
             EVflag = true;
             StartCoroutine(El());
         }
@@ -54,13 +57,15 @@ public class Elevator : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)//エレベーターから出たら
     {
-        if (floar == 1f && EVflag == true)
+        if (floar == 1f && EVflag == true && other.tag == "Player")
         {
+            box.size = new Vector3(1,1);
             floar = 2f;
             EVflag = false;
         }
-        if (floar == 2f && EVflag == true)
+        if (floar == 2f && EVflag == true && other.tag == "Player")
         {
+            box.size = new Vector3(1,1);
             floar = 1f;
             EVflag = false;
         }
@@ -70,7 +75,6 @@ public class Elevator : MonoBehaviour
     {
         while (EVflag)
         {
-            Debug.Log(floar);
             if (Ele.transform.position.y < max && floar == 1f && EVflag == true)
             {
                 Ele.transform.Translate(0, 1f * Time.deltaTime, 0);
