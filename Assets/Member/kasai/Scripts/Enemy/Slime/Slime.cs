@@ -10,19 +10,19 @@ public class Slime : Enemy
     private float playerRange;//プレイヤーとの距離
 
     //生成する毒
-    //[SerializeField] GameObject poison = null;
+    [SerializeField] GameObject poison = null;
 
     //弾を保持（プーリング）する空のオブジェクト
     Transform poisons;
     
 
-    //private bool inCamera;
+    private bool inCamera;
 
-    //private bool process = false;
+    private bool process = false;
+
     protected override void Start()
     {
         base.Start();
-        //rb = GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindWithTag("Player");
     }
 
@@ -31,28 +31,24 @@ public class Slime : Enemy
         base.Update();
         //プレイヤーまでの距離を出す
         this.playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
-       
-        //if (inCamera)
-        //{
-        //    if (playerRange < 2)
-        //    {
-        //        StartCoroutine(Charge());
-        //    }
-        //    else if(playerRange>4&&playerRange<7)
-        //    {
-        //        StartCoroutine(Poison());
-        //    }
-        //    //else if(true)
-        //    //{
-        //    //    StartCoroutine(Explosion());
-        //    //}
-        //    if(playerRange>3)
-        //    {
-        //        StartCoroutine(Move());
-        //    }
-        //    //確率で爆発に派生
 
-        //}
+        if (inCamera)
+        {
+            if (playerRange < 2)
+            {
+                StartCoroutine(Charge());
+            }
+            else if (playerRange > 4 && playerRange < 7)
+            {
+                StartCoroutine(Poison());
+            }
+
+            if (playerRange > 3)
+            {
+               MoveFragSwitch();
+            }
+
+        }
     }
 
     
