@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour
         }
         if(_moveFrag)
         {
+           
             Move();
         }
         
@@ -69,6 +70,7 @@ public class Enemy : MonoBehaviour
     {//移動　アップデートで呼ばれてる
         Vector2 scale = transform.localScale;
         rb.velocity = new Vector2(enemyDate.speed * _direction, rb.velocity.y);
+        Debug.Log("move");
     }
 
     /// <summary>
@@ -96,9 +98,18 @@ public class Enemy : MonoBehaviour
     /// 動くかどうかのフラグを切り替える関数
     /// デフォはtrue
     /// </summary>
-    public void MoveFragSwitch()
+    public void MoveFragSwitch(bool move)
     {
-        _moveFrag ^= false;
+        if(!move)
+        {
+            _moveFrag = false;
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            _moveFrag= true;
+        }
+        //_moveFrag ^= true;
         Debug.Log("エネミーの移動フラグ"+_moveFrag);
     }
 }
