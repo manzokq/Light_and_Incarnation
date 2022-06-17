@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManagement : MonoBehaviour
 {
-    public enum Character
+    public enum CharacterID
     {
         Girl = 0,
         Swordsman,
@@ -36,7 +36,9 @@ public class GameManagement : MonoBehaviour
     [SerializeField, Range(0, 100)]
     public int PlayerOrb;
     [SerializeField]
-    public Character PlayerCharacter;
+    public CharacterID PlayerCharacter;
+    [SerializeField]
+    public CharacterID Character;
     [SerializeField]
     public MapID Map;
     [SerializeField]
@@ -65,7 +67,7 @@ public class GameManagement : MonoBehaviour
     {
         switch (PlayerCharacter)
         {
-            case Character.Swordsman:
+            case CharacterID.Swordsman:
                 switch (Atk)
                 {
                     case AtkID.Atk1:
@@ -79,7 +81,7 @@ public class GameManagement : MonoBehaviour
                         break;
                 }
                 break;
-            case Character.Bowman:
+            case CharacterID.Bowman:
                 switch (Atk)
                 {
                     case AtkID.Atk1:
@@ -93,7 +95,7 @@ public class GameManagement : MonoBehaviour
                         break;
                 }
                 break;
-            case Character.Wizard:
+            case CharacterID.Wizard:
                 switch (Atk)
                 {
                     case AtkID.Atk1:
