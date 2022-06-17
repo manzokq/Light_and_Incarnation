@@ -8,17 +8,20 @@ public class SwordmanAttack : MonoBehaviour
 
     [SerializeField]
     Animator animSword;
+    [SerializeField]
+    GameObject sword;
 
     private bool slashAble = true;
     private bool thrustAble = true;
     private bool chargeslashAble = true;
+    private bool wallbreakAble = true;
     private float slashTime = 0;
     private float thrustTime = 0;
     private float chargeslashTime = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //PlayerControl pcon = GetComponent<PlayerControl>();
         anim = GetComponent<Animator>();
         //swordCollider = GameObject.Find("swordnonamae").GetComponent<BoxCollider2D>();
     }
@@ -26,9 +29,7 @@ public class SwordmanAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("Slash", false);
-        animSword.SetBool("Slash2", false);
-        #region クールタイム処理
+        #region クールタイム処理(未実装)
         if (slashAble == false)
         {
             slashTime += Time.deltaTime;
@@ -57,30 +58,121 @@ public class SwordmanAttack : MonoBehaviour
             }
         }
         #endregion
+        GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
         //Pを押すと斬撃
         if (Input.GetKeyDown(KeyCode.P) && slashAble)
         {
-            anim.SetBool("Slash", true);
-            animSword.SetTrigger("Slash2");
-            GameManagement.Instance.PlayerCharacter = GameManagement.Character.Swordsman;
-            GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+            
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.atack_judge;
+            if (swordman_judge == 1)
+            {
+                anim.SetTrigger("Slash");
+                animSword.SetTrigger("Slash2");
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
+                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+            }
 
             //slashable = false;
         }
 
         //Lを押すと突き
-        if (Input.GetKeyDown(KeyCode.O) && thrustAble)
+        if (Input.GetKeyDown(KeyCode.L) && thrustAble)
         {
-            anim.SetTrigger("Thrust");
-            animSword.SetTrigger("Thrust2");
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.atack_judge;
+            if (swordman_judge == 1)
+            {
+                anim.SetTrigger("Thrust");
+                animSword.SetTrigger("Thrust2");
+            }
         }
 
         //Oを押すとため切り
-        if (Input.GetKeyDown(KeyCode.L) && chargeslashAble)
+        if (Input.GetKeyDown(KeyCode.O) && chargeslashAble)
         {
-            anim.SetTrigger("ChargeSlash");
-            animSword.SetTrigger("ChargeSlash2");
+            PlayerControl playerControl = GetComponent<PlayerControl>();
+            var swordman_judge = playerControl.atack_judge;
+            if (swordman_judge == 1)
+            {
+                anim.SetTrigger("ChargeSlash");
+                animSword.SetTrigger("ChargeSlash2");
+            }
         }
+
+        //Xを押すと壁破壊(特殊攻撃)
+        if(Input.GetKeyDown(KeyCode.J) && wallbreakAble)
+        {
+            PlayerControl playerContorol = GetComponent<PlayerControl>();
+            var swordman_judge = playerContorol.atack_judge;
+            if(swordman_judge == 1)
+            {
+                sword.tag = "WallBreak";
+                anim.SetTrigger("WallBreak");
+                animSword.SetTrigger("WallBreak2");
+                StartCoroutine("TagReset");
+            }
+        }
+
+        //----コントローラー操作----
+        //斬撃
+        if (Input.GetKeyDown("joystick button 1") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1)
+        {
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.atack_judge_con;
+            if (swordman_judge == 1)
+            {
+                anim.SetBool("Slash", true);
+                animSword.SetTrigger("Slash2");
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
+                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+            }
+
+            //slashable = false;
+        }
+        
+        //突き
+        if (Input.GetKeyDown("joystick button 1") && thrustAble &&GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
+        {
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.atack_judge_con;
+            if (swordman_judge == 1)
+            {
+                anim.SetTrigger("Thrust");
+                animSword.SetTrigger("Thrust2");
+            }
+        }
+
+        //ため切り
+        if (Input.GetKeyDown("joystick button 1") && chargeslashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
+        {
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.atack_judge_con;
+            if (swordman_judge == 1)
+            {
+                anim.SetTrigger("ChargeSlash");
+                animSword.SetTrigger("ChargeSlash2");
+            }
+        }
+
+        //壁破壊(特殊攻撃)
+        if (Input.GetKeyDown("joystick button 2") && wallbreakAble)
+        {
+            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+            var swordman_judge = xboxPlayerContorol.atack_judge_con;
+            if (swordman_judge == 1)
+            {
+                sword.tag = "WallBreak";
+                anim.SetTrigger("WallBreak");
+                animSword.SetTrigger("WallBreak2");
+                StartCoroutine("TagReset");
+            }
+        }
+    }
+    private IEnumerator TagReset()
+    {
+        yield return  new WaitForSeconds(1f);
+        sword.tag = "Sword";
     }
 }
 
