@@ -23,13 +23,13 @@ public class Orb : MonoBehaviour
         {
             GameObject have = collision.gameObject;
 
-            if (have.GetComponent<flour>().touch == false)
+            if (have.GetComponent<Flour>().touch == false)
             {
-                Orb_score += have.GetComponent<flour>().Orb_count;
+                Orb_score += have.GetComponent<Flour>().Orb_count;
                 Debug.Log("オーブを回収した");
             }
 
-            have.GetComponent<flour>().touch = true;
+            have.GetComponent<Flour>().touch = true;
 
             Debug.Log("オーブを" + Orb_score + "持っている");
 

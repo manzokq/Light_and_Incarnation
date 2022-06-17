@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class flour : MonoBehaviour
+public class Flour : MonoBehaviour
 {
     [SerializeField,Header("êFID")]
     int ID;
