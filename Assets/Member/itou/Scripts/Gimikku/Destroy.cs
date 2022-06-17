@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
+	[SerializeField]
+	float Ds = 0;
 	/// <summary>
 	/// è’ìÀÇµÇΩéû
 	/// </summary>
@@ -12,7 +14,7 @@ public class Destroy : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
 			// 0.2ïbå„Ç…è¡Ç¶ÇÈ
-			Destroy(gameObject, 0.2f);
+			Destroy(gameObject, Ds);
 		}
 	}
 }

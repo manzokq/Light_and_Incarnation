@@ -10,76 +10,77 @@ public class ZombieAT : MonoBehaviour
     private GameObject zombie;
     [SerializeField]
     private GameObject Square;
+    public float span = 3f;
+    private float currentTime = 0f;
     private void Start()
     {
-
+        
     }
     bool G = false;
-    bool wait = true;
-    bool zea = false;
+    bool wait = false;
+    bool ATK = false;
     private void Update()
     {
+        currentTime += Time.deltaTime;
 
+        if (currentTime > span)
+        {
+            Debug.Log("3•b");
+            Debug.Log(wait);
+            StartCoroutine(als());
+            currentTime = 0f;
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        G = true;
-        if (wait)
+        //G = true;
+        if (col.CompareTag("Player") == true)
         {
-                StartCoroutine(als(col));
-
+            wait = true;
         }
     }
     private void OnTriggerExit2D(Collider2D col)
     {
         G = false;
-        wait = true;
-        if (zea)
+        wait = false;
+        if (ATK)
         {
             StartCoroutine(asa());
         }
     }
-    private IEnumerator als(Collider2D col)
+    private IEnumerator als()
     {
-        if (col.CompareTag("Player") == true)
-        {
-            zombie.GetComponent<zombiemove>().z = false;
-            wait = false;
-            int a = Random.Range(0, 2);
-            Debug.Log(a);
-            if (a == 0)
+            if (wait)
             {
-                Debug.Log("a");
-                yield return new WaitForSecondsRealtime(1);
-                if (G)
+                wait = false;
+                int a = Random.Range(0, 2);
+                Debug.Log(a);
+                if (a == 0)
                 {
-                    col.GetComponent<HP1>().Damage(8);
+                    //Debug.Log("a");
+                    
+                      Debug.Log(8);
+                    
                 }
-            }
-            else if (a == 1)
-            {
+                else if (a == 1)
+                {
                 yield return new WaitForSecondsRealtime(3);
-                if (G)
-                {
-                    col.GetComponent<HP1>().Damage(20);
+                      Debug.Log(20);
+                    
                 }
-            }
-            yield return new WaitForSecondsRealtime(2);
-            wait = true;
-            zea = true;
+                GetComponent<CapsuleCollider2D>().enabled = false;
+                yield return new WaitForSecondsRealtime(2);
+                ATK = true;
+                GetComponent<CapsuleCollider2D>().enabled = true;
 
-            if (true)
-            {
-                
+            wait = true;
             }
-        }
+
     }
     private IEnumerator asa()
     {
-        zea = false;
-        zombie.GetComponent<zombiemove>().a *= -1;
-        zombie.GetComponent<zombiemove>().z = true;
+        ATK = false;
         yield return new WaitForSecondsRealtime(0.01f);
-        zea = true;
+        ATK = true;
     }
 }

@@ -26,7 +26,7 @@ public class Hasi : MonoBehaviour
         //    }
         //}
     }
-    public void st()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (hs)
         {
@@ -40,7 +40,7 @@ public class Hasi : MonoBehaviour
         while(T<=1)
         { 
 
-                hasi.transform.Rotate(new Vector3(0, 0, 90f * Time.deltaTime));
+                hasi.transform.Rotate(new Vector3(0, 0, 88f * Time.deltaTime));
             yield return null;
             T+=Time.deltaTime;
         }

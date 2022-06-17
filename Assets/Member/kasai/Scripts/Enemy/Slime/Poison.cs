@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Poison : Enemy
+public class Poison : MonoBehaviour
 {
     //public EnemyDate enemyDate;//EnemyDate‚©‚ç‘Ì—Í‚È‚Ç‚Ìî•ñ‚ğŒÄ‚ñ‚Å‚­‚é
 
@@ -12,32 +12,29 @@ public class Poison : Enemy
     private int _poisonAtk; //magnification*atk
     [SerializeField] private int _repeat = 0;
     private bool _hit = false;
-    //void Update()
-    //{
 
-    //}
-    private void Start()
+    public int atk=1;
+    private void OnEnable()
     {
         StartCoroutine(PoisonIns());
     }
-
-    public IEnumerator PoisonIns()//“¥‚Ü‚ê‚½‚Ìˆ—
+    public IEnumerator PoisonIns()
     {
-        yield return new WaitForSeconds(1.0f);
-        for (int i = 0; i < _repeat; i++) 
+        for (int i = 0; i < _repeat; i++)
         {
             //dotˆ—
             _magnification = Random.Range(_randMin, _randMax);//atk12~18 ”{—¦min0.6max1.8‚ğ‘z’è
-            _poisonAtk = (int)_magnification * Atk1;
-            if(_hit)
+            _poisonAtk = (int)_magnification * atk;
+            if (_hit)
             {
+
                 GameManagement.Instance.PlayerDamage(_poisonAtk);//‘Ì—Í‚ğŒ¸‚ç‚·
             }
-            
+            Debug.Log(_poisonAtk);
             yield return new WaitForSeconds(1.0f);
         }
-        
-       this.gameObject.SetActive(false);
+
+        this.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
