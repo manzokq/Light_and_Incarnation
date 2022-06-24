@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 187386624}
   - component: {fileID: 187386623}
   - component: {fileID: 187386625}
+  - component: {fileID: 187386626}
   m_Layer: 0
   m_Name: zombie
   m_TagString: Untagged
@@ -361,8 +362,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8549a762cc17c4a8f9720132124b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anim: {fileID: 0}
+  Anim: {fileID: 187386626}
   enemyDate: {fileID: 11400000, guid: b64a97fec245ee143b75643b3fa8e802, type: 2}
+--- !u!95 &187386626
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187386620}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &200008722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2163,7 @@ GameObject:
   - component: {fileID: 1942484863}
   - component: {fileID: 1942484862}
   - component: {fileID: 1942484861}
+  - component: {fileID: 1942484865}
   m_Layer: 0
   m_Name: zombie (1)
   m_TagString: Untagged
@@ -2254,6 +2276,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1942484865
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942484860}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1966219715
 GameObject:
   m_ObjectHideFlags: 0
