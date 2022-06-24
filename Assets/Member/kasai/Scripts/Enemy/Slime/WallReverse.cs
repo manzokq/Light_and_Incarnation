@@ -14,7 +14,7 @@ public class WallReverse : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {//•Ç‚É“–‚½‚Á‚½‚ç”½“]
-            Debug.Log("•Ç‚É“–‚½‚Á‚½");
+            //Debug.Log("•Ç‚É“–‚½‚Á‚½");
             slime.Reverse();
         }
     }
