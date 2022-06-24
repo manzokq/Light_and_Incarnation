@@ -30,8 +30,8 @@ public class PlayerControl : MonoBehaviour
     private bool isWallright = false;
     private bool coroutine_able = true;
     [SerializeField] private float num_climb, translate_climb, time_climb;
-
-    private Vector2 scale = new Vector2(1, 1);
+    [SerializeField] GameObject chara;
+    private Vector2 scale = new Vector2(100, 100);
 
     private float jumpCount;
 
@@ -187,14 +187,14 @@ public class PlayerControl : MonoBehaviour
         //ç∂âEîΩì]
         if (rbody.velocity.x < 0)
         {
-            scale.x = -1;
+            scale.x = -100;
             transform.localScale = scale;
         }
         if (rbody.velocity.x > 0)
         {
 
-            scale.x = 1;
-            transform.localScale = scale; ;
+            scale.x = 100;
+            transform.localScale = scale;
         }
 
         //ÉWÉÉÉìÉv
@@ -220,12 +220,14 @@ public class PlayerControl : MonoBehaviour
             {
                 anim.SetBool("Sliding", true);
                 StartCoroutine("AngleRepairRight");
+                StartCoroutine("DodgeTag");
             }
             //ç∂å¸Ç´
             if (rbody.velocity.x < 0)
             {
                 anim.SetBool("SlidingLeft", true);
                 StartCoroutine("AngleRepairLeft");
+                StartCoroutine("DodgeTag");
             }
         }
 
@@ -310,6 +312,12 @@ public class PlayerControl : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+    IEnumerator DodgeTag()
+    {
+        chara.tag = "Dodge";
+        yield return new WaitForSeconds(1f);
+        chara.tag = "Player";
     }
 
     public void DamageColor()

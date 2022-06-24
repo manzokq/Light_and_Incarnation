@@ -112,11 +112,12 @@ public class ArcherAtack : MonoBehaviour
                 StartCoroutine("TagReset");
             }
         }
-
+        //Debug.Log(GameManagement.Instance.Atk);
         //----コントローラー操作----
         //通常弓攻撃
         if (Input.GetKeyDown("joystick button 1") && arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
+            Debug.Log("通常");
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
             if (archer_judge == 2)

@@ -449,6 +449,7 @@ MonoBehaviour:
   num_climb: 100
   translate_climb: 0.05
   time_climb: 0.01
+  chara: {fileID: 8957432067084204004}
   moveSpeed: 3
   jumpForce: 4
   slidingForce: 6
@@ -467,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changechara: 2
+  chara: {fileID: 8957432067084204004}
   atack_judge_con: 0
   num_climb: 100
   translate_climb: 0.05
