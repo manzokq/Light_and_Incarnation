@@ -15,7 +15,7 @@ public class GroundReverse : MonoBehaviour
         
         if(collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("è∞Ç©ÇÁî≤ÇØÇΩ");
+            //Debug.Log("è∞Ç©ÇÁî≤ÇØÇΩ");
             slime.Reverse();
         }
         

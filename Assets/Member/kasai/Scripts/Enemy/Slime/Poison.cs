@@ -29,8 +29,10 @@ public class Poison : MonoBehaviour
             {
 
                 GameManagement.Instance.PlayerDamage(_poisonAtk);//ëÃóÕÇå∏ÇÁÇ∑
+                
             }
-            Debug.Log(_poisonAtk);
+            
+            //Debug.Log(_poisonAtk);
             yield return new WaitForSeconds(1.0f);
         }
 
@@ -39,9 +41,10 @@ public class Poison : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            _hit= true;
+            _hit = true;
+            Debug.Log(_poisonAtk + "É_ÉÅÅ[ÉW");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -49,6 +52,7 @@ public class Poison : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _hit = false;
+            Debug.Log("Ç†ÇΩÇ¡ÇƒÇ»Ç¢ÇÊ");
         }
     }
 }

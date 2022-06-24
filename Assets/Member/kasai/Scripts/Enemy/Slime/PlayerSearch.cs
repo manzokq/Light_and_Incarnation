@@ -15,7 +15,7 @@ public class PlayerSearch : MonoBehaviour
         Debug.Log(collision.gameObject);
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("プレイヤーと接触");
+            //Debug.Log("プレイヤーと接触");
             slime.Reverse();
         }
 
@@ -26,7 +26,7 @@ public class PlayerSearch : MonoBehaviour
        
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("プレイヤーと接触");
+            //Debug.Log("プレイヤーと接触");
             slime.Reverse();
         }
     }

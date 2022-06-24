@@ -50,7 +50,7 @@ public class Move1 : MonoBehaviour
 		switch(num)
 		{
 			case 1:
-			SceneManager.LoadScene("SampleScene");   
+			SceneManager.LoadScene("Test");   
 			break;
 			case 2:
 			SceneManager.LoadScene("Next");  

@@ -70,7 +70,8 @@ public class Enemy : MonoBehaviour
     {//移動　アップデートで呼ばれてる
         Vector2 scale = transform.localScale;
         rb.velocity = new Vector2(enemyDate.speed * _direction, rb.velocity.y);
-        Debug.Log("move");
+        Anim.SetBool("Walk", true);
+        //Debug.Log("move");
     }
 
     /// <summary>
@@ -103,13 +104,15 @@ public class Enemy : MonoBehaviour
         if(!move)
         {
             _moveFrag = false;
-            rb.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero; 
+            Anim.SetBool("Walk", false);
         }
         else
         {
             _moveFrag= true;
+            Anim.SetBool("Walk", true);
         }
         //_moveFrag ^= true;
-        Debug.Log("エネミーの移動フラグ"+_moveFrag);
+        //Debug.Log("エネミーの移動フラグ"+_moveFrag);
     }
 }
