@@ -33,7 +33,7 @@ public class SwordmanAttack : MonoBehaviour
     void Update()
     {
         
-        GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+        //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
         //P‚ð‰Ÿ‚·‚ÆŽaŒ‚
         if (Input.GetKeyDown(KeyCode.P) && slashAble)
         {
