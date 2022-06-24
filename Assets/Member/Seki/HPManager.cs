@@ -10,6 +10,8 @@ public class HPManager : MonoBehaviour
     [SerializeField]
 
     private GameObject _player;
+
+    private int _playerHP;
     private void Awake()
     {
         if (Instance == null)
@@ -33,8 +35,11 @@ public class HPManager : MonoBehaviour
         return EnemyHP;
 
     }
-    public void PlayerDamage() //プレイヤーにダメージ
+    public int PlayerDamage(int EnemyATK) //プレイヤーにダメージ
     { 
+        //_playerHP = 
+        _playerHP -= EnemyATK;
+        return _playerHP;
         //プレイヤーHPを減らす文　エネミーが呼び出す
     }
 

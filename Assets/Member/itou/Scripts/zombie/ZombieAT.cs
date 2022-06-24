@@ -6,8 +6,7 @@ public class ZombieAT : MonoBehaviour
 {
     [SerializeField]
     private GameObject Circle;
-    [SerializeField]
-    private GameObject zombie;
+    Zombie zombie;
     [SerializeField]
     private GameObject Square;
     public float span = 3f;
@@ -15,6 +14,11 @@ public class ZombieAT : MonoBehaviour
     private void Start()
     {
         
+    }
+
+    private void Awake()
+    {
+        zombie = transform.parent.gameObject.GetComponent<Zombie>();
     }
     bool G = false;
     bool wait = false;
@@ -53,23 +57,27 @@ public class ZombieAT : MonoBehaviour
             if (wait)
             {
                 wait = false;
-                int a = Random.Range(0, 2);
-                Debug.Log(a);
-                if (a == 0)
+                int dm = Random.Range(0, 2);
+                Debug.Log(dm);
+                zombie.MoveFragSwitch(false);
+                if (dm == 0)
                 {
                     //Debug.Log("a");
                     
                       Debug.Log(8);
                     
                 }
-                else if (a == 1)
+                else if (dm == 1)
                 {
+
+
                 yield return new WaitForSecondsRealtime(3);
                       Debug.Log(20);
                     
                 }
                 GetComponent<CapsuleCollider2D>().enabled = false;
                 yield return new WaitForSecondsRealtime(2);
+                zombie.MoveFragSwitch(true);
                 ATK = true;
                 GetComponent<CapsuleCollider2D>().enabled = true;
 
