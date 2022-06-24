@@ -53,16 +53,16 @@ public class ZombieAT : MonoBehaviour
             if (wait)
             {
                 wait = false;
-                int a = Random.Range(0, 2);
-                Debug.Log(a);
-                if (a == 0)
+                int dm = Random.Range(0, 2);
+                Debug.Log(dm);
+                if (dm == 0)
                 {
                     //Debug.Log("a");
                     
                       Debug.Log(8);
                     
                 }
-                else if (a == 1)
+                else if (dm == 1)
                 {
                 yield return new WaitForSecondsRealtime(3);
                       Debug.Log(20);
