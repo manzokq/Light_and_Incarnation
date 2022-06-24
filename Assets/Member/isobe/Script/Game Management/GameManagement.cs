@@ -22,7 +22,7 @@ public class GameManagement : MonoBehaviour
     }
     public enum AtkID
     {
-        Atk1,
+        Atk1 = 0,
         Atk2,
         Atk3
     }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Slime : Enemy
@@ -7,7 +6,7 @@ public class Slime : Enemy
     private GameObject playerObject;//プレイヤー
     [SerializeField] private GameObject chargeObject;
     //生成する毒
-    [SerializeField] GameObject poison;
+    [SerializeField] GameObject _poison;
 
     private float _playerRange;//プレイヤーとの距離
     [SerializeField] private int _chargeRange = 0;
@@ -32,10 +31,15 @@ public class Slime : Enemy
     {
         base.Start();
         playerObject = GameObject.FindWithTag("Player");
-        //poisons = new GameObject("PoisonPool").transform;
-        //Debug.Log(poisons);
-        poisonobj = Instantiate(poison);
+        poisonobj = _poison;//.GetComponent<GameObject>();
+        chargeobj = chargeObject;//.GetComponent<GameObject>();
+        Debug.Log(chargeobj);
+        //chargeobj.GetComponent<Charge>().atk = Atk1;
+        chargeObject.SetActive(false);
+        poisonobj = Instantiate(_poison);
+        //poisonobj.GetComponent<Poison>().atk = Atk1;
         poisonobj.SetActive(false);
+
 
     }
 
@@ -59,8 +63,7 @@ public class Slime : Enemy
         {
             if (_playerRange < _chargeRange)
             {
-                StartCoroutine(Charge());
-
+                StartCoroutine(Charge());                
             }
             else if (_playerRange > _poisonRangeMin && _playerRange < _poisonRangeMax)
             {
@@ -79,7 +82,7 @@ public class Slime : Enemy
         }
         else
         {
-            //MoveFragSwitch();
+            MoveFragSwitch(false);
         }
     }
 
@@ -89,14 +92,15 @@ public class Slime : Enemy
         if (!process)
         {
             process = true;
-
-            chargeobj.GetComponent<Charge>().atk = Atk1;
+            
             MoveFragSwitch(false);//移動を一時停止
             //アニメーションを呼び出す
+            Anim.SetTrigger("Attack");
             //オブジェクトを有効化
+            chargeobj.GetComponent<Charge>().atk = Atk1;
             chargeObject.SetActive(true);//当たり判定の有効化
-            Debug.Log("Charge");
-            chargeObject.SetActive(false);//当たり判定の無効化
+            //Debug.Log("Charge");
+            //chargeObject.SetActive(false);//当たり判定の無効化
             yield return new WaitForSeconds(recastTime);
 
             MoveFragSwitch(true);//移動を再開
@@ -110,7 +114,8 @@ public class Slime : Enemy
             
             process = true;
             //seを呼び出す
-            
+            Anim.SetTrigger("Attack");
+            //Debug.Log(poisonobj);
             poisonobj.GetComponent<Poison>().atk = Atk1;
             poisonobj.transform.position=new Vector2(playerObject.transform.position.x, this.transform.position.y);
             yield return new WaitForSeconds(1.0f);//1秒のラグを作る
