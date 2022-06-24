@@ -53,7 +53,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(atacking);
+        //Debug.Log(atacking);
         //キャラチェンジ
         if (Input.GetKeyDown(KeyCode.B))
         {
