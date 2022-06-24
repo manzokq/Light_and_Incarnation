@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rbody;
     private Animator anim;
     private bool sliding_judge = true;
+    public bool atacking = false;
     public byte changechara = 0;
 
     public int atack_judge = 0;
@@ -30,8 +31,8 @@ public class PlayerControl : MonoBehaviour
     private bool isWallright = false;
     private bool coroutine_able = true;
     [SerializeField] private float num_climb, translate_climb, time_climb;
-
-    private Vector2 scale = new Vector2(1, 1);
+    [SerializeField] GameObject chara;
+    private Vector2 scale = new Vector2(100, 100);
 
     private float jumpCount;
 
@@ -52,6 +53,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(atacking);
         //キャラチェンジ
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -185,16 +187,16 @@ public class PlayerControl : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < 0)
+        if (rbody.velocity.x < 0 && !atacking)
         {
-            scale.x = -1;
+            scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0)
+        if (rbody.velocity.x > 0 && !atacking)
         {
 
-            scale.x = 1;
-            transform.localScale = scale; ;
+            scale.x = 100;
+            transform.localScale = scale;
         }
 
         //ジャンプ
@@ -220,12 +222,14 @@ public class PlayerControl : MonoBehaviour
             {
                 anim.SetBool("Sliding", true);
                 StartCoroutine("AngleRepairRight");
+                StartCoroutine("DodgeTag");
             }
             //左向き
             if (rbody.velocity.x < 0)
             {
                 anim.SetBool("SlidingLeft", true);
                 StartCoroutine("AngleRepairLeft");
+                StartCoroutine("DodgeTag");
             }
         }
 
@@ -310,6 +314,12 @@ public class PlayerControl : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+    IEnumerator DodgeTag()
+    {
+        chara.tag = "Dodge";
+        yield return new WaitForSeconds(1f);
+        chara.tag = "Player";
     }
 
     public void DamageColor()

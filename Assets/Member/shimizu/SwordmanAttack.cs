@@ -10,14 +10,17 @@ public class SwordmanAttack : MonoBehaviour
     Animator animSword;
     [SerializeField]
     GameObject sword;
+    [SerializeField]
+    private float ct_atack1,
+     ct_atack2,
+     ct_atack3,
+     ct_atack4;
 
     private bool slashAble = true;
     private bool thrustAble = true;
     private bool chargeslashAble = true;
     private bool wallbreakAble = true;
-    private float slashTime = 0;
-    private float thrustTime = 0;
-    private float chargeslashTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,35 +32,7 @@ public class SwordmanAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region クールタイム処理(未実装)
-        if (slashAble == false)
-        {
-            slashTime += Time.deltaTime;
-            if(slashTime >= 2)
-            {
-                slashAble = true;
-                slashTime = 0;
-            }
-        }
-        if (thrustAble == false)
-        {
-            thrustTime += Time.deltaTime;
-            if (thrustTime >= 5)
-            {
-                thrustAble = true;
-                thrustTime = 0;
-            }
-        }
-        if (chargeslashAble == false)
-        {
-            chargeslashTime += Time.deltaTime;
-            if (chargeslashTime >= 10)
-            {
-                chargeslashAble = true;
-                chargeslashTime = 0;
-            }
-        }
-        #endregion
+        
         GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
         //Pを押すと斬撃
         if (Input.GetKeyDown(KeyCode.P) && slashAble)
@@ -69,8 +44,9 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("Slash");
                 animSword.SetTrigger("Slash2");
-                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
+                //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                StartCoroutine(Atack1());
             }
 
             //slashable = false;
@@ -85,6 +61,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
+                StartCoroutine(Atack2());
             }
         }
 
@@ -97,6 +74,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("ChargeSlash");
                 animSword.SetTrigger("ChargeSlash2");
+                StartCoroutine(Atack3());
             }
         }
 
@@ -111,6 +89,7 @@ public class SwordmanAttack : MonoBehaviour
                 anim.SetTrigger("WallBreak");
                 animSword.SetTrigger("WallBreak2");
                 StartCoroutine("TagReset");
+                StartCoroutine(Atack4());
             }
         }
 
@@ -124,8 +103,9 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetBool("Slash", true);
                 animSword.SetTrigger("Slash2");
-                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
+                //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                StartCoroutine(Atack1());
             }
 
             //slashable = false;
@@ -140,6 +120,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
+                StartCoroutine(Atack2());
             }
         }
 
@@ -152,6 +133,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("ChargeSlash");
                 animSword.SetTrigger("ChargeSlash2");
+                StartCoroutine(Atack3());
             }
         }
 
@@ -166,6 +148,7 @@ public class SwordmanAttack : MonoBehaviour
                 anim.SetTrigger("WallBreak");
                 animSword.SetTrigger("WallBreak2");
                 StartCoroutine("TagReset");
+                StartCoroutine(Atack4());
             }
         }
     }
@@ -173,6 +156,42 @@ public class SwordmanAttack : MonoBehaviour
     {
         yield return  new WaitForSeconds(1f);
         sword.tag = "Sword";
+    }
+    IEnumerator Atack1()
+    {
+        yield return new WaitForSeconds(ct_atack1);
+        XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+        PlayerControl playerContorol = GetComponent<PlayerControl>();
+        xboxPlayerContorol.xatacking = false;
+        playerContorol.atacking = false;
+        slashAble = true;
+    }
+    IEnumerator Atack2()
+    {
+        yield return new WaitForSeconds(ct_atack2);
+        XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+        PlayerControl playerContorol = GetComponent<PlayerControl>();
+        xboxPlayerContorol.xatacking = false;
+        playerContorol.atacking = false;
+        thrustAble = true;
+    }
+    IEnumerator Atack3()
+    {
+        yield return new WaitForSeconds(ct_atack3);
+        XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+        PlayerControl playerContorol = GetComponent<PlayerControl>();
+        xboxPlayerContorol.xatacking = false;
+        playerContorol.atacking = false;
+        chargeslashAble = true;
+    }
+    IEnumerator Atack4()
+    {
+        yield return new WaitForSeconds(ct_atack4);
+        XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+        PlayerControl playerContorol = GetComponent<PlayerControl>();
+        xboxPlayerContorol.xatacking = false;
+        playerContorol.atacking = false;
+        wallbreakAble = true;
     }
 }
 
