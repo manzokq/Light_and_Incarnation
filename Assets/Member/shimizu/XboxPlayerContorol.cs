@@ -18,6 +18,7 @@ public class XboxPlayerContorol : MonoBehaviour
     private Rigidbody2D rbody;
     private Animator anim;
     private bool sliding_judge = true;
+    public bool xatacking = false;
     public int changechara = 2;
     private int changeatack = 0;
  
@@ -200,12 +201,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //ç∂âEîΩì]
-        if (rbody.velocity.x < 0)
+        if (rbody.velocity.x < 0 && xatacking!)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0)
+        if (rbody.velocity.x > 0 && xatacking!)
         {
 
             scale.x = 100;

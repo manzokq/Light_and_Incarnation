@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rbody;
     private Animator anim;
     private bool sliding_judge = true;
+    public bool atacking = false;
     public byte changechara = 0;
 
     public int atack_judge = 0;
@@ -52,6 +53,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(atacking);
         //キャラチェンジ
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -185,12 +187,12 @@ public class PlayerControl : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < 0)
+        if (rbody.velocity.x < 0 && !atacking)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0)
+        if (rbody.velocity.x > 0 && !atacking)
         {
 
             scale.x = 100;
