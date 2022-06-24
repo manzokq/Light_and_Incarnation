@@ -137,8 +137,8 @@ public class PlayerControl : MonoBehaviour
             {
                 changechara = 0;
             }
-            if(GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-                changechara)|| 
+            if (GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+                changechara) ||
                 GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
                 changechara))
             {
@@ -302,9 +302,11 @@ public class PlayerControl : MonoBehaviour
             {
                 Debug.Log("”jŠü");
                 coroutine_able = true;
-
+                rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+                yield return null;
+
                 yield break;
             }
             transform.Translate(0, translate_climb, 0);
@@ -314,6 +316,7 @@ public class PlayerControl : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        
     }
     IEnumerator DodgeTag()
     {

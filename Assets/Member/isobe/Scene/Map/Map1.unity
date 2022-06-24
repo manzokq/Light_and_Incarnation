@@ -30219,6 +30219,7 @@ GameObject:
   - component: {fileID: 380590088}
   - component: {fileID: 380590087}
   - component: {fileID: 380590086}
+  - component: {fileID: 380590089}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -30292,6 +30293,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &380590089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380590085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ae13b11024b704ba5607a46ea8f8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseUIPrefab: {fileID: 2002842453407635641, guid: 3edbeeb6c79c1494faf8c63fb9721895, type: 3}
 --- !u!1001 &391477544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30366,11 +30380,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4418966971963774652, guid: b15de3411f4a0cf42a65dbf500af6265, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.69
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: 4418966971963774652, guid: b15de3411f4a0cf42a65dbf500af6265, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.483238
+      value: -13.48
       objectReference: {fileID: 0}
     - target: {fileID: 4418966971963774652, guid: b15de3411f4a0cf42a65dbf500af6265, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30646,11 +30660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1181467949006368938, guid: 30939ece36f557547ba14ef656cc2e4f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.0196316
+      value: 20.31
       objectReference: {fileID: 0}
     - target: {fileID: 1181467949006368938, guid: 30939ece36f557547ba14ef656cc2e4f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.518076
+      value: -12.52
       objectReference: {fileID: 0}
     - target: {fileID: 1181467949006368938, guid: 30939ece36f557547ba14ef656cc2e4f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31305,35 +31319,15 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 1, y: -11, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 2, y: -11, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 19
+  - m_RefCount: 17
     m_Data: {fileID: 11400000, guid: 3cd16f0d5b42679409c6f128bd542b48, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 19
+  - m_RefCount: 17
     m_Data: {fileID: 21300034, guid: c0c817d08afb9a64098b165ebb2b71cc, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 19
+  - m_RefCount: 17
     m_Data:
       e00: 1
       e01: 0
@@ -31352,7 +31346,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 19
+  - m_RefCount: 17
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -31567,11 +31561,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -262
+      value: -321
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -131
+      value: -808
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
