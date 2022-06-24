@@ -45,6 +45,7 @@ public class XboxPlayerContorol : MonoBehaviour
     [SerializeField] private float slidingForce;
     [SerializeField] WallCheck wallright;
     [SerializeField] GroundCheck ground;
+    [SerializeField] Animator gilranim;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +56,15 @@ public class XboxPlayerContorol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rbody.velocity.x != 0)
+        {
+            gilranim.SetBool("Moving", true);
+        }
+        if (rbody.velocity.x == 0)
+        {
+            gilranim.SetBool("Moving", false);
+        }
+        //
         if (Input.GetKeyDown(KeyCode.B))
         {
             anim.SetBool("changeIncarnation", true);
@@ -236,6 +246,7 @@ public class XboxPlayerContorol : MonoBehaviour
             if (rbody.velocity.x > 0)
             {
                 anim.SetBool("Sliding", true);
+                gilranim.SetBool("GirlSliding", true);
                 StartCoroutine("AngleRepairRight");
                 StartCoroutine("DodgeTag");
             }
@@ -243,6 +254,7 @@ public class XboxPlayerContorol : MonoBehaviour
             if (rbody.velocity.x < 0)
             {
                 anim.SetBool("SlidingLeft", true);
+                gilranim.SetBool("GirlSliding", true);
                 StartCoroutine("AngleRepairLeft");
                 StartCoroutine("DodgeTag");
             }
@@ -253,6 +265,7 @@ public class XboxPlayerContorol : MonoBehaviour
         {
             Debug.Log("壁登り");
             coroutine_able = false;
+            gilranim.SetTrigger("GirlClimb");
             StartCoroutine("Climb");
         }
 
@@ -263,6 +276,7 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         //rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
+        gilranim.SetTrigger("GirlJumping");
     }
     //スライディングでの回転を直す
     IEnumerator AngleRepairRight()
