@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
     private bool head_sliding = false;
     public byte changechara = 0;
 
+    private float jumpanim = 0;
     public int atack_judge = 0;
     private bool incarnation_able = false;
 
@@ -213,14 +214,14 @@ public class PlayerControl : MonoBehaviour
                     rbody.AddForce(new Vector2(1, 0) * 1);
 
                 }
-                if (Input.GetAxis("Horizontal") < 0 && scale.x > 0)
+                if (Input.GetAxis("Horidzontal") < 0 && scale.x > 0)
                 {
                     rbody.isKinematic = false;
                     rbody.AddForce(new Vector2(-1, 0) * 1);
                 }
             }
         }
-        Debug.Log(sliding_judge);
+        //Debug.Log(sliding_judge);
         //左右反転
         if (rbody.velocity.x < 0 && !atacking && sliding_judge)
         {
@@ -233,15 +234,24 @@ public class PlayerControl : MonoBehaviour
             scale.x = 100;
             transform.localScale = scale;
         }
-
+        
+        //Debug.Log(isGround);
         //ジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2 && coroutine_able)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 0 && coroutine_able)
         {
+            Debug.Log("入った");
             jumpCount++;
             //Debug.Log("jump!");
             Jump();
         }
-        if (jumpCount > 1 && isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 1 && coroutine_able)
+        {
+            Debug.Log("入った");
+            jumpCount++;
+            //Debug.Log("jump!");
+            Jump2();
+        }
+        if (jumpCount > 0 && isGround)
         {
             jumpCount = 0;
         }
@@ -319,20 +329,26 @@ public class PlayerControl : MonoBehaviour
     //ジャンプの挙動
     void Jump()
     {
+        Debug.Log(jumpanim);
         //rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
-        if (atack_judge == 0)
-        {
-            gilranim.SetTrigger("GirlJumping");
-        }
-        else if (atack_judge == 1)
-        {
-            swordmananim.SetTrigger("SwordJump");
-        }
-        else if (atack_judge == 2)
-        {
-            archeranim.SetTrigger("ArcherJump");
-        }
+        
+            if (atack_judge == 0)
+            {
+                gilranim.SetTrigger("GirlJumping");
+            }
+            else if (atack_judge == 1)
+            {
+                swordmananim.SetTrigger("SwordJump");
+            }
+            else if (atack_judge == 2)
+            {
+                archeranim.SetTrigger("ArcherJump");
+            }
+    }
+    void Jump2()
+    {
+        rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
     }
     //スライディングでの回転を直す
     //右向いてる時
@@ -395,7 +411,7 @@ public class PlayerControl : MonoBehaviour
             {
                 Debug.Log("破棄");
                 coroutine_able = true;
-
+                rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 yield break;
