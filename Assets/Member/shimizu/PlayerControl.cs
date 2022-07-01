@@ -93,7 +93,18 @@ public class PlayerControl : MonoBehaviour
         //キャラチェンジ
         if (Input.GetKeyDown(KeyCode.B))
         {
+            GameManagement.Instance.PlayerOrb += 10;
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            GameManagement.Instance.PlayerOrb -= 10;
+        }
+        if (GameManagement.Instance.PlayerOrb >=15)
+
             anim.SetBool("changeIncarnation", true);
+        else
+        {
+            anim.SetBool("changeIncarnation", false);
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
