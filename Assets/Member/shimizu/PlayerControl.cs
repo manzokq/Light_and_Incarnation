@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     private Animator anim;
     private bool sliding_judge = true;
     public bool atacking = false;
+    private bool head_sliding = false;
     public byte changechara = 0;
 
     public int atack_judge = 0;
@@ -42,7 +43,10 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float slidingForce;
     [SerializeField] WallCheck wallright;
     [SerializeField] GroundCheck ground;
+
     [SerializeField] Animator gilranim;
+    [SerializeField] Animator swordmananim;
+    [SerializeField] Animator archeranim;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,13 +58,36 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rbody.velocity.x != 0)
+        //待機モーション
+        if (rbody.velocity.x < 0.1f  && rbody.velocity.x > -0.1f)
         {
-            gilranim.SetBool("Moving", true);
+            if (atack_judge == 0)
+            {
+                gilranim.SetBool("Moving", false);
+            }
+            else if(atack_judge == 1)
+            {
+                swordmananim.SetBool("SwordRun", false);
+            }
+            else if (atack_judge == 2)
+            {
+                swordmananim.SetBool("ArcherMove", false);
+            }
         }
-        if (rbody.velocity.x == 0)
+        else
         {
-            gilranim.SetBool("Moving", false);
+            if (atack_judge == 0)
+            {
+                gilranim.SetBool("Moving", true);
+            }
+            else if (atack_judge == 1)
+            {
+                swordmananim.SetBool("SwordRun", true);
+            }
+            else if (atack_judge == 1)
+            {
+                swordmananim.SetBool("ArcherMove", true);
+            }
         }
         //キャラチェンジ
         if (Input.GetKeyDown(KeyCode.B))
@@ -170,7 +197,7 @@ public class PlayerControl : MonoBehaviour
         isWallright = wallright.IsWall();
 
         //横移動
-        if (coroutine_able)
+        if (coroutine_able && !head_sliding)
         {
             rbody.velocity = new Vector2(Input.GetAxis("Horizontal")
                 * moveSpeed, rbody.velocity.y);
@@ -193,14 +220,14 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
-
+        Debug.Log(sliding_judge);
         //左右反転
-        if (rbody.velocity.x < 0 && !atacking)
+        if (rbody.velocity.x < 0 && !atacking && sliding_judge)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0 && !atacking)
+        if (rbody.velocity.x > 0 && !atacking && sliding_judge)
         {
 
             scale.x = 100;
@@ -222,24 +249,48 @@ public class PlayerControl : MonoBehaviour
         //スライディング
         if (Input.GetKeyDown(KeyCode.LeftShift) && isGround && coroutine_able && rbody.velocity.x != 0 && sliding_judge)
         {
-            sliding_judge = false;
-            //sliding_anim.SetTrigger("Sliding");
-            Debug.Log("スライディング");
-            //右向き
-            if (rbody.velocity.x > 0)
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
             {
-                anim.SetBool("Sliding", true);
-                gilranim.SetTrigger("GirlSliding");
-                StartCoroutine("AngleRepairRight");
-                StartCoroutine("DodgeTag");
+                Debug.Log("アーチャーすらい");
+                sliding_judge = false;
+                head_sliding = true;
+                //sliding_anim.SetTrigger("Sliding");
+                Debug.Log("スライディング");
+                //右向き
+                if (rbody.velocity.x > 0)
+                {
+                    anim.SetBool("Sliding", true);
+                    archeranim.SetTrigger("ArcherSliding");
+                    StartCoroutine("AngleRepairRight");
+                    StartCoroutine("DodgeTag");
+                }
+                //左向き
+                if (rbody.velocity.x < 0)
+                {
+                    anim.SetBool("SlidingLeft", true);
+                    archeranim.SetBool("ArcherSliding", true);
+                    StartCoroutine("AngleRepairLeft");
+                    StartCoroutine("DodgeTag");
+                }
             }
-            //左向き
-            if (rbody.velocity.x < 0)
+            //少女のヘッドスライディング
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
             {
-                anim.SetBool("SlidingLeft", true);
+                sliding_judge = false;
+                head_sliding = true;
                 gilranim.SetBool("GirlSliding", true);
-                StartCoroutine("AngleRepairLeft");
                 StartCoroutine("DodgeTag");
+                if (rbody.velocity.x > 0)
+                {
+                    
+                    StartCoroutine(HeadSlidingRepairR());
+                }
+                if (rbody.velocity.x < 0)
+                {
+                    
+                    StartCoroutine(HeadSlidingRepairL());
+                }
+
             }
         }
 
@@ -249,7 +300,18 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("壁登り");
             coroutine_able = false;
-            gilranim.SetBool("GirlClimb", true);
+            if (atack_judge == 0)
+            {
+                gilranim.SetBool("GirlClimb", true);
+            }
+            else if (atack_judge == 1)
+            {
+                swordmananim.SetBool("SwordClimb", true);
+            }
+            else if (atack_judge == 2)
+            {
+                archeranim.SetBool("ArcherClimb", true);
+            }
             StartCoroutine("Climb");
         }
 
@@ -259,45 +321,64 @@ public class PlayerControl : MonoBehaviour
     {
         //rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
-        gilranim.SetTrigger("GirlJumping");
+        if (atack_judge == 0)
+        {
+            gilranim.SetTrigger("GirlJumping");
+        }
+        else if (atack_judge == 1)
+        {
+            swordmananim.SetTrigger("SwordJump");
+        }
+        else if (atack_judge == 2)
+        {
+            archeranim.SetTrigger("ArcherJump");
+        }
     }
     //スライディングでの回転を直す
     //右向いてる時
     IEnumerator AngleRepairRight()
     {
-        float j = Input.GetAxis("Horizontal");
-        for (int i = 0; i < 150; i++)
-        {
-            if (Input.GetAxis("Horizontal") < j)
-            {
+        //float j = Input.GetAxis("Horizontal");
+        //for (int i = 0; i < 150; i++)
+        //{
+        //    if (Input.GetAxis("Horizontal") < j)
+        //    {
 
-                anim.SetBool("Sliding", false);
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                sliding_judge = true;
-                yield break;
-            }
-            yield return new WaitForSeconds(0.01f);
-        }
+        //        anim.SetBool("Sliding", false);
+        //        transform.localRotation = Quaternion.Euler(0, 0, 0);    //ここコライダー変更に変える
+        //        sliding_judge = true;
+        //        yield break;
+        //    }
+        //    yield return new WaitForSeconds(0.01f);
+        //}
+        yield return new WaitForSeconds(0.2f);
+        rbody.AddForce(new Vector2(170, 0));
+        yield return new WaitForSeconds(2.8f);
         sliding_judge = true;
+        head_sliding = false;
         anim.SetBool("Sliding", false);
     }
     //左向いてる時
     IEnumerator AngleRepairLeft()
     {
-        float j = Input.GetAxis("Horizontal");
-        for (int i = 0; i < 150; i++)
-        {
-            if (Input.GetAxis("Horizontal") > j)
-            {
+        //float j = Input.GetAxis("Horizontal");
+        //for (int i = 0; i < 150; i++)
+        //{
+        //    if (Input.GetAxis("Horizontal") > j)
+        //    {
 
-                anim.SetBool("SlidingLeft", false);
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                sliding_judge = true;
-                yield break;
-            }
-            yield return new WaitForSeconds(0.01f);
-        }
+        //        anim.SetBool("SlidingLeft", false);
+        //        transform.localRotation = Quaternion.Euler(0, 0, 0);  //ここコライダーの変更に変える
+        //        sliding_judge = true;
+        //        yield break;
+        //    }
+        //    yield return new WaitForSeconds(0.01f);
+        //}
+        yield return new WaitForSeconds(0.2f);
+        rbody.AddForce(new Vector2(-170, 0));
+        yield return new WaitForSeconds(2.8f);
         sliding_judge = true;
+        head_sliding = false;
         anim.SetBool("SlidingLeft", false);
     }
     //壁登りの挙動
@@ -346,4 +427,23 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         anim.SetBool("changeincarnation", false);
     }
+    IEnumerator HeadSlidingRepairR()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //rbody.velocity = new Vector2(4, rbody.velocity.y);
+        rbody.AddForce(new Vector2(170,0));
+        yield return new WaitForSeconds(2.4f);
+        sliding_judge = true;
+        head_sliding = false;
+    }
+    IEnumerator HeadSlidingRepairL()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //rbody.velocity = new Vector2(4, rbody.velocity.y);
+        rbody.AddForce(new Vector2(-170, 0));
+        yield return new WaitForSeconds(2.4f);
+        sliding_judge = true;
+        head_sliding = false;
+    }
+
 }
