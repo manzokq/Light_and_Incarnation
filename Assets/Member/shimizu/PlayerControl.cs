@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float slidingForce;
     [SerializeField] WallCheck wallright;
     [SerializeField] GroundCheck ground;
+    [SerializeField] Animator gilranim;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +54,14 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(atacking);
+        if (rbody.velocity.x != 0)
+        {
+            gilranim.SetBool("Moving", true);
+        }
+        if (rbody.velocity.x == 0)
+        {
+            gilranim.SetBool("Moving", false);
+        }
         //キャラチェンジ
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -137,8 +145,8 @@ public class PlayerControl : MonoBehaviour
             {
                 changechara = 0;
             }
-            if (GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-                changechara) ||
+            if(GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+                changechara)|| 
                 GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
                 changechara))
             {
@@ -221,6 +229,7 @@ public class PlayerControl : MonoBehaviour
             if (rbody.velocity.x > 0)
             {
                 anim.SetBool("Sliding", true);
+                gilranim.SetTrigger("GirlSliding");
                 StartCoroutine("AngleRepairRight");
                 StartCoroutine("DodgeTag");
             }
@@ -228,6 +237,7 @@ public class PlayerControl : MonoBehaviour
             if (rbody.velocity.x < 0)
             {
                 anim.SetBool("SlidingLeft", true);
+                gilranim.SetBool("GirlSliding", true);
                 StartCoroutine("AngleRepairLeft");
                 StartCoroutine("DodgeTag");
             }
@@ -239,6 +249,7 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("壁登り");
             coroutine_able = false;
+            gilranim.SetBool("GirlClimb", true);
             StartCoroutine("Climb");
         }
 
@@ -248,6 +259,7 @@ public class PlayerControl : MonoBehaviour
     {
         //rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
+        gilranim.SetTrigger("GirlJumping");
     }
     //スライディングでの回転を直す
     //右向いてる時
@@ -302,11 +314,9 @@ public class PlayerControl : MonoBehaviour
             {
                 Debug.Log("破棄");
                 coroutine_able = true;
-                rbody.isKinematic = false;
+
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-                yield return null;
-
                 yield break;
             }
             transform.Translate(0, translate_climb, 0);
@@ -316,7 +326,6 @@ public class PlayerControl : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        
     }
     IEnumerator DodgeTag()
     {
