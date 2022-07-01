@@ -17,20 +17,24 @@ public class SceneChingPlayer : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoad;
 
-
+        /*
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
+        
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        */
+        //DontDestroyOnLoad(gameObject);
+        
+
     }
 
     void Start()
     {
         //tpの値をリセット
-        Gate_Number = 0;
+       
         //tp = tpps.gate_Player();
     }
 
@@ -110,8 +114,9 @@ public class SceneChingPlayer : MonoBehaviour
                 GameObject.Find("Gate" + Gate_Number).transform.position.x + 2,
                 GameObject.Find("Gate" + Gate_Number).transform.position.y,
                 GameObject.Find("Gate" + Gate_Number).transform.position.z);
-        }          
-        
+        }
+
+        Gate_Number = 0;
     }
 
 
