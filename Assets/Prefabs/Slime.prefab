@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.09811959}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.196239}
   m_EdgeRadius: 0
 --- !u!114 &8697469494334002064
 MonoBehaviour:
@@ -295,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
   enemyDate: {fileID: 11400000, guid: bab79f49250fbbd488f805cfa9e7bb6b, type: 2}
+  Hp: 0
   chargeObject: {fileID: 8697469495239785880}
   _poison: {fileID: 935460642156863752, guid: a7b489ac9b839584981f1b6d5da1ad61, type: 3}
   _chargeRange: 2

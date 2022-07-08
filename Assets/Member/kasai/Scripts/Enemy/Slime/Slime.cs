@@ -33,7 +33,7 @@ public class Slime : Enemy
         playerObject = GameObject.FindWithTag("Player");
         poisonobj = _poison;//.GetComponent<GameObject>();
         chargeobj = chargeObject;//.GetComponent<GameObject>();
-        Debug.Log(chargeobj);
+        //Debug.Log(chargeobj);
         //chargeobj.GetComponent<Charge>().atk = Atk1;
         chargeObject.SetActive(false);
         poisonobj = Instantiate(_poison);
