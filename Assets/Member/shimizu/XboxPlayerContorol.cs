@@ -56,14 +56,15 @@ public class XboxPlayerContorol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rbody.velocity.x != 0)
-        {
-            gilranim.SetBool("Moving", true);
-        }
-        if (rbody.velocity.x == 0)
+        if (rbody.velocity.x < 0.1f && rbody.velocity.x > -0.1f)
         {
             gilranim.SetBool("Moving", false);
         }
+        else
+        {
+            gilranim.SetBool("Moving", true);
+        }
+
         //
         if (Input.GetKeyDown(KeyCode.B))
         {
