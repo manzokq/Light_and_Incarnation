@@ -23,7 +23,7 @@ public class ZombieAT : MonoBehaviour
     {
         zombie = transform.parent.gameObject.GetComponent<Zombie>();
     }
-    bool G = false;
+    //bool G = false;
     bool wait = false;
     bool ATK = false;
     private void Update()
@@ -48,7 +48,7 @@ public class ZombieAT : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D col)
     {
-        G = false;
+        //G = false;
         wait = false;
         if (ATK)
         {
