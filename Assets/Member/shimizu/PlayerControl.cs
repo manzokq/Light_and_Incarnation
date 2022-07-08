@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour
     private bool isGround = false;
     private bool isWallright = false;
     private bool coroutine_able = true;
+    private bool jumpreset = true;
     [SerializeField] private float num_climb, translate_climb, time_climb;
     [SerializeField] GameObject chara;
     private Vector3 scale = new Vector3(100, 100,1);
@@ -59,15 +60,15 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(atack_judge);
+        //Debug.Log(atack_judge);
         //待機モーション
-        if (rbody.velocity.x < 0.1f  && rbody.velocity.x > -0.1f)
+        if (rbody.velocity.x < 0.1f && rbody.velocity.x > -0.1f)
         {
             if (atack_judge == 0)
             {
                 gilranim.SetBool("Moving", false);
             }
-            else if(atack_judge == 1)
+            else if (atack_judge == 1)
             {
                 swordmananim.SetBool("SwordRun", false);
             }
@@ -78,7 +79,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            
+
             if (atack_judge == 0)
             {
                 gilranim.SetBool("Moving", true);
@@ -102,17 +103,27 @@ public class PlayerControl : MonoBehaviour
         {
             GameManagement.Instance.PlayerOrb -= 10;
         }
-        if (GameManagement.Instance.PlayerOrb >=15)
-
+        //キャラチェンジ実際の
+        if(GameManagement.Instance.PlayerOrb >= 15)
+        {
+            GameManagement.Instance.PlayerOrb -= 15;
+        }
+        //
+        if (GameManagement.Instance.PlayerOrb >= 15)
+        {
             anim.SetBool("changeIncarnation", true);
+        }
         else
         {
             anim.SetBool("changeIncarnation", false);
         }
+
         if (Input.GetKeyDown(KeyCode.N))
         {
+            GameManagement.Instance.PlayerOrb -= 15;
             switch (GameManagement.Instance.Character)
             {
+                
                 case GameManagement.CharacterID.Girl:
                     switch (GameManagement.Instance.PlayerCharacter)
                     {
@@ -187,8 +198,8 @@ public class PlayerControl : MonoBehaviour
             {
                 changechara = 0;
             }
-            if(GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-                changechara)|| 
+            if (GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+                changechara) ||
                 GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
                 changechara))
             {
@@ -248,28 +259,33 @@ public class PlayerControl : MonoBehaviour
             scale.x = 100;
             transform.localScale = scale;
         }
-        
-        Debug.Log(jumpCount);
+
+        //Debug.Log(jumpCount);
+        //Debug.Log(isGround);
+
         //ジャンプ
-        if (jumpCount > 0 && isGround)
+        if (jumpCount > 0 && isGround && jumpreset)
         {
+            jumpreset = false;
+            //Debug.Log("Reset");
             jumpCount = 0;
         }
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 0 && coroutine_able)
         {
-            Debug.Log("入った");
+            //Debug.Log("入った");
             jumpCount++;
             //Debug.Log("jump!");
             Jump();
+            StartCoroutine(JumpReset());
         }
         else if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 1 && coroutine_able)
         {
-            Debug.Log("2回目入った");
+            //Debug.Log("2回目入った");
             jumpCount++;
             //Debug.Log("jump!");
             Jump2();
         }
-        
+
 
         //スライディング
         if (Input.GetKeyDown(KeyCode.LeftShift) && isGround && coroutine_able && rbody.velocity.x != 0 && sliding_judge)
@@ -348,23 +364,23 @@ public class PlayerControl : MonoBehaviour
         //Debug.Log(jumpanim);
         //rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
-        
-            if (atack_judge == 0)
-            {
-                gilranim.SetTrigger("GirlJumping");
-            }
-            else if (atack_judge == 1)
-            {
-                swordmananim.SetTrigger("SwordJump");
-            }
-            else if (atack_judge == 2)
-            {
-                archeranim.SetTrigger("ArcherJump");
-            }
+
+        if (atack_judge == 0)
+        {
+            gilranim.SetTrigger("GirlJumping");
+        }
+        else if (atack_judge == 1)
+        {
+            swordmananim.SetTrigger("SwordJump");
+        }
+        else if (atack_judge == 2)
+        {
+            archeranim.SetTrigger("ArcherJump");
+        }
     }
     void Jump2()
     {
-        Debug.Log("ジャンプ２回目");
+        //Debug.Log("ジャンプ２回目");
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
     }
     //スライディングでの回転を直す
@@ -464,7 +480,7 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         //rbody.velocity = new Vector2(4, rbody.velocity.y);
-        rbody.AddForce(new Vector2(170,0));
+        rbody.AddForce(new Vector2(170, 0));
         yield return new WaitForSeconds(2.4f);
         sliding_judge = true;
         head_sliding = false;
@@ -478,5 +494,9 @@ public class PlayerControl : MonoBehaviour
         sliding_judge = true;
         head_sliding = false;
     }
-
+    IEnumerator JumpReset()
+    {
+        yield return new WaitForSeconds(0.1f);
+        jumpreset = true;
+    }
 }
