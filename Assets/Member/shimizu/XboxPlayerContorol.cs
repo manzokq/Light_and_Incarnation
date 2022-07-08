@@ -37,7 +37,7 @@ public class XboxPlayerContorol : MonoBehaviour
     private bool coroutine_able = true;
     [SerializeField] private float num_climb, translate_climb,time_climb;
     
-    private Vector2 scale = new Vector2(100, 100);
+    private Vector3 scale = new Vector3(100, 100,1);
     
     private float jumpCount;
 
@@ -74,7 +74,7 @@ public class XboxPlayerContorol : MonoBehaviour
             }
             else if (atack_judge_con == 2)
             {
-                swordmananim.SetBool("ArcherMove", false);
+                archeranim.SetBool("ArcherMove", false);
             }
         }
         else
@@ -89,7 +89,7 @@ public class XboxPlayerContorol : MonoBehaviour
             }
             else if (atack_judge_con == 2)
             {
-                swordmananim.SetBool("ArcherMove", true);
+                archeranim.SetBool("ArcherMove", true);
             }
         }
 
@@ -240,12 +240,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //ç∂âEîΩì]
-        if (rbody.velocity.x < 0 && xatacking! && sliding_judge)
+        if (rbody.velocity.x < 0 && !xatacking && sliding_judge)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0 && xatacking! && sliding_judge)
+        if (rbody.velocity.x > 0 && !xatacking && sliding_judge)
         {
             scale.x = 100;
             transform.localScale = scale;
@@ -316,7 +316,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //ï«ìoÇË
-        if (isGround && isWallright && coroutine_able && Input.GetAxis("L_Stick_V") != 0 && Input.GetKeyDown("joystick button 5"))
+        else if (isGround && isWallright && coroutine_able && Input.GetAxis("L_Stick_V") >= 0.9 && Input.GetKeyDown("joystick button 5"))
         {
             if (atack_judge_con == 0)
             {
