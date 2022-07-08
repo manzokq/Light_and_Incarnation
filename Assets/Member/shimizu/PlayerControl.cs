@@ -103,20 +103,20 @@ public class PlayerControl : MonoBehaviour
         {
             GameManagement.Instance.PlayerOrb -= 10;
         }
-        //キャラチェンジ実際の
-        if(GameManagement.Instance.PlayerOrb >= 15)
-        {
-            GameManagement.Instance.PlayerOrb -= 15;
-        }
+        ////キャラチェンジ実際の
+        //if(GameManagement.Instance.PlayerOrb >= 15)
+        //{
+        //    GameManagement.Instance.PlayerOrb -= 15;
+        //}
         //
         if (GameManagement.Instance.PlayerOrb >= 15)
         {
             anim.SetBool("changeIncarnation", true);
         }
-        else
-        {
-            anim.SetBool("changeIncarnation", false);
-        }
+        //else
+        //{
+        //    anim.SetBool("changeIncarnation", false);
+        //}
 
         if (Input.GetKeyDown(KeyCode.N))
         {
