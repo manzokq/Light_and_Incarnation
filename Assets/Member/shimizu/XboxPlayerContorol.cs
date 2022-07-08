@@ -16,6 +16,7 @@ using System;
 public class XboxPlayerContorol : MonoBehaviour
 {
     private Rigidbody2D rbody;
+    private SpriteRenderer spren;
     private Animator anim;
     private bool sliding_judge = true;
     public bool xatacking = false;
@@ -30,6 +31,7 @@ public class XboxPlayerContorol : MonoBehaviour
     public float atack_judge_con;
 
     private bool isGround = false;
+    private bool head_sliding = false;
 
     private bool isWallright = false;
     private bool coroutine_able = true;
@@ -46,9 +48,12 @@ public class XboxPlayerContorol : MonoBehaviour
     [SerializeField] WallCheck wallright;
     [SerializeField] GroundCheck ground;
     [SerializeField] Animator gilranim;
+    [SerializeField] Animator swordmananim;
+    [SerializeField] Animator archeranim;
     // Start is called before the first frame update
     void Start()
     {
+        spren = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -56,13 +61,36 @@ public class XboxPlayerContorol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //待機モーション
         if (rbody.velocity.x < 0.1f && rbody.velocity.x > -0.1f)
         {
-            gilranim.SetBool("Moving", false);
+            if (atack_judge_con == 0)
+            {
+                gilranim.SetBool("Moving", false);
+            }
+            else if (atack_judge_con == 1)
+            {
+                swordmananim.SetBool("SwordRun", false);
+            }
+            else if (atack_judge_con == 2)
+            {
+                swordmananim.SetBool("ArcherMove", false);
+            }
         }
         else
         {
-            gilranim.SetBool("Moving", true);
+            if (atack_judge_con == 0)
+            {
+                gilranim.SetBool("Moving", true);
+            }
+            else if (atack_judge_con == 1)
+            {
+                swordmananim.SetBool("SwordRun", true);
+            }
+            else if (atack_judge_con == 2)
+            {
+                swordmananim.SetBool("ArcherMove", true);
+            }
         }
 
         //
@@ -187,7 +215,7 @@ public class XboxPlayerContorol : MonoBehaviour
         isWallright = wallright.IsWall();
 
         //横移動
-        if (coroutine_able)
+        if (coroutine_able && !head_sliding)
         {
             rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
                 * moveSpeed, rbody.velocity.y);
@@ -212,61 +240,96 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < 0 && xatacking!)
+        if (rbody.velocity.x < 0 && xatacking! && sliding_judge)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0 && xatacking!)
+        if (rbody.velocity.x > 0 && xatacking! && sliding_judge)
         {
-
             scale.x = 100;
-            transform.localScale = scale; ;
+            transform.localScale = scale;
         }
 
+        
         //ジャンプ
-        if (Input.GetKeyDown("joystick button 0") && jumpCount < 2 && coroutine_able)
+        if(jumpCount > 0 && isGround)
+        {
+            jumpCount = 0;
+        }
+        if (Input.GetKeyDown("joystick button 0") && jumpCount == 0 && coroutine_able)
         {
             jumpCount++;
             //Debug.Log("jump!");
             Jump();
         }
-        if (jumpCount > 1 && isGround)
+        else if (Input.GetKeyDown("joystick button 0") && jumpCount == 1 && coroutine_able)
         {
-            jumpCount = 0;
+            jumpCount++;
+            Jump2();
         }
         
         //スライディング
         if (Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 5") && isGround && coroutine_able)
         {
-
-            sliding_judge = false;
-            //sliding_anim.SetTrigger("Sliding");
-            Debug.Log("スライディング");
-            //右向き
-            if (rbody.velocity.x > 0)
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
             {
-                anim.SetBool("Sliding", true);
-                gilranim.SetBool("GirlSliding", true);
-                StartCoroutine("AngleRepairRight");
-                StartCoroutine("DodgeTag");
+                sliding_judge = false;
+                head_sliding = true;
+                //sliding_anim.SetTrigger("Sliding");
+                Debug.Log("スライディング");
+                //右向き
+                if (rbody.velocity.x > 0)
+                {
+                    anim.SetBool("Sliding", true);
+                    gilranim.SetBool("GirlSliding", true);
+                    StartCoroutine("AngleRepairRight");
+                    StartCoroutine("DodgeTag");
+                }
+                //左向き
+                if (rbody.velocity.x < 0)
+                {
+                    anim.SetBool("SlidingLeft", true);
+                    gilranim.SetBool("GirlSliding", true);
+                    StartCoroutine("AngleRepairLeft");
+                    StartCoroutine("DodgeTag");
+                }
             }
-            //左向き
-            if (rbody.velocity.x < 0)
+            //少女のやつ
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
             {
-                anim.SetBool("SlidingLeft", true);
+                sliding_judge = false;
+                head_sliding = true;
                 gilranim.SetBool("GirlSliding", true);
-                StartCoroutine("AngleRepairLeft");
                 StartCoroutine("DodgeTag");
+                if (rbody.velocity.x > 0)
+                {
+
+                    StartCoroutine(HeadSlidingRepairR());
+                }
+                if (rbody.velocity.x < 0)
+                {
+
+                    StartCoroutine(HeadSlidingRepairL());
+                }
             }
         }
 
         //壁登り
         if (isGround && isWallright && coroutine_able && Input.GetAxis("L_Stick_V") != 0 && Input.GetKeyDown("joystick button 5"))
         {
-            Debug.Log("壁登り");
-            coroutine_able = false;
-            gilranim.SetTrigger("GirlClimb");
+            if (atack_judge_con == 0)
+            {
+                gilranim.SetBool("GirlClimb", true);
+            }
+            else if (atack_judge_con == 1)
+            {
+                swordmananim.SetBool("SwordClimb", true);
+            }
+            else if (atack_judge_con == 2)
+            {
+                archeranim.SetBool("ArcherClimb", true);
+            }
             StartCoroutine("Climb");
         }
 
@@ -277,43 +340,67 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         //rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
-        gilranim.SetTrigger("GirlJumping");
+
+        if (atack_judge_con == 0)
+        {
+            gilranim.SetTrigger("GirlJumping");
+        }
+        else if (atack_judge_con == 1)
+        {
+            swordmananim.SetTrigger("SwordJump");
+        }
+        else if (atack_judge_con == 2)
+        {
+            archeranim.SetTrigger("ArcherJump");
+        }
+    }
+    void Jump2()
+    {
+        rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
     }
     //スライディングでの回転を直す
     IEnumerator AngleRepairRight()
     {
-        float j = Input.GetAxis("L_Stick_H");
-        for (int i = 0; i < 150; i++)
-        {
-            if (Input.GetAxis("L_Stick_H") < j)
-            {
+        //float j = Input.GetAxis("L_Stick_H");
+        //for (int i = 0; i < 150; i++)
+        //{
+        //    if (Input.GetAxis("L_Stick_H") < j)
+        //    {
 
-                anim.SetBool("Sliding", false);
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                sliding_judge = true;
-                yield break;
-            }
-            yield return new WaitForSeconds(0.01f);
-        }
+        //        anim.SetBool("Sliding", false);
+        //        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        //        sliding_judge = true;
+        //        yield break;
+        //    }
+        //    yield return new WaitForSeconds(0.01f);
+        //}
+        yield return new WaitForSeconds(0.2f);
+        rbody.AddForce(new Vector2(170, 0));
+        yield return new WaitForSeconds(2.8f);
         sliding_judge = true;
+        head_sliding = false;
         anim.SetBool("Sliding", false);
     }
     IEnumerator AngleRepairLeft()
     {
-        float j = Input.GetAxis("L_Stick_H");
-        for (int i = 0; i < 150; i++)
-        {
-            if (Input.GetAxis("L_Stick_H") > j)
-            {
+        //float j = Input.GetAxis("L_Stick_H");
+        //for (int i = 0; i < 150; i++)
+        //{
+        //    if (Input.GetAxis("L_Stick_H") > j)
+        //    {
 
-                anim.SetBool("SlidingLeft", false);
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                sliding_judge = true;
-                yield break;
-            }
-            yield return new WaitForSeconds(0.01f);
-        }
+        //        anim.SetBool("SlidingLeft", false);
+        //        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        //        sliding_judge = true;
+        //        yield break;
+        //    }
+        //    yield return new WaitForSeconds(0.01f);
+        //}
+        yield return new WaitForSeconds(0.2f);
+        rbody.AddForce(new Vector2(-170, 0));
+        yield return new WaitForSeconds(2.8f);
         sliding_judge = true;
+        head_sliding = false;
         anim.SetBool("SlidingLeft", false);
     }
     IEnumerator DodgeTag()
@@ -336,7 +423,7 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 Debug.Log("破棄");
                 coroutine_able = true;
-                
+                rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 yield break;
@@ -348,5 +435,35 @@ public class XboxPlayerContorol : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+    void DamageColor()
+    {
+        spren.color = new Color(1, 0, 0, 1);
+        StartCoroutine("RepairColor");
+    }
+    IEnumerator RepairColor()
+    {
+        yield return new WaitForSeconds(0.2f);
+        spren.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("changeincarnation", false);
+    }
+    IEnumerator HeadSlidingRepairR()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //rbody.velocity = new Vector2(4, rbody.velocity.y);
+        rbody.AddForce(new Vector2(170, 0));
+        yield return new WaitForSeconds(2.4f);
+        sliding_judge = true;
+        head_sliding = false;
+    }
+    IEnumerator HeadSlidingRepairL()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //rbody.velocity = new Vector2(4, rbody.velocity.y);
+        rbody.AddForce(new Vector2(-170, 0));
+        yield return new WaitForSeconds(2.4f);
+        sliding_judge = true;
+        head_sliding = false;
     }
 }
