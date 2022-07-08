@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ZombieAT : MonoBehaviour
 {
+    public EnemyDate enemyDate;
     [SerializeField]
     private GameObject Circle;
     Zombie zombie;
@@ -11,6 +12,8 @@ public class ZombieAT : MonoBehaviour
     private GameObject Square;
     public float span = 3f;
     private float currentTime = 0f;
+    protected int Atk1 = 0;
+    protected int Atk2 = 0;
     private void Start()
     {
         
@@ -54,6 +57,7 @@ public class ZombieAT : MonoBehaviour
     }
     private IEnumerator als()
     {
+        //çUåÇ
             if (wait)
             {
                 wait = false;
@@ -62,19 +66,21 @@ public class ZombieAT : MonoBehaviour
                 zombie.MoveFragSwitch(false);
                 if (dm == 0)
                 {
-                    //Debug.Log("a");
-                    
-                      Debug.Log(8);
-                    
-                }
+                //Debug.Log("a");
+                zombie.ATKAnim1();
+                 Debug.Log(8);
+                GameManagement.Instance.PlayerDamage(Atk1);//ëÃóÕÇå∏ÇÁÇ∑
+
+            }
                 else if (dm == 1)
                 {
 
 
                 yield return new WaitForSecondsRealtime(3);
-                      Debug.Log(20);
-                    
-                }
+                zombie.ATKAnim2();
+                Debug.Log(20);
+                GameManagement.Instance.PlayerDamage(Atk2);//ëÃóÕÇå∏ÇÁÇ∑
+            }
                 GetComponent<CapsuleCollider2D>().enabled = false;
                 yield return new WaitForSecondsRealtime(2);
                 zombie.MoveFragSwitch(true);
