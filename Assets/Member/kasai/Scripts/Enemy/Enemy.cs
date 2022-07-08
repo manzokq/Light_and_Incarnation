@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Animator Anim;
     public EnemyDate enemyDate;//EnemyDate‚©‚ç‘Ì—Í‚È‚Ç‚Ìî•ñ‚ğŒÄ‚ñ‚Å‚­‚é
     protected string Name = null;
+    [SerializeField]
     protected int Hp = 0;
     protected int Atk1 = 0;
     protected int Atk2 = 0;
