@@ -117,7 +117,7 @@ public class Slime : Enemy
             Anim.SetTrigger("Attack");
             //Debug.Log(poisonobj);
             poisonobj.GetComponent<Poison>().atk = Atk1;
-            poisonobj.transform.position=new Vector2(playerObject.transform.position.x, this.transform.position.y);
+            poisonobj.transform.position=new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
             yield return new WaitForSeconds(1.0f);//1ïbÇÃÉâÉOÇçÏÇÈ
             poisonobj.SetActive(true);
             //Instpoison(new Vector2(
