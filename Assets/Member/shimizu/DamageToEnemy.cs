@@ -26,13 +26,14 @@ public class DamageToEnemy : MonoBehaviour
     {
         if (collider2D.CompareTag("Enemy") && cooltime)
         {
+            
             cooltime = false;
             StartCoroutine(CoolTime());
             GameManagement.Instance.PlayerAtk(hp);
-            anim.SetBool("changeArcher", false);
-            anim.SetBool("changeWitch", false);
-            anim.SetBool("changeSwordman", false);
-            anim.SetBool("changeIncarnation", false);
+            //anim.SetBool("changeArcher", false);
+            //anim.SetBool("changeWitch", false);
+            //anim.SetBool("changeSwordman", false);
+            //anim.SetBool("changeIncarnation", false);
         }
 
     }
