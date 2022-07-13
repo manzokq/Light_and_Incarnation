@@ -118,7 +118,7 @@ public class PlayerControl : MonoBehaviour
         //    anim.SetBool("changeIncarnation", false);
         //}
 
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N) && GameManagement.Instance.PlayerOrb >15)
         {
             GameManagement.Instance.PlayerOrb -= 15;
             switch (GameManagement.Instance.Character)

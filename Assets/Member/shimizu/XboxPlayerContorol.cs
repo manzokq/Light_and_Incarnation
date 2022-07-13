@@ -32,6 +32,7 @@ public class XboxPlayerContorol : MonoBehaviour
 
     private bool isGround = false;
     private bool head_sliding = false;
+    private bool jumprest = false;
 
     private bool isWallright = false;
     private bool coroutine_able = true;
@@ -100,8 +101,9 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         view_button = Input.GetAxis("L_R_Trigger");
         //キャラ切り替え(変身)
-        if (view_button > 0 && beforeTrigger == 0)  //つまりRT入力
+        if (view_button > 0 && beforeTrigger == 0 && GameManagement.Instance.PlayerOrb > 15)  //つまりRT入力
         {
+            GameManagement.Instance.PlayerOrb -= 15;
             switch (GameManagement.Instance.Character)
             {
                 case GameManagement.CharacterID.Girl:
@@ -253,8 +255,9 @@ public class XboxPlayerContorol : MonoBehaviour
 
         
         //ジャンプ
-        if(jumpCount > 0 && isGround)
+        if(jumpCount > 0 && isGround && jumprest)
         {
+            jumprest = false;
             jumpCount = 0;
         }
         if (Input.GetKeyDown("joystick button 0") && jumpCount == 0 && coroutine_able)
@@ -465,5 +468,12 @@ public class XboxPlayerContorol : MonoBehaviour
         yield return new WaitForSeconds(2.4f);
         sliding_judge = true;
         head_sliding = false;
+    }
+    public void ReturnGirl()
+    {
+        anim.SetBool("changeWitch", false);
+        anim.SetBool("changeSwordman", false);
+        anim.SetBool("changeArcher", false);
+        anim.SetBool("changeIncarnation", false);
     }
 }
