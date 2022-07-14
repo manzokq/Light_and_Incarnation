@@ -38,7 +38,7 @@ public class ItemGet : MonoBehaviour
                     break;
             }
             Debug.Log(_itemname);
-            this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);//所持状況をマネージャーで切り替えた後にこのオブジェクトを消す
         }
     }
 }

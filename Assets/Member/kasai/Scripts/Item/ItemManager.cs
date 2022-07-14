@@ -24,21 +24,19 @@ public class ItemManager : MonoBehaviour
         if (Instance == null)
         {
             _instance = this;
+            DontDestroyOnLoad(this);
         }
-
-
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.G))
+        else
         {
-            Debug.Log("Diary" + _diary);
-            Debug.Log("Lamp" + _lamp);
-            Debug.Log("Key" + _key);
+            Destroy(this.gameObject);
         }
+
+
     }
 
     public void Item(ItemID item,bool possession)
+    //ItemManager.Instance.Item(ItemManager.ItemID.アイテム名, true or false );で切り替え
+    //アイテムの所持状況を切り替える
     {
         ItemName = item;
         switch(item)
