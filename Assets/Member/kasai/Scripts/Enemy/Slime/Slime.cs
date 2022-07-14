@@ -33,7 +33,7 @@ public class Slime : Enemy
         playerObject = GameObject.FindWithTag("Player");
         poisonobj = _poison;//.GetComponent<GameObject>();
         chargeobj = chargeObject;//.GetComponent<GameObject>();
-        Debug.Log(chargeobj);
+        //Debug.Log(chargeobj);
         //chargeobj.GetComponent<Charge>().atk = Atk1;
         chargeObject.SetActive(false);
         poisonobj = Instantiate(_poison);
@@ -116,9 +116,9 @@ public class Slime : Enemy
             //se‚ğŒÄ‚Ño‚·
             Anim.SetTrigger("Attack");
             //Debug.Log(poisonobj);
+            yield return new WaitForSeconds(1.0f);//1•b‚Ìƒ‰ƒO‚ğì‚é
             poisonobj.GetComponent<Poison>().atk = Atk1;
             poisonobj.transform.position=new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
-            yield return new WaitForSeconds(1.0f);//1•b‚Ìƒ‰ƒO‚ğì‚é
             poisonobj.SetActive(true);
             //Instpoison(new Vector2(
             //    playerObject.transform.position.x,

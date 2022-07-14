@@ -5,7 +5,8 @@ using UnityEngine;
 public class SwordmanAttack : MonoBehaviour
 {
     private Animator anim;
-
+    [SerializeField]
+    Animator swordmanRig;
     [SerializeField]
     Animator animSword;
     [SerializeField]
@@ -44,6 +45,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("Slash");
                 animSword.SetTrigger("Slash2");
+                swordmanRig.SetTrigger("SwordAtack1");
                 //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
                 //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
@@ -61,6 +63,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
+                swordmanRig.SetTrigger("SwordAtack2");
                 StartCoroutine(Atack2());
             }
         }
@@ -88,6 +91,7 @@ public class SwordmanAttack : MonoBehaviour
                 sword.tag = "WallBreak";
                 anim.SetTrigger("WallBreak");
                 animSword.SetTrigger("WallBreak2");
+                swordmanRig.SetTrigger("SwordSpAtack");
                 StartCoroutine("TagReset");
                 StartCoroutine(Atack4());
             }
@@ -103,6 +107,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetBool("Slash", true);
                 animSword.SetTrigger("Slash2");
+                swordmanRig.SetTrigger("SwordAtack1");
                 //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
                 //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
@@ -120,6 +125,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
+                swordmanRig.SetTrigger("SwordAtack2");
                 StartCoroutine(Atack2());
             }
         }
@@ -133,6 +139,7 @@ public class SwordmanAttack : MonoBehaviour
             {
                 anim.SetTrigger("ChargeSlash");
                 animSword.SetTrigger("ChargeSlash2");
+                
                 StartCoroutine(Atack3());
             }
         }
@@ -147,6 +154,7 @@ public class SwordmanAttack : MonoBehaviour
                 sword.tag = "WallBreak";
                 anim.SetTrigger("WallBreak");
                 animSword.SetTrigger("WallBreak2");
+                swordmanRig.SetTrigger("SwordSpAtack");
                 StartCoroutine("TagReset");
                 StartCoroutine(Atack4());
             }

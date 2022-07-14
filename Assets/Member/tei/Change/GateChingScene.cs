@@ -9,10 +9,10 @@ public class GateChingScene : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {/*
         //ƒvƒŒ[ƒ„[‚©‚ç‚Ì•Ï”‚ğŠi”[ˆ—
         Player_Gate = SceneChingPlayer.Player_gate();
-        Debug.Log("a"+Player_Gate);
+        Debug.Log("a"+Player_Gate);*/
     }
 
     // Update is called once per frame
