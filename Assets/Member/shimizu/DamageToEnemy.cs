@@ -24,9 +24,9 @@ public class DamageToEnemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if (collider2D.CompareTag("Enemy") && cooltime)
+        if (collider2D.gameObject.CompareTag("Enemy") && cooltime)
         {
-            
+            Debug.LogWarning("エネミーにダメージ");
             cooltime = false;
             StartCoroutine(CoolTime());
             GameManagement.Instance.PlayerAtk(hp);

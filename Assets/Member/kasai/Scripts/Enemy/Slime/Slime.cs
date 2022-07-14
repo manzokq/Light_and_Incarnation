@@ -147,10 +147,19 @@ public class Slime : Enemy
     //    //非アクティブなオブジェクトがない場合新規生成
 
     //    //生成時にbulletsの子オブジェクトにする
-        
 
-        
+
+
     //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("WallBreak")||collision.gameObject.CompareTag("Sword"))
+        {
+            Hp = GameManagement.Instance.PlayerAtk(Hp);
+            //Debug.LogWarning("腱に触れた");
+        }
+    }
 
     //カメラ内にいるかどうかの処理(レンダラーコンポーネントが必要)
     private void OnBecameInvisible()
