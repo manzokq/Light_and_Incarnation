@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour
     private bool isWallright = false;
     private bool coroutine_able = true;
     private bool jumpreset = true;
+    private bool slidingContinue = false;
     [SerializeField] private float num_climb, translate_climb, time_climb;
     [SerializeField] GameObject chara;
     private Vector3 scale = new Vector3(100, 100,1);
@@ -324,7 +325,7 @@ public class PlayerControl : MonoBehaviour
                 if (rbody.velocity.x > 0)
                 {
                     anim.SetBool("GirlSliding",true);
-                    StartCoroutine("AngleRepairRight");
+                    StartCoroutine(AngleRepairRight());
                   
                 }
                 if (rbody.velocity.x < 0)
@@ -333,6 +334,7 @@ public class PlayerControl : MonoBehaviour
                     StartCoroutine("AngleRepairLeft");
                
                 }
+                
             }
         }
 
@@ -402,6 +404,11 @@ public class PlayerControl : MonoBehaviour
         //}
         yield return new WaitForSeconds(0.2f);
         rbody.AddForce(new Vector2(170, 0));
+        yield return new WaitForSeconds(0.3f);
+        if (!slidingContinue)
+        {
+            StartCoroutine(NonSliContinue());
+        }
         //yield return new WaitForSeconds(2.8f);
         //sliding_judge = true;
         //head_sliding = false;
@@ -425,6 +432,11 @@ public class PlayerControl : MonoBehaviour
         //}
         yield return new WaitForSeconds(0.2f);
         rbody.AddForce(new Vector2(-170, 0));
+        yield return new WaitForSeconds(0.3f);
+        if (!slidingContinue)
+        {
+            StartCoroutine(NonSliContinue());
+        }
         //yield return new WaitForSeconds(2.8f);
         //sliding_judge = true;
         //head_sliding = false;
@@ -499,11 +511,24 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         jumpreset = true;
     }
+    IEnumerator NonSliContinue()
+    {
+        Debug.Log("aaaaaaaaaaaaa");
+        yield return new WaitForSeconds(0.5f);
+        gilranim.SetTrigger("GirlSliding1");
+        gilranim.SetTrigger("GirlSliding2");
+        sliding_judge = true;
+        head_sliding = false;
+        anim.SetBool("GirlSliding", false);
+        anim.SetBool("GirlSlidingL", false);
+        slidingContinue = false;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Tunnel"))
         {
             Debug.Log("Enter!");
+            slidingContinue = true;
             rbody.AddForce(new Vector2(50, 0));
             gilranim.SetTrigger("GirlSliding1");
         }
@@ -537,6 +562,7 @@ public class PlayerControl : MonoBehaviour
             head_sliding = false;
             anim.SetBool("GirlSliding", false);
             anim.SetBool("GirlSlidingL", false);
+            slidingContinue = false;
         }
 
     }
