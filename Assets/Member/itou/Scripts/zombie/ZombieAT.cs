@@ -21,6 +21,8 @@ public class ZombieAT : MonoBehaviour
             foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
             Circle = player;
         }
+        Atk1 = enemyDate.atk1;
+        Atk2 = enemyDate.atk2;
     }
 
     private void Awake()

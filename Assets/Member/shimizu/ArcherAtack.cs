@@ -39,9 +39,9 @@ public class ArcherAtack : MonoBehaviour
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var archer_judge = playerControl.atack_judge;
-            playerControl.atacking = true;
             if (archer_judge == 2)
             {
+                playerControl.atacking = true;
                 anim.SetTrigger("Arrow");
                 animArcher.SetTrigger("Arrow2");
                 archerRig.SetTrigger("ArcherAtack1");
@@ -56,9 +56,9 @@ public class ArcherAtack : MonoBehaviour
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var archer_judge = playerControl.atack_judge;
-            playerControl.atacking = true;
             if (archer_judge == 2)
             {
+                playerControl.atacking = true;  
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
                 archerRig.SetTrigger("ArcherAtack2");
@@ -73,9 +73,9 @@ public class ArcherAtack : MonoBehaviour
         {
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var archer_judge = playerControl.atack_judge;
-            playerControl.atacking = true;
             if (archer_judge == 2)
             {
+                playerControl.atacking = true;
                 anim.SetTrigger("DoubleArrow");
                 animArcher.SetTrigger("DoubleArrow2");
                 StartCoroutine(Atack3());
@@ -87,9 +87,9 @@ public class ArcherAtack : MonoBehaviour
         {
             PlayerControl playerContorol = GetComponent<PlayerControl>();
             var archer_judge = playerContorol.atack_judge;
-            playerContorol.atacking = true;
             if (archer_judge == 2)
             {
+                playerContorol.atacking = true;
                 arrow.tag = "LongBow";
                 anim.SetTrigger("LongBow");
                 animArcher.SetTrigger("LongBow2");
@@ -106,9 +106,9 @@ public class ArcherAtack : MonoBehaviour
             Debug.Log("í èÌ");
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
-            xboxPlayerContorol.xatacking = true;
             if (archer_judge == 2)
             {
+                xboxPlayerContorol.xatacking = true;
                 anim.SetBool("Arrow", true);
                 animArcher.SetTrigger("Arrow2");
                 archerRig.SetTrigger("ArcherAtack1");
@@ -125,9 +125,9 @@ public class ArcherAtack : MonoBehaviour
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
-            xboxPlayerContorol.xatacking = true;
             if (archer_judge == 2)
             {
+                xboxPlayerContorol.xatacking = true;
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
                 archerRig.SetTrigger("ArcherAtack2");
@@ -140,9 +140,9 @@ public class ArcherAtack : MonoBehaviour
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
-            xboxPlayerContorol.xatacking = true;
             if (archer_judge == 2)
             {
+                xboxPlayerContorol.xatacking = true;
                 anim.SetTrigger("DoubleArrow");
                 animArcher.SetTrigger("DoubleArrow2");
                 StartCoroutine(Atack3());
@@ -154,9 +154,9 @@ public class ArcherAtack : MonoBehaviour
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
-            xboxPlayerContorol.xatacking = true;
             if (archer_judge == 2)
             {
+                xboxPlayerContorol.xatacking = true;
                 Debug.Log("ì¡éÍçUåÇ");
                 arrow.tag = "LongBow";
                 anim.SetTrigger("LongBow");
