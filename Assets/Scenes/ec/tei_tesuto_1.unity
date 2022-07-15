@@ -616,6 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e339a817061d1d4c94378c7ac0b68df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDate: {fileID: 11400000, guid: 6912fd4cc7781834fb23a1929ecfc740, type: 2}
   Boss_HP: 100
   Boss_Atk1: 10
   Boss_Atk2: 20
@@ -623,6 +624,7 @@ MonoBehaviour:
   Range_Boss: {fileID: 1525037925}
   Range_Time: 2
   Range_Change: 3
+  Player: {fileID: 0}
   boss_x_speed: 1
   boss_changechara: 0
   boss_atack_judge: 0

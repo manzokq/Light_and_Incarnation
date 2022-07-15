@@ -8,8 +8,8 @@ public class Boss_Sword : MonoBehaviour
 
     [SerializeField]
     Animator boss_animSword;
-    [SerializeField]
-    GameObject boss_sword;
+    //[SerializeField]
+    //GameObject boss_sword;
     [SerializeField]
     private float boss_ct_atack1_Sword,
      boss_ct_atack2_Sword;
@@ -98,7 +98,7 @@ public class Boss_Sword : MonoBehaviour
     private IEnumerator TagReset()
     {
         yield return new WaitForSeconds(1f);
-        boss_sword.tag = "Sword";
+        this.gameObject.tag = "Sword";
     }
 
     IEnumerator Atack1()
