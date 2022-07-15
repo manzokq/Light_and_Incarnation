@@ -304,6 +304,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 sliding_judge = false;
                 head_sliding = true;
                 gilranim.SetBool("GirlSliding", true);
+                anim.SetBool("Girlsliding",true);
                 StartCoroutine("DodgeTag");
                 if (rbody.velocity.x > 0)
                 {
@@ -468,6 +469,45 @@ public class XboxPlayerContorol : MonoBehaviour
         yield return new WaitForSeconds(2.4f);
         sliding_judge = true;
         head_sliding = false;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Tunnel"))
+        {
+            Debug.Log("Enter!");
+            rbody.AddForce(new Vector2(50, 0));
+            gilranim.SetTrigger("GirlSliding1");
+        }
+
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Tunnel"))
+        {
+            Debug.Log("Stay!");
+            if (rbody.velocity.x > 0)
+            {
+                rbody.velocity = new Vector2(5, 0);
+            }
+            else if (rbody.velocity.x < 0)
+            {
+                rbody.velocity = new Vector2(-5, 0);
+            }
+            gilranim.SetTrigger("GirlSliding1");
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Tunnel"))
+        {
+            Debug.Log("Exit!");
+            gilranim.SetTrigger("GirlSliding2");
+            sliding_judge = true;
+            head_sliding = false;
+            anim.SetBool("GirlSliding", false);
+            anim.SetBool("GirlSlidingL", false);
+        }
     }
     public void ReturnGirl()
     {
