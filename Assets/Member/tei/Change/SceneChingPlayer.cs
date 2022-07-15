@@ -171,11 +171,7 @@ public class SceneChingPlayer : MonoBehaviour
     void OnSceneLoad(Scene scene,LoadSceneMode mode)
     {
 
-        if(gate == Gatenum.None)
-        {
-            var target = GameObject.Find("target");
-            transform.position = target.gameObject.transform.position;
-        }
+
         doors = GameObject.FindGameObjectsWithTag("Gate");
         foreach(var obj in doors)
         {
@@ -186,6 +182,13 @@ public class SceneChingPlayer : MonoBehaviour
                     obj.transform.position.y, 
                     obj.transform.position.z);
             }
+        }
+
+        gate = Gatenum.None;
+        if (gate == Gatenum.None && GameObject.FindWithTag("target") != null)
+        {
+            var target = GameObject.FindWithTag("target");
+            transform.position = target.gameObject.transform.position;
         }
         /*
         if(Gate_Number!=0)

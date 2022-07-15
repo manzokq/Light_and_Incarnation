@@ -50,6 +50,10 @@ public class Dont : MonoBehaviour
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound0);
                 break;
+            case "MapTutorial":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound1);
+                break;
             case "Map1":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound1);
