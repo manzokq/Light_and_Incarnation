@@ -240,6 +240,8 @@ public class PlayerControl : MonoBehaviour
                     rbody.isKinematic = false;
                     swordmananim.SetBool("SwordClimb", false);
                     gilranim.SetBool("GirlClimb", false);
+                    anim.SetBool("GirlSliding", false);
+                    anim.SetBool("GirlSlidingL", false);
                     rbody.AddForce(new Vector2(1, 0) * 1);
 
                 }
@@ -248,6 +250,8 @@ public class PlayerControl : MonoBehaviour
                     rbody.isKinematic = false;
                     swordmananim.SetBool("SwordClimb", false);
                     gilranim.SetBool("GirlClimb", false);
+                    anim.SetBool("GirlSliding", false);
+                    anim.SetBool("GirlSlidingL", false);
                     rbody.AddForce(new Vector2(-1, 0) * 1);
                 }
             }
@@ -343,7 +347,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-
+        Debug.Log(isWallright);
         //•Ç“o‚è
         if (isWallright && coroutine_able && Input.GetKeyDown(KeyCode.RightShift))
         {
@@ -520,20 +524,21 @@ public class PlayerControl : MonoBehaviour
     IEnumerator NonSliContinue()
     {
         Debug.Log("aaaaaaaaaaaaa");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         gilranim.SetBool("GirlSliding1",true);
         gilranim.SetBool("GirlSliding2",true);
         sliding_judge = true;
         head_sliding = false;
-        anim.SetBool("GirlSliding", false);
-        anim.SetBool("GirlSlidingL", false);
+        
         
         StartCoroutine(Sliding2F());
         slidingContinue = false;
     }
     IEnumerator Sliding2F()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1.2f);
+        anim.SetBool("GirlSliding", false);
+        anim.SetBool("GirlSlidingL", false);
         gilranim.SetBool("GirlSliding", false);
         gilranim.SetBool("GirlSliding1", false);
         gilranim.SetBool("GirlSliding2", false);

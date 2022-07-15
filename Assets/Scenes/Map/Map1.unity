@@ -84921,6 +84921,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &1143502049 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4154788320770835423, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 1443454212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1258023762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8697469495137356945, guid: 0791272cc63263f4b9200619e5d79102, type: 3}
@@ -85516,6 +85521,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 3.2150002
       objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204002, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -85616,7 +85625,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'chara '
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: archeranim
+      value: 
+      objectReference: {fileID: 1548421941}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: swordmananim
+      value: 
+      objectReference: {fileID: 1143502049}
+    m_RemovedComponents:
+    - {fileID: 7368785642466263001, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+    - {fileID: 8926807714995451958, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
 --- !u!224 &1451327805 stripped
 RectTransform:
@@ -85792,6 +85815,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8697469495137356945, guid: 0791272cc63263f4b9200619e5d79102, type: 3}
   m_PrefabInstance: {fileID: 1799180931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1548421941 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1244461880072627126, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 1443454212}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1574562311
 PrefabInstance:
