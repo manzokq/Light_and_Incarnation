@@ -32122,6 +32122,8 @@ MonoBehaviour:
   Character: 0
   Map: 0
   Atk: 0
+  BossCharacter: 0
+  boss_character: 0
 --- !u!4 &568263235
 Transform:
   m_ObjectHideFlags: 0
@@ -33026,7 +33028,7 @@ GameObject:
   - component: {fileID: 1439753969}
   - component: {fileID: 1439753968}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33307,11 +33309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1710.7
+      value: 4389
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4
+      value: -679
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

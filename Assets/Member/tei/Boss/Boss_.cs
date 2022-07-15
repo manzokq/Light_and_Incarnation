@@ -16,8 +16,8 @@ public class Boss_ : MonoBehaviour
     public float Boss_Atk2;
 
     //ボスとプレイヤーの距離管理
-    public GameObject Range_Player;
-    public GameObject Range_Boss;
+    //public GameObject Range_Player;
+    //public GameObject Range_Boss;
 
     //形態変化の時間管理
     [SerializeField, Header("距離チェッククールタイム")]
@@ -31,7 +31,8 @@ public class Boss_ : MonoBehaviour
     float Range_Change;
 
     //移動関連
-    GameObject Player;
+    [SerializeField]
+    private GameObject Player;
     private Rigidbody2D rigidboody2d;
     [SerializeField,Header("Bossの移動速度")]
     int boss_x_speed = 5;
@@ -77,7 +78,11 @@ public class Boss_ : MonoBehaviour
         //オブジェクトのRigidbody2Dを取得
         rigidboody2d = GetComponent<Rigidbody2D>();
         //Playerオブジェトを取得
-        Player = GameObject.Find("Player");
+        if(Player==null)
+        {
+            Player = GameObject.FindWithTag("Player");
+        }
+        
 
         boss_anim = GetComponent<Animator>();
 
@@ -210,8 +215,8 @@ public class Boss_ : MonoBehaviour
     private void Range()
     {
         //距離計測
-        Vector2 pos_Player = Range_Player.transform.position;
-        Vector2 pos_Boss = Range_Boss.transform.position;
+        Vector2 pos_Player = Player.transform.position;
+        Vector2 pos_Boss = this.gameObject.transform.position;
         float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
         Debug.Log("距離は" + range_Boss_player);
         //弓に形態変化
