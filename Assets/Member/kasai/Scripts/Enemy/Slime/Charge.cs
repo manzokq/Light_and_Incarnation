@@ -6,7 +6,7 @@ public class Charge : MonoBehaviour
 {
     public int atk=0;
     private float waitTime = 1.0f;
-    private bool _hit = false;
+    private bool _hit = false;//ここがtrueの間ダメージ判定をつける
     private void OnEnable()
     {
         StartCoroutine(ChargeAtk());
@@ -29,7 +29,7 @@ public class Charge : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _hit = true;
-            Debug.Log(atk+"ダメージ");
+            //Debug.Log(atk+"ダメージ");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -37,7 +37,7 @@ public class Charge : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _hit = false;
-            Debug.Log("あたってないよ");
+            //Debug.Log("あたってないよ");
         }
     }
 }

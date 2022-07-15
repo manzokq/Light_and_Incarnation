@@ -48,7 +48,7 @@ public class SceneChingPlayer : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyDown("joystick button 3")||Input.GetKeyDown(KeyCode.I))
         {
             if(gate != Gatenum.None)
             {

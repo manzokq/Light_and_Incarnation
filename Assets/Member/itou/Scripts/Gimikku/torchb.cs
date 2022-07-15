@@ -38,7 +38,7 @@ public class torchb : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C) && on)
+        if(Input.GetKeyDown(KeyCode.C) && on|| Input.GetKeyDown("joystick button 3") && on)
         {
             // 接触してきたのがプレイヤーだった場合、親に自分自身のマイナンバーを通知する
             _SwitchManager.sendMyNumber(myNumber);
