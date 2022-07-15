@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class EnemyDate : ScriptableObject
 {
-    public string enemyName;
-    public int hp;
-    public int atk1;//’ÊíUŒ‚
-    public int atk2;//“ÁêUŒ‚
-    public float speed;
+    public string enemyName;//ƒGƒlƒ~[‚Ì–¼Ì
+    public int hp;          //‘Ì—Í
+    public int atk1;        //’ÊíUŒ‚
+    public int atk2;        //“ÁêUŒ‚
+    public float speed;     //ˆÚ“®‘¬“x
 }

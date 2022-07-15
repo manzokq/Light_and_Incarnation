@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &153899824
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -305,6 +305,8 @@ MonoBehaviour:
   Character: 0
   Map: 0
   Atk: 0
+  BossCharacter: 0
+  boss_character: 0
 --- !u!4 &174536862
 Transform:
   m_ObjectHideFlags: 0
@@ -696,7 +698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &721199271
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -842,7 +844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1295551712
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -988,7 +990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1604062182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1763,7 +1765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697469495137356951, guid: 0791272cc63263f4b9200619e5d79102, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697469495137356956, guid: 0791272cc63263f4b9200619e5d79102, type: 3}
+      propertyPath: _poisonRangeMax
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0791272cc63263f4b9200619e5d79102, type: 3}
