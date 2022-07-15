@@ -238,12 +238,14 @@ public class PlayerControl : MonoBehaviour
                 if (Input.GetAxis("Horizontal") > 0 && scale.x < 0)
                 {
                     rbody.isKinematic = false;
+                    swordmananim.SetBool("SwordClimb", false);
                     rbody.AddForce(new Vector2(1, 0) * 1);
 
                 }
                 if (Input.GetAxis("Horizontal") < 0 && scale.x > 0)
                 {
                     rbody.isKinematic = false;
+                    swordmananim.SetBool("SwordClimb", false);
                     rbody.AddForce(new Vector2(-1, 0) * 1);
                 }
             }
@@ -460,6 +462,7 @@ public class PlayerControl : MonoBehaviour
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+                swordmananim.SetBool("SwordClimb", false);
                 yield break;
             }
             transform.Translate(0, translate_climb, 0);
@@ -469,6 +472,7 @@ public class PlayerControl : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        swordmananim.SetBool("SwordClimb", false);
     }
     IEnumerator DodgeTag()
     {
