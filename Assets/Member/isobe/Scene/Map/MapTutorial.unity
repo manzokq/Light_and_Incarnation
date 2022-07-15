@@ -1554,6 +1554,8 @@ MonoBehaviour:
   Character: 0
   Map: 0
   Atk: 0
+  BossCharacter: 0
+  boss_character: 0
 --- !u!4 &937689323
 Transform:
   m_ObjectHideFlags: 0
@@ -14601,11 +14603,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1710.7
+      value: -1226
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4
+      value: -204
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
