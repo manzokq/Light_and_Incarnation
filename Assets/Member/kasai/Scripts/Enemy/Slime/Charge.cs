@@ -29,7 +29,7 @@ public class Charge : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _hit = true;
-            Debug.Log(atk+"ダメージ");
+            //Debug.Log(atk+"ダメージ");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -37,7 +37,7 @@ public class Charge : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _hit = false;
-            Debug.Log("あたってないよ");
+            //Debug.Log("あたってないよ");
         }
     }
 }

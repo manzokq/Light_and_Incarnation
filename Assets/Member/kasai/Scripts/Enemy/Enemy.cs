@@ -116,4 +116,13 @@ public class Enemy : MonoBehaviour
         //_moveFrag ^= true;
         //Debug.Log("エネミーの移動フラグ"+_moveFrag);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword"))
+        {
+            Hp = GameManagement.Instance.PlayerAtk(Hp);
+            //Debug.LogWarning("腱に触れた");
+        }
+    }
 }

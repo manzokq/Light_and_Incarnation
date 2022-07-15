@@ -152,14 +152,7 @@ public class Slime : Enemy
 
     //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("WallBreak")||collision.gameObject.CompareTag("Sword"))
-        {
-            Hp = GameManagement.Instance.PlayerAtk(Hp);
-            //Debug.LogWarning("腱に触れた");
-        }
-    }
+   
 
     //カメラ内にいるかどうかの処理(レンダラーコンポーネントが必要)
     private void OnBecameInvisible()
