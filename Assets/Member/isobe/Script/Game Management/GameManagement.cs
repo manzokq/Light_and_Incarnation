@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManagement : MonoBehaviour
@@ -48,7 +49,7 @@ public class GameManagement : MonoBehaviour
     [SerializeField]
     public CharacterID BossCharacter;
     [SerializeField]
-    public CharacterID boss_character;
+    public CharacterID Boss_character;
 
     //プレイヤーのスクリプトを呼び出だす。
     #endregion
@@ -69,6 +70,7 @@ public class GameManagement : MonoBehaviour
         if(PlayerHP<=0)
         {
             Debug.LogError("プレイヤーが死んだ");
+            SceneManager.LoadScene("GameOver");
         }
         
         //Player.Instance.PlayerHP -= Damage;
@@ -124,9 +126,9 @@ public class GameManagement : MonoBehaviour
     }
 
     //Boss
-    public int Boss_Atk(int PlayerHP, int Damage)　//プレイヤーにダメージ(Bossから
+    public int Boss_Atk(int Damage)
     {
-        switch (boss_character)
+        switch (Boss_character)
         {
             //剣士
             case CharacterID.Swordsman:
