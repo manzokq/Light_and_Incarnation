@@ -27414,5 +27414,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'chara '
       objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: archeranim
+      value: 
+      objectReference: {fileID: 5928288751666410019}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: swordmananim
+      value: 
+      objectReference: {fileID: 5928288751666410020}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+--- !u!95 &5928288751666410019 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1244461880072627126, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 5928288751666410018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5928288751666410020 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4154788320770835423, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 5928288751666410018}
+  m_PrefabAsset: {fileID: 0}
