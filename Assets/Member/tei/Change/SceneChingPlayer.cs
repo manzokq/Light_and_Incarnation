@@ -171,6 +171,11 @@ public class SceneChingPlayer : MonoBehaviour
     void OnSceneLoad(Scene scene,LoadSceneMode mode)
     {
 
+        if(gate == Gatenum.None)
+        {
+            var target = GameObject.Find("target");
+            transform.position = target.gameObject.transform.position;
+        }
         doors = GameObject.FindGameObjectsWithTag("Gate");
         foreach(var obj in doors)
         {

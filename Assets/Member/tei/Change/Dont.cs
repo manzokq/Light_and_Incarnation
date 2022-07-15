@@ -69,12 +69,12 @@ public class Dont : MonoBehaviour
             case "GameClear":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound0);
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
                 break;
             case "GameOver":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound3);
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
                 break;
         }
     }
