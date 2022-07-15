@@ -6,7 +6,7 @@ public class Charge : MonoBehaviour
 {
     public int atk=0;
     private float waitTime = 1.0f;
-    private bool _hit = false;
+    private bool _hit = false;//‚±‚±‚ªtrue‚ÌŠÔƒ_ƒ[ƒW”»’è‚ğ‚Â‚¯‚é
     private void OnEnable()
     {
         StartCoroutine(ChargeAtk());
