@@ -42,7 +42,40 @@ public class Dont : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "GameOver" || SceneManager.GetActiveScene().name == "GameClear")
         {
-            Destroy(this.gameObject);
+            
+        }
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "GameOP":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound0);
+                break;
+            case "Map1":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound1);
+                break;
+            case "Map2":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound1);
+                break;
+            case "MapIkidomari":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound1);
+                break;
+            case "MapBoss":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound2);
+                break;
+            case "GameClear":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound0);
+                Destroy(this.gameObject);
+                break;
+            case "GameOver":
+                BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
+                BGMManager.Instance.Sound(BGMManager.SoundState.Sound3);
+                Destroy(this.gameObject);
+                break;
         }
     }
 

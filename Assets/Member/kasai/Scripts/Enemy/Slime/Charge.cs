@@ -19,7 +19,8 @@ public class Charge : MonoBehaviour
         if (_hit)
         {
             GameManagement.Instance.PlayerDamage(atk);//‘Ì—Í‚ğŒ¸‚ç‚·
-            //se‚ğ‚È‚ç‚·
+            //SE‚ğŒÄ‚Ño‚·
+            SEManager.Instance.Sound(SEManager.SoundState.Sound5);
         }
         this.gameObject.SetActive(false);
         yield return null;
