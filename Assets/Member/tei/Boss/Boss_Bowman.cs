@@ -72,8 +72,8 @@ public class Boss_Bowman : MonoBehaviour
             {
                 boss_anim_Bowman.SetTrigger("Arrow");
                 boss_animBowman.SetTrigger("Arrow2");
-                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
-                //.Instance.Atk = GameManagement.AtkID.Atk1;
+                GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
+                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
             }
             //slashable = false;
@@ -98,11 +98,6 @@ public class Boss_Bowman : MonoBehaviour
         }
     }
 
-    private IEnumerator TagReset()
-    {
-        yield return new WaitForSeconds(1f);
-        this.gameObject.tag = "Arrow";
-    }
     IEnumerator Atack1()
     {
         yield return new WaitForSeconds(boss_ct_atack1);
