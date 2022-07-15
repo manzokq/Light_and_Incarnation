@@ -9,10 +9,10 @@ public class BGMManager : MonoBehaviour
 
     public enum SoundState
     {
-        Sound0,
-        Sound1,
-        Sound2,
-        Sound3,
+        Sound0,//タイトル
+        Sound1,//メインゲーム
+        Sound2,//ボス
+        Sound3,//ゲームオーバー
         Sound4,
         Sound5,
         Sound6,
@@ -25,6 +25,7 @@ public class BGMManager : MonoBehaviour
         Sound13,
         Sound14,
         Sound15,
+        Stop,
         None
     }
 
@@ -101,6 +102,9 @@ public class BGMManager : MonoBehaviour
                 break;
             case SoundState.Sound15:
                 audioSource.PlayOneShot(audioClips[15]);
+                break;
+            case SoundState.Stop:
+                audioSource.Stop();
                 break;
 
         }

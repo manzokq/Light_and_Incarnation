@@ -306,7 +306,7 @@ MonoBehaviour:
   Map: 0
   Atk: 0
   BossCharacter: 0
-  boss_character: 0
+  Boss_character: 0
 --- !u!4 &174536862
 Transform:
   m_ObjectHideFlags: 0
@@ -1718,7 +1718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697469495137356951, guid: 0791272cc63263f4b9200619e5d79102, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8697469495137356956, guid: 0791272cc63263f4b9200619e5d79102, type: 3}
       propertyPath: _poisonRangeMax

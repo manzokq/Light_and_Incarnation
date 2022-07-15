@@ -63,6 +63,10 @@ public class test : MonoBehaviour
             
             SEManager.Instance.Sound(SEManager.SoundState.Sound10);
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SEManager.Instance.Sound(SEManager.SoundState.Stop);
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
@@ -82,6 +86,10 @@ public class test : MonoBehaviour
         {
 
             BGMManager.Instance.Sound(BGMManager.SoundState.Sound3);
+        }
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
         }
     }
 }

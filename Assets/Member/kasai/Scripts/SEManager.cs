@@ -9,22 +9,23 @@ public class SEManager : MonoBehaviour
 
     public enum SoundState
     {
-        Sound0,
-        Sound1,
-        Sound2,
-        Sound3,
-        Sound4,
-        Sound5,
-        Sound6,
-        Sound7,
-        Sound8,
-        Sound9,
-        Sound10,
+        Sound0, //スライディング
+        Sound1, //ジャンプ
+        Sound2, //剣士回避
+        Sound3, //剣を振る
+        Sound4, //弓を放つ
+        Sound5, //スライム攻撃
+        Sound6, //壁が壊れる音
+        Sound7, //アイテムをとる(宝箱)
+        Sound8, //ギミックボタン
+        Sound9, //選択
+        Sound10,//決定
         Sound11,
         Sound12,
         Sound13,
         Sound14,
         Sound15,
+        Stop,
         None
     }
 
@@ -100,6 +101,9 @@ public class SEManager : MonoBehaviour
                 break;
             case SoundState.Sound15:
                 audioSource.PlayOneShot(audioClips[15]);
+                break;
+            case SoundState.Stop:
+                audioSource.Stop();
                 break;
 
         }

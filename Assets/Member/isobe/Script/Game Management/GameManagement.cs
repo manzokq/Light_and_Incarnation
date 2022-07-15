@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManagement : MonoBehaviour
@@ -69,6 +70,7 @@ public class GameManagement : MonoBehaviour
         if(PlayerHP<=0)
         {
             Debug.LogError("ƒvƒŒƒCƒ„[‚ªŽ€‚ñ‚¾");
+            SceneManager.LoadScene("GameOver");
         }
         
         //Player.Instance.PlayerHP -= Damage;
