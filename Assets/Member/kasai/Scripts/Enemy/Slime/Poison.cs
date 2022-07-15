@@ -27,7 +27,8 @@ public class Poison : MonoBehaviour
             _poisonAtk = (int)_magnification * atk;
             if (_hit)
             {
-
+                //SE‚ğŒÄ‚Ño‚·
+                SEManager.Instance.Sound(SEManager.SoundState.Sound5);
                 GameManagement.Instance.PlayerDamage(_poisonAtk);//‘Ì—Í‚ğŒ¸‚ç‚·
                 
             }

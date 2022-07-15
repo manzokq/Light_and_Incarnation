@@ -111,8 +111,7 @@ public class Slime : Enemy
             
             //アニメーションを呼び出す
             Anim.SetTrigger("Attack");
-        //SEを呼び出す
-        SEManager.Instance.Sound(SEManager.SoundState.Sound5);
+        
         //オブジェクトを有効化
         chargeobj.GetComponent<Charge>().atk = Atk1;
             chargeObject.SetActive(true);//当たり判定の有効化
@@ -137,8 +136,7 @@ public class Slime : Enemy
         poisonobj.GetComponent<Poison>().atk = Atk1;
         poisonobj.transform.position=new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
         poisonobj.SetActive(true);
-        //SEを呼び出す
-        SEManager.Instance.Sound(SEManager.SoundState.Sound5);
+        
         //Instpoison(new Vector2(
         //    playerObject.transform.position.x,
         //    this.gameObject.transform.position.y),
