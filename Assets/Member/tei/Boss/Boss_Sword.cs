@@ -30,7 +30,7 @@ public class Boss_Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        boss_anim_sword = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -71,8 +71,8 @@ public class Boss_Sword : MonoBehaviour
             {
                 boss_anim_sword.SetTrigger("Slash");
                 boss_animSword.SetTrigger("Slash2");
-                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                GameManagement.Instance.BossCharacter = GameManagement.CharacterID.Swordsman;
+                GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
             }
             //slashable = false;
@@ -95,11 +95,7 @@ public class Boss_Sword : MonoBehaviour
             }
         }
     }
-    private IEnumerator TagReset()
-    {
-        yield return new WaitForSeconds(1f);
-        this.gameObject.tag = "Sword";
-    }
+
 
     IEnumerator Atack1()
     {
