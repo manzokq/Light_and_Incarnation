@@ -9,9 +9,10 @@ public class HP : MonoBehaviour
 {
     public int currentHp;  //現在値
     public int maxHp;      //最大値
-    static Vector3 S = new Vector3(0f,0f,0f);
+    static Vector3 Spawn = new Vector3(0f,0f,0f);
     public Slider hpBar;
     public Text hptext;
+    private string sceneName;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class HP : MonoBehaviour
         //現在値を最大に
         currentHp = maxHp;
 
+        //SceneManager.GetActiveScene().name == "Spawn";
         //スライダーの最大値を変更
         hpBar.maxValue = maxHp;
     }
@@ -27,8 +29,9 @@ public class HP : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.CompareTag("T") == true){
-            S = new Vector3(0f,3f,0f);
+        if (other.CompareTag("Checkpoint") == true){
+            Spawn = other.transform.position;
+            sceneName = SceneManager.GetActiveScene().name;
         }
     }
 
@@ -44,7 +47,8 @@ public class HP : MonoBehaviour
 
        if (currentHp <= 0)
         {
-           this.transform.position = S;
+            SceneManager.LoadScene(sceneName);
+           this.transform.position = Spawn;
             currentHp = maxHp;
         }
     }

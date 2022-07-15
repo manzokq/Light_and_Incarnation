@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Animator Anim;
     public EnemyDate enemyDate;//EnemyDateから体力などの情報を呼んでくる
     protected string Name = null;
+    [SerializeField]
     protected int Hp = 0;
     protected int Atk1 = 0;
     protected int Atk2 = 0;
@@ -114,5 +115,14 @@ public class Enemy : MonoBehaviour
         }
         //_moveFrag ^= true;
         //Debug.Log("エネミーの移動フラグ"+_moveFrag);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword"))
+        {
+            Hp = GameManagement.Instance.PlayerAtk(Hp);
+            //Debug.LogWarning("腱に触れた");
+        }
     }
 }

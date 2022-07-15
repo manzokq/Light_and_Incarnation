@@ -25,4 +25,6 @@ public class Zombie : Enemy
     {
         Anim.SetTrigger("Attack2");
     }
+
+  
 }

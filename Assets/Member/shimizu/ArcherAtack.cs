@@ -5,7 +5,8 @@ using UnityEngine;
 public class ArcherAtack : MonoBehaviour
 {
     private Animator anim;
-
+    [SerializeField]
+    Animator archerRig;
     [SerializeField]
     Animator animArcher;
     [SerializeField]
@@ -32,12 +33,10 @@ public class ArcherAtack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+        //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
         //PÇâüÇ∑Ç∆í èÌã|çUåÇ
         if (Input.GetKeyDown(KeyCode.P) && arrowAble)
         {
-
             PlayerControl playerControl = GetComponent<PlayerControl>();
             var archer_judge = playerControl.atack_judge;
             playerControl.atacking = true;
@@ -45,6 +44,7 @@ public class ArcherAtack : MonoBehaviour
             {
                 anim.SetTrigger("Arrow");
                 animArcher.SetTrigger("Arrow2");
+                archerRig.SetTrigger("ArcherAtack1");
                 //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
                 //.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
@@ -61,6 +61,7 @@ public class ArcherAtack : MonoBehaviour
             {
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
+                archerRig.SetTrigger("ArcherAtack2");
                 //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
                 //.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack2());
@@ -92,6 +93,7 @@ public class ArcherAtack : MonoBehaviour
                 arrow.tag = "LongBow";
                 anim.SetTrigger("LongBow");
                 animArcher.SetTrigger("LongBow2");
+                archerRig.SetTrigger("ArcherSpAtack");
                 StartCoroutine("TagReset");
                 StartCoroutine(Atack4());
             }
@@ -109,6 +111,7 @@ public class ArcherAtack : MonoBehaviour
             {
                 anim.SetBool("Arrow", true);
                 animArcher.SetTrigger("Arrow2");
+                archerRig.SetTrigger("ArcherAtack1");
                 //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
                 //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
@@ -127,6 +130,7 @@ public class ArcherAtack : MonoBehaviour
             {
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
+                archerRig.SetTrigger("ArcherAtack2");
                 StartCoroutine(Atack2());
             }
         }
@@ -157,6 +161,7 @@ public class ArcherAtack : MonoBehaviour
                 arrow.tag = "LongBow";
                 anim.SetTrigger("LongBow");
                 animArcher.SetTrigger("LongBow2");
+                archerRig.SetTrigger("ArcherSpAtack");
                 StartCoroutine("TagReset");
                 StartCoroutine(Atack4());
             }

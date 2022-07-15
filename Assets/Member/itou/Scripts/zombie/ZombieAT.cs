@@ -16,7 +16,11 @@ public class ZombieAT : MonoBehaviour
     protected int Atk2 = 0;
     private void Start()
     {
-        
+        if(Circle==null)
+        {
+            foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
+            Circle = player;
+        }
     }
 
     private void Awake()
@@ -40,10 +44,12 @@ public class ZombieAT : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        //G = true;
+       
         if (col.CompareTag("Player") == true)
         {
+            Debug.LogWarning("プレイヤー検知できるかな");
             wait = true;
+            StartCoroutine(als());
         }
     }
     private void OnTriggerExit2D(Collider2D col)

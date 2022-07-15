@@ -8,7 +8,7 @@ public class Damege : MonoBehaviour
     {
         
         if (other.CompareTag("Player") == true){
-            other.GetComponent<HP>().Damage(8);
+            other.GetComponent<HP>().Damage(100);
         }
         Debug.Log("Player entered!");
     }

@@ -33,7 +33,7 @@ public class Slime : Enemy
         playerObject = GameObject.FindWithTag("Player");
         poisonobj = _poison;//.GetComponent<GameObject>();
         chargeobj = chargeObject;//.GetComponent<GameObject>();
-        Debug.Log(chargeobj);
+        //Debug.Log(chargeobj);
         //chargeobj.GetComponent<Charge>().atk = Atk1;
         chargeObject.SetActive(false);
         poisonobj = Instantiate(_poison);
@@ -116,9 +116,9 @@ public class Slime : Enemy
             //seを呼び出す
             Anim.SetTrigger("Attack");
             //Debug.Log(poisonobj);
-            poisonobj.GetComponent<Poison>().atk = Atk1;
-            poisonobj.transform.position=new Vector2(playerObject.transform.position.x, this.transform.position.y);
             yield return new WaitForSeconds(1.0f);//1秒のラグを作る
+            poisonobj.GetComponent<Poison>().atk = Atk1;
+            poisonobj.transform.position=new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
             poisonobj.SetActive(true);
             //Instpoison(new Vector2(
             //    playerObject.transform.position.x,
@@ -147,10 +147,12 @@ public class Slime : Enemy
     //    //非アクティブなオブジェクトがない場合新規生成
 
     //    //生成時にbulletsの子オブジェクトにする
-        
 
-        
+
+
     //}
+
+   
 
     //カメラ内にいるかどうかの処理(レンダラーコンポーネントが必要)
     private void OnBecameInvisible()
