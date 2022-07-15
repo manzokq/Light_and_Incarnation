@@ -13,9 +13,7 @@ TagManager:
   - WallBreak
   - LongBow
   - Dodge
-  - Gate
-  - Enemy
-  - Boos
+  - Tunnel
   layers:
   - Default
   - TransparentFX
@@ -50,12 +48,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UI1
-    uniqueID: 2578719869
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: New Layer 2
-    uniqueID: 3098137887
     locked: 0
