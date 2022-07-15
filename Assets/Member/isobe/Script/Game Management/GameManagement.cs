@@ -31,11 +31,14 @@ public class GameManagement : MonoBehaviour
     public static GameManagement Instance { get => _instance; }
     static GameManagement _instance;
     [SerializeField, Range(0, 100)]
-    public int PlayerHP;
+    public  int PlayerHP;
+    private static int playerHp;
     [SerializeField, Range(0, 100)]
     public int PlayerMP;
+    private static int playerMp;
     [SerializeField, Range(0, 100)]
     public int PlayerOrb;
+    private static int playerOrb;
     [SerializeField]
     public CharacterID PlayerCharacter;
     [SerializeField]
@@ -62,11 +65,19 @@ public class GameManagement : MonoBehaviour
 
 
     }
+    private void Start()
+    {
+        //初期化
+        PlayerHP = playerHp;
+        PlayerMP = playerMp;
+        PlayerOrb = playerOrb;
+    }
     public void PlayerDamage(int Damage) //プレイヤーにダメージ
     {
+       
         //プレイヤーを呼び出す
         PlayerHP -= Damage;
-
+        playerHp = PlayerHP;
         if(PlayerHP<=0)
         {
             Debug.LogError("プレイヤーが死んだ");
@@ -155,6 +166,7 @@ public class GameManagement : MonoBehaviour
                 }
                 break;
         }
+        playerHp = PlayerHP;
         return PlayerHP;
     }
 }
