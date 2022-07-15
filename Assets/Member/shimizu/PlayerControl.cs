@@ -239,6 +239,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     rbody.isKinematic = false;
                     swordmananim.SetBool("SwordClimb", false);
+                    gilranim.SetBool("GirlClimb", false);
                     rbody.AddForce(new Vector2(1, 0) * 1);
 
                 }
@@ -246,6 +247,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     rbody.isKinematic = false;
                     swordmananim.SetBool("SwordClimb", false);
+                    gilranim.SetBool("GirlClimb", false);
                     rbody.AddForce(new Vector2(-1, 0) * 1);
                 }
             }
@@ -355,10 +357,7 @@ public class PlayerControl : MonoBehaviour
             {
                 swordmananim.SetBool("SwordClimb", true);
             }
-            else if (atack_judge == 2)
-            {
-                archeranim.SetBool("ArcherClimb", true);
-            }
+            
             StartCoroutine("Climb");
         }
 
@@ -463,6 +462,7 @@ public class PlayerControl : MonoBehaviour
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 swordmananim.SetBool("SwordClimb", false);
+                gilranim.SetBool("GirlClimb", false);
                 yield break;
             }
             transform.Translate(0, translate_climb, 0);
@@ -473,6 +473,7 @@ public class PlayerControl : MonoBehaviour
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         swordmananim.SetBool("SwordClimb", false);
+        gilranim.SetBool("GirlClimb", false);
     }
     IEnumerator DodgeTag()
     {
@@ -526,14 +527,15 @@ public class PlayerControl : MonoBehaviour
         head_sliding = false;
         anim.SetBool("GirlSliding", false);
         anim.SetBool("GirlSlidingL", false);
-        gilranim.SetBool("GirlSliding", false);
-        gilranim.SetBool("GirlSliding1", false);
+        
         StartCoroutine(Sliding2F());
         slidingContinue = false;
     }
     IEnumerator Sliding2F()
     {
         yield return new WaitForSeconds(0.3f);
+        gilranim.SetBool("GirlSliding", false);
+        gilranim.SetBool("GirlSliding1", false);
         gilranim.SetBool("GirlSliding2", false);
     }
     private void OnTriggerEnter2D(Collider2D other)
