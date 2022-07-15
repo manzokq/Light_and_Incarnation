@@ -43,6 +43,13 @@ public class GameManagement : MonoBehaviour
     public MapID Map;
     [SerializeField]
     public AtkID Atk;
+
+    //Boss用
+    [SerializeField]
+    public CharacterID BossCharacter;
+    [SerializeField]
+    public CharacterID boss_character;
+
     //プレイヤーのスクリプトを呼び出だす。
     #endregion
     private void Awake()
@@ -111,5 +118,38 @@ public class GameManagement : MonoBehaviour
                 break;
         }
         return EnemyHP;
+    }
+
+    //Boss
+    public int Boss_Atk(int PlayerHP, int Damage)　//プレイヤーにダメージ(Bossから
+    {
+        switch (boss_character)
+        {
+            //剣士
+            case CharacterID.Swordsman:
+                switch (Atk)
+                {
+                    case AtkID.Atk1:
+                        PlayerHP -= Damage;
+                        break;
+                    case AtkID.Atk2:
+                        PlayerHP -= Damage;
+                        break;
+                }
+                break;
+            //アーチャー
+            case CharacterID.Bowman:
+                switch (Atk)
+                {
+                    case AtkID.Atk1:
+                        PlayerHP -= Damage;
+                        break;
+                    case AtkID.Atk2:
+                        PlayerHP -= Damage;
+                        break;
+                }
+                break;
+        }
+        return PlayerHP;
     }
 }

@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Sword : MonoBehaviour
+public class Boss_Bowman : MonoBehaviour
 {
-    private Animator boss_anim_sword;
+    private Animator boss_anim_Bowman;
 
     [SerializeField]
-    Animator boss_animSword;
+    Animator boss_animBowman;
     [SerializeField]
-    GameObject boss_sword;
+    GameObject boss_Bowman;
     [SerializeField]
-    private float boss_ct_atack1_Sword,
-     boss_ct_atack2_Sword;
+    private float boss_ct_atack1,
+     boss_ct_atack2;
 
-    private bool boss_slashAble = true;
-    private bool boss_thrustAble = true;
+    private bool boss_arrowAble = true;
+    private bool boss_firearrowAble = true;
 
     //çUåÇêßå‰
     //çUåÇëIë
-    private float Boss_random_Atk_Sword = 0;
+    private float Boss_random_Atk_Bowman = 0;
 
     //ÉNÅ[ÉãÉ^ÉCÉÄóp
     private float Boss_Cool_time = 0;
@@ -30,7 +30,7 @@ public class Boss_Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        boss_anim_Bowman = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,8 +45,8 @@ public class Boss_Sword : MonoBehaviour
             if (Boss_Atk_time <= Boss_Cool_time)
             {
                 Boss_Cool_time = 0;
-                Boss_random_Atk_Sword = Random.Range(1, 3);
-                switch (Boss_random_Atk_Sword)
+                Boss_random_Atk_Bowman = Random.Range(1, 3);
+                switch (Boss_random_Atk_Bowman)
                 {
                     case 1:
                         Boss_Atk1();
@@ -59,62 +59,63 @@ public class Boss_Sword : MonoBehaviour
         }
     }
 
-    //éaåÇ
     public void Boss_Atk1()
     {
-        if (boss_slashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
+        GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+        //PÇâüÇ∑Ç∆í èÌã|çUåÇ
+        if (boss_arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
-            boss_slashAble = false;
+            boss_arrowAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
             var swordman_judge = Boss_Control.boss_atack_judge;
             if (swordman_judge == 1)
             {
-                boss_anim_sword.SetTrigger("Slash");
-                boss_animSword.SetTrigger("Slash2");
-                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
+                boss_anim_Bowman.SetTrigger("Arrow");
+                boss_animBowman.SetTrigger("Arrow2");
+                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
+                //.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
             }
             //slashable = false;
         }
     }
 
-    //ìÀÇ´
     public void Boss_Atk2()
     {
-        if (boss_thrustAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
+        if (boss_firearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
-            boss_thrustAble = false;
+            boss_firearrowAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
             var swordman_judge = Boss_Control.boss_atack_judge;
             if (swordman_judge == 1)
             {
-                boss_anim_sword.SetTrigger("Thrust");
-                boss_animSword.SetTrigger("Thrust2");
+                boss_anim_Bowman.SetTrigger("Thrust");
+                boss_animBowman.SetTrigger("Thrust2");
+                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
+                //.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack2());
             }
         }
     }
+
     private IEnumerator TagReset()
     {
         yield return new WaitForSeconds(1f);
-        boss_sword.tag = "Sword";
+        boss_Bowman.tag = "Arrow";
     }
-
     IEnumerator Atack1()
     {
-        yield return new WaitForSeconds(boss_ct_atack1_Sword);
+        yield return new WaitForSeconds(boss_ct_atack1);
         Boss_ Boss = GetComponent<Boss_>();
         Boss.Boss_atacking = true;
-        boss_slashAble = true;
+        boss_arrowAble = true;
     }
 
     IEnumerator Atack2()
     {
-        yield return new WaitForSeconds(boss_ct_atack2_Sword);
+        yield return new WaitForSeconds(boss_ct_atack2);
         Boss_ Boss_Contorol = GetComponent<Boss_>();
         Boss_Contorol.Boss_atacking = true;
-        boss_thrustAble = true;
+        boss_firearrowAble = true;
     }
 }
-

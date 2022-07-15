@@ -152,7 +152,60 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &913862662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913862664}
+  - component: {fileID: 913862663}
+  m_Layer: 0
+  m_Name: gm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &913862663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913862662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfb5fde97fe43f45af7b0384e5e624a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerHP: 0
+  PlayerMP: 0
+  PlayerOrb: 0
+  PlayerCharacter: 0
+  Character: 0
+  Map: 0
+  Atk: 0
+  BossCharacter: 0
+  boss_character: 0
+--- !u!4 &913862664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913862662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.66327417, y: 1.1015615, z: 0.025946407}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &983553451
 GameObject:
@@ -168,7 +221,7 @@ GameObject:
   - component: {fileID: 983553453}
   - component: {fileID: 983553452}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,7 +337,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &997711853
 GameObject:
@@ -364,7 +417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997711853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.55, y: 1.1864278, z: 4.0575957}
+  m_LocalPosition: {x: 2.39, y: -2.85, z: 4.0575957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -429,7 +482,7 @@ GameObject:
   - component: {fileID: 1525037929}
   - component: {fileID: 1525037928}
   - component: {fileID: 1525037927}
-  - component: {fileID: 1525037930}
+  - component: {fileID: 1525037933}
   - component: {fileID: 1525037932}
   - component: {fileID: 1525037931}
   m_Layer: 0
@@ -497,29 +550,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525037925}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.19, y: -2.67, z: 4.0575957}
+  m_LocalPosition: {x: 4.82, y: -2.97, z: 4.0575957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1525037930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525037925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e59510e38278bc541ba4f0efddfc9337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Range_Player: {fileID: 997711853}
-  Range_Boos: {fileID: 1525037925}
-  Range_Time: 2
-  Range_Change: 10
 --- !u!61 &1525037931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -561,12 +598,39 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &1525037933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525037925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e339a817061d1d4c94378c7ac0b68df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boss_HP: 100
+  Boss_Atk1: 10
+  Boss_Atk2: 20
+  Range_Player: {fileID: 997711853}
+  Range_Boss: {fileID: 1525037925}
+  Range_Time: 2
+  Range_Change: 3
+  boss_x_speed: 1
+  boss_changechara: 0
+  boss_atack_judge: 0
+  Boss_Damage: 0
+  Boss_hp_half: 0
+  Boss_atacking: 0
+  Invincible: 0
+  Invincible_Time: 3
 --- !u!1 &1730602279
 GameObject:
   m_ObjectHideFlags: 0
