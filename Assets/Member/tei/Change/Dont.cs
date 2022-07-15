@@ -40,7 +40,7 @@ public class Dont : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().name == "GameOver")
+        if (SceneManager.GetActiveScene().name == "GameOver" || SceneManager.GetActiveScene().name == "GameClear")
         {
             Destroy(this.gameObject);
         }
