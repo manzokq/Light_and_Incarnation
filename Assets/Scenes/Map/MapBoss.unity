@@ -365,7 +365,7 @@ MonoBehaviour:
   Map: 0
   Atk: 0
   BossCharacter: 0
-  boss_character: 0
+  Boss_character: 0
 --- !u!4 &633950228
 Transform:
   m_ObjectHideFlags: 0
@@ -48038,10 +48038,10 @@ MonoBehaviour:
   Boss_HP: 0
   Boss_Atk1: 0
   Boss_Atk2: 0
+  boss_x_speed: 5
   Range_Time: 0
   Range_Change: 0
   Player: {fileID: 0}
-  boss_x_speed: 5
   boss_changechara: 0
   boss_atack_judge: 0
   Boss_Damage: 0
