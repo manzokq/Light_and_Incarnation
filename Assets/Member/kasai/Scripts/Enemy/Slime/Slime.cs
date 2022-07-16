@@ -20,7 +20,7 @@ public class Slime : Enemy
     private GameObject poisonobj = null;    
     private GameObject chargeobj = null;    
 
-    private bool inCamera;
+    //private bool inCamera;
 
     private bool process = false;//これがtrueの間は別の処理を実行しない
     [SerializeField] private float _recastTime=3.0f;//攻撃の周期
@@ -57,15 +57,16 @@ public class Slime : Enemy
         //    MoveFragSwitch(true);
         //    Debug.Log("おした");
         //}
-        if (inCamera)
-        {
-            StartCoroutine(AtkChoices());
+        //if (inCamera)
+        //{
+        //    StartCoroutine(AtkChoices());
 
-        }
-        else
-        {
-            MoveFragSwitch(false);
-        }
+        //}
+        //else
+        //{
+        //    MoveFragSwitch(false);
+        //}
+        StartCoroutine(AtkChoices());
     }
 
     public IEnumerator AtkChoices() 
@@ -148,13 +149,13 @@ public class Slime : Enemy
     }
 
     //カメラ内にいるかどうかの処理(レンダラーコンポーネントが必要)
-    private void OnBecameInvisible()
-    {
-        inCamera = false;
-    }
-    private void OnBecameVisible()
-    {
-        inCamera = true;
-    }
+    //private void OnBecameInvisible()
+    //{
+    //    inCamera = false;
+    //}
+    //private void OnBecameVisible()
+    //{
+    //    inCamera = true;
+    //}
 
 }
