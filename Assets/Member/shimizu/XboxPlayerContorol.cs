@@ -63,7 +63,7 @@ public class XboxPlayerContorol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(atack_judge_con);
+        //Debug.Log(atack_judge_con);
         //待機モーション
         if (rbody.velocity.x < 0.1f && rbody.velocity.x > -0.1f)
         {
@@ -188,7 +188,7 @@ public class XboxPlayerContorol : MonoBehaviour
         
         if (view_button < 0 && beforeTrigger == 0) //つまりLT入力
         {
-            Debug.Log("aaa");
+            //Debug.Log("aaa");
             changechara++;
             if (changechara > 2)
             {
@@ -220,7 +220,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 changeatack = 0;
             }
             GameManagement.Instance.Atk = (GameManagement.AtkID)Enum.ToObject(typeof(GameManagement.AtkID), changeatack);
-            Debug.Log(GameManagement.Instance.Atk);
+            //Debug.Log(GameManagement.Instance.Atk);
         }
 
         //接地判定と接壁判定
@@ -300,7 +300,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 sliding_judge = false;
                 head_sliding = true;
                 //sliding_anim.SetTrigger("Sliding");
-                Debug.Log("スライディング");
+                //Debug.Log("スライディング");
                 //右向き
                 if (rbody.velocity.x > 0)
                 {
@@ -445,7 +445,7 @@ public class XboxPlayerContorol : MonoBehaviour
             //壁から離れたとき終了
             if(!isWallright)
             {
-                Debug.Log("破棄");
+                //Debug.Log("破棄");
                 coroutine_able = true;
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
@@ -500,7 +500,7 @@ public class XboxPlayerContorol : MonoBehaviour
     }
     IEnumerator NonSliContinue()
     {
-        Debug.Log("aaaaaaaaaaaaa");
+        //Debug.Log("aaaaaaaaaaaaa");
         yield return new WaitForSeconds(0.2f);
         gilranim.SetBool("GirlSliding1", true);
         gilranim.SetBool("GirlSliding2", true);
@@ -529,7 +529,7 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         if (other.CompareTag("Tunnel"))
         {
-            Debug.Log("Enter!");
+            //Debug.Log("Enter!");
             slidingContinue = true;
             rbody.AddForce(new Vector2(50, 0));
             gilranim.SetTrigger("GirlSliding1");
@@ -540,7 +540,7 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         if (other.CompareTag("Tunnel"))
         {
-            Debug.Log("Stay!");
+            //Debug.Log("Stay!");
             if (rbody.velocity.x > 0)
             {
                 rbody.velocity = new Vector2(5, 0);
@@ -557,7 +557,7 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         if (other.CompareTag("Tunnel"))
         {
-            Debug.Log("Exit!");
+            //Debug.Log("Exit!");
             gilranim.SetBool("GirlSliding2", true);
             sliding_judge = true;
             head_sliding = false;

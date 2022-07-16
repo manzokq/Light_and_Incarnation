@@ -103,7 +103,7 @@ public class ArcherAtack : MonoBehaviour
         //í èÌã|çUåÇ
         if (Input.GetKeyDown("joystick button 1") && arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
-            Debug.Log("í èÌ");
+            //Debug.Log("í èÌ");
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
             if (archer_judge == 2)
@@ -157,7 +157,7 @@ public class ArcherAtack : MonoBehaviour
             if (archer_judge == 2)
             {
                 xboxPlayerContorol.xatacking = true;
-                Debug.Log("ì¡éÍçUåÇ");
+                //Debug.Log("ì¡éÍçUåÇ");
                 arrow.tag = "LongBow";
                 anim.SetTrigger("LongBow");
                 animArcher.SetTrigger("LongBow2");

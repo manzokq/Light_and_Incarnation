@@ -38,8 +38,8 @@ public class ZombieAT : MonoBehaviour
 
         if (currentTime > span)
         {
-            Debug.Log("3秒");
-            Debug.Log(wait);
+            //Debug.Log("3秒");
+            //Debug.Log(wait);
             StartCoroutine(als());
             currentTime = 0f;
         }
@@ -49,7 +49,7 @@ public class ZombieAT : MonoBehaviour
        
         if (col.CompareTag("Player") == true)
         {
-            Debug.LogWarning("プレイヤー検知できるかな");
+            //Debug.LogWarning("プレイヤー検知できるかな");
             wait = true;
             StartCoroutine(als());
         }
@@ -70,13 +70,13 @@ public class ZombieAT : MonoBehaviour
             {
                 wait = false;
                 int dm = Random.Range(0, 2);
-                Debug.Log(dm);
+                //Debug.Log(dm);
                 zombie.MoveFragSwitch(false);
                 if (dm == 0)
                 {
                 //Debug.Log("a");
                 zombie.ATKAnim1();
-                 Debug.Log(8);
+                 //Debug.Log(8);
                 GameManagement.Instance.PlayerDamage(Atk1);//体力を減らす
 
             }
@@ -86,7 +86,7 @@ public class ZombieAT : MonoBehaviour
 
                 yield return new WaitForSecondsRealtime(3);
                 zombie.ATKAnim2();
-                Debug.Log(20);
+                //Debug.Log(20);
                 GameManagement.Instance.PlayerDamage(Atk2);//体力を減らす
             }
                 GetComponent<CapsuleCollider2D>().enabled = false;

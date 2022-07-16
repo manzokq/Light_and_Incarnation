@@ -92,7 +92,7 @@ public class PlayerControl : MonoBehaviour
             }
             else if (atack_judge == 2)
             {
-                Debug.Log("ArcherRun");
+                //Debug.Log("ArcherRun");
                 archeranim.SetBool("ArcherMove", true);
             }
         }
@@ -302,11 +302,11 @@ public class PlayerControl : MonoBehaviour
         {
             if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
             {
-                Debug.Log("アーチャーすらい");
+                //Debug.Log("アーチャーすらい");
                 sliding_judge = false;
                 head_sliding = true;
                 //sliding_anim.SetTrigger("Sliding");
-                Debug.Log("スライディング");
+                //Debug.Log("スライディング");
                 //右向き
                 if (rbody.velocity.x > 0)
                 {
@@ -347,11 +347,11 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        Debug.Log(isWallright);
+        //Debug.Log(isWallright);
         //壁登り
         if (isWallright && coroutine_able && Input.GetKeyDown(KeyCode.RightShift))
         {
-            Debug.Log("壁登り");
+            //Debug.Log("壁登り");
             coroutine_able = false;
             if (atack_judge == 0)
             {
@@ -460,7 +460,7 @@ public class PlayerControl : MonoBehaviour
             //壁から離れたとき終了
             if (!isWallright)
             {
-                Debug.Log("破棄");
+                //Debug.Log("破棄");
                 coroutine_able = true;
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
@@ -523,7 +523,7 @@ public class PlayerControl : MonoBehaviour
     }
     IEnumerator NonSliContinue()
     {
-        Debug.Log("aaaaaaaaaaaaa");
+        //Debug.Log("aaaaaaaaaaaaa");
         yield return new WaitForSeconds(0.2f);
         gilranim.SetBool("GirlSliding1",true);
         gilranim.SetBool("GirlSliding2",true);
@@ -547,7 +547,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.CompareTag("Tunnel"))
         {
-            Debug.Log("Enter!");
+            //Debug.Log("Enter!");
             slidingContinue = true;
             rbody.AddForce(new Vector2(50, 0));
             gilranim.SetBool("GirlSliding1",true);
@@ -559,7 +559,7 @@ public class PlayerControl : MonoBehaviour
         
         if (other.CompareTag("Tunnel"))
         {
-            Debug.Log("Stay!");
+            //Debug.Log("Stay!");
             if (rbody.velocity.x > 0)
             {
                 rbody.velocity = new Vector2(5, 0);
@@ -576,7 +576,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.CompareTag("Tunnel"))
         {
-            Debug.Log("Exit!");
+            //Debug.Log("Exit!");
             gilranim.SetBool("GirlSliding2",true);
             sliding_judge = true;
             head_sliding = false;

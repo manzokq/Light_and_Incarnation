@@ -69,7 +69,7 @@ public class GameManagement : MonoBehaviour
 
         if(PlayerHP<=0)
         {
-            Debug.LogError("プレイヤーが死んだ");
+            Debug.Log("プレイヤーが死んだ");
             SceneManager.LoadScene("GameOver");
         }
         

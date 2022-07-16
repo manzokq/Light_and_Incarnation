@@ -42,6 +42,6 @@ public class kariHP : MonoBehaviour
 
 
 
-        Debug.Log(enemyHP);
+        //Debug.Log(enemyHP);
     }
 }
