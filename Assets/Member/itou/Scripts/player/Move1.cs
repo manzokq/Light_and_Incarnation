@@ -51,10 +51,10 @@ public class Move1 : MonoBehaviour
             switch (num)
             {
                 case 1:
-                    SceneManager.LoadScene("Map1");
+                    SceneManager.LoadScene("MapTutorial");
                     break;
                 case 2:
-                    SceneManager.LoadScene("MapBoss");
+                    SceneManager.LoadScene("MapTutorial");
                     break;
                 case 3:
                 #if UNITY_EDITOR

@@ -25,12 +25,9 @@ public class CharacterSwitching : MonoBehaviour
                         break;
                     case GameManagement.CharacterID.Bowman:
                         imege1.GetComponent<Image>().sprite = CharacterImage[2];
-                        imege2.GetComponent<Image>().sprite = CharacterImage[3];
-                        break;
-                    case GameManagement.CharacterID.Wizard:
-                        imege1.GetComponent<Image>().sprite = CharacterImage[3];
                         imege2.GetComponent<Image>().sprite = CharacterImage[1];
                         break;
+                  
                 }
                 break;
             case GameManagement.CharacterID.Swordsman:
@@ -42,12 +39,9 @@ public class CharacterSwitching : MonoBehaviour
                         break;
                     case GameManagement.CharacterID.Bowman:
                         imege1.GetComponent<Image>().sprite = CharacterImage[2];
-                        imege2.GetComponent<Image>().sprite = CharacterImage[3];
-                        break;
-                    case GameManagement.CharacterID.Wizard:
-                        imege1.GetComponent<Image>().sprite = CharacterImage[3];
                         imege2.GetComponent<Image>().sprite = CharacterImage[0];
                         break;
+                 
                 }
                 break;
             case GameManagement.CharacterID.Bowman:
@@ -59,31 +53,12 @@ public class CharacterSwitching : MonoBehaviour
                         break;
                     case GameManagement.CharacterID.Swordsman:
                         imege1.GetComponent<Image>().sprite = CharacterImage[1];
-                        imege2.GetComponent<Image>().sprite = CharacterImage[3];
-                        break;
-                    case GameManagement.CharacterID.Wizard:
-                        imege1.GetComponent<Image>().sprite = CharacterImage[3];
                         imege2.GetComponent<Image>().sprite = CharacterImage[0];
                         break;
+                    
                 }
                 break;
-            case GameManagement.CharacterID.Wizard:
-                switch (GameManagement.Instance.Character)
-                {
-                    case GameManagement.CharacterID.Girl:
-                        imege1.GetComponent<Image>().sprite = CharacterImage[0];
-                        imege2.GetComponent<Image>().sprite = CharacterImage[1];
-                        break;
-                    case GameManagement.CharacterID.Swordsman:
-                        imege1.GetComponent<Image>().sprite = CharacterImage[1];
-                        imege2.GetComponent<Image>().sprite = CharacterImage[2];
-                        break;
-                    case GameManagement.CharacterID.Bowman:
-                        imege1.GetComponent<Image>().sprite = CharacterImage[2];
-                        imege2.GetComponent<Image>().sprite = CharacterImage[0];
-                        break;
-                }
-                break;
+          
         }
     }
 

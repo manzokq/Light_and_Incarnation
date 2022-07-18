@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Animator Anim;
     public EnemyDate enemyDate;//EnemyDateから体力などの情報を呼んでくる
     protected string Name = null;
+    [SerializeField]
     protected int Hp = 0;
     protected int Atk1 = 0;
     protected int Atk2 = 0;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private bool _moveFrag = true;
 
+    //private bool movetest=false;
     
 
     public enum Direction
@@ -37,6 +39,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
+        //EnemyDataから各情報を代入
         Name = enemyDate.enemyName;
         Hp = enemyDate.hp;
         Atk1 = enemyDate.atk1;
@@ -61,8 +64,9 @@ public class Enemy : MonoBehaviour
         if(_moveFrag)
         {
            
-            Move();
+            Move();//移動処理の呼び出し
         }
+
         
     }
 
@@ -82,13 +86,13 @@ public class Enemy : MonoBehaviour
     public void Reverse()
     {//反転したいときこれを呼ぶ
         if(direction ==Direction.Right)
-        {//右の時左に
+        {//右を向いているときに左に向ける
             direction = Direction.Left;
             _direction =-1;
-            this.gameObject.transform.localRotation= Quaternion.Euler(0,-180,0);//オブジェクトの向き逆にしてる
+            this.gameObject.transform.localRotation= Quaternion.Euler(0,-180,0);//オブジェクトの向きを逆にする
         }
         else if(direction == Direction.Left)
-        {//逆
+        {//左を向いているときに右に向ける
             direction = Direction.Right;
             _direction = 1;
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -97,9 +101,9 @@ public class Enemy : MonoBehaviour
     }
     /// <summary>
     /// 動くかどうかのフラグを切り替える関数
-    /// デフォはtrue
+    /// デフォルトはtrue
     /// </summary>
-    public void MoveFragSwitch(bool move)
+    public void MoveFragSwitch(bool move)//移動するかをここで切り替える
     {
         if(!move)
         {
@@ -114,5 +118,14 @@ public class Enemy : MonoBehaviour
         }
         //_moveFrag ^= true;
         //Debug.Log("エネミーの移動フラグ"+_moveFrag);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)//エネミーの体力を減らす処理
+    {
+        if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword"))
+        {
+            Hp = GameManagement.Instance.PlayerAtk(Hp);
+            //Debug.LogWarning("腱に触れた");
+        }
     }
 }

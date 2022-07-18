@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManagement : MonoBehaviour
@@ -43,6 +44,13 @@ public class GameManagement : MonoBehaviour
     public MapID Map;
     [SerializeField]
     public AtkID Atk;
+
+    //Boss用
+    [SerializeField]
+    public CharacterID BossCharacter;
+    [SerializeField]
+    public CharacterID Boss_Character;
+
     //プレイヤーのスクリプトを呼び出だす。
     #endregion
     private void Awake()
@@ -59,8 +67,12 @@ public class GameManagement : MonoBehaviour
         //プレイヤーを呼び出す
         PlayerHP -= Damage;
 
-
-        Debug.Log(PlayerHP);
+        if(PlayerHP<=0)
+        {
+            Debug.Log("プレイヤーが死んだ");
+            SceneManager.LoadScene("GameOver");
+        }
+        
         //Player.Instance.PlayerHP -= Damage;
     }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ

@@ -16,14 +16,20 @@ public class ZombieAT : MonoBehaviour
     protected int Atk2 = 0;
     private void Start()
     {
-        
+        if(Circle==null)
+        {
+            foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
+            Circle = player;
+        }
+        Atk1 = enemyDate.atk1;
+        Atk2 = enemyDate.atk2;
     }
 
     private void Awake()
     {
         zombie = transform.parent.gameObject.GetComponent<Zombie>();
     }
-    bool G = false;
+    //bool G = false;
     bool wait = false;
     bool ATK = false;
     private void Update()
@@ -32,23 +38,25 @@ public class ZombieAT : MonoBehaviour
 
         if (currentTime > span)
         {
-            Debug.Log("3秒");
-            Debug.Log(wait);
+            //Debug.Log("3秒");
+            //Debug.Log(wait);
             StartCoroutine(als());
             currentTime = 0f;
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        //G = true;
+       
         if (col.CompareTag("Player") == true)
         {
+            //Debug.LogWarning("プレイヤー検知できるかな");
             wait = true;
+            StartCoroutine(als());
         }
     }
     private void OnTriggerExit2D(Collider2D col)
     {
-        G = false;
+        //G = false;
         wait = false;
         if (ATK)
         {
@@ -62,14 +70,15 @@ public class ZombieAT : MonoBehaviour
             {
                 wait = false;
                 int dm = Random.Range(0, 2);
-                Debug.Log(dm);
+                //Debug.Log(dm);
                 zombie.MoveFragSwitch(false);
                 if (dm == 0)
                 {
                 //Debug.Log("a");
                 zombie.ATKAnim1();
-                 Debug.Log(8);
+                 //Debug.Log(8);
                 GameManagement.Instance.PlayerDamage(Atk1);//体力を減らす
+                SEManager.Instance.Sound(SEManager.SoundState.Sound5);
 
             }
                 else if (dm == 1)
@@ -78,8 +87,9 @@ public class ZombieAT : MonoBehaviour
 
                 yield return new WaitForSecondsRealtime(3);
                 zombie.ATKAnim2();
-                Debug.Log(20);
+                //Debug.Log(20);
                 GameManagement.Instance.PlayerDamage(Atk2);//体力を減らす
+                SEManager.Instance.Sound(SEManager.SoundState.Sound5);
             }
                 GetComponent<CapsuleCollider2D>().enabled = false;
                 yield return new WaitForSecondsRealtime(2);

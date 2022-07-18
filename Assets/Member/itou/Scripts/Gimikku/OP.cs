@@ -10,7 +10,7 @@ public class OP : MonoBehaviour
     }
     public void Button()
     {
-        SceneManager.LoadScene("SampleScene");   
+        SceneManager.LoadScene("SampleScene");
     }
     // Update is called once per frame
     void Update()

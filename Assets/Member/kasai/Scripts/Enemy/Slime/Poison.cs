@@ -10,8 +10,8 @@ public class Poison : MonoBehaviour
     [SerializeField] private float _randMax = 1.0f;//倍率の最大値
     private float _magnification = 0;//実際にかかる倍率
     private int _poisonAtk; //magnification*atk
-    [SerializeField] private int _repeat = 0;
-    private bool _hit = false;
+    [SerializeField] private int _repeat = 0;//ダメージ処理の繰り返しの回数
+    private bool _hit = false;//ここがtrueの間ダメージ判定をつける
 
     public int atk=1;
     private void OnEnable()
@@ -27,7 +27,8 @@ public class Poison : MonoBehaviour
             _poisonAtk = (int)_magnification * atk;
             if (_hit)
             {
-
+                //SEを呼び出す
+                SEManager.Instance.Sound(SEManager.SoundState.Sound5);
                 GameManagement.Instance.PlayerDamage(_poisonAtk);//体力を減らす
                 
             }
@@ -44,7 +45,7 @@ public class Poison : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _hit = true;
-            Debug.Log(_poisonAtk + "ダメージ");
+            //Debug.Log(_poisonAtk + "ダメージ");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -52,7 +53,7 @@ public class Poison : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _hit = false;
-            Debug.Log("あたってないよ");
+            //Debug.Log("あたってないよ");
         }
     }
 }

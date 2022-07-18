@@ -29,7 +29,7 @@ public class kariHP : MonoBehaviour
             enemyHP -= 1;
 
             // 敵のHPが０になったら敵オブジェクトを破壊する。
-            if (enemyHP == 0)
+            if (enemyHP <= 0)
             {
 
                 // オブジェクトを破壊する
@@ -42,6 +42,6 @@ public class kariHP : MonoBehaviour
 
 
 
-        Debug.Log(enemyHP);
+        //Debug.Log(enemyHP);
     }
 }
