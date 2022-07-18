@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: f1619299f35d3c04d88a075c517c4752, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f1619299f35d3c04d88a075c517c4752, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -34541,6 +34545,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &1224296247 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4154788320770835423, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 1732272043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1305964947 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1244461880072627126, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 1732272043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1551947820
 GameObject:
   m_ObjectHideFlags: 0
@@ -46364,6 +46378,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 3.2150002
       objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204002, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -46464,6 +46482,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'chara '
       objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204004, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: archeranim
+      value: 
+      objectReference: {fileID: 1305964947}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: swordmananim
+      value: 
+      objectReference: {fileID: 1224296247}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
 --- !u!1 &1827891656
@@ -47496,11 +47530,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1956215778 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8957432067084204004, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
-  m_PrefabInstance: {fileID: 1732272043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2075502684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: fc5a216a0c998204eaf0bf1412db5815, type: 3}
@@ -47934,7 +47963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5476206978727027300
 RectTransform:
   m_ObjectHideFlags: 0
@@ -48100,7 +48129,7 @@ MonoBehaviour:
   boss_x_speed: 0
   Range_Time: 1
   Range_Change: 5
-  Player: {fileID: 1956215778}
+  Player: {fileID: 1615236606}
   boss_changechara: 0
   boss_atack_judge: 0
   Boss_Damage: 0
