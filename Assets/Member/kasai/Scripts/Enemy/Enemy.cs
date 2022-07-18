@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private bool _moveFrag = true;
 
-    private bool movetest=false;
+    //private bool movetest=false;
     
 
     public enum Direction

@@ -12,7 +12,7 @@ public class PlayerSearch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
+        //Debug.Log(collision.gameObject);
         if (collision.gameObject.CompareTag("Player"))
         {
             //Debug.Log("ƒvƒŒƒCƒ„[‚ÆÚG");
