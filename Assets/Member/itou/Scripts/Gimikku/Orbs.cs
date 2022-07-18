@@ -13,6 +13,8 @@ public class Orbs : MonoBehaviour
     void Start()
     {
         rend = GetComponent<Renderer>();
+
+
     }
 
     // Update is called once per frame
@@ -24,7 +26,8 @@ public class Orbs : MonoBehaviour
     {
         if (other.CompareTag("Player") == true)
         {
-            OrbScripts.PlayerOrb++;
+            GameManagement.Instance.PlayerOrb += 25;
+            //OrbScripts.PlayerOrb++;
             StartCoroutine(orbsreset());
             Orb.GetComponent<CircleCollider2D>().enabled = false;
             rend.enabled = false;
