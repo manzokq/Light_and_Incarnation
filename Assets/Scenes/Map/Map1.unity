@@ -71873,7 +71873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1945063865873875161, guid: 7a119bad3c71e6841860d08e8822648a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.98
+      value: -2.41
       objectReference: {fileID: 0}
     - target: {fileID: 1945063865873875161, guid: 7a119bad3c71e6841860d08e8822648a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85499,7 +85499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1439753968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85701,7 +85701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204002, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Pivot.x
@@ -85781,7 +85781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -316.14
+      value: 80.57
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -85805,7 +85805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
@@ -85988,11 +85988,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 818989335128746000, guid: 5fa504c793042f847abe1c7cdd60d0f5, type: 3}
       propertyPath: m_Size.x
-      value: 3.9535894
+      value: 3.9838953
       objectReference: {fileID: 0}
     - target: {fileID: 818989335128746000, guid: 5fa504c793042f847abe1c7cdd60d0f5, type: 3}
       propertyPath: m_Offset.x
-      value: 0.7172446
+      value: 0.73239756
       objectReference: {fileID: 0}
     - target: {fileID: 818989335128746001, guid: 5fa504c793042f847abe1c7cdd60d0f5, type: 3}
       propertyPath: m_Name
@@ -89972,7 +89972,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 7.1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
