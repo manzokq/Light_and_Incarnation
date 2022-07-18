@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)//エネミーの体力を減らす処理
     {
-        if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword"))
+        if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("Arrow"))
         {
             Hp = GameManagement.Instance.PlayerAtk(Hp);
             //Debug.LogWarning("腱に触れた");
