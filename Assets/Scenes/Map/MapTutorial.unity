@@ -596,7 +596,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8151049371767283450, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas UI
       objectReference: {fileID: 0}
     - target: {fileID: 8151049371767283454, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
       propertyPath: m_Pivot.x
@@ -27296,7 +27296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204002, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Pivot.x
@@ -27404,7 +27404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: moveSpeed

@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: exit2
-      value: Owari
+      value: GameClear
       objectReference: {fileID: 0}
     - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: gateNum
@@ -582,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &773587963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 1085404583}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34623,6 +34623,11 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!95 &1097533688 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4154788320770835423, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 1732272043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1147229611 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
@@ -46447,6 +46452,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 3.2150002
       objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204002, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -46551,6 +46560,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: archeranim
+      value: 
+      objectReference: {fileID: 2124422217}
+    - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: swordmananim
+      value: 
+      objectReference: {fileID: 1097533688}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
 --- !u!1 &1827891656
@@ -47705,3 +47726,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70b4021759648424093f5d289e57867e, type: 3}
+--- !u!95 &2124422217 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1244461880072627126, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+  m_PrefabInstance: {fileID: 1732272043}
+  m_PrefabAsset: {fileID: 0}
