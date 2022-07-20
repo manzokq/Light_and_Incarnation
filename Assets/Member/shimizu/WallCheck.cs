@@ -12,6 +12,7 @@ public class WallCheck : MonoBehaviour
 
     public bool IsWall()
     {
+        //Debug.Log(isWall);
         if (isWallEnter || isWallStay)
         {
             isWall = true;
