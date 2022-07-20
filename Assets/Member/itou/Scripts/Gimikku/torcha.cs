@@ -3,7 +3,8 @@ using UnityEngine;
  
 public class torcha : MonoBehaviour
 {
- 
+
+    torchb torch;
     // フロア内スイッチ数カウント保持
     protected uint _switchCount = 0;
     public bool flag = false;
@@ -26,6 +27,7 @@ public class torcha : MonoBehaviour
     protected virtual void Start()
     {
         _checkAreaSwitches();
+        torch= new torchb();
         // プレイヤーステータスを取得
         _State = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<CircleCollider2D>();
  
@@ -73,6 +75,12 @@ public class torcha : MonoBehaviour
         {
             flag = true;
            Debug.Log("Player entered!");
+        }
+        else
+        {
+            flag = false;
+            torch.on = false;
+            //Debug.Log("Riset");
         }
     }
 }

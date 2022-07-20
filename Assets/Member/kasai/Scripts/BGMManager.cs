@@ -44,6 +44,7 @@ public class BGMManager : MonoBehaviour
         }
         else
         {
+            
             Destroy(this.gameObject);
         }
         audioSource = GetComponent<AudioSource>();
