@@ -32,6 +32,11 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void Awake()//StartëOÇ…èàóù
     {
+
+    }
+
+    private void Start()
+    {
         SceneManager.sceneLoaded += OnSceneLoad;
 
         if (instance == null)
@@ -184,12 +189,14 @@ public class SceneChingPlayer : MonoBehaviour
             }
         }
 
-        gate = Gatenum.None;
+        
         if (gate == Gatenum.None && GameObject.FindWithTag("target") != null)
         {
             var target = GameObject.FindWithTag("target");
-            transform.position = target.gameObject.transform.position;
+            this.gameObject.transform.position = target.gameObject.transform.position;
         }
+
+        gate = Gatenum.None;
         /*
         if(Gate_Number!=0)
         {
