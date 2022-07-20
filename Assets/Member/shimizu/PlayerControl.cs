@@ -330,17 +330,17 @@ public class PlayerControl : MonoBehaviour
                 Debug.Log("Archerのスライディング");
                 sliding_judge = false;
                 head_sliding = true;
-                archeranim.SetBool("GirlSliding", true);
+                archeranim.SetBool("ArcherSliding", true);
                 StartCoroutine("DodgeTag");
                 if (rbody.velocity.x > 0)
                 {
-                    anim.SetBool("ArcherSliding", true);
+                    anim.SetBool("GirlSliding", true);
                     StartCoroutine(AngleRepairRightArcher());
 
                 }
                 if (rbody.velocity.x < 0)
                 {
-                    anim.SetBool("ArcherSlidingL", true);
+                    anim.SetBool("GirlSlidingL", true);
                     StartCoroutine(AngleRepairLeftArcher());
 
                 }

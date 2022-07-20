@@ -321,13 +321,13 @@ public class XboxPlayerContorol : MonoBehaviour
                 StartCoroutine("DodgeTag");
                 if (rbody.velocity.x > 0)
                 {
-                    anim.SetBool("ArcherSliding", true);
+                    anim.SetBool("GirlSliding", true);
                     StartCoroutine(AngleRepairRightArcher());
 
                 }
                 if (rbody.velocity.x < 0)
                 {
-                    anim.SetBool("ArcherSlidingL", true);
+                    anim.SetBool("GirlSlidingL", true);
                     StartCoroutine(AngleRepairLeftArcher());
 
                 }
