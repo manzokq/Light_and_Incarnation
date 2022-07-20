@@ -377,13 +377,14 @@ public class PlayerControl : MonoBehaviour
             if (atack_judge == 0)
             {
                 gilranim.SetBool("GirlClimb", true);
+                StartCoroutine("Climb");
             }
             else if (atack_judge == 1)
             {
                 swordmananim.SetBool("SwordClimb", true);
+                StartCoroutine("Climb");
             }
             
-            StartCoroutine("Climb");
         }
 
     }
