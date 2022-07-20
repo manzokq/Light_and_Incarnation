@@ -7,7 +7,8 @@ public class torchb : MonoBehaviour
     // 自身の保持ナンバー
     [SerializeField]
     private uint myNumber = 0;
-    bool on = false;
+    [HideInInspector]
+    public bool on = false;
  
     // 親に通知のため
     private torcha _SwitchManager;
