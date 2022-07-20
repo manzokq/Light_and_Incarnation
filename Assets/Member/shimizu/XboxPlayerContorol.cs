@@ -356,21 +356,24 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //•Ç“o‚è
-        if (isWallright && coroutine_able &&Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl || GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Swordsman)
         {
-            coroutine_able = false;
-            if (atack_judge_con == 0)
+            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
             {
-                gilranim.SetBool("GirlClimb", true);
-                StartCoroutine("Climb");
+                coroutine_able = false;
+                if (atack_judge_con == 0)
+                {
+                    gilranim.SetBool("GirlClimb", true);
+                    StartCoroutine("Climb");
+                }
+                else if (atack_judge_con == 1)
+                {
+                    swordmananim.SetBool("SwordClimb", true);
+                    StartCoroutine("Climb");
+                }
+
+
             }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordClimb", true);
-                StartCoroutine("Climb");
-            }
-            
-            
         }
 
 
