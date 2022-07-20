@@ -27275,6 +27275,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 3.755
       objectReference: {fileID: 0}
+    - target: {fileID: 1757285308335443631, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3171259733159700788, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: 0.00000011920929
@@ -27354,6 +27358,10 @@ PrefabInstance:
     - target: {fileID: 7317849923054724591, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 3.2150002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613288355944372645, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204002, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Enabled
