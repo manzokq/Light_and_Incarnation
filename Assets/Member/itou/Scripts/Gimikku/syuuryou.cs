@@ -13,7 +13,7 @@ public class syuuryou : MonoBehaviour
     // Update is called once per frame
    　public　void button()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
 
         Application.Quit();
     }

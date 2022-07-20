@@ -2135,11 +2135,11 @@ MonoBehaviour:
   PlayerMP: 38
   PlayerOrb: 34
   PlayerCharacter: 0
-  Character: 0
+  Character: 1
   Map: 0
   Atk: 0
   BossCharacter: 0
-  Boss_Character: 0
+  Boss_Character: 1
 --- !u!4 &937689323
 Transform:
   m_ObjectHideFlags: 0
@@ -27465,7 +27465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: moveSpeed
