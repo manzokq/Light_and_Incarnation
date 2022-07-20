@@ -404,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4dffd66b10bc4479008aa1e553051b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  num: 1
 --- !u!212 &76886609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -619,7 +620,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start
+  m_Text: Tutorial
 --- !u!222 &271770285
 CanvasRenderer:
   m_ObjectHideFlags: 0
