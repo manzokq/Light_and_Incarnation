@@ -169,8 +169,6 @@ public class Boss_ : MonoBehaviour
         //GetComponent<BoxCollider>().enabled = true;
         Invincible = false;
         Debug.Log("ñ≥ìGèIóπ");
-
-
         Avoidance = false;
     }
 
@@ -341,5 +339,6 @@ public class Boss_ : MonoBehaviour
                 break;
         }
         Range_Check = true;
+        Avoidance = false;
     }
 }
