@@ -25,13 +25,13 @@ public class Move1 : MonoBehaviour
         //Time.deltaTimeは前回のフレームからの経過秒数
         //this.transform.Translate(new Vector3 (-5f * Time.deltaTime,0f,0f));
         //↑キーが押された時
-        if (Input.GetKeyDown(KeyCode.UpArrow)&&Input.GetAxis("L_Stick_H") > 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow)||Input.GetAxis("L_Stick_H") > 0)
         {
             this.transform.Translate(new Vector3(0f, 1.25f, 0f));
             num -= 1;
         }
         //↓キーが押された時
-        if (Input.GetKeyDown(KeyCode.DownArrow) && Input.GetAxis("L_Stick_H") < 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("L_Stick_H") < 0)
         {
             this.transform.Translate(new Vector3(0f, -1.25f, 0f));
             num += 1;
@@ -51,7 +51,7 @@ public class Move1 : MonoBehaviour
            this.transform.Translate(new Vector3 (0f,-0.45f,0f));
            num+=1;
         }*/
-        if (Input.GetKeyDown(KeyCode.Return)&& Input.GetKeyDown("joystick button 1"))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 1"))
         {
             switch (num)
             {
