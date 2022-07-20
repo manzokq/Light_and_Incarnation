@@ -550,10 +550,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xboxPlayer: {fileID: 0}
-  PlayerHP: 88
-  PlayerMP: 66
+  PlayerHP: 100
+  PlayerMP: 100
   PlayerOrb: 64
-  PlayerCharacter: 0
+  PlayerCharacter: 1
   Character: 0
   Map: 0
   Atk: 0
@@ -48578,7 +48578,7 @@ RectTransform:
   - {fileID: 1596317705}
   - {fileID: 96744459}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
