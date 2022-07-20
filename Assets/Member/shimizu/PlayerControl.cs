@@ -321,10 +321,14 @@ public class PlayerControl : MonoBehaviour
             Jump2();
         }
 
+        Debug.Log(sliding_judge);
+        Debug.Log(coroutine_able);
+        Debug.Log(isGround);
 
         //スライディング
         if (Input.GetKeyDown(KeyCode.LeftShift) && isGround && coroutine_able && rbody.velocity.x != 0 && sliding_judge)
         {
+            
             if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
             {
                 Debug.Log("Archerのスライディング");
