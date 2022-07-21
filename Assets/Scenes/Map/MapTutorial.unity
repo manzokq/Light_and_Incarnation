@@ -2135,8 +2135,8 @@ MonoBehaviour:
   PlayerHP: 100
   PlayerMP: 100
   PlayerOrb: 0
-  PlayerCharacter: 1
-  Character: 0
+  PlayerCharacter: 0
+  Character: 1
   Map: 0
   Atk: 0
   BossCharacter: 0
@@ -2248,11 +2248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306167592718203810, guid: e611fad4d271ee64d85cc76604f0456a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.23
+      value: 39.49
       objectReference: {fileID: 0}
     - target: {fileID: 306167592718203810, guid: e611fad4d271ee64d85cc76604f0456a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2728993
+      value: -1.43
       objectReference: {fileID: 0}
     - target: {fileID: 306167592718203810, guid: e611fad4d271ee64d85cc76604f0456a, type: 3}
       propertyPath: m_LocalPosition.z
