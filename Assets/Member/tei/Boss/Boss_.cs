@@ -146,7 +146,7 @@ public class Boss_ : MonoBehaviour
     //ƒ_ƒ[ƒW
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Arrow"))
+        if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("Arrow"))
         {
             Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
             Debug.Log("UŒ‚‚ğó‚¯‚½");
