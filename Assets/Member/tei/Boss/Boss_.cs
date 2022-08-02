@@ -146,7 +146,7 @@ public class Boss_ : MonoBehaviour
     //ダメージ
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Arrow"))
+        if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("Arrow"))
         {
             Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
             Debug.Log("攻撃を受けた");
@@ -169,8 +169,6 @@ public class Boss_ : MonoBehaviour
         //GetComponent<BoxCollider>().enabled = true;
         Invincible = false;
         Debug.Log("無敵終了");
-
-
         Avoidance = false;
     }
 
@@ -341,5 +339,6 @@ public class Boss_ : MonoBehaviour
                 break;
         }
         Range_Check = true;
+        Avoidance = false;
     }
 }

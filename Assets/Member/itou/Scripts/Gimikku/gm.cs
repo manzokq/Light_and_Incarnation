@@ -12,7 +12,7 @@ public class gm : MonoBehaviour
     // Update is called once per frame
     public void Button()
    {
-    SceneManager.LoadScene("OP");
+    SceneManager.LoadScene("GameOP");
         Time.timeScale = 1f;
     }
 

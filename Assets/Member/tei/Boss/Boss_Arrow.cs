@@ -32,7 +32,7 @@ public class Boss_Arrow : MonoBehaviour
 
         GameManagement.Instance.PlayerDamage(Boss_Archer_Atk2); 
 
-        Debug.LogWarning("エネミーにダメージ");
+        Debug.LogWarning("プレイヤーにダメージ");
         cooltime = false;
         StartCoroutine(CoolTime());
         GameManagement.Instance.PlayerAtk(hp);

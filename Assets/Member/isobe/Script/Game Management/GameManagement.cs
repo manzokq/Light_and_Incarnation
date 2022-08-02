@@ -28,13 +28,18 @@ public class GameManagement : MonoBehaviour
         Atk3
     }
     #region 初期化  
+    private static int playerHp;
+    private static int playerMp;
+    private static int playerOrb;
+    [SerializeField]
+    XboxPlayerContorol xboxPlayer;
     public static GameManagement Instance { get => _instance; }
     static GameManagement _instance;
     [SerializeField, Range(0, 100)]
     public int PlayerHP;
     [SerializeField, Range(0, 100)]
     public int PlayerMP;
-    [SerializeField, Range(0, 100)]
+
     public int PlayerOrb;
     [SerializeField]
     public CharacterID PlayerCharacter;
@@ -62,17 +67,51 @@ public class GameManagement : MonoBehaviour
 
 
     }
+    private void Start()
+    {
+        PlayerHP = playerHp;
+        PlayerMP = playerMp;
+        PlayerOrb = playerOrb;
+        var xbox = GameObject.FindGameObjectWithTag("Player");
+        xboxPlayer =xbox.GetComponent<XboxPlayerContorol>();
+        StartCoroutine(GetOrb());
+        Application.targetFrameRate = 60;
+    }
+    private void Update()
+    {
+        playerHp = PlayerHP;
+        playerMp = PlayerMP;
+        playerOrb = PlayerOrb;
+    }
+    //Orb回復
+    IEnumerator GetOrb()
+    {
+        while (true)
+        {
+            if (PlayerOrb <= 100)
+            {
+                //Debug.Log("");
+                PlayerOrb += 1;
+                if (PlayerOrb >= 100)
+                    PlayerOrb = 100;
+            }
+            playerOrb = PlayerOrb;
+            yield return new WaitForSeconds(1f);
+        }
+    }
     public void PlayerDamage(int Damage) //プレイヤーにダメージ
     {
         //プレイヤーを呼び出す
         PlayerHP -= Damage;
+        playerHp = PlayerHP;
+        xboxPlayer.ReturnGirlKey();
 
-        if(PlayerHP<=0)
+        if (PlayerHP <= 0)
         {
             Debug.Log("プレイヤーが死んだ");
             SceneManager.LoadScene("GameOver");
         }
-        
+
         //Player.Instance.PlayerHP -= Damage;
     }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ
@@ -124,4 +163,5 @@ public class GameManagement : MonoBehaviour
         }
         return EnemyHP;
     }
+    //MP追加予定
 }
