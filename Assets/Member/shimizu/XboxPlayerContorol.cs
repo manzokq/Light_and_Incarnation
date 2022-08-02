@@ -639,6 +639,24 @@ public class XboxPlayerContorol : MonoBehaviour
     }
     public void ReturnGirlKey()
     {
+
+
+
+        switch (GameManagement.Instance.PlayerCharacter)
+        {
+            case GameManagement.CharacterID.Swordsman:
+                GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+               
+                break;
+            case GameManagement.CharacterID.Bowman:
+                GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+              
+                break;
+          
+        }
+        GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
+        changechara = 0;
+        atack_judge_con = 0;
         anim.SetBool("changeWitch", false);
         anim.SetBool("changeSwordman", false);
         anim.SetBool("changeArcher", false);
