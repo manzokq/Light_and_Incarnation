@@ -77,74 +77,16 @@ public class SceneChingPlayer : MonoBehaviour
         {
             door = collision.gameObject;
             GetExit();
+            Change();
         }
-        /*
-        if (collision.gameObject.name == ("Gate1"))
-        {
-            
-            Gate_Number = 1;
-           
-            if (SceneManager.GetActiveScene().name != "Map1")
-            {
-               
-                SceneManager.LoadScene("Map1");
-            }
-            else
-            {
-                
-                SceneManager.LoadScene("MapTutorial");
-            }
-            
-        }
-        //
-        if (collision.gameObject.name == ("Gate2"))
-        {
-            Gate_Number = 2;
-            if (SceneManager.GetActiveScene().name != "Map1")
-            {
-               
-                SceneManager.LoadScene("Map1");
-            }
-            else
-            {
-                SceneManager.LoadScene("MapTutorial");
-            }
-        }
-        //2から3へ
-        if (collision.gameObject.name == ("Gate3"))
-        {
-            Gate_Number = 3;
 
-            
-            SceneManager.LoadScene("MapBoss");
-        }
-        //3から1へ
-        if (collision.gameObject.name == ("Gate4"))
-        {
-           
-            Gate_Number = 4;
-            SceneManager.LoadScene("tei_tesuto_1");
-        }
-        //1から3へ
-        if (collision.gameObject.name == ("Gate5"))
-        {
-            
-            Gate_Number = 5;
-            SceneManager.LoadScene("tei_tesuto_3");
-        }*/
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         gate = Gatenum.None;
     }
-    /*
-    //記憶した数値をゲートに渡す
-    public static int Player_gate()
-    {
-        return Gate_Number;
-    }
-    */
+
     void Change()
     {
         if (SceneManager.GetActiveScene().name != getOut)
@@ -182,10 +124,11 @@ public class SceneChingPlayer : MonoBehaviour
         {
             if((int)gate== obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
+                GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
                 this.gameObject.transform.position = new Vector3(
-                    obj.transform.position.x, 
-                    obj.transform.position.y, 
-                    obj.transform.position.z);
+                    child.transform.position.x,
+                    child.transform.position.y,
+                    child.transform.position.z);
             }
         }
 
@@ -197,18 +140,7 @@ public class SceneChingPlayer : MonoBehaviour
         }
 
         gate = Gatenum.None;
-        /*
-        if(Gate_Number!=0)
-        {
-            Debug.Log("シーン遷移");
 
-            this.gameObject.transform.position = new Vector3(
-                GameObject.Find("Gate" + Gate_Number).transform.position.x,
-                GameObject.Find("Gate" + Gate_Number).transform.position.y,
-                GameObject.Find("Gate" + Gate_Number).transform.position.z);
-        }
-
-        Gate_Number = 0;*/
     }
 
 
