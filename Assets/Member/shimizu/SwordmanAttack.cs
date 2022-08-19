@@ -99,7 +99,7 @@ public class SwordmanAttack : MonoBehaviour
 
         //----ÉRÉìÉgÉçÅ[ÉâÅ[ëÄçÏ----
         //éaåÇ
-        if (Input.GetKeyDown("joystick button 1") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1)
+        if (Input.GetKeyDown("joystick button 2") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var swordman_judge = xboxPlayerContorol.atack_judge_con;
@@ -117,7 +117,7 @@ public class SwordmanAttack : MonoBehaviour
         }
         
         //ìÀÇ´
-        if (Input.GetKeyDown("joystick button 1") && thrustAble &&GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
+        if (Input.GetKeyDown("joystick button 2") && thrustAble &&GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var swordman_judge = xboxPlayerContorol.atack_judge_con;
@@ -131,7 +131,7 @@ public class SwordmanAttack : MonoBehaviour
         }
 
         //ÇΩÇﬂêÿÇË
-        if (Input.GetKeyDown("joystick button 1") && chargeslashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
+        if (Input.GetKeyDown("joystick button 2") && chargeslashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var swordman_judge = xboxPlayerContorol.atack_judge_con;
@@ -143,22 +143,22 @@ public class SwordmanAttack : MonoBehaviour
                 StartCoroutine(Atack3());
             }
         }
-
-        //ï«îjâÛ(ì¡éÍçUåÇ)
-        if (Input.GetKeyDown("joystick button 2") && wallbreakAble)
-        {
-            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-            var swordman_judge = xboxPlayerContorol.atack_judge_con;
-            if (swordman_judge == 1)
-            {
-                sword.tag = "WallBreak";
-                anim.SetTrigger("WallBreak");
-                animSword.SetTrigger("WallBreak2");
-                swordmanRig.SetTrigger("SwordSpAtack");
-                StartCoroutine("TagReset");
-                StartCoroutine(Atack4());
-            }
-        }
+        //Ç∆ÇËÇ†Ç¶Ç∏îpé~
+        ////ï«îjâÛ(ì¡éÍçUåÇ)
+        //if (Input.GetKeyDown("joystick button 2") && wallbreakAble)
+        //{
+        //    XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+        //    var swordman_judge = xboxPlayerContorol.atack_judge_con;
+        //    if (swordman_judge == 1)
+        //    {
+        //        sword.tag = "WallBreak";
+        //        anim.SetTrigger("WallBreak");
+        //        animSword.SetTrigger("WallBreak2");
+        //        swordmanRig.SetTrigger("SwordSpAtack");
+        //        StartCoroutine("TagReset");
+        //        StartCoroutine(Atack4());
+        //    }
+        //}
     }
     private IEnumerator TagReset()
     {
