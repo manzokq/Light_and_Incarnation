@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     protected Rigidbody2D rb;
+    protected SpriteRenderer spriteRenderer;
     //アニメーター
     public Animator Anim;
     public EnemyDate enemyDate;//EnemyDateから体力などの情報を呼んでくる
@@ -22,6 +23,10 @@ public class Enemy : MonoBehaviour
     /// 動くかどうかのフラグ
     /// </summary>
     private bool _moveFrag = true;
+    private bool _process = false;
+    private int _repeat = 6;
+    private float _recast = 0.5f;
+    
 
     //private bool movetest=false;
     
@@ -39,6 +44,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         //EnemyDataから各情報を代入
         Name = enemyDate.enemyName;
         Hp = enemyDate.hp;
@@ -54,6 +60,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        //デバッグ用
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Damaged();
+        }
         //体力の判定
         if (this.Hp <= 0)
         {
@@ -63,11 +74,10 @@ public class Enemy : MonoBehaviour
         }
         if(_moveFrag)
         {
-           
             Move();//移動処理の呼び出し
         }
 
-        
+
     }
 
     void Move()
@@ -120,12 +130,51 @@ public class Enemy : MonoBehaviour
         //Debug.Log("エネミーの移動フラグ"+_moveFrag);
     }
 
+    public void Damaged()
+    {
+        if (spriteRenderer.enabled)
+        {
+            StartCoroutine(Blink());
+        }
+        Hp = GameManagement.Instance.PlayerAtk(Hp);
+
+
+        
+    }
+    public IEnumerator Blink()
+    {
+        if (!_process)
+        {
+            _process = true;
+            for (int i = 0; i < _repeat; i++)
+            {
+                spriteRenderer.enabled = !spriteRenderer.enabled;
+                Debug.Log(spriteRenderer);
+                yield return new WaitForSeconds(_recast);
+                _process = false;
+            }
+        }
+    }
+    //IEnumerator Damaged()
+    //{
+    //    Hp = GameManagement.Instance.PlayerAtk(Hp);
+    //    // 周期cycleで繰り返す値の取得
+    //    // 0～cycleの範囲の値が得られる
+    //    var repeatValue = Mathf.Repeat(_time, _cycle);
+
+    //    // 内部時刻timeにおける明滅状態を反映
+    //    // スプライト色のアルファ値を変更している
+    //    var color = spriteRenderer.color;
+    //    color.a = repeatValue >= _cycle * 0.5f ? 1 : 0;
+    //    spriteRenderer.color = color;
+    //    return null;
+    //}
+
     private void OnTriggerEnter2D(Collider2D collision)//エネミーの体力を減らす処理
     {
         if (collision.gameObject.CompareTag("WallBreak") || collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("Arrow"))
         {
-            Hp = GameManagement.Instance.PlayerAtk(Hp);
-            //Debug.LogWarning("腱に触れた");
+           Damaged();
         }
     }
 }
