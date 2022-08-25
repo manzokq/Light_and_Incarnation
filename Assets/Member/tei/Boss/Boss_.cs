@@ -64,6 +64,8 @@ public class Boss_ : MonoBehaviour
     [SerializeField, Header("プレイヤー停止距離")]
     private float Boss_stop = 1;
 
+    private Vector3 boss_scale = new Vector3(100, 100, 1);
+
     //[SerializeField] Animator gilranim;
     //[SerializeField] Animator swordmananim;
     //[SerializeField] Animator archeranim;
@@ -141,6 +143,18 @@ public class Boss_ : MonoBehaviour
         {
             Destroy(this.gameObject);
             Debug.Log("ボスが倒れた");
+        }
+        //左右反転
+        if (rigidboody2d.velocity.x < 0)
+        {
+            boss_scale.x = -100;
+            transform.localScale = boss_scale;
+        }
+        if (rigidboody2d.velocity.x > 0)
+        {
+
+            boss_scale.x = 100;
+            transform.localScale = boss_scale;
         }
     }
     //ダメージ
