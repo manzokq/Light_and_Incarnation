@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class kaiten : MonoBehaviour
 {
+    
     [SerializeField]
     private GameObject Kaiten;
 
-    bool hs = true;
+    private Switchrigth _switchrigth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class kaiten : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hs)
+        if (_switchrigth.kidourigth)
         {
             StartCoroutine(stop());
         }
@@ -39,11 +41,11 @@ public class kaiten : MonoBehaviour
         float T=0;
         while(T < 1)
         {
-            hs = false;
-            Kaiten.transform.Translate(new Vector3(0, -5f * Time.deltaTime, 0));
+
             Kaiten.transform.Rotate(new Vector3(0, 0, 90f * Time.deltaTime));
             T += Time.deltaTime;
             yield return null;
         }
     }
+    
 }
