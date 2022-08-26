@@ -23,6 +23,9 @@ public class XboxPlayerContorol : MonoBehaviour
     public int changechara = 2;
     private int changeatack = 0;
 
+    private bool isGirl = true;
+    private bool isSwordman = false;
+    private bool isArcher = false;
     
     private float beforeTrigger = 0;
     private float beforeTrigger2 = 0;
@@ -100,7 +103,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //
-        //キャラチェンジ
+        //キャラチェンジ(デバッグ用)
         if (Input.GetKeyDown(KeyCode.B))
         {
             GameManagement.Instance.PlayerOrb += 10;
@@ -109,112 +112,145 @@ public class XboxPlayerContorol : MonoBehaviour
         {
             GameManagement.Instance.PlayerOrb -= 10;
         }
+        //キャラ切り替え(新)
         if (GameManagement.Instance.PlayerOrb >= 15)
         {
             anim.SetBool("changeIncarnation", true);
         }
-        view_button = Input.GetAxis("L_R_Trigger");
+        if(Input.GetAxisRaw("D_Pad_H") == 1 && !isSwordman && GameManagement.Instance.PlayerOrb>=15) //想定では→　剣士
+        {
+            isGirl = false;
+            isSwordman = true;
+            isArcher = false;
+            Debug.Log("a");
+            GameManagement.Instance.PlayerOrb -= 15;
+            anim.SetBool("changeArcher", false);
+            anim.SetBool("changeWitch", false);
+            anim.SetBool("changeSwordman", true);
+        }
+        if (Input.GetAxisRaw("D_Pad_H") == -1 && !isArcher && GameManagement.Instance.PlayerOrb >= 15) //想定では←　弓使
+        {
+            isGirl = false;
+            isSwordman = false;
+            isArcher = true;
+            Debug.Log("b");
+            GameManagement.Instance.PlayerOrb -= 15;
+            anim.SetBool("changeWitch", false);
+            anim.SetBool("changeSwordman", false);
+            anim.SetBool("changeArcher", true);
+        }
+        if (Input.GetAxisRaw("D_Pad_V") == 1 && !isGirl) //想定では↑  少女
+        {
+            Debug.Log("c");
+            isGirl = true;
+            isSwordman = false;
+            isArcher = false;
+            anim.SetBool("changeArcher", false);
+            anim.SetBool("changeSwordman", false);
+            anim.SetBool("changeWitch", true);
+        }
+        //view_button = Input.GetAxis("L_R_Trigger");
         //キャラ切り替え(変身)
-        if (view_button > 0 && beforeTrigger == 0 && GameManagement.Instance.PlayerOrb > 15)  //つまりRT入力
-        {
-            
-            switch (GameManagement.Instance.Character)
-            {
-                case GameManagement.CharacterID.Girl:
-                    switch (GameManagement.Instance.PlayerCharacter)
-                    {
-                        case GameManagement.CharacterID.Swordsman:
-                            GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
-                            changechara = 1;
-                            break;
-                        case GameManagement.CharacterID.Bowman:
-                            GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
-                            changechara = 2;
-                            break;
-                        default:
-                            break;
-                    }
-                    //anim.SetBool("changeIncarnation",false); 
-                    atack_judge_con = 0;
-                    anim.SetBool("changeArcher", false);
-                    anim.SetBool("changeWitch", true);
-                    anim.SetBool("changeSwordman", false);
-                    GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
-                    //changechara = 0;
-                    break;
-                case GameManagement.CharacterID.Swordsman:
-                    switch (GameManagement.Instance.PlayerCharacter)
-                    {
-                        case GameManagement.CharacterID.Girl:
-                            GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
-                            changechara = 0;
-                            break;
-                        case GameManagement.CharacterID.Bowman:
-                            GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
-                            changechara = 2;
-                            break;
-                        default:
-                            break;
-                    }
-                    GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                    atack_judge_con = 1;
-                    GameManagement.Instance.PlayerOrb -= 15;
-                    anim.SetBool("changeArcher", false);
-                    anim.SetBool("changeWitch", false);
-                    anim.SetBool("changeSwordman", true);
-                    break;
-                case GameManagement.CharacterID.Bowman:
-                    switch (GameManagement.Instance.PlayerCharacter)
-                    {
-                        case GameManagement.CharacterID.Swordsman:
-                            GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
-                            changechara = 1;
-                            break;
-                        case GameManagement.CharacterID.Girl:
-                            GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
-                            changechara = 0;
-                            break;
-                        default:
-                            break;
-                    }
-                    GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
-                    //anim.SetBool("changeIncarnation", true);
-                    atack_judge_con = 2;
-                    GameManagement.Instance.PlayerOrb -= 15;
-                    anim.SetBool("changeWitch", false);
-                    anim.SetBool("changeSwordman", false);
-                    anim.SetBool("changeArcher", true);
-                    break;
+        //if (view_button > 0 && beforeTrigger == 0 && GameManagement.Instance.PlayerOrb > 15)  //つまりRT入力
+        //{
 
-            }
+        //    switch (GameManagement.Instance.Character)
+        //    {
+        //        case GameManagement.CharacterID.Girl:
+        //            switch (GameManagement.Instance.PlayerCharacter)
+        //            {
+        //                case GameManagement.CharacterID.Swordsman:
+        //                    GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+        //                    changechara = 1;
+        //                    break;
+        //                case GameManagement.CharacterID.Bowman:
+        //                    GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+        //                    changechara = 2;
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
+        //            //anim.SetBool("changeIncarnation",false); 
+        //            atack_judge_con = 0;
+        //            anim.SetBool("changeArcher", false);
+        //            anim.SetBool("changeWitch", true);
+        //            anim.SetBool("changeSwordman", false);
+        //            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
+        //            //changechara = 0;
+        //            break;
+        //        case GameManagement.CharacterID.Swordsman:
+        //            switch (GameManagement.Instance.PlayerCharacter)
+        //            {
+        //                case GameManagement.CharacterID.Girl:
+        //                    GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
+        //                    changechara = 0;
+        //                    break;
+        //                case GameManagement.CharacterID.Bowman:
+        //                    GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+        //                    changechara = 2;
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
+        //            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
+        //            atack_judge_con = 1;
+        //            GameManagement.Instance.PlayerOrb -= 15;
+        //            anim.SetBool("changeArcher", false);
+        //            anim.SetBool("changeWitch", false);
+        //            anim.SetBool("changeSwordman", true);
+        //            break;
+        //        case GameManagement.CharacterID.Bowman:
+        //            switch (GameManagement.Instance.PlayerCharacter)
+        //            {
+        //                case GameManagement.CharacterID.Swordsman:
+        //                    GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+        //                    changechara = 1;
+        //                    break;
+        //                case GameManagement.CharacterID.Girl:
+        //                    GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
+        //                    changechara = 0;
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
+        //            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
+        //            //anim.SetBool("changeIncarnation", true);
+        //            atack_judge_con = 2;
+        //            GameManagement.Instance.PlayerOrb -= 15;
+        //            anim.SetBool("changeWitch", false);
+        //            anim.SetBool("changeSwordman", false);
+        //            anim.SetBool("changeArcher", true);
+        //            break;
 
-        }
-        //キャラ選択
-        
-        if (view_button < 0 && beforeTrigger == 0) //つまりLT入力
-        {
-            //Debug.Log("aaa");
-            changechara++;
-            if (changechara > 2)
-            {
-                changechara = 0;
-            }
-            if (GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-                changechara) ||
-                GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-                changechara))
-            {
-                changechara++;
-                if (changechara > 2)
-                {
-                    changechara = 0;
-                }
-            }
-            GameManagement.Instance.Character =
-                (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-                changechara);
-        }
-        beforeTrigger = view_button;
+        //    }
+
+        //}
+        ////キャラ選択
+
+        //if (view_button < 0 && beforeTrigger == 0) //つまりLT入力
+        //{
+        //    //Debug.Log("aaa");
+        //    changechara++;
+        //    if (changechara > 2)
+        //    {
+        //        changechara = 0;
+        //    }
+        //    if (GameManagement.Instance.PlayerCharacter == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+        //        changechara) ||
+        //        GameManagement.Instance.Character == (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+        //        changechara))
+        //    {
+        //        changechara++;
+        //        if (changechara > 2)
+        //        {
+        //            changechara = 0;
+        //        }
+        //    }
+        //    GameManagement.Instance.Character =
+        //        (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
+        //        changechara);
+        //}
+        //beforeTrigger = view_button;
         //攻撃方法の変更
         if (Input.GetKeyDown("joystick button 4"))
         {
@@ -321,13 +357,13 @@ public class XboxPlayerContorol : MonoBehaviour
                 StartCoroutine("DodgeTag");
                 if (rbody.velocity.x > 0)
                 {
-                    anim.SetBool("ArcherSliding", true);
+                    anim.SetBool("GirlSliding", true);
                     StartCoroutine(AngleRepairRightArcher());
 
                 }
                 if (rbody.velocity.x < 0)
                 {
-                    anim.SetBool("ArcherSlidingL", true);
+                    anim.SetBool("GirlSliding", true);
                     StartCoroutine(AngleRepairLeftArcher());
 
                 }
@@ -356,19 +392,24 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //壁登り
-        if (isWallright && coroutine_able &&Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl || GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Swordsman)
         {
-            coroutine_able = false;
-            if (atack_judge_con == 0)
+            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
             {
-                gilranim.SetBool("GirlClimb", true);
+                coroutine_able = false;
+                if (atack_judge_con == 0)
+                {
+                    gilranim.SetBool("GirlClimb", true);
+                    StartCoroutine("Climb");
+                }
+                else if (atack_judge_con == 1)
+                {
+                    swordmananim.SetBool("SwordClimb", true);
+                    StartCoroutine("Climb");
+                }
+
+
             }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordClimb", true);
-            }
-            
-            StartCoroutine("Climb");
         }
 
 
@@ -397,16 +438,7 @@ public class XboxPlayerContorol : MonoBehaviour
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
     }
     //スライディングでの回転を直す
-    IEnumerator AngleRepairRight()
-    {
-        
-        yield return new WaitForSeconds(0.2f);
-        rbody.AddForce(new Vector2(170, 0));
-        yield return new WaitForSeconds(2.8f);
-        sliding_judge = true;
-        head_sliding = false;
-        anim.SetBool("Sliding", false);
-    }
+   
     IEnumerator AngleRepairRightArcher()
     {
 
@@ -419,16 +451,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
     }
-    IEnumerator AngleRepairLeft()
-    {
-        
-        yield return new WaitForSeconds(0.2f);
-        rbody.AddForce(new Vector2(-170, 0));
-        yield return new WaitForSeconds(2.8f);
-        sliding_judge = true;
-        head_sliding = false;
-        anim.SetBool("SlidingLeft", false);
-    }
+    
     IEnumerator AngleRepairLeftArcher()
     {
 
@@ -548,8 +571,8 @@ public class XboxPlayerContorol : MonoBehaviour
     IEnumerator Sliding2FArcher()
     {
         yield return new WaitForSeconds(1.2f);
-        anim.SetBool("ArcherSliding", false);
-        anim.SetBool("ArcherSlidingL", false);
+        anim.SetBool("GirlSliding", false);
+        anim.SetBool("GirlSlidingL", false);
         archeranim.SetBool("ArcherSliding", false);
         archeranim.SetBool("ArcherSliding1", false);
         archeranim.SetBool("ArcherSliding2", false);
@@ -565,25 +588,29 @@ public class XboxPlayerContorol : MonoBehaviour
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
             gilranim.SetBool("GirlSliding2", true);
+            sliding_judge = true;
+            head_sliding = false;
+            anim.SetBool("GirlSliding", false);
+            slidingContinue = false;
+            anim.SetBool("GirlSlidingL", false);
+            gilranim.SetBool("GirlSliding", false);
+            gilranim.SetBool("GirlSliding1", false);
+            yield return new WaitForSeconds(0.3f);
+            gilranim.SetBool("GirlSliding2", false);
         }
-        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
         {
             archeranim.SetBool("ArcherSliding2", true);
+            sliding_judge = true;
+            head_sliding = false;
+            anim.SetBool("GirlSliding", false);
+            slidingContinue = false;
+            anim.SetBool("GirlSlidingL", false);
+            archeranim.SetBool("ArcherSliding", false);
+            archeranim.SetBool("ArcherSliding1", false);
+            yield return new WaitForSeconds(0.3f);
+            archeranim.SetBool("ArcherSliding2", false);
         }
-        sliding_judge = true;
-        head_sliding = false;
-        anim.SetBool("GirlSliding", false);
-
-        slidingContinue = false;
-        anim.SetBool("GirlSlidingL", false);
-
-        gilranim.SetBool("GirlSliding", false);
-        archeranim.SetBool("ArcherSliding", false);
-        gilranim.SetBool("GirlSliding1", false);
-        archeranim.SetBool("ArcherSliding1", false);
-        yield return new WaitForSeconds(0.3f);
-        gilranim.SetBool("GirlSliding2", false);
-        archeranim.SetBool("ArcherSliding2", false);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -592,7 +619,14 @@ public class XboxPlayerContorol : MonoBehaviour
             //Debug.Log("Enter!");
             slidingContinue = true;
             rbody.AddForce(new Vector2(50, 0));
-            gilranim.SetTrigger("GirlSliding1");
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
+            {
+                gilranim.SetTrigger("GirlSliding1");
+            }
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
+            {
+                archeranim.SetTrigger("ArcherSliding1");
+            }
         }
 
     }
@@ -609,7 +643,14 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 rbody.velocity = new Vector2(-5, 0);
             }
-            gilranim.SetTrigger("GirlSliding1");
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
+            {
+                archeranim.SetBool("ArcherSliding1", true);
+            }
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
+            {
+                gilranim.SetBool("GirlSliding1", true);
+            }
         }
 
     }
@@ -620,12 +661,38 @@ public class XboxPlayerContorol : MonoBehaviour
             StartCoroutine(ExitSliding());
             //Debug.Log("Exit!");
 
-            StartCoroutine(Sliding2F());
+            //if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
+            //{
+            //    StartCoroutine(Sliding2F());
+            //}
+            //if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
+            //{
+            //    StartCoroutine(Sliding2FArcher());
+            //}
+
         }
 
     }
     public void ReturnGirlKey()
     {
+
+
+
+        switch (GameManagement.Instance.PlayerCharacter)
+        {
+            case GameManagement.CharacterID.Swordsman:
+                GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+               
+                break;
+            case GameManagement.CharacterID.Bowman:
+                GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+              
+                break;
+          
+        }
+        GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
+        changechara = 0;
+        atack_judge_con = 0;
         anim.SetBool("changeWitch", false);
         anim.SetBool("changeSwordman", false);
         anim.SetBool("changeArcher", false);

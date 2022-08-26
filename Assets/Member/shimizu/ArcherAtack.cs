@@ -101,7 +101,7 @@ public class ArcherAtack : MonoBehaviour
         //Debug.Log(GameManagement.Instance.Atk);
         //----ÉRÉìÉgÉçÅ[ÉâÅ[ëÄçÏ----
         //í èÌã|çUåÇ
-        if (Input.GetKeyDown("joystick button 1") && arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
+        if (Input.GetKeyDown("joystick button 2") && arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
             //Debug.Log("í èÌ");
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
@@ -121,7 +121,7 @@ public class ArcherAtack : MonoBehaviour
         }
 
         //âŒñÓ
-        if (Input.GetKeyDown("joystick button 1") && firearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
+        if (Input.GetKeyDown("joystick button 2") && firearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
@@ -136,7 +136,7 @@ public class ArcherAtack : MonoBehaviour
         }
 
         //ìÒñÓ
-        if (Input.GetKeyDown("joystick button 1") && doublearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
+        if (Input.GetKeyDown("joystick button 2") && doublearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk3)
         {
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var archer_judge = xboxPlayerContorol.atack_judge_con;
@@ -149,23 +149,24 @@ public class ArcherAtack : MonoBehaviour
             }
         }
 
-        //(ì¡éÍçUåÇ)
-        if (Input.GetKeyDown("joystick button 2") && longbowAble)
-        {
-            XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-            var archer_judge = xboxPlayerContorol.atack_judge_con;
-            if (archer_judge == 2)
-            {
-                xboxPlayerContorol.xatacking = true;
-                //Debug.Log("ì¡éÍçUåÇ");
-                arrow.tag = "LongBow";
-                anim.SetTrigger("LongBow");
-                animArcher.SetTrigger("LongBow2");
-                archerRig.SetTrigger("ArcherSpAtack");
-                StartCoroutine("TagReset");
-                StartCoroutine(Atack4());
-            }
-        }
+        //Ç∆ÇËÇ†Ç¶Ç∏
+        ////(ì¡éÍçUåÇ)
+        //if (Input.GetKeyDown("joystick button 2") && longbowAble)
+        //{
+        //    XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
+        //    var archer_judge = xboxPlayerContorol.atack_judge_con;
+        //    if (archer_judge == 2)
+        //    {
+        //        xboxPlayerContorol.xatacking = true;
+        //        //Debug.Log("ì¡éÍçUåÇ");
+        //        arrow.tag = "LongBow";
+        //        anim.SetTrigger("LongBow");
+        //        animArcher.SetTrigger("LongBow2");
+        //        archerRig.SetTrigger("ArcherSpAtack");
+        //        StartCoroutine("TagReset");
+        //        StartCoroutine(Atack4());
+        //    }
+        //}
     }
     private IEnumerator TagReset()
     {

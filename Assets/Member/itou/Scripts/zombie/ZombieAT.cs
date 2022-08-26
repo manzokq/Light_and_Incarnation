@@ -78,6 +78,8 @@ public class ZombieAT : MonoBehaviour
                 zombie.ATKAnim1();
                  //Debug.Log(8);
                 GameManagement.Instance.PlayerDamage(Atk1);//‘Ì—Í‚ðŒ¸‚ç‚·
+                yield return new WaitForSecondsRealtime(1);
+                SEManager.Instance.Sound(SEManager.SoundState.Sound5);
 
             }
                 else if (dm == 1)
@@ -88,6 +90,8 @@ public class ZombieAT : MonoBehaviour
                 zombie.ATKAnim2();
                 //Debug.Log(20);
                 GameManagement.Instance.PlayerDamage(Atk2);//‘Ì—Í‚ðŒ¸‚ç‚·
+                yield return new WaitForSecondsRealtime(1);
+                SEManager.Instance.Sound(SEManager.SoundState.Sound5);
             }
                 GetComponent<CapsuleCollider2D>().enabled = false;
                 yield return new WaitForSecondsRealtime(2);

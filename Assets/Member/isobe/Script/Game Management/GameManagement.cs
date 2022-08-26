@@ -75,7 +75,7 @@ public class GameManagement : MonoBehaviour
         var xbox = GameObject.FindGameObjectWithTag("Player");
         xboxPlayer =xbox.GetComponent<XboxPlayerContorol>();
         StartCoroutine(GetOrb());
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
     }
     private void Update()
     {

@@ -64,7 +64,7 @@ public class Boss_ : MonoBehaviour
     [SerializeField, Header("プレイヤー停止距離")]
     private float Boss_stop = 1;
 
-    private Vector3 boss_scale = new Vector3(100, 100, 1);
+    private Vector3 boss_scale = new Vector3(2, 2, 1);
 
     //接地
     private bool Boss_Ground = false;
@@ -155,15 +155,17 @@ public class Boss_ : MonoBehaviour
         //左右反転
         if (rigidboody2d.velocity.x < 0)
         {
-            boss_scale.x = -100;
+            boss_scale.x = -2;
             transform.localScale = boss_scale;
         }
         if (rigidboody2d.velocity.x > 0)
         {
 
-            boss_scale.x = 100;
+            boss_scale.x = 2;
             transform.localScale = boss_scale;
         }
+
+        Boss_Move_Stop();
     }
     //ダメージ
     private void OnTriggerStay2D(Collider2D collision)
@@ -197,6 +199,17 @@ public class Boss_ : MonoBehaviour
         Debug.Log("無敵終了");
         Avoidance = false;
     }
+    //時間
+    private void time_check()
+    {
+        Time_Count += Time.deltaTime;
+        if (Range_Time <= Time_Count)
+        {
+            Range_Check = false;
+            Time_Count = 0;
+            Range();
+        }
+    }
 
     //プレイヤーに近づく
     private void boss_move()
@@ -228,15 +241,20 @@ public class Boss_ : MonoBehaviour
         rigidboody2d.velocity = direction * -boss_x_speed;
     }
 
-    //時間
-    private void time_check()
-    {
-        Time_Count += Time.deltaTime;
-        if (Range_Time <= Time_Count)
+    private void Boss_Move_Stop()
+    {   //距離計測
+        Vector2 pos_Player = Player.transform.position;
+        Vector2 pos_Boss = this.gameObject.transform.position;
+        float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+        //停止
+        if (range_Boss_player <= Boss_stop)
         {
-            Range_Check = false;
-            Time_Count = 0;
-            Range();
+            Boss_Stop = true;
+            rigidboody2d.velocity = Vector2.zero;
+        }
+        else if (range_Boss_player > Boss_stop)
+        {
+            Boss_Stop = false;
         }
     }
 
@@ -248,16 +266,6 @@ public class Boss_ : MonoBehaviour
         Vector2 pos_Boss = this.gameObject.transform.position;
         float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
         Debug.Log("距離は" + range_Boss_player);
-        //停止
-        if (range_Boss_player <= Boss_stop)
-        {
-            Boss_Stop = true;
-            rigidboody2d.velocity = Vector2.zero;
-        }
-        else if (range_Boss_player > Boss_stop)
-        {
-            Boss_Stop = false;
-        }
         //弓に形態変化
         if (range_Boss_player > Range_Change)
         {
