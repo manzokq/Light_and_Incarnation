@@ -19,6 +19,12 @@ public class Dont : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        else if(SceneManager.GetActiveScene().name == "GameClear"|| 
+                SceneManager.GetActiveScene().name == "GameOP" ||
+                SceneManager.GetActiveScene().name == "GameOver" )
+        {
+            Destroy(this.gameObject);
+        }
         else
         {
             Destroy(this.gameObject);
