@@ -61,6 +61,8 @@ public class Boss_ : MonoBehaviour
     private float Invincibletime = 0;
     //回避
     private bool Avoidance = false;
+    [SerializeField, Header("逃げる速度")]
+    private float Escape = 2;
 
     //一定距離で停止
     private bool Boss_Stop = false;
@@ -118,12 +120,12 @@ public class Boss_ : MonoBehaviour
                 {//近づく
                     boss_move();
                 }
-                else if (Invincible)
-                {//離れる
-                    boss_move_reverse();
-                    Invincible_check();
-                    Boss_girl();
-                }
+            }
+            if (Invincible)
+            {//離れる
+                boss_move_reverse();
+                Invincible_check();
+                Boss_girl();
             }
 
             //時間経過でプレイヤーとの距離をチェック
@@ -171,6 +173,7 @@ public class Boss_ : MonoBehaviour
             Invincible = true;
             bosshp = Boss_HP;
             Debug.Log("ダメージを受けた,無敵になる");
+            Avoidance = true;
         }
 
         //体力減少
@@ -217,6 +220,7 @@ public class Boss_ : MonoBehaviour
             {
                 Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
                 Debug.Log("攻撃を受けた");
+
             }
         }
     }
@@ -279,23 +283,26 @@ public class Boss_ : MonoBehaviour
         //移動を計算させるために二次元ベクトルを作る
         Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
         //移動速度を指定
-        rigidboody2d.velocity = direction * -boss_x_speed;
+        rigidboody2d.velocity = direction * -Escape;
     }
 
     private void Boss_Move_Stop()
-    {   //距離計測
-        Vector2 pos_Player = Player.transform.position;
-        Vector2 pos_Boss = this.gameObject.transform.position;
-        float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        //停止
-        if (range_Boss_player <= Boss_stop)
-        {
-            Boss_Stop = true;
-            rigidboody2d.velocity = Vector2.zero;
-        }
-        else if (range_Boss_player > Boss_stop)
-        {
-            Boss_Stop = false;
+    {
+        if (!Avoidance)
+        {//距離計測
+            Vector2 pos_Player = Player.transform.position;
+            Vector2 pos_Boss = this.gameObject.transform.position;
+            float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+            //停止
+            if (range_Boss_player <= Boss_stop)
+            {
+                Boss_Stop = true;
+                rigidboody2d.velocity = Vector2.zero;
+            }
+            else if (range_Boss_player > Boss_stop)
+            {
+                Boss_Stop = false;
+            } 
         }
     }
 
