@@ -66,6 +66,9 @@ public class Boss_ : MonoBehaviour
 
     private Vector3 boss_scale = new Vector3(100, 100, 1);
 
+    //接地
+    private bool Boss_Ground = false;
+
     //[SerializeField] Animator gilranim;
     //[SerializeField] Animator swordmananim;
     //[SerializeField] Animator archeranim;
@@ -102,26 +105,31 @@ public class Boss_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //移動関数を呼び出し
-        if (!Boss_Stop)
+        //床についてから動き出し
+        if (Boss_Ground)
         {
-            if (!Invincible)
-            {//近づく
-                boss_move();
+            //移動関数を呼び出し
+            if (!Boss_Stop)
+            {
+                if (!Invincible)
+                {//近づく
+                    boss_move();
+                }
+                else if (Invincible)
+                {//離れる
+                    boss_move_reverse();
+                    Invincible_check();
+                    Boss_girl();
+                }
             }
-            else if (Invincible)
-            {//離れる
-                boss_move_reverse();
-                Invincible_check();
-                Boss_girl();
+
+            //時間経過でプレイヤーとの距離をチェック
+            if (Range_Check && !Boss_Damage && !Invincible)
+            {
+                time_check();
             }
         }
 
-        //時間経過でプレイヤーとの距離をチェック
-        if(Range_Check && !Boss_Damage && !Invincible)
-        {
-            time_check();
-        }
         //ダメージチェック
         if (Boss_HP < bosshp)
         {
@@ -160,7 +168,11 @@ public class Boss_ : MonoBehaviour
     //ダメージ
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Arrow"))
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Boss_Ground = true;
+        }
+        if (collision.gameObject.CompareTag("Arrow")||collision.gameObject.CompareTag("WallBreak"))
         {
             Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
             Debug.Log("攻撃を受けた");
