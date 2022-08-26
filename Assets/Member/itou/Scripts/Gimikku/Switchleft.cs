@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switchrigth : MonoBehaviour
+public class Switchleft : MonoBehaviour
 {
-    public bool kidourigth = false;
+    public bool kidouleft = false;
     public bool star = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,8 +18,7 @@ public class Switchrigth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C) && star)
         {
-            // 接触してきたのがプレイヤーだった場合、親に自分自身のマイナンバーを通知する
-            kidourigth = true;
+            kidouleft = true;
             Debug.Log("on");
         }
     }
