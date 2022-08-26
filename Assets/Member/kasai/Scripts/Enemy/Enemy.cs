@@ -23,9 +23,11 @@ public class Enemy : MonoBehaviour
     /// 動くかどうかのフラグ
     /// </summary>
     private bool _moveFrag = true;
-    private bool _process = false;
+    private bool _damaged = false;
+
+    //ダメージを受けたときの点滅
     private int _repeat = 6;
-    private float _recast = 0.5f;
+    [SerializeField]private float _recast = 0.2f;
     
 
     //private bool movetest=false;
@@ -143,15 +145,15 @@ public class Enemy : MonoBehaviour
     }
     public IEnumerator Blink()
     {
-        if (!_process)
+        if (!_damaged)
         {
-            _process = true;
+            _damaged = true;
             for (int i = 0; i < _repeat; i++)
             {
                 spriteRenderer.enabled = !spriteRenderer.enabled;
                 Debug.Log(spriteRenderer);
                 yield return new WaitForSeconds(_recast);
-                _process = false;
+                _damaged = false;
             }
         }
     }

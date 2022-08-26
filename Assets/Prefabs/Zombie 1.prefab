@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1242839429134861715}
   - component: {fileID: 1242839429134861713}
-  - component: {fileID: 1242839429134861714}
+  - component: {fileID: 7144281855165095751}
   m_Layer: 0
   m_Name: ZombieAT
   m_TagString: Untagged
@@ -120,7 +120,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &1242839429134861714
+--- !u!114 &7144281855165095751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyDate: {fileID: 11400000, guid: b64a97fec245ee143b75643b3fa8e802, type: 2}
   Circle: {fileID: 0}
-  Square: {fileID: 1242839429420242981}
+  Square: {fileID: 0}
   span: 3
 --- !u!1 &1242839429420242981
 GameObject:
@@ -218,8 +218,8 @@ GameObject:
   - component: {fileID: 1242839429699413515}
   - component: {fileID: 1242839429699413748}
   - component: {fileID: 1242839429699413749}
-  - component: {fileID: 1242839429699413750}
   - component: {fileID: 1242839429699413514}
+  - component: {fileID: 1325765352628676521}
   m_Layer: 0
   m_Name: Zombie 1
   m_TagString: Enemy
@@ -318,21 +318,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1242839429699413750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242839429699413751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb8549a762cc17c4a8f9720132124b8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Anim: {fileID: 1242839429699413514}
-  enemyDate: {fileID: 11400000, guid: b64a97fec245ee143b75643b3fa8e802, type: 2}
-  Hp: 0
 --- !u!95 &1242839429699413514
 Animator:
   serializedVersion: 4
@@ -353,3 +338,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1325765352628676521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242839429699413751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8549a762cc17c4a8f9720132124b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Anim: {fileID: 1242839429699413514}
+  enemyDate: {fileID: 11400000, guid: b64a97fec245ee143b75643b3fa8e802, type: 2}
+  Hp: 0
+  _recast: 0.2

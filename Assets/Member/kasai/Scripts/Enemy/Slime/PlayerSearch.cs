@@ -3,11 +3,13 @@ using UnityEngine;
 public class PlayerSearch : MonoBehaviour
 {
 
-    Slime slime;
+    //Slime slime;
+    Enemy enemy;
 
     private void Awake()
     {
-        slime = transform.parent.gameObject.GetComponent<Slime>();
+        //slime = transform.parent.gameObject.GetComponent<Slime>();
+        enemy = transform.parent.gameObject.GetComponent<Enemy>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,7 +18,8 @@ public class PlayerSearch : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //Debug.Log("プレイヤーと接触");
-            slime.Reverse();
+            //lime.Reverse();
+            enemy.Reverse();
         }
 
 
@@ -27,7 +30,8 @@ public class PlayerSearch : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //Debug.Log("プレイヤーと接触");
-            slime.Reverse();
+            //slime.Reverse();
+            enemy.Reverse();
         }
     }
 }
