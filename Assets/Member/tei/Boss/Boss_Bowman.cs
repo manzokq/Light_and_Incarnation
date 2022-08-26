@@ -49,7 +49,6 @@ public class Boss_Bowman : MonoBehaviour
             Boss_Cool_time += Time.deltaTime;
             if (Boss_Atk_time <= Boss_Cool_time)
             {
-                Boss_Contorol.Boss_atacking_Archer = false;
                 Debug.Log("UŒ‚’Š‘I");
                 Boss_Cool_time = 0;
                 Boss_random_Atk_Bowman = Random.Range(1, 3);
@@ -70,7 +69,7 @@ public class Boss_Bowman : MonoBehaviour
 
     public void Boss_Atk1()
     {
-        if (arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
+        if (arrowAble)
         {
             arrowAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
@@ -90,7 +89,7 @@ public class Boss_Bowman : MonoBehaviour
 
     public void Boss_Atk2()
     {
-        if (firearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
+        if (firearrowAble)
         {
             firearrowAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();

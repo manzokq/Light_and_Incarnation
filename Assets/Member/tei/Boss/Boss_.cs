@@ -33,8 +33,11 @@ public class Boss_ : MonoBehaviour
     private Rigidbody2D rigidboody2d;
     //キャラクター切り替え
     [SerializeField]
-    public byte boss_changechara = 0;
     public int boss_atack_judge = 0;
+
+    private bool boss_isGirl = true;
+    private bool boss_isSwordman = false;
+    private bool boss_isArcher = false;
 
     //アニメ
     private Animator anim;
@@ -69,9 +72,9 @@ public class Boss_ : MonoBehaviour
     //接地
     private bool Boss_Ground = false;
 
-    //[SerializeField] Animator gilranim;
-    //[SerializeField] Animator swordmananim;
-    //[SerializeField] Animator archeranim;
+    [SerializeField] Animator gilranim;
+    [SerializeField] Animator swordmananim;
+    [SerializeField] Animator archeranim;
 
     // Start is called before the first frame update
     void Start()
@@ -128,6 +131,38 @@ public class Boss_ : MonoBehaviour
             {
                 time_check();
             }
+            //待機モーション
+            if (rigidboody2d.velocity.x < 0.1f && rigidboody2d.velocity.x > -0.1f)
+            {
+                if (boss_atack_judge == 0)
+                {
+                    gilranim.SetBool("Moving", false);
+                }
+                else if (boss_atack_judge == 1)
+                {
+                    swordmananim.SetBool("SwordRun", false);
+                }
+                else if (boss_atack_judge == 2)
+                {
+                    archeranim.SetBool("ArcherMove", false);
+                }
+            }
+            else
+            {
+
+                if (boss_atack_judge == 0)
+                {
+                    gilranim.SetBool("Moving", true);
+                }
+                else if (boss_atack_judge == 1)
+                {
+                    swordmananim.SetBool("SwordRun", true);
+                }
+                else if (boss_atack_judge == 2)
+                {
+                    archeranim.SetBool("ArcherMove", true);
+                }
+            }
         }
 
         //ダメージチェック
@@ -167,17 +202,22 @@ public class Boss_ : MonoBehaviour
 
         Boss_Move_Stop();
     }
-    //ダメージ
+
     private void OnTriggerStay2D(Collider2D collision)
     {
+        //床
         if (collision.gameObject.CompareTag("Wall"))
         {
             Boss_Ground = true;
         }
-        if (collision.gameObject.CompareTag("Arrow")||collision.gameObject.CompareTag("WallBreak"))
+        //攻撃
+        if (!Invincible)
         {
-            Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
-            Debug.Log("攻撃を受けた");
+            if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Sword"))
+            {
+                Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
+                Debug.Log("攻撃を受けた");
+            }
         }
     }
 
@@ -224,6 +264,7 @@ public class Boss_ : MonoBehaviour
         Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
         //移動速度を指定
         rigidboody2d.velocity = direction * boss_x_speed;
+
     }
 
     //プレイヤーから離れる
@@ -267,112 +308,48 @@ public class Boss_ : MonoBehaviour
         float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
         Debug.Log("距離は" + range_Boss_player);
         //弓に形態変化
-        if (range_Boss_player > Range_Change)
+        if (range_Boss_player > Range_Change && !boss_isArcher)
         {
+            boss_isGirl = false;
+            boss_isSwordman = false;
+            boss_isArcher = true;
+            Debug.Log("Boss弓に変化");
+            anim.SetBool("changeWitch", false);
+            anim.SetBool("changeSwordman", false);
+            anim.SetBool("changeArcher", true);
             Boss_atacking_Archer = true;
+            Boss_atacking_Sword = false;
             boss_atack_judge = 2;
-            GameManagement.Instance.Boss_Character = (GameManagement.CharacterID)Enum.
-                ToObject(typeof(GameManagement.CharacterID),boss_atack_judge);
-            Boss_Chang();
         }
         //剣に形態変化
-        if (range_Boss_player < Range_Change)
+        if (range_Boss_player < Range_Change && !boss_isSwordman)
         {
+            boss_isGirl = false;
+            boss_isSwordman = true;
+            boss_isArcher = false;
+            Debug.Log("Boss剣士に変化");
+            anim.SetBool("changeArcher", false);
+            anim.SetBool("changeWitch", false);
+            anim.SetBool("changeSwordman", true);
             Boss_atacking_Sword = true;
+            Boss_atacking_Archer = false;
             boss_atack_judge = 1;
-            GameManagement.Instance.Boss_Character = (GameManagement.CharacterID)Enum.
-                ToObject(typeof(GameManagement.CharacterID), boss_atack_judge);
-            Boss_Chang();
         }
+        Range_Check = true;
     }
 
     public void Boss_girl()
     {
-        if (!Avoidance)
-        {
-            Avoidance = true;
             //少女に戻す
+            Debug.Log("Boss少女に変化");
+            boss_isGirl = true;
+            boss_isSwordman = false;
+            boss_isArcher = false;
+            anim.SetBool("changeArcher", false);
+            anim.SetBool("changeSwordman", false);
+            anim.SetBool("changeWitch", true);
+            Range_Check = true;
             boss_atack_judge = 0;
-            GameManagement.Instance.Boss_Character =
-             (GameManagement.CharacterID)Enum.ToObject(typeof(GameManagement.CharacterID),
-             boss_changechara);
-            Boss_Chang();
         }
     }
 
-    public void Boss_Chang()
-    {
-        //0=少女
-        //1＝剣士
-        //2＝アーチャー
-        switch (GameManagement.Instance.Boss_Character)
-        {
-            case GameManagement.CharacterID.Girl:
-                //switch (GameManagement.Instance.BossCharacter)
-                //{
-                //    case GameManagement.CharacterID.Swordsman:
-                //        GameManagement.Instance.Boss_Character = GameManagement.CharacterID.Swordsman;
-                //        boss_changechara = 1;
-                //        break;
-                //    case GameManagement.CharacterID.Bowman:
-                //        GameManagement.Instance.Boss_Character = GameManagement.CharacterID.Bowman;
-                //        boss_changechara = 2;
-                //        break;
-                //    default:
-                //        break;
-                //}
-                //boss_anim.SetBool("changeIncarnation",false); 
-                boss_atack_judge = 0;
-                anim.SetBool("changeArcher", false);
-                anim.SetBool("changeWitch", true);
-                anim.SetBool("changeSwordman", false);
-                GameManagement.Instance.BossCharacter = GameManagement.CharacterID.Girl;
-                Debug.Log("少女に戻った");
-                break;
-            case GameManagement.CharacterID.Swordsman:
-                //switch (GameManagement.Instance.BossCharacter)
-                //{
-                //    case GameManagement.CharacterID.Girl:
-                //        GameManagement.Instance.Boss_Character = GameManagement.CharacterID.Girl;
-                //        boss_changechara = 0;
-                //        break;
-                //    case GameManagement.CharacterID.Bowman:
-                //        GameManagement.Instance.Boss_Character = GameManagement.CharacterID.Bowman;
-                //        boss_changechara = 2;
-                //        break;
-                //    default:
-                //        break;
-                //}
-                Debug.Log("ソードマンにジョブ変更");
-                boss_atack_judge = 1;
-                anim.SetBool("changeArcher", false);
-                anim.SetBool("changeWitch", false);
-                anim.SetBool("changeSwordman", true);
-                GameManagement.Instance.BossCharacter = GameManagement.CharacterID.Swordsman;
-                break;
-            case GameManagement.CharacterID.Bowman:
-                //switch (GameManagement.Instance.BossCharacter)
-                //{
-                //    case GameManagement.CharacterID.Swordsman:
-                //        GameManagement.Instance.Boss_Character = GameManagement.CharacterID.Swordsman;
-                //        boss_changechara = 1;
-                //        break;
-                //    case GameManagement.CharacterID.Girl:
-                //        GameManagement.Instance.Boss_Character = GameManagement.CharacterID.Girl;
-                //        boss_changechara = 0;
-                //        break;
-                //    default:
-                //        break;
-                //}
-                Debug.Log("アーチャーにフォルムチェンジ！！！");
-                GameManagement.Instance.BossCharacter = GameManagement.CharacterID.Bowman;
-                boss_atack_judge = 2;
-                anim.SetBool("changeArcher", true);
-                anim.SetBool("changeWitch", false);
-                anim.SetBool("changeSwordman", false);
-                break;
-        }
-        Range_Check = true;
-        Avoidance = false;
-    }
-}
