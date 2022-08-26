@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Kaihei : MonoBehaviour
 {
+    public int time;
     bool ok = false;
     [SerializeField]
     private bool EVflag;
@@ -52,46 +53,52 @@ public class Kaihei : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C) && ok)
         {
-            EVflag = true;
             StartCoroutine(El());
         }
     }
     private void OnTriggerExit2D(Collider2D other)//エレベーターから出たら
     {
-        if (floar == 1f && EVflag == true && other.tag == "Player")
+        if (other.tag == "Player")
         {
-            floar = 2f;
-            EVflag = false;
             ok = false;
-        }
-        if (floar == 2f && EVflag == true && other.tag == "Player")
-        {
-            floar = 1f;
-            EVflag = false;
-            ok=false;
         }
     }
 
     IEnumerator El()
     {
-        while (EVflag)
+        int times = 0;
+        while (true)
         {
-            if (Ele.transform.position.y < max && floar == 1f && EVflag == true)
+            if (times == time)
             {
-                Ele.transform.Translate(0, 1f * Time.deltaTime, 0);
 
+                break;
             }
-        }
-        yield return new WaitForSeconds(10);
-        while (EVflag)
-        {
-            if (floar == 2f)
+            else
             {
-                if (Ele.transform.position.y > minimum && EVflag == true)
-                {
-                    Ele.transform.Translate(0, -1f * Time.deltaTime, 0);
-                }
+                Transform myTransform = Ele.transform;
+                myTransform.Translate(new Vector3(0, 0.1f, 0));
+                times++;
             }
+            yield return new WaitForSeconds(0.001f);
         }
+        yield return new WaitForSeconds(5);
+        times = 0;
+        while (true)
+        {
+            if (times == time)
+            {
+
+                break;
+            }
+            else
+            {
+                Transform myTransform = Ele.transform;
+                myTransform.Translate(new Vector3(0, -0.1f, 0));
+                times++;
+            }
+            yield return new WaitForSeconds(0.001f);
+        }
+        EVflag = false;
     }
 }
