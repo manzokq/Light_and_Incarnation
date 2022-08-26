@@ -48,6 +48,8 @@ public class XboxPlayerContorol : MonoBehaviour
     
     private float jumpCount;
 
+    private bool parryAble = true;
+
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -119,6 +121,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if(Input.GetAxisRaw("D_Pad_H") == 1 && !isSwordman && GameManagement.Instance.PlayerOrb>=15) //想定では→　剣士
         {
+            atack_judge_con = 1;
             isGirl = false;
             isSwordman = true;
             isArcher = false;
@@ -130,6 +133,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_H") == -1 && !isArcher && GameManagement.Instance.PlayerOrb >= 15) //想定では←　弓使
         {
+            atack_judge_con = 2;
             isGirl = false;
             isSwordman = false;
             isArcher = true;
@@ -141,6 +145,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_V") == 1 && !isGirl) //想定では↑  少女
         {
+            atack_judge_con = 0;
             Debug.Log("c");
             isGirl = true;
             isSwordman = false;
@@ -411,6 +416,15 @@ public class XboxPlayerContorol : MonoBehaviour
 
             }
         }
+        //ガードというかパリィというか
+        float viewButton = Input.GetAxis("L_R_Trigger");
+        if (parryAble && atack_judge_con == 1 && (Input.GetKeyDown("joystick button 4") || (viewButton > 0 && beforeTrigger == 0)))
+        {
+            parryAble = false;
+            this.gameObject.tag = "Parry";
+            beforeTrigger = viewButton;
+            StartCoroutine(Parry());
+        }
 
 
     }
@@ -611,6 +625,13 @@ public class XboxPlayerContorol : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             archeranim.SetBool("ArcherSliding2", false);
         }
+    }
+    IEnumerator Parry()
+    {
+        yield return new WaitForSeconds(0.5f);
+        this.gameObject.tag = "Player";
+        yield return new WaitForSeconds(1f);
+        parryAble = true;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
