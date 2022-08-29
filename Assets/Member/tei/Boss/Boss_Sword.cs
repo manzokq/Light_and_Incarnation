@@ -30,6 +30,7 @@ public class Boss_Sword : MonoBehaviour
     //çUåÇ
     private int Boss_Sword_Atk1;
     private int Boss_Sword_Atk2;
+    private int Boss_Sword_control;
 
 
     // Start is called before the first frame update
@@ -49,7 +50,7 @@ public class Boss_Sword : MonoBehaviour
         if (Boss_Contorol.Boss_atacking_Sword)
         {
             Boss_Cool_time += Time.deltaTime;
-            if (Boss_Atk_time <= Boss_Cool_time)
+            if (Boss_Atk_time <= Boss_Cool_time && Boss_Contorol.Boss_Sword_Attack)
             {
                 Debug.Log("çUåÇíäëI");
                 Boss_Cool_time = 0;
@@ -82,11 +83,8 @@ public class Boss_Sword : MonoBehaviour
                 anim.SetBool("Slash",true);
                 animSword.SetTrigger("Slash2");
                 swordmanRig.SetTrigger("SwordAtack1");
-                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
                 StartCoroutine(Atack1());
             }
-            //slashable = false;
         }
     }
 
