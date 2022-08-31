@@ -51,6 +51,7 @@ public class Boss_Sword : MonoBehaviour
             Boss_Cool_time += Time.deltaTime;
             if (Boss_Atk_time <= Boss_Cool_time)
             {
+                Boss_Contorol.Boss_atacking_Sword = false;
                 Debug.Log("UŒ‚’Š‘I");
                 Boss_Cool_time = 0;
                 Boss_random_Atk_Sword = Random.Range(1, 3);
@@ -79,7 +80,7 @@ public class Boss_Sword : MonoBehaviour
             var swordman_judge = Boss_Control.boss_atack_judge;
             if (swordman_judge == 1)
             {
-                anim.SetBool("Slash",true);
+                anim.SetTrigger("Slash");
                 animSword.SetTrigger("Slash2");
                 swordmanRig.SetTrigger("SwordAtack1");
                 //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
