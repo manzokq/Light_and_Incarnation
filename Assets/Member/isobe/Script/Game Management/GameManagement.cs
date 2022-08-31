@@ -69,9 +69,22 @@ public class GameManagement : MonoBehaviour
     }
     private void Start()
     {
-        PlayerHP = playerHp;
-        PlayerMP = playerMp;
-        PlayerOrb = playerOrb;
+        if (SceneManager.GetActiveScene().name == "PVMap" || SceneManager.GetActiveScene().name == "MapTutorial")
+        {
+            PlayerHP = 100;
+            PlayerMP = 100;
+            PlayerOrb = 100;
+            playerHp=100;
+            playerMp=100;
+            playerOrb=100;
+        }
+        else
+        {
+            PlayerHP = playerHp;
+            PlayerMP = playerMp;
+            PlayerOrb = playerOrb;
+        }
+
         var xbox = GameObject.FindGameObjectWithTag("Player");
         xboxPlayer =xbox.GetComponent<XboxPlayerContorol>();
         StartCoroutine(GetOrb());
