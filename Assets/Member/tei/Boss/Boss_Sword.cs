@@ -32,6 +32,8 @@ public class Boss_Sword : MonoBehaviour
     private int Boss_Sword_Atk2;
     private int Boss_Sword_control;
 
+    public int Atk_Sword;
+
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +82,7 @@ public class Boss_Sword : MonoBehaviour
             var swordman_judge = Boss_Control.boss_atack_judge;
             if (swordman_judge == 1)
             {
+                Atk_Sword = 1;
                 anim.SetBool("Slash",true);
                 animSword.SetTrigger("Slash2");
                 swordmanRig.SetTrigger("SwordAtack1");
@@ -98,6 +101,7 @@ public class Boss_Sword : MonoBehaviour
             var swordman_judge = Boss_Control.boss_atack_judge;
             if (swordman_judge == 1)
             {
+                Atk_Sword = 2;
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
                 swordmanRig.SetTrigger("SwordAtack2");
@@ -114,6 +118,7 @@ public class Boss_Sword : MonoBehaviour
         GameManagement.Instance.PlayerDamage(Boss_Sword_Atk1);
         Boss.Boss_atacking_Sword = true;
         slashAble = true;
+        Atk_Sword = 0;
     }
 
     IEnumerator Atack2()
@@ -123,6 +128,7 @@ public class Boss_Sword : MonoBehaviour
         GameManagement.Instance.PlayerDamage(Boss_Sword_Atk2);
         Boss_Contorol.Boss_atacking_Sword = true;
         thrustAble = true;
+        Atk_Sword = 0;
     }
 }
 

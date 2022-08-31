@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Arrow : MonoBehaviour
+public class Boss_Blade : MonoBehaviour
 {
+
     private bool cooltime = true;
     [SerializeField]
     private Animator anim;
@@ -26,10 +27,11 @@ public class Boss_Arrow : MonoBehaviour
         Boss_Archer_Atk2 = boss.Boss_Atk2;
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
-    {if (collider2D.gameObject.CompareTag("Player"))
+    {
+        if (collider2D.gameObject.CompareTag("Player"))
         {
-            Boss_Bowman boss_Sword = GetComponent<Boss_Bowman>();
-            Atk_ = boss_Sword.Atk_Bowman;
+            Boss_Sword boss_Sword = GetComponent<Boss_Sword>();
+            Atk_ = boss_Sword.Atk_Sword;
             if (Atk_ == 1)
             {
                 GameManagement.Instance.PlayerDamage(Boss_Archer_Atk1);
@@ -57,5 +59,3 @@ public class Boss_Arrow : MonoBehaviour
 
     }
 }
-
-
