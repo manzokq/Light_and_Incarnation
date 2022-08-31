@@ -370,7 +370,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //•Ç“o‚è
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
-            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
+            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0)
             {
                 coroutine_able = false;
                 if (atack_judge_con == 0)
@@ -465,7 +465,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-                swordmananim.SetBool("SwordClimb", false);
+                
                 gilranim.SetBool("GirlClimb", false);
                 yield break;
             }
@@ -476,7 +476,7 @@ public class XboxPlayerContorol : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        swordmananim.SetBool("SwordClimb", false);
+        
         gilranim.SetBool("GirlClimb", false);
     }
     void DamageColor()
