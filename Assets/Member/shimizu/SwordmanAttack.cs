@@ -22,6 +22,8 @@ public class SwordmanAttack : MonoBehaviour
     private bool chargeslashAble = true;
     private bool wallbreakAble = true;
 
+    private float beforeTrigger = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -142,6 +144,13 @@ public class SwordmanAttack : MonoBehaviour
                 
                 StartCoroutine(Atack3());
             }
+        }
+        //ƒK[ƒh
+        float viewButton = Input.GetAxis("L_R_Trigger");
+        if(Input.GetKeyDown("joystick button 4") || (viewButton >0 && beforeTrigger == 0))
+        {
+
+            beforeTrigger = viewButton;
         }
         //‚Æ‚è‚ ‚¦‚¸”p~
         ////•Ç”j‰ó(“ÁêUŒ‚)
