@@ -257,17 +257,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //}
         //beforeTrigger = view_button;
         //攻撃方法の変更
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            
-            changeatack++;
-            if (changeatack > 2)
-            {
-                changeatack = 0;
-            }
-            GameManagement.Instance.Atk = (GameManagement.AtkID)Enum.ToObject(typeof(GameManagement.AtkID), changeatack);
-            //Debug.Log(GameManagement.Instance.Atk);
-        }
+        
 
         //接地判定と接壁判定
         isGround = ground.IsGround();
@@ -320,12 +310,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < 0 && !xatacking && sliding_judge)
+        if (rbody.velocity.x < 0.5 && !xatacking && sliding_judge)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0 && !xatacking && sliding_judge)
+        if (rbody.velocity.x > 0.5 && !xatacking && sliding_judge)
         {
             scale.x = 100;
             transform.localScale = scale;
@@ -354,25 +344,6 @@ public class XboxPlayerContorol : MonoBehaviour
         //スライディング
         if (Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 5") && isGround && coroutine_able)
         {
-            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
-            {
-                sliding_judge = false;
-                head_sliding = true;
-                archeranim.SetBool("ArcherSliding", true);
-                StartCoroutine("DodgeTag");
-                if (rbody.velocity.x > 0)
-                {
-                    anim.SetBool("GirlSliding", true);
-                    StartCoroutine(AngleRepairRightArcher());
-
-                }
-                if (rbody.velocity.x < 0)
-                {
-                    anim.SetBool("GirlSliding", true);
-                    StartCoroutine(AngleRepairLeftArcher());
-
-                }
-            }
             //少女のやつ
             if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
             {
@@ -397,7 +368,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //壁登り
-        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl || GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Swordsman)
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
             if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
             {
@@ -407,13 +378,6 @@ public class XboxPlayerContorol : MonoBehaviour
                     gilranim.SetBool("GirlClimb", true);
                     StartCoroutine("Climb");
                 }
-                else if (atack_judge_con == 1)
-                {
-                    swordmananim.SetBool("SwordClimb", true);
-                    StartCoroutine("Climb");
-                }
-
-
             }
         }
         //ガードというかパリィというか
