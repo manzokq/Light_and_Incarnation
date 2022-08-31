@@ -121,6 +121,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if(Input.GetAxisRaw("D_Pad_H") == 1 && !isSwordman && GameManagement.Instance.PlayerOrb>=15) //想定では→　剣士
         {
+            GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
             atack_judge_con = 1;
             isGirl = false;
             isSwordman = true;
@@ -133,6 +134,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_H") == -1 && !isArcher && GameManagement.Instance.PlayerOrb >= 15) //想定では←　弓使
         {
+            GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
             atack_judge_con = 2;
             isGirl = false;
             isSwordman = false;
@@ -145,6 +147,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_V") == 1 && !isGirl) //想定では↑  少女
         {
+            GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
             atack_judge_con = 0;
             Debug.Log("c");
             isGirl = true;
@@ -310,7 +313,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < 0.5 && !xatacking && sliding_judge)
+        if (rbody.velocity.x < -0.5 && !xatacking && sliding_judge)
         {
             scale.x = -100;
             transform.localScale = scale;
