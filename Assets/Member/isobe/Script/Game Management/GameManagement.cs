@@ -46,7 +46,7 @@ public class GameManagement : MonoBehaviour
     [SerializeField]
     public CharacterID Character;
     [SerializeField]
-    public MapID Map;
+    public string Map;
     [SerializeField]
     public AtkID Atk;
 
@@ -69,24 +69,35 @@ public class GameManagement : MonoBehaviour
     }
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "PVMap" || SceneManager.GetActiveScene().name == "MapTutorial")
-        {
-            PlayerHP = 100;
-            PlayerMP = 100;
-            PlayerOrb = 100;
-            playerHp=100;
-            playerMp=100;
-            playerOrb=100;
-        }
-        else
-        {
-            PlayerHP = playerHp;
-            PlayerMP = playerMp;
-            PlayerOrb = playerOrb;
-        }
+        if (!(Map == null))
+            if ((Map == "MapTutorial" || Map == "MapOP" || Map == "GameOver") && SceneManager.GetActiveScene().name == "Map1")
+            {
+                PlayerHP = 100;
+                PlayerMP = 100;
+                PlayerOrb = 100;
+                playerHp = 100;
+                playerMp = 100;
+                playerOrb = 100;
+            }
+            else if (SceneManager.GetActiveScene().name == "PVMap" || SceneManager.GetActiveScene().name == "MapTutorial")
+            {
+                PlayerHP = 100;
+                PlayerMP = 100;
+                PlayerOrb = 100;
+                playerHp = 100;
+                playerMp = 100;
+                playerOrb = 100;
+            }
+            else
+            {
+                PlayerHP = playerHp;
+                PlayerMP = playerMp;
+                PlayerOrb = playerOrb;
+            }
 
+        Map = SceneManager.GetActiveScene().name;
         var xbox = GameObject.FindGameObjectWithTag("Player");
-        xboxPlayer =xbox.GetComponent<XboxPlayerContorol>();
+        xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
         StartCoroutine(GetOrb());
         Application.targetFrameRate = 60;
     }
