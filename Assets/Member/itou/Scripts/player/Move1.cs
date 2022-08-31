@@ -11,6 +11,7 @@ public class Move1 : MonoBehaviour
 
     [SerializeField]
     int num = 1;
+    bool inputFrag = true;
     void Start()
     {
         //自身の座標をx方向に+3移動させる
@@ -25,14 +26,16 @@ public class Move1 : MonoBehaviour
         //Time.deltaTimeは前回のフレームからの経過秒数
         //this.transform.Translate(new Vector3 (-5f * Time.deltaTime,0f,0f));
         //↑キーが押された時
-        if (Input.GetKeyDown(KeyCode.UpArrow)||Input.GetAxis("L_Stick_H") > 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow)||(Input.GetAxis("L_Stick_V") <-0.5f&&inputFrag))
         {
+            inputFrag = false;
             this.transform.Translate(new Vector3(0f, 1.25f, 0f));
             num -= 1;
         }
         //↓キーが押された時
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("L_Stick_H") < 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetAxis("L_Stick_V")>0.5f&&inputFrag))
         {
+            inputFrag = false;
             this.transform.Translate(new Vector3(0f, -1.25f, 0f));
             num += 1;
         }
@@ -45,6 +48,11 @@ public class Move1 : MonoBehaviour
         {
             this.transform.position = new Vector3(transform.position.x, -3.65f, 0f);
             num += 3;
+        }
+
+        if(Input.GetAxis("L_Stick_V") <= 0.5f&& Input.GetAxis("L_Stick_V") >= -0.5f)
+        {
+            inputFrag = true;
         }
         /*if(Input.GetKeyDown(KeyCode.DownArrow)&&num!=3)
         {
