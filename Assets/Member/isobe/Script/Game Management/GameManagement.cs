@@ -140,6 +140,7 @@ public class GameManagement : MonoBehaviour
     }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ
     {
+        Debug.Log(EnemyHP);
         switch (PlayerCharacter)
         {
             case CharacterID.Swordsman:
@@ -170,21 +171,9 @@ public class GameManagement : MonoBehaviour
                         break;
                 }
                 break;
-            case CharacterID.Wizard:
-                switch (Atk)
-                {
-                    case AtkID.Atk1:
-                        EnemyHP -= 1;
-                        break;
-                    case AtkID.Atk2:
-                        EnemyHP -= 2;
-                        break;
-                    case AtkID.Atk3:
-                        EnemyHP -= 3;
-                        break;
-                }
-                break;
         }
+        Debug.Log(EnemyHP);
+        Debug.Log("EnemyDame");
         return EnemyHP;
     }
     //MP追加予定
