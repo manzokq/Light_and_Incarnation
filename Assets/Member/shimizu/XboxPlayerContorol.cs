@@ -48,6 +48,8 @@ public class XboxPlayerContorol : MonoBehaviour
     
     private float jumpCount;
 
+    private bool parryAble = true;
+
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -119,6 +121,8 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if(Input.GetAxisRaw("D_Pad_H") == 1 && !isSwordman && GameManagement.Instance.PlayerOrb>=15) //想定では→　剣士
         {
+            GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+            atack_judge_con = 1;
             isGirl = false;
             isSwordman = true;
             isArcher = false;
@@ -130,6 +134,8 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_H") == -1 && !isArcher && GameManagement.Instance.PlayerOrb >= 15) //想定では←　弓使
         {
+            GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+            atack_judge_con = 2;
             isGirl = false;
             isSwordman = false;
             isArcher = true;
@@ -141,6 +147,8 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_V") == 1 && !isGirl) //想定では↑  少女
         {
+            GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
+            atack_judge_con = 0;
             Debug.Log("c");
             isGirl = true;
             isSwordman = false;
@@ -252,17 +260,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //}
         //beforeTrigger = view_button;
         //攻撃方法の変更
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            
-            changeatack++;
-            if (changeatack > 2)
-            {
-                changeatack = 0;
-            }
-            GameManagement.Instance.Atk = (GameManagement.AtkID)Enum.ToObject(typeof(GameManagement.AtkID), changeatack);
-            //Debug.Log(GameManagement.Instance.Atk);
-        }
+        
 
         //接地判定と接壁判定
         isGround = ground.IsGround();
@@ -315,12 +313,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < 0 && !xatacking && sliding_judge)
+        if (rbody.velocity.x < -0.5 && !xatacking && sliding_judge)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0 && !xatacking && sliding_judge)
+        if (rbody.velocity.x > 0.5 && !xatacking && sliding_judge)
         {
             scale.x = 100;
             transform.localScale = scale;
@@ -349,25 +347,6 @@ public class XboxPlayerContorol : MonoBehaviour
         //スライディング
         if (Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 5") && isGround && coroutine_able)
         {
-            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
-            {
-                sliding_judge = false;
-                head_sliding = true;
-                archeranim.SetBool("ArcherSliding", true);
-                StartCoroutine("DodgeTag");
-                if (rbody.velocity.x > 0)
-                {
-                    anim.SetBool("GirlSliding", true);
-                    StartCoroutine(AngleRepairRightArcher());
-
-                }
-                if (rbody.velocity.x < 0)
-                {
-                    anim.SetBool("GirlSliding", true);
-                    StartCoroutine(AngleRepairLeftArcher());
-
-                }
-            }
             //少女のやつ
             if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
             {
@@ -392,9 +371,9 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //壁登り
-        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl || GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Swordsman)
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
-            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
+            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0)
             {
                 coroutine_able = false;
                 if (atack_judge_con == 0)
@@ -402,14 +381,16 @@ public class XboxPlayerContorol : MonoBehaviour
                     gilranim.SetBool("GirlClimb", true);
                     StartCoroutine("Climb");
                 }
-                else if (atack_judge_con == 1)
-                {
-                    swordmananim.SetBool("SwordClimb", true);
-                    StartCoroutine("Climb");
-                }
-
-
             }
+        }
+        //ガードというかパリィというか
+        float viewButton = Input.GetAxis("L_R_Trigger");
+        if (parryAble && atack_judge_con == 1 && (Input.GetKeyDown("joystick button 4") || (viewButton > 0 && beforeTrigger == 0)))
+        {
+            parryAble = false;
+            this.gameObject.tag = "Parry";
+            beforeTrigger = viewButton;
+            StartCoroutine(Parry());
         }
 
 
@@ -487,7 +468,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-                swordmananim.SetBool("SwordClimb", false);
+                
                 gilranim.SetBool("GirlClimb", false);
                 yield break;
             }
@@ -498,7 +479,7 @@ public class XboxPlayerContorol : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        swordmananim.SetBool("SwordClimb", false);
+        
         gilranim.SetBool("GirlClimb", false);
     }
     void DamageColor()
@@ -611,6 +592,13 @@ public class XboxPlayerContorol : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             archeranim.SetBool("ArcherSliding2", false);
         }
+    }
+    IEnumerator Parry()
+    {
+        yield return new WaitForSeconds(0.5f);
+        this.gameObject.tag = "Player";
+        yield return new WaitForSeconds(1f);
+        parryAble = true;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
