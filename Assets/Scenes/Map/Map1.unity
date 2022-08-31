@@ -83298,6 +83298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_Kasai
       objectReference: {fileID: 0}
+    - target: {fileID: 1225613047874758826, guid: ebe4abdc6562d6041b5ddde78285432f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5169155183982664680, guid: ebe4abdc6562d6041b5ddde78285432f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -83926,7 +83930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8151049371767283454, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8151049371767283454, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
       propertyPath: m_AnchorMax.x
@@ -84257,6 +84261,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 3.755
       objectReference: {fileID: 0}
+    - target: {fileID: 2404264974328136241, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3171259733159700788, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: 0.00000011920929
@@ -84284,6 +84292,10 @@ PrefabInstance:
     - target: {fileID: 4159257029534832953, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 2.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784144960061057393, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4929789573278473481, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Extent.x
