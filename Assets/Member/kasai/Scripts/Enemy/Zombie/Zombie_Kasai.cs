@@ -19,7 +19,7 @@ public class Zombie_Kasai : Enemy
     private int _rndMin = 1;
     [SerializeField]private int _rndMax = 3;//Šî–{“I‚É‚¢‚¶‚é‚Â‚à‚è‚Í‚È‚¢
     private bool _process = false;//‚±‚ê‚ªtrue‚ÌŠÔ‚Í•Ê‚Ìˆ—‚ğÀs‚µ‚È‚¢
-    [SerializeField] private float _recastTime = 3.0f;//UŒ‚‚ÌüŠú
+    [SerializeField] private float _recastTime = 2.0f;//UŒ‚‚ÌüŠú
 
     // Start is called before the first frame update
     protected override void Start()
@@ -34,6 +34,7 @@ public class Zombie_Kasai : Enemy
     protected override void Update()
     {
         base.Update();
+        StartCoroutine(ZombieAtkChoice());
     }
     public IEnumerator ZombieAtkChoice()
     {

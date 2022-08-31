@@ -63,10 +63,10 @@ public class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         //デバッグ用
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Damaged();
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Damaged();
+        //}
         //体力の判定
         if (this.Hp <= 0)
         {
