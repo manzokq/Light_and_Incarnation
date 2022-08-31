@@ -14,10 +14,16 @@ public class Dont : MonoBehaviour
 
     private void Awake()
     {
-        if(instance ==null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+        }
+        else if (SceneManager.GetActiveScene().name == "GameClear" ||
+                SceneManager.GetActiveScene().name == "GameOP" ||
+                SceneManager.GetActiveScene().name == "GameOver")
+        {
+            Destroy(this.gameObject);
         }
         else
         {
