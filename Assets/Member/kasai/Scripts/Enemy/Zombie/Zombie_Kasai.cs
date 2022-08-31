@@ -34,6 +34,7 @@ public class Zombie_Kasai : Enemy
     protected override void Update()
     {
         base.Update();
+        StartCoroutine(ZombieAtkChoice());
     }
     public IEnumerator ZombieAtkChoice()
     {
