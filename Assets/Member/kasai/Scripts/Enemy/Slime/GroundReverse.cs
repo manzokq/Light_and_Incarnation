@@ -3,13 +3,11 @@ using UnityEngine;
 public class GroundReverse : MonoBehaviour 
 {
 
-    //Slime slime;
-    Enemy enemy;
+    Slime slime;
 
     private void Awake()
     {
-        //slime= transform.parent.gameObject.GetComponent<Slime>();
-        enemy = transform.parent.gameObject.GetComponent<Enemy>();
+        slime= transform.parent.gameObject.GetComponent<Slime>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -18,9 +16,8 @@ public class GroundReverse : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             //Debug.Log("è∞Ç©ÇÁî≤ÇØÇΩ");
-            //slime.Reverse();
-            enemy.Reverse();
+            slime.Reverse();
         }
-
+        
     }
 }

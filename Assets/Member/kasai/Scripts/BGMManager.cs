@@ -37,6 +37,7 @@ public class BGMManager : MonoBehaviour
 
     private void Awake()
     {
+        //Debug.LogError("aruyo");
         if (Instance == null)
         {
             _instance = this;

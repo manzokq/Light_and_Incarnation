@@ -122,6 +122,8 @@ public class SceneChingPlayer : MonoBehaviour
         doors = GameObject.FindGameObjectsWithTag("Gate");
         foreach(var obj in doors)
         {
+
+            Debug.LogError(obj.gameObject.GetComponent<Gate>().ReturnGatenum());
             if((int)gate== obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
