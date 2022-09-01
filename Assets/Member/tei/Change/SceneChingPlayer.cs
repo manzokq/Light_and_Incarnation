@@ -37,18 +37,19 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoad;
 
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            gate = Gatenum.None;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //SceneManager.sceneLoaded += OnSceneLoad;
+
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //    gate = Gatenum.None;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     void Update()
