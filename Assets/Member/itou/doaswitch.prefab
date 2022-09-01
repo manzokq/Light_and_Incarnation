@@ -125,8 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d6eb1a81480b149b636c783a7d74c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doa: {fileID: 0}
-  kaihei: 0
+  time: 30
+  EVflag: 0
+  Ele: {fileID: 306356297584154854}
+  max: 0
+  minimum: 0
 --- !u!1 &306356297584154854
 GameObject:
   m_ObjectHideFlags: 0
