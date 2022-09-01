@@ -49,7 +49,7 @@ public class XboxPlayerContorol : MonoBehaviour
     private float jumpCount;
 
     private bool parryAble = true;
-
+    private int climbCount = 0;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -265,6 +265,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //接地判定と接壁判定
         isGround = ground.IsGround();
         isWallright = wallright.IsWall();
+        Debug.Log(isWallright);
 
         //横移動
         if (coroutine_able && !head_sliding)
@@ -281,29 +282,30 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 if (Input.GetAxis("L_Stick_H") > 0 && scale.x <0)
                 {
+                    
                     rbody.isKinematic = false;
-                    swordmananim.SetBool("SwordClimb", false);
+                    
                     gilranim.SetBool("GirlClimb", false);
                     anim.SetBool("GirlSliding", false);
                     anim.SetBool("GirlSlidingL", false);
-                    rbody.AddForce(new Vector2(1, 0) * 100);
+                    rbody.AddForce(new Vector2(1, 0) * 200);
                 
                 }
                 if (Input.GetAxis("L_Stick_H") < 0 && scale.x > 0)
                 {
                     rbody.isKinematic = false;
-                    swordmananim.SetBool("SwordClimb", false);
+                    
                     gilranim.SetBool("GirlClimb", false);
                     anim.SetBool("GirlSliding", false);
                     anim.SetBool("GirlSlidingL", false);
-                    rbody.AddForce(new Vector2(-1, 0) * 100);
+                    rbody.AddForce(new Vector2(-1, 0) * 200);
                 }
                 if (isHeading)
                 {
                     //Debug.Log("bbb");
                     HeadCheck.heading = false;
                     rbody.isKinematic = false;
-                    swordmananim.SetBool("SwordClimb", false);
+                    
                     gilranim.SetBool("GirlClimb", false);
                     anim.SetBool("GirlSliding", false);
                     anim.SetBool("GirlSlidingL", false);
@@ -347,6 +349,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //スライディング
         if (Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 5") && isGround && coroutine_able)
         {
+            
             //少女のやつ
             if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
             {
@@ -373,9 +376,19 @@ public class XboxPlayerContorol : MonoBehaviour
         //壁登り
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
-            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0)
+            if (isWallright)
+            {
+                climbCount++;
+                Debug.Log(climbCount);
+            }
+            else
+            {
+                climbCount = 0;
+            }
+            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && climbCount > 10)
             {
                 coroutine_able = false;
+                climbCount = 0;
                 if (atack_judge_con == 0)
                 {
                     gilranim.SetBool("GirlClimb", true);
