@@ -4,46 +4,101 @@ using UnityEngine;
 
 public class kaiten : MonoBehaviour
 {
+    /*
     [SerializeField]
-    private GameObject Kaiten;
+    private SwitchR _switchrigth;
+    [SerializeField]
+    private SwitchL _switchleft;
+    */
 
-    bool hs = true;
+    bool direction = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (hs)
+        //if (_switchrigth.kidourigth)
         //{
-        //    if(hasi.transform.rotation.z <= 80 || hasi.transform.rotation.z >= 0)
-        //    {
-        //        hasi.transform.Rotate(new Vector3(0, 0, 90f * Time.deltaTime));
-        //        StartCoroutine(stop());
-        //    }
+        //    _switchrigth.kidourigth = false;
+        //    StartCoroutine(Rigth());
+        //}
+        //if (_switchleft.kidouleft)
+        //{
+        //    _switchleft.kidouleft = false;
+        //    StartCoroutine(Left());
         //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hs)
+
+    }
+
+    public void RoteStart()
+    {
+        if (direction)
         {
-            StartCoroutine(stop());
+           LeftRote();
+            direction = false;
+        }
+        else if ( !direction)
+        {
+            RightRote();
+            direction = true;
         }
     }
 
-    IEnumerator stop()
+    public void RightRote()
     {
-        float T=0;
-        while(T < 1)
+        StartCoroutine(Right());
+    }
+
+    public void LeftRote()
+    {
+        StartCoroutine(Left());
+    }
+
+    IEnumerator Right()
+    {
+        int time = 0;
+        while (true)
         {
-            hs = false;
-            Kaiten.transform.Translate(new Vector3(0, -5f * Time.deltaTime, 0));
-            Kaiten.transform.Rotate(new Vector3(0, 0, 90f * Time.deltaTime));
-            T += Time.deltaTime;
-            yield return null;
+            if (time == 90)
+            {
+
+                break;
+            }
+            else
+            {
+                Transform myTransform = this.transform;
+                myTransform.Rotate(new Vector3(0, 0, 1));
+                time++;
+            }
+            yield return new WaitForSeconds(0.01f);
         }
     }
+    IEnumerator Left()
+    {
+        int time = 0;
+        while (true)
+        {
+            if (time == 90)
+            {
+
+                break;
+            }
+            else
+            {
+                Transform myTransform = this.transform;
+                myTransform.Rotate(new Vector3(0, 0, -1));
+                time++;
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
 }
