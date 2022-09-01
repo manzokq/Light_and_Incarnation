@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private bool _moveFrag = true;
     private bool _process = false;
     private int _repeat = 6;
-    private float _recast = 0.5f;
+    [SerializeReference]private float _recast = 0.2f;
     
 
     //private bool movetest=false;
