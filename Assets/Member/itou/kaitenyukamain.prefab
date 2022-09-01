@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6484562892616853589}
   - component: {fileID: 6484562892616853594}
-  - component: {fileID: 6484562892616853588}
   - component: {fileID: 6484562892616853591}
+  - component: {fileID: 8267085864095597014}
   m_Layer: 0
   m_Name: switchrigth
   m_TagString: Untagged
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 6f19a99cae83fcc43b27d9c1b4975a62, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37b989dc70a9b1447a836e05151fc240, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,23 +83,9 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6484562892616853588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6484562892616853592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8a1cc25b66ff644fabf40d558542b8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kidourigth: 0
-  star: 0
 --- !u!61 &6484562892616853591
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126,6 +112,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8267085864095597014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484562892616853592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e37e923b02af434095aa2df3badf7e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kidourigth: 0
+  star: 0
 --- !u!1 &6484562892840341990
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,8 +136,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6484562892840341987}
   - component: {fileID: 6484562892840341984}
-  - component: {fileID: 6484562892840341986}
   - component: {fileID: 6484562892840342013}
+  - component: {fileID: 2187722406289195680}
   m_Layer: 0
   m_Name: switchleft
   m_TagString: Untagged
@@ -200,8 +200,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 6f19a99cae83fcc43b27d9c1b4975a62, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 37b989dc70a9b1447a836e05151fc240, type: 3}
   m_Color: {r: 0, g: 0.089500904, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -209,23 +209,9 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6484562892840341986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6484562892840341990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abb2e03313d6784395383f4a12911a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kidouleft: 0
-  star: 0
 --- !u!61 &6484562892840342013
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -252,6 +238,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2187722406289195680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484562892840341990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9059222428e50844eb296ba8b3a514a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kidouleft: 0
+  star: 0
 --- !u!1 &6484562892877882581
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,5 +554,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9d761cf9b0649439d7458e5835f734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _switchrigth: {fileID: 6484562892616853588}
-  _switchleft: {fileID: 6484562892840341986}
+  Kaiten: {fileID: 0}
