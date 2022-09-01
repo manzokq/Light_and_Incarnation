@@ -9,6 +9,8 @@ public class SceneChingPlayer : MonoBehaviour
 
     [SerializeField]
     Animator girl, swordman, archer;
+    [SerializeField]
+    Rigidbody2D player;
     enum Gatenum
     {
         None = 0,
@@ -38,7 +40,7 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void Awake()//StartëOÇ…èàóù
     {
-
+        player.velocity = new Vector2(0, 0);
     }
 
     private void Start()
@@ -124,7 +126,7 @@ public class SceneChingPlayer : MonoBehaviour
     }
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("aaaaaaaaaaa");
+        player.velocity = new Vector2(0, 0);
         girl.SetBool("GirlSliding", false);
         girl.SetBool("GirlSliding1", false);
         girl.SetBool("GirlSliding2", false);
