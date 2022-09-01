@@ -72,37 +72,8 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         //if(transform.localPosition.x)
         //Debug.Log(atack_judge_con);
-        //待機モーション
-        if (rbody.velocity.x < 0.1f && rbody.velocity.x > -0.1f)
-        {
-            if (atack_judge_con == 0)
-            {
-                gilranim.SetBool("Moving", false);
-            }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordRun", false);
-            }
-            else if (atack_judge_con == 2)
-            {
-                archeranim.SetBool("ArcherMove", false);
-            }
-        }
-        else
-        {
-            if (atack_judge_con == 0)
-            {
-                gilranim.SetBool("Moving", true);
-            }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordRun", true);
-            }
-            else if (atack_judge_con == 2)
-            {
-                archeranim.SetBool("ArcherMove", true);
-            }
-        }
+        //待機モーション これ消す
+        
 
         //
         //キャラチェンジ(デバッグ用)
@@ -269,12 +240,35 @@ public class XboxPlayerContorol : MonoBehaviour
         Debug.Log(isWallright);
 
         //横移動
-        if (coroutine_able && !head_sliding)
+        var speed = Input.GetAxisRaw("L_R_Trigger") *2;
+        Debug.Log(speed);
+        if(speed == -2)
         {
-            rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
-                * moveSpeed, rbody.velocity.y);
+            speed = 2;
+        }
+        else if(speed == 0)
+        {
+            speed = 1;
         }
         
+        if (coroutine_able && !head_sliding)
+        {
+            if (speed == 1)
+            {
+                rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
+                    * moveSpeed, rbody.velocity.y);
+            }
+            else if(speed == 2)
+            {
+                rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
+                    * (moveSpeed+2), rbody.velocity.y);
+            }
+        }
+        gilranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        swordmananim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        archeranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        
+
         isHeading = HeadCheck.heading;
         //壁登ってる最中の途中で壁から離れるため
         if (!coroutine_able)
@@ -398,12 +392,12 @@ public class XboxPlayerContorol : MonoBehaviour
             }
         }
         //ガードというかパリィというか
-        float viewButton = Input.GetAxis("L_R_Trigger");
-        if (parryAble && atack_judge_con == 1 && (Input.GetKeyDown("joystick button 4") || (viewButton > 0 && beforeTrigger == 0)))
+        
+        if (parryAble && atack_judge_con == 1 && Input.GetKeyDown("joystick button 4"))
         {
             parryAble = false;
             this.gameObject.tag = "Parry";
-            beforeTrigger = viewButton;
+            
             StartCoroutine(Parry());
         }
 

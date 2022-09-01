@@ -108,6 +108,7 @@ public class ArcherAtack : MonoBehaviour
             var archer_judge = xboxPlayerContorol.atack_judge_con;
             if (archer_judge == 2)
             {
+                arrowAble = false;
                 xboxPlayerContorol.xatacking = true;
                 anim.SetBool("Arrow", true);
                 animArcher.SetTrigger("Arrow2");

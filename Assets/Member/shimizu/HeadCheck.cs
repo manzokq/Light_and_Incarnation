@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeadCheck : MonoBehaviour
 {
     private string ceilingTag = "Wall";
+    private string groundTag = "Ground";
     public static bool heading = false;
     private void Update()
     {
@@ -15,6 +16,10 @@ public class HeadCheck : MonoBehaviour
     {
         //Debug.Log("ccc");
         if(collision.tag == ceilingTag)
+        {
+            heading = true;
+        }
+        if(collision.tag == groundTag)
         {
             heading = true;
         }

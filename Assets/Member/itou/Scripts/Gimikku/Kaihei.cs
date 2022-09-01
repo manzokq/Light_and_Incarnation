@@ -5,6 +5,9 @@ using UnityEngine;
 public class Kaihei : MonoBehaviour
 {
     public int time;
+
+    [SerializeField]
+    int openTime = 10;
     bool ok = false;
     [SerializeField]
     private bool EVflag;
@@ -43,15 +46,16 @@ public class Kaihei : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            ok = true;
+            //ok = true;
+            StartCoroutine(El());
         }
     }
     private void OnTriggerStay2D(Collider2D other)
-    {
+    {/*
         if (Input.GetKeyDown(KeyCode.C) && ok)
         {
             StartCoroutine(El());
-        }
+        }*/
     }
     private void OnTriggerExit2D(Collider2D other)//エレベーターから出たら
     {
@@ -79,7 +83,7 @@ public class Kaihei : MonoBehaviour
             }
             yield return new WaitForSeconds(0.001f);
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(openTime);
         times = 0;
         while (true)
         {
