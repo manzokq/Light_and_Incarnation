@@ -30,6 +30,8 @@ public class Boss_Bowman : MonoBehaviour
     //çUåÇ
     private int Boss_Archer_Atk1;
     private int Boss_Archer_Atk2;
+
+    public int Atk_Bowman;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,7 @@ public class Boss_Bowman : MonoBehaviour
             var archer_judge = Boss_Control.boss_atack_judge;
             if (archer_judge == 2)
             {
+                Atk_Bowman = 1;
                 anim.SetTrigger("Arrow");
                 animArcher.SetTrigger("Arrow2");
                 archerRig.SetTrigger("ArcherAtack1");
@@ -97,6 +100,7 @@ public class Boss_Bowman : MonoBehaviour
             var archer_judge = Boss_Control.boss_atack_judge;
             if (archer_judge == 2)
             {
+                Atk_Bowman = 2;
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
                 archerRig.SetTrigger("ArcherAtack2");
@@ -114,6 +118,7 @@ public class Boss_Bowman : MonoBehaviour
         GameManagement.Instance.PlayerDamage(Boss_Archer_Atk1);
         Boss.Boss_atacking_Archer = true;
         arrowAble = true;
+        Atk_Bowman = 0;
     }
 
     IEnumerator Atack2()
@@ -123,5 +128,6 @@ public class Boss_Bowman : MonoBehaviour
         GameManagement.Instance.PlayerDamage(Boss_Archer_Atk2);
         Boss_Contorol.Boss_atacking_Archer = true;
         firearrowAble = true;
+        Atk_Bowman = 0;
     }
 }

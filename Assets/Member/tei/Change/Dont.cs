@@ -14,17 +14,18 @@ public class Dont : MonoBehaviour
 
     private void Awake()
     {
+        
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else if (SceneManager.GetActiveScene().name == "GameClear" ||
-                SceneManager.GetActiveScene().name == "GameOP" ||
-                SceneManager.GetActiveScene().name == "GameOver")
-        {
-            Destroy(this.gameObject);
-        }
+        //else if (SceneManager.GetActiveScene().name == "GameClear" ||
+        //        SceneManager.GetActiveScene().name == "GameOP" ||
+        //        SceneManager.GetActiveScene().name == "GameOver")
+        //{
+        //    Destroy(this.gameObject);
+        //}
         else
         {
             Destroy(this.gameObject);
@@ -46,17 +47,20 @@ public class Dont : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        
         if (SceneManager.GetActiveScene().name == "GameClear" ||
                 SceneManager.GetActiveScene().name == "GameOP" ||
                 SceneManager.GetActiveScene().name == "GameOver")
         {
-            Destroy(this.gameObject);
+           
+            //Destroy(this.gameObject);
         }
         switch (SceneManager.GetActiveScene().name)
         {
             case "GameOP":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound0);
+                Destroy(this.gameObject);
                 break;
             case "MapTutorial":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
@@ -81,12 +85,14 @@ public class Dont : MonoBehaviour
             case "GameClear":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound0);
-                //Destroy(this.gameObject);
+                Destroy(this.gameObject);
                 break;
             case "GameOver":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound3);
-                //Destroy(this.gameObject);
+
+                Debug.Log("è¡Ç¶ÇÈÇ◊Ç´");
+                Destroy(this.gameObject);
                 break;
         }
     }

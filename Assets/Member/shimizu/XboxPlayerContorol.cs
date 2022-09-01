@@ -121,7 +121,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if(Input.GetAxisRaw("D_Pad_H") == 1 && !isSwordman && GameManagement.Instance.PlayerOrb>=15) //想定では→　剣士
         {
-            GameManagement.Instance.Character = GameManagement.CharacterID.Swordsman;
+            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
             atack_judge_con = 1;
             isGirl = false;
             isSwordman = true;
@@ -134,7 +134,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_H") == -1 && !isArcher && GameManagement.Instance.PlayerOrb >= 15) //想定では←　弓使
         {
-            GameManagement.Instance.Character = GameManagement.CharacterID.Bowman;
+            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
             atack_judge_con = 2;
             isGirl = false;
             isSwordman = false;
@@ -147,7 +147,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_V") == 1 && !isGirl) //想定では↑  少女
         {
-            GameManagement.Instance.Character = GameManagement.CharacterID.Girl;
+            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
             atack_judge_con = 0;
             Debug.Log("c");
             isGirl = true;
@@ -157,6 +157,7 @@ public class XboxPlayerContorol : MonoBehaviour
             anim.SetBool("changeSwordman", false);
             anim.SetBool("changeWitch", true);
         }
+        Debug.Log(GameManagement.Instance.Character);
         //view_button = Input.GetAxis("L_R_Trigger");
         //キャラ切り替え(変身)
         //if (view_button > 0 && beforeTrigger == 0 && GameManagement.Instance.PlayerOrb > 15)  //つまりRT入力
@@ -351,7 +352,7 @@ public class XboxPlayerContorol : MonoBehaviour
         {
             
             //少女のやつ
-            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl && atack_judge_con == 0)
             {
                 sliding_judge = false;
                 head_sliding = true;
@@ -374,12 +375,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //壁登り
-        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl && atack_judge_con == 0)
         {
             if (isWallright)
             {
                 climbCount++;
-                Debug.Log(climbCount);
+                //Debug.Log(climbCount);
             }
             else
             {
