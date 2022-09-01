@@ -64,7 +64,7 @@ public class Zombie_Kasai : Enemy
             }
             else
             {
-                Debug.LogError("ƒ‰ƒ“ƒ_ƒ€¶¬‚Å‚«‚Ä‚È‚¢");
+                //Debug.LogError("ƒ‰ƒ“ƒ_ƒ€¶¬‚Å‚«‚Ä‚È‚¢");
             }
            
 

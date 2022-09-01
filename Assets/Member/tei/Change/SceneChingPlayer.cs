@@ -6,6 +6,9 @@ using System;
 
 public class SceneChingPlayer : MonoBehaviour
 {
+
+    [SerializeField]
+    Animator girl, swordman, archer;
     enum Gatenum
     {
         None = 0,
@@ -41,7 +44,7 @@ public class SceneChingPlayer : MonoBehaviour
     private void Start()
     {
 
-        //SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.sceneLoaded += OnSceneLoad;
 
         //if (instance == null)
         //{
@@ -119,16 +122,24 @@ public class SceneChingPlayer : MonoBehaviour
         }
         
     }
-    void OnSceneLoad(Scene scene,LoadSceneMode mode)
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("aaaaaaaaaaa");
+        girl.SetBool("GirlSliding", false);
+        girl.SetBool("GirlSliding1", false);
+        girl.SetBool("GirlSliding2", false);
+        girl.SetBool("GirlClimb", false);
+        girl.Play("Locomotion");
+        archer.Play("Locomotion");
+        swordman.Play("Locomotion");
 
 
         doors = GameObject.FindGameObjectsWithTag("Gate");
-        foreach(var obj in doors)
+        foreach (var obj in doors)
         {
 
             Debug.LogError(obj.gameObject.GetComponent<Gate>().ReturnGatenum());
-            if((int)gate== obj.gameObject.GetComponent<Gate>().ReturnGatenum())
+            if ((int)gate == obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
                 this.gameObject.transform.position = new Vector3(
@@ -138,7 +149,7 @@ public class SceneChingPlayer : MonoBehaviour
             }
         }
 
-        
+
         if (gate == Gatenum.None && GameObject.FindWithTag("target") != null)
         {
             var target = GameObject.FindWithTag("target");
@@ -148,6 +159,7 @@ public class SceneChingPlayer : MonoBehaviour
         gate = Gatenum.None;
 
     }
+
 
 
 }
