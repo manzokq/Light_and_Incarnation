@@ -6,7 +6,7 @@ using System;
 
 public class SceneChingPlayer : MonoBehaviour
 {
-    enum Gatenum
+    public enum Gatenum
     {
         None = 0,
         Gate1,
@@ -15,7 +15,7 @@ public class SceneChingPlayer : MonoBehaviour
         Gate4,
     }
 
-    Gatenum gate;
+    public Gatenum gate;
 
     //入ったゲートを記憶する
     [SerializeField]
@@ -41,7 +41,7 @@ public class SceneChingPlayer : MonoBehaviour
     private void Start()
     {
 
-        //SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.sceneLoaded += OnSceneLoad;
 
         //if (instance == null)
         //{
@@ -57,6 +57,7 @@ public class SceneChingPlayer : MonoBehaviour
 
     void Update()
     {
+        /*
         if(Input.GetKeyDown("joystick button 3")||Input.GetKeyDown(KeyCode.I))
         {
             if(gate != Gatenum.None)
@@ -68,7 +69,7 @@ public class SceneChingPlayer : MonoBehaviour
                 Debug.Log("ドアが0だよ");
             }
             
-        }
+        }*/
     }
 
     //シーン切り替え
@@ -88,7 +89,7 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        gate = Gatenum.None;
+        //gate = Gatenum.None;
     }
 
     void Change()
@@ -121,8 +122,8 @@ public class SceneChingPlayer : MonoBehaviour
     }
     void OnSceneLoad(Scene scene,LoadSceneMode mode)
     {
-
-
+        
+        Debug.LogError((int)gate);
         doors = GameObject.FindGameObjectsWithTag("Gate");
         foreach(var obj in doors)
         {
@@ -131,6 +132,7 @@ public class SceneChingPlayer : MonoBehaviour
             if((int)gate== obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
+                Debug.LogError(child);
                 this.gameObject.transform.position = new Vector3(
                     child.transform.position.x,
                     child.transform.position.y,
