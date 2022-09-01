@@ -152,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 4723107735738678597, guid: f8b30c2afe165d645b54d500a9c30862, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   enemyDate: {fileID: 11400000, guid: b64a97fec245ee143b75643b3fa8e802, type: 2}
   Hp: 0
+  _recast: 0.2
   chargeObject: {fileID: 284388654094110690}
   _chargeRange: 2
   _rndMax: 3
