@@ -28,25 +28,25 @@ public class WallCheck : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(isGround);
         if (collision.tag == wallTag)
         {
+        Debug.Log("true‚¾‚æ");
             isWallEnter = true;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Debug.Log(isGround);
         if (collision.tag == wallTag)
         {
+        Debug.Log("true‚¾‚æ");
             isWallStay = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Debug.Log(isWall);
         if (collision.tag == wallTag)
         {
+        Debug.Log("false‚¾‚æ");
             isWallExit = true;
         }
     }
