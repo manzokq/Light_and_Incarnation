@@ -18,7 +18,10 @@ public class SceneChingPlayer : MonoBehaviour
     Gatenum gate;
 
     //“ü‚Á‚½ƒQ[ƒg‚ğ‹L‰¯‚·‚é
+    [SerializeField]
     public static int Gate_Number = 0;
+
+    public int number = 0;
 
     [SerializeField]
     string getOut,comeIn;

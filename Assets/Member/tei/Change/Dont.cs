@@ -92,7 +92,7 @@ public class Dont : MonoBehaviour
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound3);
 
                 Debug.Log("Á‚¦‚é‚×‚«");
-                Destroy();
+                Destroy(this.gameObject);
                 break;
         }
     }
