@@ -6,7 +6,10 @@ using System;
 
 public class SceneChingPlayer : MonoBehaviour
 {
-    public enum Gatenum
+
+    [SerializeField]
+    Animator girl, swordman, archer;
+    enum Gatenum
     {
         None = 0,
         Gate1,
@@ -15,7 +18,7 @@ public class SceneChingPlayer : MonoBehaviour
         Gate4,
     }
 
-    public Gatenum gate;
+    Gatenum gate;
 
     //入ったゲートを記憶する
     [SerializeField]
@@ -57,7 +60,6 @@ public class SceneChingPlayer : MonoBehaviour
 
     void Update()
     {
-        /*
         if(Input.GetKeyDown("joystick button 3")||Input.GetKeyDown(KeyCode.I))
         {
             if(gate != Gatenum.None)
@@ -69,7 +71,7 @@ public class SceneChingPlayer : MonoBehaviour
                 Debug.Log("ドアが0だよ");
             }
             
-        }*/
+        }
     }
 
     //シーン切り替え
@@ -89,7 +91,7 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //gate = Gatenum.None;
+        gate = Gatenum.None;
     }
 
     void Change()
@@ -120,19 +122,26 @@ public class SceneChingPlayer : MonoBehaviour
         }
         
     }
-    void OnSceneLoad(Scene scene,LoadSceneMode mode)
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        
-        Debug.LogError((int)gate);
+        Debug.Log("aaaaaaaaaaa");
+        girl.SetBool("GirlSliding", false);
+        girl.SetBool("GirlSliding1", false);
+        girl.SetBool("GirlSliding2", false);
+        girl.SetBool("GirlClimb", false);
+        girl.Play("Locomotion");
+        archer.Play("Locomotion");
+        swordman.Play("Locomotion");
+
+
         doors = GameObject.FindGameObjectsWithTag("Gate");
-        foreach(var obj in doors)
+        foreach (var obj in doors)
         {
 
             Debug.LogError(obj.gameObject.GetComponent<Gate>().ReturnGatenum());
-            if((int)gate== obj.gameObject.GetComponent<Gate>().ReturnGatenum())
+            if ((int)gate == obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
-                Debug.LogError(child);
                 this.gameObject.transform.position = new Vector3(
                     child.transform.position.x,
                     child.transform.position.y,
@@ -140,7 +149,7 @@ public class SceneChingPlayer : MonoBehaviour
             }
         }
 
-        
+
         if (gate == Gatenum.None && GameObject.FindWithTag("target") != null)
         {
             var target = GameObject.FindWithTag("target");
@@ -150,6 +159,7 @@ public class SceneChingPlayer : MonoBehaviour
         gate = Gatenum.None;
 
     }
+
 
 
 }

@@ -103,10 +103,12 @@ public class SwordmanAttack : MonoBehaviour
         //ŽaŒ‚
         if (Input.GetKeyDown("joystick button 2") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1)
         {
+            
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
             var swordman_judge = xboxPlayerContorol.atack_judge_con;
             if (swordman_judge == 1)
             {
+                slashAble = false;
                 anim.SetBool("Slash", true);
                 animSword.SetTrigger("Slash2");
                 swordmanRig.SetTrigger("SwordAtack1");
