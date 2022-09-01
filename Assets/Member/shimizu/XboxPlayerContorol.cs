@@ -73,36 +73,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //if(transform.localPosition.x)
         //Debug.Log(atack_judge_con);
         //待機モーション これ消す
-        if (rbody.velocity.x < 0.1f && rbody.velocity.x > -0.1f)
-        {
-            if (atack_judge_con == 0)
-            {
-                gilranim.SetBool("Moving", false);
-            }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordRun", false);
-            }
-            else if (atack_judge_con == 2)
-            {
-                archeranim.SetBool("ArcherMove", false);
-            }
-        }
-        else
-        {
-            if (atack_judge_con == 0)
-            {
-                gilranim.SetBool("Moving", true);
-            }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordRun", true);
-            }
-            else if (atack_judge_con == 2)
-            {
-                archeranim.SetBool("ArcherMove", true);
-            }
-        }
+        
 
         //
         //キャラチェンジ(デバッグ用)
@@ -295,6 +266,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         gilranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
         swordmananim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        archeranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
         
 
         isHeading = HeadCheck.heading;
