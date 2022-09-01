@@ -728,8 +728,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 417968839575484042, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 417968839575484042, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.27
+      value: -3.26
       objectReference: {fileID: 0}
     - target: {fileID: 3963889721948532422, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_Name
@@ -82678,6 +82682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f99a500704bd240880b34d39495c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  number: 0
   getOut: 
   comeIn: 
 --- !u!1001 &1005533900
@@ -83824,6 +83829,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 3.815
       objectReference: {fileID: 0}
+    - target: {fileID: 3572959334741924434, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4159257029534832953, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: -0.0020149946
@@ -83867,6 +83876,10 @@ PrefabInstance:
     - target: {fileID: 4966894630665883007, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 2.042215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016632452635208946, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6818093167911576108, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -83990,11 +84003,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 4305
+      value: 722
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -611
+      value: 207
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -89500,7 +89513,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2085333316
 GameObject:

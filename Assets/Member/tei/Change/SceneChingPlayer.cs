@@ -41,7 +41,7 @@ public class SceneChingPlayer : MonoBehaviour
     private void Start()
     {
 
-        //SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.sceneLoaded += OnSceneLoad;
 
         //if (instance == null)
         //{
@@ -121,7 +121,7 @@ public class SceneChingPlayer : MonoBehaviour
     }
     void OnSceneLoad(Scene scene,LoadSceneMode mode)
     {
-
+        Debug.LogError("");
 
         doors = GameObject.FindGameObjectsWithTag("Gate");
         foreach(var obj in doors)
