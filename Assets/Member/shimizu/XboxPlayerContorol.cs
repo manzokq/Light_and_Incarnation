@@ -692,6 +692,9 @@ public class XboxPlayerContorol : MonoBehaviour
           
         }
         GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
+        isGirl = true;
+        isSwordman = false;
+        isArcher = false;
         changechara = 0;
         atack_judge_con = 0;
         anim.SetBool("changeWitch", false);
