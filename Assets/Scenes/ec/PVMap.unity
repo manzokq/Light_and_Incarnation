@@ -1791,7 +1791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4041386834423255470, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.778
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 6699742277781457867, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: swordmanRig
@@ -1804,6 +1804,10 @@ PrefabInstance:
     - target: {fileID: 7957361150140357138, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957361150140357138, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7957361150140357141, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_Pivot.x
@@ -1843,15 +1847,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7957361150140357141, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 7957361150140357141, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 7957361150140357141, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.020000001
+      value: 0.016500002
       objectReference: {fileID: 0}
     - target: {fileID: 7957361150140357141, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1887,7 +1891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7957361150140357141, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.64
+      value: -3.801
       objectReference: {fileID: 0}
     - target: {fileID: 7957361150140357141, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2963,19 +2967,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6149297462534206609, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6149297462534206609, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6149297462534206609, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6149297462534206609, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.941
+      value: -0.859
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149297462534206609, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6818093167911576108, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -3132,6 +3140,14 @@ PrefabInstance:
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: slidingForce
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067457721220, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957432067457721220, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067457721241, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_TagString
