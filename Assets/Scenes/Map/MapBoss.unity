@@ -45591,11 +45591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6080341183415277895, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.13
+      value: -19.01
       objectReference: {fileID: 0}
     - target: {fileID: 6080341183415277895, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.36
+      value: 4.94
       objectReference: {fileID: 0}
     - target: {fileID: 6080341183415277895, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45628,6 +45628,22 @@ PrefabInstance:
     - target: {fileID: 6080341183415277895, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931246303276329064, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931246303276329064, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931246303276329064, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931246303276329064, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70b4021759648424093f5d289e57867e, type: 3}
@@ -46226,6 +46242,10 @@ PrefabInstance:
     - target: {fileID: 2944784872297089485, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403091716274102650, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6699742277781457867, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: swordmanRig

@@ -70,7 +70,8 @@ public class GameManagement : MonoBehaviour
     private void Start()
     {
         if (!(Map == null))
-            if ((Map == "MapTutorial" || Map == "MapOP" || Map == "GameOver") && SceneManager.GetActiveScene().name == "Map1")
+            //if ((Map == "MapTutorial" || Map == "MapOP" || Map == "GameOver") && SceneManager.GetActiveScene().name == "Map1")
+            if ( SceneManager.GetActiveScene().name == "Map1")
             {
                 PlayerHP = 100;
                 PlayerMP = 100;
@@ -147,13 +148,13 @@ public class GameManagement : MonoBehaviour
                 switch (Atk)
                 {
                     case AtkID.Atk1:
-                        EnemyHP -= 1;
+                        EnemyHP -= 4;
                         break;
                     case AtkID.Atk2:
-                        EnemyHP -= 2;
+                        EnemyHP -= 4;
                         break;
                     case AtkID.Atk3:
-                        EnemyHP -= 3;
+                        EnemyHP -= 4;
                         break;
                 }
                 break;
@@ -161,10 +162,10 @@ public class GameManagement : MonoBehaviour
                 switch (Atk)
                 {
                     case AtkID.Atk1:
-                        EnemyHP -= 1;
+                        EnemyHP -= 3;
                         break;
                     case AtkID.Atk2:
-                        EnemyHP -= 2;
+                        EnemyHP -= 3;
                         break;
                     case AtkID.Atk3:
                         EnemyHP -= 3;
