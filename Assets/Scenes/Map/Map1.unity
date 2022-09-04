@@ -82678,7 +82678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f99a500704bd240880b34d39495c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gate: 0
+  girl: {fileID: 0}
+  swordman: {fileID: 0}
+  archer: {fileID: 0}
+  player: {fileID: 0}
   number: 0
   getOut: 
   comeIn: 
@@ -83889,6 +83892,22 @@ PrefabInstance:
     - target: {fileID: 6818093167911576108, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 3.1453395
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834937948303128233, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.07252694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834937948303128233, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834937948303128233, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.9973665
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834937948303128233, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7317849923054724591, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_Bounds.m_Center.x
