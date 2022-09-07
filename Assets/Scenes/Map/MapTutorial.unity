@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540241, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: ms
-      value: "\u30B9\u30E9\u30A4\u30C7\u30A3\u30F3\u30B0\uFF08LS\u6A2A\uFF0BRB\uFF09\u3067\u30B9\u30E9\u30A4\u30C7\u30A3\u30F3\u30B0\u304C\u3067\u304D\u308B\u3088\uFF01"
+      value: "\u30B9\u30E9\u30A4\u30C7\u30A3\u30F3\u30B0\uFF08LS\u6A2A\uFF0BRB\uFF09\u3067\u3000\u3000\u30B9\u30E9\u30A4\u30C7\u30A3\u30F3\u30B0\u304C\u3067\u304D\u308B\u3088\uFF01\u3000\u3000"
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540243, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: m_RootOrder
@@ -381,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540241, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: ms
-      value: "\u5316\u8EAB\u306B\u306A\u3063\u3066\uFF08B\uFF09\u3067\u653B\u6483\u3057\u3088\u3046\uFF01"
+      value: "\u653B\u6483\u3092\u53D7\u3051\u308B\u3068\u5C11\u5973\u306B\u623B\u3063\u3061\u3083\u3046"
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540243, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: m_RootOrder
@@ -506,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540241, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: ms
-      value: "\u58C1\u306E\u307C\u308A\uFF08LS\u6A2A\uFF0BY\uFF09\u3067\u306E\u307C\u308C\u308B\u3088\uFF01"
+      value: "\u58C1\u306E\u307C\u308A(LS\u6A2A+\u58C1)\u3067\u306E\u307C\u308C\u308B\u3088\uFF01"
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540243, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: m_RootOrder
@@ -2417,7 +2417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540241, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: ms
-      value: '       '
+      value: "\u3000\u3000\u5316\u8EAB\u306B\u306F\u5341\u5B57\u30AD\u30FC\u306E\u3000\u3000\u3000\u3000\u3000\u3000\u5DE6\uFF1A\u5263\u58EB\u3001\u53F3:\u5F13\u4F7F\u3044\u306B\u306A\u308C\u308B\u3088\uFF01     "
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540243, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: m_RootOrder
@@ -27543,11 +27543,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1392.01
+      value: 1540
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -203
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
