@@ -83,6 +83,10 @@ public class Boss_ : MonoBehaviour
     [SerializeField, Header("剣のリーチ")]
     private float Boss_Sword_Reach = 1;
 
+    //ゲート
+    [SerializeField, Header("ゲート")]
+    public GameObject EndGate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -194,6 +198,10 @@ public class Boss_ : MonoBehaviour
         {
             Destroy(this.gameObject);
             Debug.Log("ボスが倒れた");
+
+            //セットアクティブでゲート出す
+            EndGate.SetActive(true);
+
         }
         //左右反転
         if (rigidboody2d.velocity.x < 0)

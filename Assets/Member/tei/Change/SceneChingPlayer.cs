@@ -149,6 +149,7 @@ public class SceneChingPlayer : MonoBehaviour
                     child.transform.position.x,
                     child.transform.position.y,
                     child.transform.position.z);
+                Debug.Log("ドアがあった");
             }
         }
 
@@ -157,6 +158,7 @@ public class SceneChingPlayer : MonoBehaviour
         {
             var target = GameObject.FindWithTag("target");
             this.gameObject.transform.position = target.gameObject.transform.position;
+            Debug.Log("ドアがなかったのでデフォルトの場所に遷移");
         }
 
         gate = Gatenum.None;
