@@ -81309,6 +81309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_cmp
       objectReference: {fileID: 0}
+    - target: {fileID: 8170327879450557571, guid: 96682748ab36e5047bf35c8dbf82dd87, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8840966532961761308, guid: 96682748ab36e5047bf35c8dbf82dd87, type: 3}
       propertyPath: m_RootOrder
       value: 0
