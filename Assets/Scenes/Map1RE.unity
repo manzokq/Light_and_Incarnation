@@ -864,8 +864,12 @@ PrefabInstance:
       value: Gate (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: exit1
+      value: Map1RE
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: exit2
-      value: Map2
+      value: Map2RE
       objectReference: {fileID: 0}
     - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: gateNum
@@ -68795,6 +68799,10 @@ PrefabInstance:
       value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: exit1
+      value: Map1RE
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: exit2
       value: MapBoss
       objectReference: {fileID: 0}
@@ -69008,6 +69016,10 @@ PrefabInstance:
     - target: {fileID: 3963889721948532422, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_Name
       value: Gate1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: exit1
+      value: Map1RE
       objectReference: {fileID: 0}
     - target: {fileID: 6041740705809716656, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_TagString
