@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class GroundCheck : MonoBehaviour
 {
-    private string groundTag = "Ground";
+    private string groundTag = "Wall";
     private bool isGround = false;
     private bool isGroundEnter, isGroundStay, isGroundExit;
 
