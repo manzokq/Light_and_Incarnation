@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class kaiten : MonoBehaviour
 {
-
+    /*
     [SerializeField]
-    private Switchrigth _switchrigth;
+    private SwitchR _switchrigth;
     [SerializeField]
-    private Switchleft _switchleft;
+    private SwitchL _switchleft;
+    */
+    [SerializeField]
+    bool direction = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,30 +22,54 @@ public class kaiten : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_switchrigth.kidourigth)
-        {
-            _switchrigth.kidourigth = false;
-            StartCoroutine(rigth());
-        }
-        if (_switchleft.kidouleft)
-        {
-            _switchleft.kidouleft = false;
-            StartCoroutine(left());
-        }
+        //if (_switchrigth.kidourigth)
+        //{
+        //    _switchrigth.kidourigth = false;
+        //    StartCoroutine(Rigth());
+        //}
+        //if (_switchleft.kidouleft)
+        //{
+        //    _switchleft.kidouleft = false;
+        //    StartCoroutine(Left());
+        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
     }
 
-    IEnumerator rigth()
+    public void RoteStart()
+    {
+        if (direction)
+        {
+           LeftRote();
+            direction = false;
+        }
+        else if ( !direction)
+        {
+            RightRote();
+            direction = true;
+        }
+    }
+
+    public void RightRote()
+    {
+        StartCoroutine(Right());
+    }
+
+    public void LeftRote()
+    {
+        StartCoroutine(Left());
+    }
+
+    IEnumerator Right()
     {
         int time = 0;
         while (true)
         {
             if (time == 90)
             {
-                
+
                 break;
             }
             else
@@ -54,7 +81,7 @@ public class kaiten : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
     }
-    IEnumerator left()
+    IEnumerator Left()
     {
         int time = 0;
         while (true)

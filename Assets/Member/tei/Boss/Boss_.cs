@@ -78,6 +78,11 @@ public class Boss_ : MonoBehaviour
     [SerializeField] Animator swordmananim;
     [SerializeField] Animator archeranim;
 
+    //剣攻撃判定
+    public bool Boss_Sword_Attack = false;
+    [SerializeField, Header("剣のリーチ")]
+    private float Boss_Sword_Reach = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -204,6 +209,19 @@ public class Boss_ : MonoBehaviour
         }
 
         Boss_Move_Stop();
+        //Bossswordアタック
+        Vector2 pos_Player = Player.transform.position;
+        Vector2 pos_Boss = this.gameObject.transform.position;
+        float Sword_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+        if (Sword_Boss_player <= Boss_Sword_Reach)
+        {//攻撃可
+            Boss_Sword_Attack = true;
+        }
+        if (Sword_Boss_player > Boss_Sword_Reach)
+        {//攻撃不可
+            Boss_Sword_Attack = false;
+        }
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -285,7 +303,7 @@ public class Boss_ : MonoBehaviour
         //移動速度を指定
         rigidboody2d.velocity = direction * -Escape;
     }
-
+    //停止
     private void Boss_Move_Stop()
     {
         if (!Avoidance)
