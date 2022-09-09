@@ -262,7 +262,7 @@ public class XboxPlayerContorol : MonoBehaviour
             else if(speed == 2)
             {
                 rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
-                    * (moveSpeed+2), rbody.velocity.y);
+                    * (moveSpeed+4), rbody.velocity.y);
             }
         }
         gilranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
@@ -311,12 +311,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //ç∂âEîΩì]
-        if (rbody.velocity.x < -0.5 && !xatacking && sliding_judge)
+        if (rbody.velocity.x < -0.5 && !xatacking && sliding_judge && coroutine_able)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0.5 && !xatacking && sliding_judge)
+        if (rbody.velocity.x > 0.5 && !xatacking && sliding_judge && coroutine_able)
         {
             scale.x = 100;
             transform.localScale = scale;
@@ -470,7 +470,7 @@ public class XboxPlayerContorol : MonoBehaviour
         for (int i = 0; i < num_climb; i++)
         {
             //ï«Ç©ÇÁó£ÇÍÇΩÇ∆Ç´èIóπ
-            if(!isWallright && ((Input.GetAxisRaw("L_Stick_H") < -0.5 && transform.localScale.x == 100) || (0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
+            if(!isWallright && ((Input.GetAxisRaw("L_Stick_H") < 0.5 && transform.localScale.x == 100) || (0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
             {
                 
                 //Debug.Log("îjä¸");

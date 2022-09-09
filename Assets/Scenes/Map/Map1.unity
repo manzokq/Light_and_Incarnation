@@ -82678,7 +82678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f99a500704bd240880b34d39495c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gate: 0
+  girl: {fileID: 0}
+  swordman: {fileID: 0}
+  archer: {fileID: 0}
+  player: {fileID: 0}
   number: 0
   getOut: 
   comeIn: 
@@ -84032,7 +84035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8957432067084204012, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
       propertyPath: slidingForce
