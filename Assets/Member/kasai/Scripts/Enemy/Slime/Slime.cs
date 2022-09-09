@@ -21,14 +21,14 @@ public class Slime : Enemy
     //移動処理の切り替え
     //[SerializeField] private int _moveSwitchRange = 0;
 
-    private GameObject poisonobj = null;    
-    private GameObject chargeobj = null;    
+    private GameObject poisonobj = null;
+    private GameObject chargeobj = null;
 
     //private bool inCamera;
 
     private bool _process = false;//これがtrueの間は別の処理を実行しない
-    [SerializeField] private float _recastTime=3.0f;//攻撃の周期
-    [SerializeField] private float _poisonDelay=2.0f;//毒攻撃の周期
+    [SerializeField] private float _recastTime = 3.0f;//攻撃の周期
+    [SerializeField] private float _poisonDelay = 2.0f;//毒攻撃の周期
 
 
     protected override void Start()
@@ -50,11 +50,11 @@ public class Slime : Enemy
         base.Update();
 
         //Rayの生成
-        Ray2D ray= new Ray2D(transform.position, transform.right);
-      
+        Ray2D ray = new Ray2D(transform.position, transform.right);
+
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, _poisonRangeMax);
 
-      
+
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
         {
             Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
@@ -63,14 +63,14 @@ public class Slime : Enemy
         }
         else
         {
-            Debug.Log("あたってない");
+            //Debug.Log("あたってない");
             _rayhit = false;
         }
-        
+
         StartCoroutine(AtkChoices());
     }
 
-    public IEnumerator AtkChoices() 
+    public IEnumerator AtkChoices()
     {
         if (!_process)
         {
@@ -81,9 +81,9 @@ public class Slime : Enemy
             {
                 MoveFragSwitch(false);//移動を一時停止
                 StartCoroutine(Charge());
-                
+
             }
-            else if (_playerRange > _poisonRangeMin && _playerRange < _poisonRangeMax&&_rayhit)
+            else if (_playerRange > _poisonRangeMin && _playerRange < _poisonRangeMax && _rayhit)
             {
                 MoveFragSwitch(false);//移動を一時停止
                 StartCoroutine(Poison());
@@ -95,12 +95,12 @@ public class Slime : Enemy
             _process = false;
         }
     }
-    
+
     public IEnumerator Charge()//突進した時の処理
-    {      
+    {
         //アニメーションを呼び出す
         Anim.SetTrigger("Attack");
-        
+
         //オブジェクトを有効化
         chargeobj.GetComponent<Charge>().atk = Atk1;
         chargeObject.SetActive(true);//当たり判定の有効化
@@ -112,7 +112,7 @@ public class Slime : Enemy
         //Debug.Log(poisonobj);
         yield return new WaitForSeconds(_poisonDelay);//毒を生成するまでのラグを作る
         poisonobj.GetComponent<Poison>().atk = Atk1;
-        poisonobj.transform.position=new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
+        poisonobj.transform.position = new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
         poisonobj.SetActive(true);
     }
 

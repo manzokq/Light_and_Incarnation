@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8697469494334002071}
   - component: {fileID: 8697469494334002065}
   - component: {fileID: 8697469494334002064}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: SlimeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,8 +82,8 @@ GameObject:
   - component: {fileID: 8697469494551398743}
   - component: {fileID: 8697469494551398736}
   - component: {fileID: 8697469494551398737}
-  m_Layer: 2
-  m_Name: GroundSearch
+  m_Layer: 0
+  m_Name: GroundSerchR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 8697469495137356946}
   - component: {fileID: 8697469495137356956}
   - component: {fileID: 8697469495137356957}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 9d69ae98725365b4b94189120dc1b40a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -302,6 +302,7 @@ MonoBehaviour:
   _chargeRange: 2
   _poisonRangeMin: 4
   _poisonRangeMax: 7
+  _moveSwitchRange: 2
   _recastTime: 3
   _poisonDelay: 2
 --- !u!95 &8697469495137356957
@@ -335,9 +336,9 @@ GameObject:
   - component: {fileID: 8697469495239785881}
   - component: {fileID: 8697469495239785883}
   - component: {fileID: 8697469495239785882}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Charge
-  m_TagString: EnemyAttack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,9 +351,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8697469495239785880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.518416, y: -0.66, z: 0}
-  m_LocalScale: {x: 1.0259567, y: 0.4488561, z: 1.0259567}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 1.518416, y: -0.061557345, z: 0}
+  m_LocalScale: {x: 1.0259567, y: 1.0259567, z: 1.0259567}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8697469495137356945}
   m_RootOrder: 3
@@ -407,8 +408,8 @@ GameObject:
   - component: {fileID: 8697469496117146838}
   - component: {fileID: 8697469496117146839}
   - component: {fileID: 8697469496117146832}
-  m_Layer: 2
-  m_Name: PlayerSearch
+  m_Layer: 0
+  m_Name: PlayerSerch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

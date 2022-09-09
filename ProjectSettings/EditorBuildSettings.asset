@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/ec/PVMap.unity
+    guid: c4dabfba25cc5ec4f84c57726ee9cd7f
   - enabled: 1
     path: Assets/Scenes/GameOP.unity
     guid: 5a1295cf7d8af614db63951179af5d57
@@ -17,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ec/Next.unity
     guid: 6ed1575af8c61144389020785f4de1ff
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ec/Sinario.unity
     guid: 98e0ae95ec85eea45a7886d1a547c377
   - enabled: 1
@@ -35,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: e49cbbe9f91a33448ab42258ecfb2ed8
+  - enabled: 1
+    path: Assets/Scenes/Map/Map2.unity
+    guid: 824fb8112813d1d4c982d270b9e28f31
   m_configObjects: {}

@@ -40,7 +40,7 @@ public class Hasi : MonoBehaviour
         while(T < 1)
         {
             hs = false;
-            hasi.transform.Rotate(new Vector3(0, 0, 90f * Time.deltaTime));
+            hasi.transform.Rotate(new Vector3(0, 0, 88f * Time.deltaTime));
             T += Time.deltaTime;
             yield return null;
         }

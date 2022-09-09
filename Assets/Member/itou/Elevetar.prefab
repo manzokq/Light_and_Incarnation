@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 1945063865873875161}
   - component: {fileID: 1945063865873875166}
   - component: {fileID: 1945063865873875167}
+  - component: {fileID: -4741238570598787109}
   m_Layer: 0
   m_Name: Elevetar
   m_TagString: Untagged
@@ -187,3 +188,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-4741238570598787109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945063865873875164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d6eb1a81480b149b636c783a7d74c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 30
+  EVflag: 0
+  Ele: {fileID: 0}
+  max: 0
+  minimum: 0

@@ -30,7 +30,7 @@ public class GroundCheck : MonoBehaviour
     //à»â∫ê⁄ínîªíË
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(isGround);
+        //Debug.Log("trueÇæÇÊ");
         if (collision.tag == groundTag)
         {
             isGroundEnter = true;
@@ -38,7 +38,7 @@ public class GroundCheck : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Debug.Log(isGround);
+        //Debug.Log("trueÇæÇÊ");
         if (collision.tag == groundTag)
         {
             isGroundStay = true;
@@ -46,7 +46,7 @@ public class GroundCheck : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Debug.Log(isGround);
+        //Debug.Log("falseÇæÇÊ");
         if (collision.tag == groundTag)
         {
             isGroundExit = true;

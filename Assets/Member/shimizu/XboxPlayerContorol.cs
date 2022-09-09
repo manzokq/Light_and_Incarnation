@@ -49,7 +49,7 @@ public class XboxPlayerContorol : MonoBehaviour
     private float jumpCount;
 
     private bool parryAble = true;
-
+    private int climbCount = 0;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -70,39 +70,11 @@ public class XboxPlayerContorol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Input.GetAxisRaw("L_Stick_H"));
         //if(transform.localPosition.x)
         //Debug.Log(atack_judge_con);
-        //待機モーション
-        if (rbody.velocity.x < 0.1f && rbody.velocity.x > -0.1f)
-        {
-            if (atack_judge_con == 0)
-            {
-                gilranim.SetBool("Moving", false);
-            }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordRun", false);
-            }
-            else if (atack_judge_con == 2)
-            {
-                archeranim.SetBool("ArcherMove", false);
-            }
-        }
-        else
-        {
-            if (atack_judge_con == 0)
-            {
-                gilranim.SetBool("Moving", true);
-            }
-            else if (atack_judge_con == 1)
-            {
-                swordmananim.SetBool("SwordRun", true);
-            }
-            else if (atack_judge_con == 2)
-            {
-                archeranim.SetBool("ArcherMove", true);
-            }
-        }
+        //待機モーション これ消す
+        
 
         //
         //キャラチェンジ(デバッグ用)
@@ -121,6 +93,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if(Input.GetAxisRaw("D_Pad_H") == 1 && !isSwordman && GameManagement.Instance.PlayerOrb>=15) //想定では→　剣士
         {
+            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
             atack_judge_con = 1;
             isGirl = false;
             isSwordman = true;
@@ -133,6 +106,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_H") == -1 && !isArcher && GameManagement.Instance.PlayerOrb >= 15) //想定では←　弓使
         {
+            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
             atack_judge_con = 2;
             isGirl = false;
             isSwordman = false;
@@ -145,6 +119,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (Input.GetAxisRaw("D_Pad_V") == 1 && !isGirl) //想定では↑  少女
         {
+            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
             atack_judge_con = 0;
             Debug.Log("c");
             isGirl = true;
@@ -154,6 +129,7 @@ public class XboxPlayerContorol : MonoBehaviour
             anim.SetBool("changeSwordman", false);
             anim.SetBool("changeWitch", true);
         }
+        //Debug.Log(GameManagement.Instance.Character);
         //view_button = Input.GetAxis("L_R_Trigger");
         //キャラ切り替え(変身)
         //if (view_button > 0 && beforeTrigger == 0 && GameManagement.Instance.PlayerOrb > 15)  //つまりRT入力
@@ -257,29 +233,43 @@ public class XboxPlayerContorol : MonoBehaviour
         //}
         //beforeTrigger = view_button;
         //攻撃方法の変更
-        if (Input.GetKeyDown("joystick button 4"))
-        {
-            
-            changeatack++;
-            if (changeatack > 2)
-            {
-                changeatack = 0;
-            }
-            GameManagement.Instance.Atk = (GameManagement.AtkID)Enum.ToObject(typeof(GameManagement.AtkID), changeatack);
-            //Debug.Log(GameManagement.Instance.Atk);
-        }
+        
 
         //接地判定と接壁判定
         isGround = ground.IsGround();
         isWallright = wallright.IsWall();
+        //Debug.Log(isWallright);
 
         //横移動
-        if (coroutine_able && !head_sliding)
+        var speed = Input.GetAxisRaw("L_R_Trigger") *2;
+        //Debug.Log(speed);
+        if(speed == -2)
         {
-            rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
-                * moveSpeed, rbody.velocity.y);
+            speed = 2;
+        }
+        else if(speed == 0)
+        {
+            speed = 1;
         }
         
+        if (coroutine_able && !head_sliding)
+        {
+            if (speed == 1)
+            {
+                rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
+                    * moveSpeed, rbody.velocity.y);
+            }
+            else if(speed == 2)
+            {
+                rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
+                    * (moveSpeed+4), rbody.velocity.y);
+            }
+        }
+        gilranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        swordmananim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        archeranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        
+
         isHeading = HeadCheck.heading;
         //壁登ってる最中の途中で壁から離れるため
         if (!coroutine_able)
@@ -288,29 +278,30 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 if (Input.GetAxis("L_Stick_H") > 0 && scale.x <0)
                 {
+                    
                     rbody.isKinematic = false;
-                    swordmananim.SetBool("SwordClimb", false);
+                    
                     gilranim.SetBool("GirlClimb", false);
                     anim.SetBool("GirlSliding", false);
                     anim.SetBool("GirlSlidingL", false);
-                    rbody.AddForce(new Vector2(1, 0) * 100);
+                    rbody.AddForce(new Vector2(1, 0) * 200);
                 
                 }
                 if (Input.GetAxis("L_Stick_H") < 0 && scale.x > 0)
                 {
                     rbody.isKinematic = false;
-                    swordmananim.SetBool("SwordClimb", false);
+                    
                     gilranim.SetBool("GirlClimb", false);
                     anim.SetBool("GirlSliding", false);
                     anim.SetBool("GirlSlidingL", false);
-                    rbody.AddForce(new Vector2(-1, 0) * 100);
+                    rbody.AddForce(new Vector2(-1, 0) * 200);
                 }
                 if (isHeading)
                 {
                     //Debug.Log("bbb");
                     HeadCheck.heading = false;
                     rbody.isKinematic = false;
-                    swordmananim.SetBool("SwordClimb", false);
+                    
                     gilranim.SetBool("GirlClimb", false);
                     anim.SetBool("GirlSliding", false);
                     anim.SetBool("GirlSlidingL", false);
@@ -320,12 +311,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < 0 && !xatacking && sliding_judge)
+        if (rbody.velocity.x < -0.5 && !xatacking && sliding_judge && coroutine_able)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0 && !xatacking && sliding_judge)
+        if (rbody.velocity.x > 0.5 && !xatacking && sliding_judge && coroutine_able)
         {
             scale.x = 100;
             transform.localScale = scale;
@@ -354,27 +345,9 @@ public class XboxPlayerContorol : MonoBehaviour
         //スライディング
         if (Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 5") && isGround && coroutine_able)
         {
-            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
-            {
-                sliding_judge = false;
-                head_sliding = true;
-                archeranim.SetBool("ArcherSliding", true);
-                StartCoroutine("DodgeTag");
-                if (rbody.velocity.x > 0)
-                {
-                    anim.SetBool("GirlSliding", true);
-                    StartCoroutine(AngleRepairRightArcher());
-
-                }
-                if (rbody.velocity.x < 0)
-                {
-                    anim.SetBool("GirlSliding", true);
-                    StartCoroutine(AngleRepairLeftArcher());
-
-                }
-            }
+            
             //少女のやつ
-            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
+            if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl && atack_judge_con == 0)
             {
                 sliding_judge = false;
                 head_sliding = true;
@@ -397,32 +370,35 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //壁登り
-        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl || GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Swordsman)
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl && atack_judge_con == 0)
         {
-            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && Input.GetKeyDown("joystick button 3"))
+            if (isWallright)
+            {
+                climbCount++;
+                //Debug.Log(climbCount);
+            }
+            else
+            {
+                climbCount = 0;
+            }
+            if (isWallright && coroutine_able && climbCount > 10 && ((0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100) || (Input.GetAxisRaw("L_Stick_H") < -0.5 && transform.localScale.x == -100)))
             {
                 coroutine_able = false;
+                climbCount = 0;
                 if (atack_judge_con == 0)
                 {
                     gilranim.SetBool("GirlClimb", true);
-                    StartCoroutine("Climb");
+                    StartCoroutine(Climb());
                 }
-                else if (atack_judge_con == 1)
-                {
-                    swordmananim.SetBool("SwordClimb", true);
-                    StartCoroutine("Climb");
-                }
-
-
             }
         }
         //ガードというかパリィというか
-        float viewButton = Input.GetAxis("L_R_Trigger");
-        if (parryAble && atack_judge_con == 1 && (Input.GetKeyDown("joystick button 4") || (viewButton > 0 && beforeTrigger == 0)))
+        
+        if (parryAble && atack_judge_con == 1 && Input.GetKeyDown("joystick button 4"))
         {
             parryAble = false;
             this.gameObject.tag = "Parry";
-            beforeTrigger = viewButton;
+            
             StartCoroutine(Parry());
         }
 
@@ -494,14 +470,46 @@ public class XboxPlayerContorol : MonoBehaviour
         for (int i = 0; i < num_climb; i++)
         {
             //壁から離れたとき終了
-            if(!isWallright)
+            if(!isWallright && ((Input.GetAxisRaw("L_Stick_H") < 0.5 && transform.localScale.x == 100) || (0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
             {
+                
                 //Debug.Log("破棄");
                 coroutine_able = true;
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-                swordmananim.SetBool("SwordClimb", false);
+                
+                gilranim.SetBool("GirlClimb", false);
+                yield break;
+            }
+            else if(!isWallright && ((0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100) || (Input.GetAxisRaw("L_Stick_H") < -0.5 && transform.localScale.x == -100)))
+            {
+                var startPos = transform.localPosition;
+                var endPos = transform.localPosition + new Vector3(10, 20);
+                var _endPos = transform.localPosition + new Vector3(-10, 20);
+                if(0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100)
+                {
+                    float timer = 0f;
+                    while (timer < 1f)
+                    {
+                        timer += Time.deltaTime;
+                        transform.localPosition = Vector3.Slerp(startPos, endPos, timer);
+                    }
+                }
+                else if(Input.GetAxisRaw("L_Stick_H") < -0.5 && transform.localScale.x == -100)
+                {
+                    float timer = 0f;
+                    while (timer < 1f)
+                    {
+                        timer += Time.deltaTime;
+                        transform.localPosition = Vector3.Slerp(startPos, _endPos, timer);
+                    }
+                }
+                coroutine_able = true;
+                rbody.isKinematic = false;
+                rbody.constraints = RigidbodyConstraints2D.None;
+                rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
                 gilranim.SetBool("GirlClimb", false);
                 yield break;
             }
@@ -512,7 +520,7 @@ public class XboxPlayerContorol : MonoBehaviour
         rbody.isKinematic = false;
         rbody.constraints = RigidbodyConstraints2D.None;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        swordmananim.SetBool("SwordClimb", false);
+        
         gilranim.SetBool("GirlClimb", false);
     }
     void DamageColor()
@@ -712,6 +720,9 @@ public class XboxPlayerContorol : MonoBehaviour
           
         }
         GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
+        isGirl = true;
+        isSwordman = false;
+        isArcher = false;
         changechara = 0;
         atack_judge_con = 0;
         anim.SetBool("changeWitch", false);

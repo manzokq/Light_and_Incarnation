@@ -30,6 +30,8 @@ public class Boss_Bowman : MonoBehaviour
     //çUåÇ
     private int Boss_Archer_Atk1;
     private int Boss_Archer_Atk2;
+
+    public int Atk_Bowman;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,7 @@ public class Boss_Bowman : MonoBehaviour
             Boss_Cool_time += Time.deltaTime;
             if (Boss_Atk_time <= Boss_Cool_time)
             {
+                Boss_Contorol.Boss_atacking_Archer = false;
                 Debug.Log("çUåÇíäëI");
                 Boss_Cool_time = 0;
                 Boss_random_Atk_Bowman = Random.Range(1, 3);
@@ -69,13 +72,14 @@ public class Boss_Bowman : MonoBehaviour
 
     public void Boss_Atk1()
     {
-        if (arrowAble)
+        if (arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
             arrowAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
             var archer_judge = Boss_Control.boss_atack_judge;
             if (archer_judge == 2)
             {
+                Atk_Bowman = 1;
                 anim.SetTrigger("Arrow");
                 animArcher.SetTrigger("Arrow2");
                 archerRig.SetTrigger("ArcherAtack1");
@@ -89,13 +93,14 @@ public class Boss_Bowman : MonoBehaviour
 
     public void Boss_Atk2()
     {
-        if (firearrowAble)
+        if (firearrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
             firearrowAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
             var archer_judge = Boss_Control.boss_atack_judge;
             if (archer_judge == 2)
             {
+                Atk_Bowman = 2;
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
                 archerRig.SetTrigger("ArcherAtack2");
@@ -113,6 +118,7 @@ public class Boss_Bowman : MonoBehaviour
         GameManagement.Instance.PlayerDamage(Boss_Archer_Atk1);
         Boss.Boss_atacking_Archer = true;
         arrowAble = true;
+        Atk_Bowman = 0;
     }
 
     IEnumerator Atack2()
@@ -122,5 +128,6 @@ public class Boss_Bowman : MonoBehaviour
         GameManagement.Instance.PlayerDamage(Boss_Archer_Atk2);
         Boss_Contorol.Boss_atacking_Archer = true;
         firearrowAble = true;
+        Atk_Bowman = 0;
     }
 }

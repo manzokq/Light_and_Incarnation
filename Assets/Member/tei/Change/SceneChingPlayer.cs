@@ -6,6 +6,11 @@ using System;
 
 public class SceneChingPlayer : MonoBehaviour
 {
+
+    [SerializeField]
+    Animator girl, swordman, archer;
+    [SerializeField]
+    Rigidbody2D player;
     enum Gatenum
     {
         None = 0,
@@ -18,7 +23,10 @@ public class SceneChingPlayer : MonoBehaviour
     Gatenum gate;
 
     //入ったゲートを記憶する
+    [SerializeField]
     public static int Gate_Number = 0;
+
+    public int number = 0;
 
     [SerializeField]
     string getOut,comeIn;
@@ -32,23 +40,24 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void Awake()//Start前に処理
     {
-
+        player.velocity = new Vector2(0, 0);
     }
 
     private void Start()
     {
+
         SceneManager.sceneLoaded += OnSceneLoad;
 
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            gate = Gatenum.None;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //    gate = Gatenum.None;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     void Update()
@@ -115,14 +124,24 @@ public class SceneChingPlayer : MonoBehaviour
         }
         
     }
-    void OnSceneLoad(Scene scene,LoadSceneMode mode)
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        player.velocity = new Vector2(0, 0);
+        girl.SetBool("GirlSliding", false);
+        girl.SetBool("GirlSliding1", false);
+        girl.SetBool("GirlSliding2", false);
+        girl.SetBool("GirlClimb", false);
+        girl.Play("Locomotion");
+        archer.Play("Locomotion");
+        swordman.Play("Locomotion");
 
 
         doors = GameObject.FindGameObjectsWithTag("Gate");
-        foreach(var obj in doors)
+        foreach (var obj in doors)
         {
-            if((int)gate== obj.gameObject.GetComponent<Gate>().ReturnGatenum())
+
+            Debug.LogError(obj.gameObject.GetComponent<Gate>().ReturnGatenum());
+            if ((int)gate == obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
                 this.gameObject.transform.position = new Vector3(
@@ -132,7 +151,7 @@ public class SceneChingPlayer : MonoBehaviour
             }
         }
 
-        
+
         if (gate == Gatenum.None && GameObject.FindWithTag("target") != null)
         {
             var target = GameObject.FindWithTag("target");
@@ -142,6 +161,7 @@ public class SceneChingPlayer : MonoBehaviour
         gate = Gatenum.None;
 
     }
+
 
 
 }
