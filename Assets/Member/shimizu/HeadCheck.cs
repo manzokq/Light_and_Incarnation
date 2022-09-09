@@ -7,21 +7,45 @@ public class HeadCheck : MonoBehaviour
     private string ceilingTag = "Wall";
     private string groundTag = "Ground";
     public static bool heading = false;
-    private void Update()
+    private bool isHeadEnter, isHeadStay, isHeadExit;
+    public bool IsHead()
     {
-       // Debug.Log(heading);
-    }
-    // Start is called before the first frame update
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Debug.Log("ccc");
-        if(collision.tag == ceilingTag)
+        //Debug.Log(isWall);
+        if (isHeadEnter || isHeadStay)
         {
             heading = true;
         }
-        if(collision.tag == groundTag)
+        else if (isHeadExit)
         {
-            heading = true;
+            heading = false;
+        }
+        isHeadEnter = false;
+        isHeadStay = false;
+        isHeadExit = false;
+        return heading;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == ceilingTag)
+        {
+            //Debug.Log("true‚¾‚æ");
+            isHeadEnter = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == ceilingTag)
+        {
+            //Debug.Log("true‚¾‚æ");
+            isHeadStay = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == ceilingTag)
+        {
+            //Debug.Log("false‚¾‚æ");
+            isHeadExit = true;
         }
     }
 }
