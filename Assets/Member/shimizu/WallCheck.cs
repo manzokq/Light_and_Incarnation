@@ -7,7 +7,7 @@ using UnityEngine;
 public class WallCheck : MonoBehaviour
 {
     private string wallTag = "Wall";
-    private bool isWall = false;
+    public static bool isWall = false;
     private bool isWallEnter, isWallStay, isWallExit;
 
     public bool IsWall()

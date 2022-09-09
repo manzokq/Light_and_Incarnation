@@ -127,6 +127,7 @@ public class SceneChingPlayer : MonoBehaviour
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         player.velocity = new Vector2(0, 0);
+        WallCheck.isWall = false;
         girl.SetBool("GirlSliding", false);
         girl.SetBool("GirlSliding1", false);
         girl.SetBool("GirlSliding2", false);
