@@ -26,7 +26,7 @@ public class Slime : Enemy
 
     //private bool inCamera;
 
-    private bool _process = false;//これがtrueの間は別の処理を実行しない
+    private bool _processSlime = false;//これがtrueの間は別の処理を実行しない
     [SerializeField] private float _recastTime = 3.0f;//攻撃の周期
     [SerializeField] private float _poisonDelay = 2.0f;//毒攻撃の周期
 
@@ -72,9 +72,9 @@ public class Slime : Enemy
 
     public IEnumerator AtkChoices()
     {
-        if (!_process)
+        if (!_processSlime)
         {
-            _process = true;
+            _processSlime = true;
             //プレイヤーまでの距離を出す
             this._playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
             if (_playerRange < _chargeRange)
@@ -92,7 +92,7 @@ public class Slime : Enemy
 
             yield return new WaitForSeconds(_recastTime);
             MoveFragSwitch(true);//移動を再開
-            _process = false;
+            _processSlime = false;
         }
     }
 
