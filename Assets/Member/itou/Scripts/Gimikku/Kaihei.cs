@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Kaihei : MonoBehaviour
 {
     public int time;
@@ -15,10 +15,14 @@ public class Kaihei : MonoBehaviour
     float max = 0f;
     [SerializeField]
     float minimum = 0f;
+    public Sprite doaon;
+    public Sprite doaoff;
+    SpriteRenderer doasprite;
 
     // Start is called before the first frame update
     void Start()
     {
+        doasprite = gameObject.GetComponent<SpriteRenderer>();
         floar = 1f;
         EVflag = false;
     }
@@ -46,6 +50,7 @@ public class Kaihei : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C) && ok)
         {
+            doasprite.sprite = doaon;
             StartCoroutine(El());
             ok = false;
         }
@@ -71,5 +76,6 @@ public class Kaihei : MonoBehaviour
         }
         EVflag = false;
         ok = true;
+        doasprite.sprite = doaoff;
     }
 }
