@@ -270,7 +270,10 @@ public class XboxPlayerContorol : MonoBehaviour
         {
             Debug.Log("aaaa");
             wallAble = true;
-            //if()
+            if(!coroutine_able)
+            {
+                wallAble = false;
+            }
             //StartCoroutine(WallAbleTime());
 
         }
