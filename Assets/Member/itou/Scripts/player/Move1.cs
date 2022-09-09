@@ -59,7 +59,7 @@ public class Move1 : MonoBehaviour
            this.transform.Translate(new Vector3 (0f,-0.45f,0f));
            num+=1;
         }*/
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 1"))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 2"))
         {
             switch (num)
             {

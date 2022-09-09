@@ -70,6 +70,7 @@ public class XboxPlayerContorol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Input.GetAxisRaw("L_Stick_H"));
         //if(transform.localPosition.x)
         //Debug.Log(atack_judge_con);
         //待機モーション これ消す
@@ -128,7 +129,7 @@ public class XboxPlayerContorol : MonoBehaviour
             anim.SetBool("changeSwordman", false);
             anim.SetBool("changeWitch", true);
         }
-        Debug.Log(GameManagement.Instance.Character);
+        //Debug.Log(GameManagement.Instance.Character);
         //view_button = Input.GetAxis("L_R_Trigger");
         //キャラ切り替え(変身)
         //if (view_button > 0 && beforeTrigger == 0 && GameManagement.Instance.PlayerOrb > 15)  //つまりRT入力
@@ -237,11 +238,11 @@ public class XboxPlayerContorol : MonoBehaviour
         //接地判定と接壁判定
         isGround = ground.IsGround();
         isWallright = wallright.IsWall();
-        Debug.Log(isWallright);
+        //Debug.Log(isWallright);
 
         //横移動
         var speed = Input.GetAxisRaw("L_R_Trigger") *2;
-        Debug.Log(speed);
+        //Debug.Log(speed);
         if(speed == -2)
         {
             speed = 2;
@@ -261,7 +262,7 @@ public class XboxPlayerContorol : MonoBehaviour
             else if(speed == 2)
             {
                 rbody.velocity = new Vector2(Input.GetAxis("L_Stick_H")
-                    * (moveSpeed+2), rbody.velocity.y);
+                    * (moveSpeed+4), rbody.velocity.y);
             }
         }
         gilranim.SetFloat("Speed",rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
@@ -310,12 +311,12 @@ public class XboxPlayerContorol : MonoBehaviour
         }
 
         //左右反転
-        if (rbody.velocity.x < -0.5 && !xatacking && sliding_judge)
+        if (rbody.velocity.x < -0.5 && !xatacking && sliding_judge && coroutine_able)
         {
             scale.x = -100;
             transform.localScale = scale;
         }
-        if (rbody.velocity.x > 0.5 && !xatacking && sliding_judge)
+        if (rbody.velocity.x > 0.5 && !xatacking && sliding_judge && coroutine_able)
         {
             scale.x = 100;
             transform.localScale = scale;
@@ -380,14 +381,14 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 climbCount = 0;
             }
-            if (isWallright && coroutine_able && Input.GetAxis("L_Stick_H") != 0 && climbCount > 10)
+            if (isWallright && coroutine_able && climbCount > 10 && ((0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100) || (Input.GetAxisRaw("L_Stick_H") < -0.5 && transform.localScale.x == -100)))
             {
                 coroutine_able = false;
                 climbCount = 0;
                 if (atack_judge_con == 0)
                 {
                     gilranim.SetBool("GirlClimb", true);
-                    StartCoroutine("Climb");
+                    StartCoroutine(Climb());
                 }
             }
         }
@@ -469,14 +470,46 @@ public class XboxPlayerContorol : MonoBehaviour
         for (int i = 0; i < num_climb; i++)
         {
             //壁から離れたとき終了
-            if(!isWallright)
+            if(!isWallright && ((Input.GetAxisRaw("L_Stick_H") < 0.5 && transform.localScale.x == 100) || (0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
             {
+                
                 //Debug.Log("破棄");
                 coroutine_able = true;
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
                 rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 
+                gilranim.SetBool("GirlClimb", false);
+                yield break;
+            }
+            else if(!isWallright && ((0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100) || (Input.GetAxisRaw("L_Stick_H") < -0.5 && transform.localScale.x == -100)))
+            {
+                var startPos = transform.localPosition;
+                var endPos = transform.localPosition + new Vector3(10, 20);
+                var _endPos = transform.localPosition + new Vector3(-10, 20);
+                if(0.5 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100)
+                {
+                    float timer = 0f;
+                    while (timer < 1f)
+                    {
+                        timer += Time.deltaTime;
+                        transform.localPosition = Vector3.Slerp(startPos, endPos, timer);
+                    }
+                }
+                else if(Input.GetAxisRaw("L_Stick_H") < -0.5 && transform.localScale.x == -100)
+                {
+                    float timer = 0f;
+                    while (timer < 1f)
+                    {
+                        timer += Time.deltaTime;
+                        transform.localPosition = Vector3.Slerp(startPos, _endPos, timer);
+                    }
+                }
+                coroutine_able = true;
+                rbody.isKinematic = false;
+                rbody.constraints = RigidbodyConstraints2D.None;
+                rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
                 gilranim.SetBool("GirlClimb", false);
                 yield break;
             }

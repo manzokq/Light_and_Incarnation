@@ -453,7 +453,7 @@ MonoBehaviour:
   num_climb: 100
   translate_climb: 0.05
   time_climb: 0.01
-  moveSpeed: 3
+  moveSpeed: 8
   jumpForce: 4
   slidingForce: 5.91
   wallright: {fileID: 8957432067686229947}
@@ -821,7 +821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.202, y: -0.427}
+  m_AnchoredPosition: {x: 0.202, y: -0.341}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8957432067686229944
