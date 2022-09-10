@@ -121,7 +121,8 @@ public class GameManagement : MonoBehaviour
                     PlayerOrb = 100;
             }
             playerOrb = PlayerOrb;
-            yield return new WaitForSeconds(1f);
+
+            yield return new WaitForSeconds(0.5f);
         }
     }
     public void PlayerDamage(int Damage) //プレイヤーにダメージ
