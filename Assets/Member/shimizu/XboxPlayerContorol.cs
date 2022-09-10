@@ -166,7 +166,7 @@ public class XboxPlayerContorol : MonoBehaviour
         swordmananim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
         archeranim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
 
-
+//Debug.Log(isWallright);
         isHeading = heading.IsHead();
         //ï«ìoÇ¡ÇƒÇÈç≈íÜÇÃìríÜÇ≈ï«Ç©ÇÁó£ÇÍÇÈÇΩÇﬂ
         if (!coroutine_able)
@@ -268,7 +268,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if(isGround&& !wallAble)
         {
-            Debug.Log("aaaa");
+            //Debug.Log("aaaa");
             wallAble = true;
             if(!coroutine_able)
             {
@@ -277,10 +277,11 @@ public class XboxPlayerContorol : MonoBehaviour
             //StartCoroutine(WallAbleTime());
 
         }
-        Debug.Log(wallAble + "wallAble");
+        //Debug.Log(wallAble + "wallAble");
+
         //Debug.Log(isGround + "isGround");
         //Debug.Log(isWallright + "isWallright");
-        Debug.Log(isHeading + "isheading");
+        //Debug.Log(isHeading + "isheading");
         //ï«ìoÇË
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl && atack_judge_con == 0 && wallAble)
         {
@@ -299,7 +300,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 climbCount = 0;
                 if (atack_judge_con == 0)
                 {
-                    //Debug.Log("Ç¢Ç¬ÇÊÇŒÇƒ");
+                    Debug.Log("Ç¢Ç¬ÇÊÇŒÇƒ");
                     wallAble = false;
                     //Debug.Log(wallAble + "wallAble");
                     gilranim.SetBool("GirlClimb", true);
@@ -385,7 +386,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //é¿ç€Ç…ìoÇÈ
         for (int i = 0; i < num_climb; i++)
         {
-            //Debug.Log(Input.GetAxis("L_Stick_H"));
+            
             //ï«Ç©ÇÁó£ÇÍÇΩÇ∆Ç´èIóπ
             
             if (!isWallright && ((Input.GetAxisRaw("L_Stick_H") < 0.2 && transform.localScale.x == 100) || (0.2 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
@@ -408,7 +409,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 var _endPos = transform.localPosition + new Vector3(-10, 20);
                 if (0.2 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100)
                 {
-                    Debug.Log("ìoÇÍÇƒru");
+                    //Debug.Log("ìoÇÍÇƒru");
                     float timer = 0f;
                     while (timer < 1f)
                     {
@@ -418,7 +419,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 }
                 else if (Input.GetAxisRaw("L_Stick_H") < -0.2 && transform.localScale.x == -100 && !isGround)
                 {
-                    Debug.Log("ìoÇÍÇƒru");
+                    //Debug.Log("ìoÇÍÇƒru");
                     float timer = 0f;
                     while (timer < 1f)
                     {
@@ -443,6 +444,7 @@ public class XboxPlayerContorol : MonoBehaviour
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         gilranim.SetBool("GirlClimb", false);
+        
     }
     void DamageColor()
     {
