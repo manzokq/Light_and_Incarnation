@@ -8,13 +8,11 @@ public class OP : MonoBehaviour
     {
 
     }
-    public void Button()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
-    // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("MapTutorial");
+        }
     }
 }
