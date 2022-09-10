@@ -18,7 +18,7 @@ public class Zombie_Kasai : Enemy
     private int _rnd = 0;
     private int _rndMin = 1;
     [SerializeField]private int _rndMax = 3;//基本的にいじるつもりはない
-    private bool _process = false;//これがtrueの間は別の処理を実行しない
+    private bool _processZombie = false;//これがtrueの間は別の処理を実行しない
     [SerializeField] private float _recastTime = 3.0f;//攻撃の周期
 
     // Start is called before the first frame update
@@ -39,9 +39,9 @@ public class Zombie_Kasai : Enemy
     public IEnumerator ZombieAtkChoice()
     {
 
-        if (!_process)
+        if (!_processZombie)
         {
-            _process = true;
+            _processZombie = true;
             //プレイヤーまでの距離を出す
             this._playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
             //一定の距離未満なら複数の選択肢からランダムで攻撃を実行する
@@ -70,7 +70,7 @@ public class Zombie_Kasai : Enemy
 
             yield return new WaitForSeconds(_recastTime);
             MoveFragSwitch(true);//移動を再開
-            _process = false;
+            _processZombie = false;
         }
         yield return null;
     }

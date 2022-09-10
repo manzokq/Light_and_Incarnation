@@ -127,6 +127,7 @@ public class SceneChingPlayer : MonoBehaviour
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         player.velocity = new Vector2(0, 0);
+        WallCheck.isWall = false;
         girl.SetBool("GirlSliding", false);
         girl.SetBool("GirlSliding1", false);
         girl.SetBool("GirlSliding2", false);
@@ -148,6 +149,7 @@ public class SceneChingPlayer : MonoBehaviour
                     child.transform.position.x,
                     child.transform.position.y,
                     child.transform.position.z);
+                Debug.Log("ドアがあった");
             }
         }
 
@@ -156,6 +158,7 @@ public class SceneChingPlayer : MonoBehaviour
         {
             var target = GameObject.FindWithTag("target");
             this.gameObject.transform.position = target.gameObject.transform.position;
+            Debug.Log("ドアがなかったのでデフォルトの場所に遷移");
         }
 
         gate = Gatenum.None;
