@@ -47,7 +47,7 @@ public class SceneChingPlayer : MonoBehaviour
     {
 
         SceneManager.sceneLoaded += OnSceneLoad;
-
+        
         //if (instance == null)
         //{
         //    instance = this;
@@ -126,6 +126,7 @@ public class SceneChingPlayer : MonoBehaviour
     }
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("onSceneLoad");
         player.velocity = new Vector2(0, 0);
         WallCheck.isWall = false;
         girl.SetBool("GirlSliding", false);
@@ -141,7 +142,7 @@ public class SceneChingPlayer : MonoBehaviour
         foreach (var obj in doors)
         {
 
-            Debug.LogError(obj.gameObject.GetComponent<Gate>().ReturnGatenum());
+            //Debug.LogError(obj.gameObject.GetComponent<Gate>().ReturnGatenum());
             if ((int)gate == obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
