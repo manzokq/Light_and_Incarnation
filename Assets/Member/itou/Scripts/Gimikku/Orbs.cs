@@ -6,7 +6,7 @@ public class Orbs : MonoBehaviour
 {
     [SerializeField]
     private GameObject Orb;
-    public GameManagement OrbScripts;
+    //public GameManagement OrbScripts;
     public Renderer rend;
     public int ret = 500;
 
