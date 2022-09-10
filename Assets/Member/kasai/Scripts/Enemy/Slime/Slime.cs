@@ -28,7 +28,8 @@ public class Slime : Enemy
 
     private bool _processSlime = false;//これがtrueの間は別の処理を実行しない
     [SerializeField] private float _recastTime = 3.0f;//攻撃の周期
-    [SerializeField] private float _poisonDelay = 2.0f;//毒攻撃の周期
+    [SerializeField] private float _poisonDelay = 2.0f;//毒を生成するときのラグ
+    private float _saveRecastTime = 0;//_recastTimeの保存用
 
 
     protected override void Start()
@@ -41,6 +42,7 @@ public class Slime : Enemy
         chargeObject.SetActive(false);//攻撃の当たり判定
         poisonobj = Instantiate(_poison);//攻撃の当たり判定
         poisonobj.SetActive(false);
+        _saveRecastTime = _recastTime;
 
 
     }
@@ -75,6 +77,7 @@ public class Slime : Enemy
         if (!_processSlime)
         {
             _processSlime = true;
+            _recastTime = _saveRecastTime;
             //プレイヤーまでの距離を出す
             this._playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
             if (_playerRange < _chargeRange)
@@ -88,6 +91,10 @@ public class Slime : Enemy
                 MoveFragSwitch(false);//移動を一時停止
                 StartCoroutine(Poison());
 
+            }
+            else
+            {
+                _recastTime = 0;//プレイヤーが近くに居ないときは攻撃のリキャストを回さないようにする
             }
 
             yield return new WaitForSeconds(_recastTime);

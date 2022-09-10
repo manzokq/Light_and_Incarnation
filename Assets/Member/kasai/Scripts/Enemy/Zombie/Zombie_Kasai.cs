@@ -20,6 +20,7 @@ public class Zombie_Kasai : Enemy
     [SerializeField]private int _rndMax = 3;//基本的にいじるつもりはない
     private bool _processZombie = false;//これがtrueの間は別の処理を実行しない
     [SerializeField] private float _recastTime = 3.0f;//攻撃の周期
+    private float _saveRecastTime = 0;//_recastTimeの保存用
 
     // Start is called before the first frame update
     protected override void Start()
@@ -28,6 +29,7 @@ public class Zombie_Kasai : Enemy
         playerObject = GameObject.FindWithTag("Player");
         chargeobj = chargeObject;
         chargeObject.SetActive(false);//攻撃の当たり判定
+        _saveRecastTime = _recastTime;
 
     }
 
@@ -42,12 +44,17 @@ public class Zombie_Kasai : Enemy
         if (!_processZombie)
         {
             _processZombie = true;
+            _recastTime = _saveRecastTime;
             //プレイヤーまでの距離を出す
             this._playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
             //一定の距離未満なら複数の選択肢からランダムで攻撃を実行する
             if (_playerRange < _chargeRange)
             {
                 _rnd = Random.Range(_rndMin, _rndMax);
+            }
+            else
+            {
+                _recastTime = 0;//プレイヤーが近くに居ないときは攻撃のリキャストを回さないようにする
             }
 
             if (_rnd == 1)
