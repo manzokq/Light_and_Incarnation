@@ -9,6 +9,9 @@ public class Orbs : MonoBehaviour
     public GameManagement OrbScripts;
     public Renderer rend;
     public int ret = 500;
+
+    [SerializeField]private int _orbRecover=0;
+    [SerializeField]private int _hpRecover=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,8 @@ public class Orbs : MonoBehaviour
     {
         if (other.CompareTag("Player") == true)
         {
-            GameManagement.Instance.PlayerOrb += 25;
+            GameManagement.Instance.PlayerOrb += _orbRecover;
+            GameManagement.Instance.PlayerHeal(_hpRecover);
             //OrbScripts.PlayerOrb++;
             StartCoroutine(orbsreset());
             Orb.GetComponent<CircleCollider2D>().enabled = false;
