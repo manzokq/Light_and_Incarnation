@@ -31,6 +31,7 @@ public class GameManagement : MonoBehaviour
     private static int playerHp;
     private static int playerMp;
     private static int playerOrb;
+
     [SerializeField]
     XboxPlayerContorol xboxPlayer;
     public static GameManagement Instance { get => _instance; }
@@ -46,7 +47,7 @@ public class GameManagement : MonoBehaviour
     [SerializeField]
     public CharacterID Character;
     [SerializeField]
-    public string Map;
+    private static  string Map;
     [SerializeField]
     public AtkID Atk;
 
@@ -64,7 +65,11 @@ public class GameManagement : MonoBehaviour
         {
             _instance = this;
         }
-
+        if (Map == null)
+            Debug.LogError("Map‚Ì’l‚ª‚Í‚¢‚Á‚Ä‚Ë[‚æ‚È[");
+        else
+            Map = SceneManager.GetActiveScene().name;
+        Debug.Log(Map);
 
     }
     private void Start()
@@ -101,12 +106,17 @@ public class GameManagement : MonoBehaviour
         xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
         StartCoroutine(GetOrb());
         Application.targetFrameRate = 60;
+
     }
     private void Update()
     {
         playerHp = PlayerHP;
         playerMp = PlayerMP;
         playerOrb = PlayerOrb;
+    }
+    public string SetMapScenes()
+    {
+        return Map;
     }
     //Orb‰ñ•œ
     IEnumerator GetOrb()
