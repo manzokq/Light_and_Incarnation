@@ -76,7 +76,7 @@ public class GameManagement : MonoBehaviour
     {
         if (!(Map == null))
             //if ((Map == "MapTutorial" || Map == "MapOP" || Map == "GameOver") && SceneManager.GetActiveScene().name == "Map1")
-            if ( SceneManager.GetActiveScene().name == "Map1")
+            if ( SceneManager.GetActiveScene().name == "Map1"|| SceneManager.GetActiveScene().name == "Map1RE")
             {
                 PlayerHP = 100;
                 PlayerMP = 100;
@@ -147,6 +147,19 @@ public class GameManagement : MonoBehaviour
             Debug.Log("プレイヤーが死んだ");
             SceneManager.LoadScene("GameOver");
         }
+
+        //Player.Instance.PlayerHP -= Damage;
+    }
+    public void PlayerHeal(int Heal) //プレイヤーにダメージ
+    {
+        //プレイヤーを呼び出す
+        PlayerHP += Heal;
+        
+        if (PlayerHP >= 100)
+        {
+            PlayerHP = 100;
+        }
+        playerHp = PlayerHP;
 
         //Player.Instance.PlayerHP -= Damage;
     }
