@@ -249,6 +249,7 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 sliding_judge = false;
                 head_sliding = true;
+                coroutine_able = false;
                 gilranim.SetBool("GirlSliding", true);
                 StartCoroutine("DodgeTag");
                 if (rbody.velocity.x > 0)
@@ -507,6 +508,7 @@ public class XboxPlayerContorol : MonoBehaviour
     IEnumerator Sliding2F()
     {
         yield return new WaitForSeconds(1.2f);
+        coroutine_able = true;
         anim.SetBool("GirlSliding", false);
         anim.SetBool("GirlSlidingL", false);
         gilranim.SetBool("GirlSliding", false);
@@ -532,6 +534,7 @@ public class XboxPlayerContorol : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
+            coroutine_able = true;
             gilranim.SetBool("GirlSliding2", true);
             sliding_judge = true;
             head_sliding = false;
@@ -545,6 +548,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
         {
+            coroutine_able = true;
             archeranim.SetBool("ArcherSliding2", true);
             sliding_judge = true;
             head_sliding = false;
