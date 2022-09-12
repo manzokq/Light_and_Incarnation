@@ -37,14 +37,14 @@ public class GameOverText : MonoBehaviour
         //(Input.GetKeyDown(KeyCode.UpArrow) ||)
         //(Input.GetKeyDown(KeyCode.DownArrow) ||)
         //↑キーが押された時
-        if (Input.GetAxis("L_Stick_V") < -0.5f )
+        if (Input.GetAxis("L_Stick_V") < -0.5f)
         {
             Debug.Log("上");
             this.transform.position = StartPoz;
             GameSelection = true;
         }
         //↓キーが押された時
-        if (Input.GetAxis("L_Stick_V") > 0.5f )
+        if (Input.GetAxis("L_Stick_V") > 0.5f)
         {
             Debug.Log("下");
             this.transform.position = EndPoz;
@@ -87,7 +87,8 @@ public class GameOverText : MonoBehaviour
                 { //ステージ２から用
                     SceneManager.LoadScene("Map2");
 
-                }else if(GameScene == "Map2RE")
+                }
+                else if (GameScene == "Map2RE")
                 {
                     SceneManager.LoadScene("Map2RE");
                 }

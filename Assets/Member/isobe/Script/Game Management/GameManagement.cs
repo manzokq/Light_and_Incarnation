@@ -66,8 +66,9 @@ public class GameManagement : MonoBehaviour
             _instance = this;
         }
         if (Map == null)
-            Debug.LogError("Mapの値がはいってねーよなー");
-        else
+        {
+            //Debug.LogError("Mapの値がはいってねーよなー");
+        }else
             Map = SceneManager.GetActiveScene().name;
         Debug.Log(Map);
 
