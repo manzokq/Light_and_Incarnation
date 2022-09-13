@@ -87,6 +87,23 @@ public class Boss_ : MonoBehaviour
     [SerializeField, Header("ゲート")]
     public GameObject EndGate;
 
+    //追加
+    private bool Threefold = false;
+    private float Threefold_speed = 3;
+    private float Threefold_Ct = 2;
+    private float Threefold_range = 7;
+    //テレポート
+    private float Teleport_Hp;
+    private float Teleport_Hp2;
+    private float Teleport_Hp3;
+    private bool Teleport_Hp_1 = false;
+    private bool Teleport_Hp_2 = false;
+    private bool Teleport_Hp_3 = false;
+    [SerializeField, Header("テレポート先")]
+    public GameObject Tp_pos_1;
+    public GameObject Tp_pso_2;
+    public GameObject Tp_pos_3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -114,6 +131,11 @@ public class Boss_ : MonoBehaviour
         //体力判定用
         bosshp = Boss_HP;
         Boss_Hp_half = Boss_HP / 3;
+
+        Teleport_Hp = Boss_HP / 2;
+        Teleport_Hp2 = Boss_HP / 4;
+        Teleport_Hp3 = Boss_HP / 5;
+
     }
 
     // Update is called once per frame
@@ -128,6 +150,10 @@ public class Boss_ : MonoBehaviour
                 if (!Invincible)
                 {//近づく
                     boss_move();
+                }
+                else if(Boss_atacking_Archer)
+                {//弓なら離れる
+                    boss_move_reverse();
                 }
             }
             if (Invincible)
@@ -203,6 +229,33 @@ public class Boss_ : MonoBehaviour
             EndGate.SetActive(true);
 
         }
+        //テレポート
+        if(Boss_HP <= Teleport_Hp && !Teleport_Hp_1)
+        {
+            Teleport_Hp_1 = true;
+            Vector2 Gate = Tp_pos_1.transform.position;
+            float x = Gate.x;
+            float y = -6;
+            transform.position = new Vector2(x, y);
+        }
+        if(Boss_HP <= Teleport_Hp2 && !Teleport_Hp_2)
+        {
+            Teleport_Hp_2 = true;
+            Vector2 Gate = Tp_pso_2.transform.position;
+            float x = Gate.x;
+            float y = -6;
+            transform.position = new Vector2(x, y);
+        }
+        if(Boss_HP <= Teleport_Hp3 && !Teleport_Hp_3)
+        {
+            Teleport_Hp_3 = true;
+            Vector2 Gate = Tp_pos_3.transform.position;
+            float x = Gate.x;
+            float y = -6;
+            transform.position = new Vector2(x, y);
+        }
+
+
         //左右反転
         if (rigidboody2d.velocity.x < 0)
         {
@@ -217,6 +270,9 @@ public class Boss_ : MonoBehaviour
         }
 
         Boss_Move_Stop();
+        Invoke("Threefold_()",3.0f);
+
+
         //Bossswordアタック
         Vector2 pos_Player = Player.transform.position;
         Vector2 pos_Boss = this.gameObject.transform.position;
@@ -309,7 +365,7 @@ public class Boss_ : MonoBehaviour
         //移動を計算させるために二次元ベクトルを作る
         Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
         //移動速度を指定
-        rigidboody2d.velocity = direction * -Escape;
+        rigidboody2d.velocity = direction * speed * - Escape;
     }
     //停止
     private void Boss_Move_Stop()
@@ -332,6 +388,38 @@ public class Boss_ : MonoBehaviour
         }
     }
 
+    //距離計測し移動速度変化
+    private void Threefold_()
+    {
+        //距離計測
+        Vector2 pos_Player = Player.transform.position;
+        Vector2 pos_Boss = this.gameObject.transform.position;
+        float Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+        //加速のクールタイム
+        Time_Count += Time.deltaTime;
+        if (Threefold_Ct <= Time_Count)
+        {
+            Threefold = true;
+            Time_Count = 0;
+            Boss_Move_Stop();
+
+            if (Boss_player >= Threefold_range)
+            {//三倍で近づく
+             //プレイヤーの位置取得
+                Vector2 targetPos = Player.transform.position;
+                //playerのx座標
+                float x = targetPos.x;
+                //playerのy座標
+                float y = 0;
+                //移動を計算させるために二次元ベクトルを作る
+                Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+                //移動速度を指定
+                rigidboody2d.velocity = direction * boss_x_speed * Threefold_speed;
+            }
+        }
+        
+    }
+
     //プレイヤーとの距離を計測し形態変化
     private void Range()
     {
@@ -340,6 +428,10 @@ public class Boss_ : MonoBehaviour
         Vector2 pos_Boss = this.gameObject.transform.position;
         float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
         Debug.Log("距離は" + range_Boss_player);
+
+        //近づく変化
+
+
         //弓に形態変化
         if (range_Boss_player > Range_Change && !boss_isArcher)
         {

@@ -31617,6 +31617,68 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1087826119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1087826120}
+  m_Layer: 0
+  m_Name: Tp_pos_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1087826120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087826119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.58, y: -5.3, z: -0.43365607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1146520944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146520945}
+  m_Layer: 0
+  m_Name: Tp_pos_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1146520945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146520944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.28, y: -6.2, z: -0.43365607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1147229611 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8957432067084204003, guid: 1e11a5b3c2842634ea865647f40e7d4a, type: 3}
@@ -31648,6 +31710,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!1 &1455130634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1455130635}
+  m_Layer: 0
+  m_Name: Tp_pos_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1455130635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455130634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.21, y: -6.04, z: -0.43365607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1551947820
 GameObject:
   m_ObjectHideFlags: 0
@@ -45311,14 +45404,38 @@ PrefabInstance:
       propertyPath: archerRig
       value: 
       objectReference: {fileID: 688246241}
+    - target: {fileID: 978943451712104398, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: ct_atack1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 978943451712104398, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: ct_atack2
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 978943451712104398, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Boss_Atk_time
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2944784872297089485, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699742277781457867, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: ct_atack1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699742277781457867, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: ct_atack2
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6699742277781457867, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: swordmanRig
       value: 
       objectReference: {fileID: 2081739495}
+    - target: {fileID: 6699742277781457867, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Boss_Atk_time
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7137709947950863270, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -45411,13 +45528,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7957361150140357142, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: m_GravityScale
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Gate_1
+      value: 
+      objectReference: {fileID: 1146520944}
+    - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Gate_2
+      value: 
+      objectReference: {fileID: 1455130634}
+    - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Gate_3
+      value: 
+      objectReference: {fileID: 1087826119}
     - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: EndGate
       value: 
       objectReference: {fileID: 669856098}
     - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Tp_pos_1
+      value: 
+      objectReference: {fileID: 1146520944}
+    - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Tp_pos_3
+      value: 
+      objectReference: {fileID: 1087826119}
+    - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Tp_pso_2
+      value: 
+      objectReference: {fileID: 1455130634}
+    - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: Boss_stop
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: archeranim
@@ -45431,6 +45576,10 @@ PrefabInstance:
       propertyPath: swordmananim
       value: 
       objectReference: {fileID: 2081739495}
+    - target: {fileID: 8533296339836447812, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: Boss_Sword_Reach
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
 --- !u!224 &3403091717330778986 stripped
