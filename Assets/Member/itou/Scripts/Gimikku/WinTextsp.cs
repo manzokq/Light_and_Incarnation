@@ -9,7 +9,8 @@ public class WinTextsp : MonoBehaviour
 
     public string ms1;
     bool st = false;
-    bool str = false;
+    [SerializeField]
+    public bool str = false;
     public int jyougen;
 
     GameObject PLAYER;
