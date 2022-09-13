@@ -64656,6 +64656,8 @@ GameObject:
   m_Component:
   - component: {fileID: 557451796}
   - component: {fileID: 557451795}
+  - component: {fileID: 557451798}
+  - component: {fileID: 557451797}
   m_Layer: 0
   m_Name: mainlev_build_0
   m_TagString: Untagged
@@ -64722,14 +64724,54 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557451794}
-  m_LocalRotation: {x: 0, y: 0, z: -0.106784604, w: 0.99428225}
+  m_LocalRotation: {x: 0, y: 0, z: -0.11320323, w: 0.9935719}
   m_LocalPosition: {x: 60.51, y: -3, z: 0}
   m_LocalScale: {x: 3.45, y: 3.45, z: 3.45}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.26}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13}
+--- !u!114 &557451797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557451794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b26cd49ca2d8d42aed38e5172e344b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasi: {fileID: 557451794}
+  rotate: 90
+--- !u!61 &557451798
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557451794}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.7705151, y: 0.08}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.9532442, y: 0}
+    oldSize: {x: 1.7, y: 0.16}
+    newSize: {x: 1.7, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1001 &569405704
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,10 +8,18 @@ public class Hasi : MonoBehaviour
     private GameObject hasi;
 
     bool hs = true;
+
+    [SerializeField]
+    private int rotate = 0;
+
+    public int _StartAxis,_RotateAxis = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(gameObject.transform.localEulerAngles);
+            //Mathf.Abs(this.gameObject.transform.rotation.z));
+        _StartAxis = Mathf.Abs((int)this.gameObject.transform.rotation.z);
+        _RotateAxis = _StartAxis - rotate;
     }
 
     // Update is called once per frame
@@ -25,10 +33,15 @@ public class Hasi : MonoBehaviour
         //        StartCoroutine(stop());
         //    }
         //}
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            StartCoroutine(stop());
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hs)
+        if (hs&&collision.gameObject.CompareTag("Arrow"))
         {
             StartCoroutine(stop());
         }
@@ -36,13 +49,16 @@ public class Hasi : MonoBehaviour
 
     IEnumerator stop()
     {
+        hs = false;
         float T=0;
         while(T < 1)
         {
-            hs = false;
-            hasi.transform.Rotate(new Vector3(0, 0, 88f * Time.deltaTime));
+           
+            hasi.transform.Rotate(new Vector3(0, 0, _RotateAxis * Time.deltaTime));
             T += Time.deltaTime;
             yield return null;
         }
+
+        hasi.transform.rotation = Quaternion.Euler(0, 0, rotate);
     }
 }
