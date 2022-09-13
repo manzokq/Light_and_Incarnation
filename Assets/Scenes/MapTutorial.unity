@@ -606,6 +606,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1906696547994679499, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
+      propertyPath: jyougen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441679512221410481, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0000076294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441679512221410481, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -329
+      objectReference: {fileID: 0}
     - target: {fileID: 8151049371767283450, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
       propertyPath: m_Name
       value: Canvas (1)
@@ -2046,7 +2058,6 @@ MonoBehaviour:
   PlayerOrb: 0
   PlayerCharacter: 0
   Character: 1
-  Map: 0
   Atk: 0
   BossCharacter: 0
   Boss_Character: 1
