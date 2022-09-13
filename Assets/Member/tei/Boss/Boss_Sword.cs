@@ -25,7 +25,7 @@ public class Boss_Sword : MonoBehaviour
     //クールタイム用
     private float Boss_Cool_time = 0;
     [SerializeField, Header("攻撃クールタイム")]
-    private int Boss_Atk_time = 1;
+    private float Boss_Atk_time = 1;
 
     //攻撃
     private int Boss_Sword_Atk1;
