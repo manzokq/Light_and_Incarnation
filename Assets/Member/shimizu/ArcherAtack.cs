@@ -178,18 +178,18 @@ public class ArcherAtack : MonoBehaviour
     {
         yield return new WaitForSeconds(ct_atack1);
         XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-        PlayerControl playerContorol = GetComponent<PlayerControl>();
+        //PlayerControl playerContorol = GetComponent<PlayerControl>();
         xboxPlayerContorol.xatacking = false;
-        playerContorol.atacking = false;
+        //playerContorol.atacking = false;
         arrowAble = true;
     }
     IEnumerator Atack2()
     {
         yield return new WaitForSeconds(ct_atack2);
         XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
-        PlayerControl playerContorol = GetComponent<PlayerControl>();
+        //PlayerControl playerContorol = GetComponent<PlayerControl>();
         xboxPlayerContorol.xatacking = false;
-        playerContorol.atacking = false;
+        //playerContorol.atacking = false;
         firearrowAble = true;
     }
     IEnumerator Atack3()

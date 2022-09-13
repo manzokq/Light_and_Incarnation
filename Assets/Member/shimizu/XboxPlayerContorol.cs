@@ -19,15 +19,11 @@ public class XboxPlayerContorol : MonoBehaviour
     private bool sliding_judge = true;
     public bool xatacking = false;
     public int changechara = 2;
-    private int changeatack = 0;
 
     private bool isGirl = true;
     private bool isSwordman = false;
     private bool isArcher = false;
 
-    private float beforeTrigger = 0;
-    private float beforeTrigger2 = 0;
-    private float view_button;
     [SerializeField] GameObject chara;
 
     public float atack_judge_con;
@@ -47,6 +43,7 @@ public class XboxPlayerContorol : MonoBehaviour
 
     private float jumpCount;
 
+    private bool charaDeath = false;
     private bool parryAble = true;
     private int climbCount = 0;
 
@@ -70,10 +67,13 @@ public class XboxPlayerContorol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Input.GetAxisRaw("L_Stick_H"));
-        //if(transform.localPosition.x)
-        //Debug.Log(atack_judge_con);
-        //待機モーション これ消す
+        //死亡チェック
+        if (GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10))
+        {
+            anim.SetBool("changeIncarnation", false);
+            gilranim.SetBool("GirlDeath", true);
+            Sceneseni.instance.fadeOutStart(0, 0, 0, 0, "GameOver");
+        }
 
 
         //
@@ -249,6 +249,7 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 sliding_judge = false;
                 head_sliding = true;
+                coroutine_able = false;
                 gilranim.SetBool("GirlSliding", true);
                 StartCoroutine("DodgeTag");
                 if (rbody.velocity.x > 0)
@@ -507,6 +508,7 @@ public class XboxPlayerContorol : MonoBehaviour
     IEnumerator Sliding2F()
     {
         yield return new WaitForSeconds(1.2f);
+        coroutine_able = true;
         anim.SetBool("GirlSliding", false);
         anim.SetBool("GirlSlidingL", false);
         gilranim.SetBool("GirlSliding", false);
@@ -532,6 +534,7 @@ public class XboxPlayerContorol : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
+            coroutine_able = true;
             gilranim.SetBool("GirlSliding2", true);
             sliding_judge = true;
             head_sliding = false;
@@ -545,6 +548,7 @@ public class XboxPlayerContorol : MonoBehaviour
         }
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
         {
+            coroutine_able = true;
             archeranim.SetBool("ArcherSliding2", true);
             sliding_judge = true;
             head_sliding = false;

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Sceneseni : MonoBehaviour
 {
+    public static Sceneseni instance;
     //フェードアウト処理の開始、完了を管理するフラグ
     private bool isFadeOut = false;
     //フェードイン処理の開始、完了を管理するフラグ
@@ -20,6 +21,13 @@ public class Sceneseni : MonoBehaviour
 
     bool arufok = true;
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
