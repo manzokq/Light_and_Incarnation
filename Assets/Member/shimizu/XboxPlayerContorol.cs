@@ -171,7 +171,7 @@ public class XboxPlayerContorol : MonoBehaviour
         swordmananim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
         archeranim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
 
-//Debug.Log(isWallright);
+        //Debug.Log(isWallright);
         isHeading = heading.IsHead();
         //•Ç“o‚Á‚Ä‚éÅ’†‚Ì“r’†‚Å•Ç‚©‚ç—£‚ê‚é‚½‚ß
         if (!coroutine_able)
@@ -180,7 +180,6 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 if (Input.GetAxis("L_Stick_H") > 0.1 && scale.x < 0)
                 {
-
                     rbody.isKinematic = false;
 
                     gilranim.SetBool("GirlClimb", false);
