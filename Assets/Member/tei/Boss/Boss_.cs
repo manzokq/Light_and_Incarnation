@@ -147,13 +147,13 @@ public class Boss_ : MonoBehaviour
             //移動関数を呼び出し
             if (!Boss_Stop)
             {
-                if (!Invincible)
+                if (!Invincible || boss_atack_judge == 1|| boss_atack_judge == 0)
                 {//近づく
                     boss_move();
                 }
-                else if(Boss_atacking_Archer)
+                if(boss_atack_judge == 2)
                 {//弓なら離れる
-                    boss_move_reverse();
+                    boss_move_reverse_Bowman();
                 }
             }
             if (Invincible)
@@ -222,15 +222,18 @@ public class Boss_ : MonoBehaviour
         }
         if (Boss_HP <= 0)
         {
-            Destroy(this.gameObject);
-            Debug.Log("ボスが倒れた");
+            //Winを出す
+            WinTextsp.instance.Str_();
 
             //セットアクティブでゲート出す
             EndGate.SetActive(true);
 
+            Destroy(this.gameObject);
+            Debug.Log("ボスが倒れた");
+
         }
         //テレポート
-        if(Boss_HP <= Teleport_Hp && !Teleport_Hp_1)
+        if (Boss_HP <= Teleport_Hp && !Teleport_Hp_1)
         {
             Teleport_Hp_1 = true;
             Vector2 Gate = Tp_pos_1.transform.position;
@@ -257,14 +260,13 @@ public class Boss_ : MonoBehaviour
 
 
         //左右反転
-        if (rigidboody2d.velocity.x < 0)
+        if (rigidboody2d.velocity.x < -0.5 || boss_atack_judge == 2)
         {
             boss_scale.x = -2;
             transform.localScale = boss_scale;
         }
-        if (rigidboody2d.velocity.x > 0)
+        if (rigidboody2d.velocity.x > 0.5)
         {
-
             boss_scale.x = 2;
             transform.localScale = boss_scale;
         }
@@ -285,6 +287,12 @@ public class Boss_ : MonoBehaviour
         {//攻撃不可
             Boss_Sword_Attack = false;
         }
+        //if(Sword_Boss_player >= Threefold_range && !Threefold)
+        //{
+        //    Threefold = true;
+        //    Threefold_();
+        //    Boss_Move_Stop();
+        //}
 
     }
 
@@ -352,7 +360,19 @@ public class Boss_ : MonoBehaviour
         rigidboody2d.velocity = direction * boss_x_speed;
 
     }
-
+    private void boss_move_reverse_Bowman()
+    {
+        //プレイヤーの位置取得
+        Vector2 targetPos = Player.transform.position;
+        //playerのx座標
+        float x = targetPos.x;
+        //playerのy座標
+        float y = 0;
+        //移動を計算させるために二次元ベクトルを作る
+        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+        //移動速度を指定
+        rigidboody2d.velocity = direction * -speed / 2;
+    }
     //プレイヤーから離れる
     private void boss_move_reverse()
     {
@@ -399,9 +419,7 @@ public class Boss_ : MonoBehaviour
         Time_Count += Time.deltaTime;
         if (Threefold_Ct <= Time_Count)
         {
-            Threefold = true;
             Time_Count = 0;
-            Boss_Move_Stop();
 
             if (Boss_player >= Threefold_range)
             {//三倍で近づく
@@ -417,7 +435,8 @@ public class Boss_ : MonoBehaviour
                 rigidboody2d.velocity = direction * boss_x_speed * Threefold_speed;
             }
         }
-        
+        Threefold = false;
+
     }
 
     //プレイヤーとの距離を計測し形態変化
