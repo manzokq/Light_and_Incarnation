@@ -21,6 +21,7 @@ public class Elevator : MonoBehaviour
     bool playerON = false;
     Vector3 ElePos=new Vector3(0,0,0);
     float firstY = 0;
+    public bool eleSwitch=false;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +67,7 @@ public class Elevator : MonoBehaviour
             StartCoroutine(El());
         }
         */
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player")&&eleSwitch)
         {
             playerON = true;
             StartCoroutine(Noboru());
