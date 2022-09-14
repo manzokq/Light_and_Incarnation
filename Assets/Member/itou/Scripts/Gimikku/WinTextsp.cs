@@ -14,6 +14,17 @@ public class WinTextsp : MonoBehaviour
     public int jyougen;
 
     GameObject PLAYER;
+
+    public static WinTextsp instance;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +49,9 @@ public class WinTextsp : MonoBehaviour
         {
             str = true;
         }
+    }
+    public void Str_()
+    {
+        str = true;
     }
 }
