@@ -16,6 +16,8 @@ public class ArcherAtack : MonoBehaviour
     ct_atack2,
     ct_atack3,
     ct_atack4;
+    [SerializeField]
+    GroundCheck groundCheck;
 
     private bool arrowAble = true;
     private bool firearrowAble = true;
@@ -101,7 +103,7 @@ public class ArcherAtack : MonoBehaviour
         //Debug.Log(GameManagement.Instance.Atk);
         //----コントローラー操作----
         //通常弓攻撃
-        if (Input.GetKeyDown("joystick button 2") && arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
+        if (Input.GetKeyDown("joystick button 2") && arrowAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1 && groundCheck.IsGround())
         {
             //Debug.Log("通常");
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();
