@@ -47,6 +47,8 @@ public class XboxPlayerContorol : MonoBehaviour
     private bool parryAble = true;
     private int climbCount = 0;
 
+    private LoseTextsp loseTextsp;
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float slidingForce;
@@ -56,9 +58,11 @@ public class XboxPlayerContorol : MonoBehaviour
     [SerializeField] Animator gilranim;
     [SerializeField] Animator swordmananim;
     [SerializeField] Animator archeranim;
+    
     // Start is called before the first frame update
     void Start()
     {
+        loseTextsp = GameObject.Find("LoseText").GetComponent<LoseTextsp>();
         spren = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -70,6 +74,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //死亡チェック
         if (GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10))
         {
+            loseTextsp.str = true;
             anim.SetBool("changeIncarnation", false);
             gilranim.SetBool("GirlDeath", true);
             Sceneseni.instance.fadeOutStart(0, 0, 0, 0, "GameOver");
