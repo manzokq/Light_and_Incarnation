@@ -47,6 +47,8 @@ public class XboxPlayerContorol : MonoBehaviour
     private bool parryAble = true;
     private int climbCount = 0;
 
+    private LoseTextsp loseTextsp;
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float slidingForce;
@@ -56,9 +58,11 @@ public class XboxPlayerContorol : MonoBehaviour
     [SerializeField] Animator gilranim;
     [SerializeField] Animator swordmananim;
     [SerializeField] Animator archeranim;
+    
     // Start is called before the first frame update
     void Start()
     {
+        loseTextsp = GameObject.Find("LoseText").GetComponent<LoseTextsp>();
         spren = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -70,6 +74,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //Ž€–Sƒ`ƒFƒbƒN
         if (GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10))
         {
+            loseTextsp.str = true;
             anim.SetBool("changeIncarnation", false);
             gilranim.SetBool("GirlDeath", true);
             Sceneseni.instance.fadeOutStart(0, 0, 0, 0, "GameOver");
@@ -166,7 +171,7 @@ public class XboxPlayerContorol : MonoBehaviour
         swordmananim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
         archeranim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
 
-//Debug.Log(isWallright);
+        //Debug.Log(isWallright);
         isHeading = heading.IsHead();
         //•Ç“o‚Á‚Ä‚éÅ’†‚Ì“r’†‚Å•Ç‚©‚ç—£‚ê‚é‚½‚ß
         if (!coroutine_able)
@@ -175,7 +180,6 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 if (Input.GetAxis("L_Stick_H") > 0.1 && scale.x < 0)
                 {
-
                     rbody.isKinematic = false;
 
                     gilranim.SetBool("GirlClimb", false);
