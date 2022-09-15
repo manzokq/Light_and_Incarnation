@@ -28,7 +28,7 @@ public class KaitenSwitch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            KaitenYuka.GetComponent<kaiten>().RoteStart();
+            KaitenYuka.GetComponent<Kaiten>().RoteStart();
         }
             /*
             if(collision.gameObject.CompareTag("Player")&&direction)

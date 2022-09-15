@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class bakudan : MonoBehaviour
+public class Bakudan : MonoBehaviour
 {
     [SerializeField] int timeLimit;
     

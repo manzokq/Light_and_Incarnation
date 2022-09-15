@@ -45,7 +45,7 @@ public class Elevator : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)//エレベーターの中に入ったら
     {
-        if (torch.GetComponent<torcha>().flag == true && other.tag == "Player")
+        if (torch.GetComponent<Torcha>().flag == true && other.tag == "Player")
         {
             box.size = new Vector3(2,2);
             EVflag = true;

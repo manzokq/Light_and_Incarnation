@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
  
-public class torchb : MonoBehaviour
+public class Torchb : MonoBehaviour
 {
  
     // 自身の保持ナンバー
@@ -11,14 +11,14 @@ public class torchb : MonoBehaviour
     public bool on = false;
  
     // 親に通知のため
-    private torcha _SwitchManager;
+    private Torcha _SwitchManager;
  
  
     // Start is called before the first frame update
     private void Start()
     {
         // 親オブジェクトのスクリプトを取得
-        _SwitchManager = transform.parent.gameObject.GetComponent<torcha>();
+        _SwitchManager = transform.parent.gameObject.GetComponent<Torcha>();
     }
  
     // 衝突判定
