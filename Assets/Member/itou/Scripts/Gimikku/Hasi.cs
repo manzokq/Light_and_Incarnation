@@ -37,7 +37,7 @@ public class Hasi : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.A))
         {
-            StartCoroutine(stop());
+            if(hs)StartCoroutine(stop());
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
