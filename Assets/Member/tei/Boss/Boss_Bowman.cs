@@ -53,7 +53,7 @@ public class Boss_Bowman : MonoBehaviour
             Boss_Cool_time += Time.deltaTime;
             if (Boss_Atk_time <= Boss_Cool_time)
             {
-                Boss_Contorol.Boss_atacking_Archer = false;
+                //Boss_Contorol.Boss_atacking_Archer = false;
                 Debug.Log("UŒ‚’Š‘I");
                 Boss_Cool_time = 0;
                 Boss_random_Atk_Bowman = Random.Range(1, 3);

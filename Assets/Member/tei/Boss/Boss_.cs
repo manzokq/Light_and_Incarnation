@@ -258,17 +258,32 @@ public class Boss_ : MonoBehaviour
             transform.position = new Vector2(x, y);
         }
 
-
-        //ç∂âEîΩì]
-        if (rigidboody2d.velocity.x < -0.5 || boss_atack_judge == 2)
+        if(boss_atack_judge == 2)
         {
-            boss_scale.x = -2;
-            transform.localScale = boss_scale;
+            if (rigidboody2d.velocity.x < -0.5)
+            {
+                boss_scale.x = 2;
+                transform.localScale = boss_scale;
+            }
+            if (rigidboody2d.velocity.x > 0.5)
+            {
+                boss_scale.x = -2;
+                transform.localScale = boss_scale;
+            }
         }
-        if (rigidboody2d.velocity.x > 0.5)
+        //ç∂âEîΩì]
+        if (boss_atack_judge == 1 || boss_atack_judge == 0)
         {
-            boss_scale.x = 2;
-            transform.localScale = boss_scale;
+            if (rigidboody2d.velocity.x < -0.5)
+            {
+                boss_scale.x = -2;
+                transform.localScale = boss_scale;
+            }
+            if (rigidboody2d.velocity.x > 0.5)
+            {
+                boss_scale.x = 2;
+                transform.localScale = boss_scale;
+            }
         }
 
         Boss_Move_Stop();
@@ -287,12 +302,7 @@ public class Boss_ : MonoBehaviour
         {//çUåÇïsâ¬
             Boss_Sword_Attack = false;
         }
-        //if(Sword_Boss_player >= Threefold_range && !Threefold)
-        //{
-        //    Threefold = true;
-        //    Threefold_();
-        //    Boss_Move_Stop();
-        //}
+
 
     }
 
