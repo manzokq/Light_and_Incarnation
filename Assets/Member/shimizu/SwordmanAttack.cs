@@ -16,6 +16,8 @@ public class SwordmanAttack : MonoBehaviour
      ct_atack2,
      ct_atack3,
      ct_atack4;
+    [SerializeField]
+    GroundCheck groundCheck;
 
     private bool slashAble = true;
     private bool thrustAble = true;
@@ -101,7 +103,7 @@ public class SwordmanAttack : MonoBehaviour
 
         //----コントローラー操作----
         //斬撃
-        if (Input.GetKeyDown("joystick button 2") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1)
+        if (Input.GetKeyDown("joystick button 2") && slashAble && GameManagement.Instance.Atk ==GameManagement.AtkID.Atk1 && groundCheck.IsGround())
         {
             
             XboxPlayerContorol xboxPlayerContorol = GetComponent<XboxPlayerContorol>();

@@ -40,14 +40,16 @@ public class Boss_Sword : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        Boss_ boss = GetComponent<Boss_>();
-        Boss_Sword_Atk1 = boss.Boss_Atk1;
-        Boss_Sword_Atk2 = boss.Boss_Atk2;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Boss_ boss = GetComponent<Boss_>();
+        Boss_Sword_Atk1 = boss.Boss_Atk1;
+        Boss_Sword_Atk2 = boss.Boss_Atk2;
+
         Boss_ Boss_Contorol = GetComponent<Boss_>();
         if (Boss_Contorol.Boss_atacking_Sword)
         {
@@ -75,7 +77,7 @@ public class Boss_Sword : MonoBehaviour
     //ŽaŒ‚
     public void Boss_Atk1()
     {
-        if (slashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
+        if (slashAble)
         {
             slashAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
@@ -94,7 +96,7 @@ public class Boss_Sword : MonoBehaviour
     //“Ë‚«
     public void Boss_Atk2()
     {
-        if (thrustAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
+        if (thrustAble)
         {
             thrustAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
