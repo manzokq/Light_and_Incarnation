@@ -64746,6 +64746,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasi: {fileID: 557451794}
   rotate: 90
+  _StartAxis: 0
+  _RotateAxis: 0
 --- !u!61 &557451798
 BoxCollider2D:
   m_ObjectHideFlags: 0
