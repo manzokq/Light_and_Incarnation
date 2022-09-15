@@ -10,7 +10,10 @@ public class KaitenSwitch : MonoBehaviour
     [SerializeField]
     GameObject KaitenYuka;
 
-    
+    [SerializeField]
+    Sprite[] _switchImage = null;
+
+    bool playerFrag, kaitennF = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,26 +23,48 @@ public class KaitenSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("joystick button 1"))
+        {
+            Debug.Log(playerFrag);
+            if (playerFrag == true)
+            {
+                KaitenYuka.GetComponent<kaiten>().RoteStart();
+                if(kaitennF)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[0];
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[1];
+                }
+            }
+        }
     }
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            KaitenYuka.GetComponent<kaiten>().RoteStart();
+            playerFrag = true;
         }
-            /*
-            if(collision.gameObject.CompareTag("Player")&&direction)
-            {
-                KaitenYuka.GetComponent<kaiten>().LeftRote();
-                direction = false;
-            }
-            else if (collision.gameObject.CompareTag("Player") && !direction)
-            {
-                KaitenYuka.GetComponent<kaiten>().RightRote();
-                direction = true;
-            }*/
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerFrag = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerFrag = false;
+        }
+    }
+
 }
