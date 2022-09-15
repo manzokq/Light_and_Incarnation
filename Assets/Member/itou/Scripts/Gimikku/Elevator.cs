@@ -23,6 +23,8 @@ public class Elevator : MonoBehaviour
     float firstY = 0;
     public bool eleSwitch=false;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
