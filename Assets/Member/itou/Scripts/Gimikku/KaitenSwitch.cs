@@ -28,7 +28,7 @@ public class KaitenSwitch : MonoBehaviour
             Debug.Log(playerFrag);
             if (playerFrag == true)
             {
-                KaitenYuka.GetComponent<kaiten>().RoteStart();
+                KaitenYuka.GetComponent<Kaiten>().RoteStart();
                 if(kaitennF)
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[0];
