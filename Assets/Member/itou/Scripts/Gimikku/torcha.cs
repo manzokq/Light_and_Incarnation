@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
  
-public class torcha : MonoBehaviour
+public class Torcha : MonoBehaviour
 {
 
-    torchb torch;
+    Torchb torch;
     // フロア内スイッチ数カウント保持
     protected uint _switchCount = 0;
     public bool flag = false;
@@ -27,7 +27,7 @@ public class torcha : MonoBehaviour
     protected virtual void Start()
     {
         _checkAreaSwitches();
-        torch= new torchb();
+        torch= new Torchb();
         // プレイヤーステータスを取得
         _State = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<CircleCollider2D>();
  

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class kaiten : MonoBehaviour
+public class Kaiten : MonoBehaviour
 {
     /*
     [SerializeField]

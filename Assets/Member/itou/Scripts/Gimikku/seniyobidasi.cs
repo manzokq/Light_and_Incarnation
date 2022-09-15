@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class seniyobidasi : MonoBehaviour
+public class Seniyobidasi : MonoBehaviour
 {
     GameObject ManageObject;
     Sceneseni fadeManager;

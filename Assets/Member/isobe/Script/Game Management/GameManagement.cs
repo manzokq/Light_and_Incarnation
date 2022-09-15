@@ -47,7 +47,7 @@ public class GameManagement : MonoBehaviour
     [SerializeField]
     public CharacterID Character;
     [SerializeField]
-    private static  string Map;
+    private static string Map;
     [SerializeField]
     public AtkID Atk;
 
@@ -68,7 +68,8 @@ public class GameManagement : MonoBehaviour
         if (Map == null)
         {
             //Debug.LogError("Mapの値がはいってねーよなー");
-        }else
+        }
+        else
             Map = SceneManager.GetActiveScene().name;
         Debug.Log(Map);
 
@@ -76,8 +77,7 @@ public class GameManagement : MonoBehaviour
     private void Start()
     {
         if (!(Map == null))
-            //if ((Map == "MapTutorial" || Map == "MapOP" || Map == "GameOver") && SceneManager.GetActiveScene().name == "Map1")
-            if ( SceneManager.GetActiveScene().name == "Map1"|| SceneManager.GetActiveScene().name == "Map1RE")
+            if (SceneManager.GetActiveScene().name == "Map1" || SceneManager.GetActiveScene().name == "Map1RE")
             {
                 PlayerHP = 100;
                 PlayerMP = 100;
@@ -86,7 +86,7 @@ public class GameManagement : MonoBehaviour
                 playerMp = 100;
                 playerOrb = 100;
             }
-            else if (SceneManager.GetActiveScene().name == "PVMap" || SceneManager.GetActiveScene().name == "MapTutorial")
+            else if (SceneManager.GetActiveScene().name == "PVMap" || SceneManager.GetActiveScene().name == "MapTutorial" || SceneManager.GetActiveScene().name == "GameOver")
             {
                 PlayerHP = 100;
                 PlayerMP = 100;
@@ -155,7 +155,7 @@ public class GameManagement : MonoBehaviour
     {
         //プレイヤーを呼び出す
         PlayerHP += Heal;
-        
+
         if (PlayerHP >= 100)
         {
             PlayerHP = 100;
