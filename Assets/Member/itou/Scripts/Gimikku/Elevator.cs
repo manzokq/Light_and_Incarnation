@@ -125,6 +125,7 @@ public class Elevator : MonoBehaviour
 
 
 
+
     IEnumerator El()
     {
         while (EVflag)
