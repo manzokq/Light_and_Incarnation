@@ -30,6 +30,7 @@ public class Zombie_Kasai : Enemy
         chargeobj = chargeObject;
         chargeObject.SetActive(false);//攻撃の当たり判定
         _saveRecastTime = _recastTime;
+        //Debug.Log(playerObject);
 
     }
 
@@ -47,6 +48,7 @@ public class Zombie_Kasai : Enemy
             _recastTime = _saveRecastTime;
             //プレイヤーまでの距離を出す
             this._playerRange = Vector2.Distance(playerObject.transform.position, this.transform.position);
+            //Debug.Log(_playerRange);
             //一定の距離未満なら複数の選択肢からランダムで攻撃を実行する
             if (_playerRange < _chargeRange)
             {

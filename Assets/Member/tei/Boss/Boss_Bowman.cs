@@ -37,14 +37,16 @@ public class Boss_Bowman : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        Boss_ boss = GetComponent<Boss_>();
-        Boss_Archer_Atk1 = boss.Boss_Atk1;
-        Boss_Archer_Atk2 = boss.Boss_Atk2;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Boss_ boss = GetComponent<Boss_>();
+        Boss_Archer_Atk1 = boss.Boss_Atk1;
+        Boss_Archer_Atk2 = boss.Boss_Atk2;
+
         Boss_ Boss_Contorol = GetComponent<Boss_>();
         if (Boss_Contorol.Boss_atacking_Archer)
         {
