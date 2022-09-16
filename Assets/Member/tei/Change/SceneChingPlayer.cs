@@ -106,6 +106,8 @@ public class SceneChingPlayer : MonoBehaviour
             girl.SetBool("changeIncarnation", false);
             GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
             */
+            this.gameObject.GetComponent<XboxPlayerContorol>().ClearReturnGirl();
+            
         }
         if (SceneManager.GetActiveScene().name != getOut)
         {
