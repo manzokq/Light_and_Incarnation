@@ -19,7 +19,7 @@ public class SwordmanAttack : MonoBehaviour
     [SerializeField]
     GroundCheck groundCheck;
 
-    private bool slashAble = true;
+    public static bool slashAble = true;
     private bool thrustAble = true;
     private bool chargeslashAble = true;
     private bool wallbreakAble = true;
@@ -177,6 +177,13 @@ public class SwordmanAttack : MonoBehaviour
     {
         yield return  new WaitForSeconds(1f);
         sword.tag = "Sword";
+    }
+    public void ClearSwordReset()
+    {
+        animSword.ResetTrigger("Slash2");
+        animSword.Play("NewState");
+        slashAble = true;
+        sword.GetComponent<BoxCollider2D>().enabled = false;
     }
     IEnumerator Atack1()
     {

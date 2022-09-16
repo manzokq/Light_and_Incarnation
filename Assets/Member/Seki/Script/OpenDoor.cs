@@ -12,7 +12,7 @@ public class OpenDoor : MonoBehaviour
 
     bool moveFrag = true;
     [SerializeField]
-    int upY,waitTime = 0;
+    int upY,waitTime,upTime = 0;
 
     Vector3 startVec = new Vector3(0, 0, 0);
 
@@ -28,55 +28,47 @@ public class OpenDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown("joystick button 1"))
         {
-
-            Debug.Log(playerFrag);
             if (playerFrag == true)
             {
                 if(moveFrag)
                 {
                     StartCoroutine(Move());
                 }
-
-            }
-        }
-
-         if(Input.GetKeyDown(KeyCode.A))
-         {
-            if (moveFrag)
-            {
-                StartCoroutine(Move());
             }
         }
     }
-
     IEnumerator Move()
     {
+
         moveFrag = false;
         gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[1];
+        //スイッチの画像切り替え
+
         float time = 0;
-        while(time<1)
-        {
-            doorObj.transform.Translate(0,  upY*Time.deltaTime, 0);
+        while(time<upTime)
+        {//ドアがupTimeの時間をかけて上昇
+            doorObj.transform.Translate(0,  (upY*Time.deltaTime)/upTime, 0);
             yield return null;
             time += Time.deltaTime;
         }
-        doorObj.transform.position = new Vector3(startVec.x, startVec.y+upY, startVec.z);
+        doorObj.transform.position = new Vector3(startVec.x, startVec.y+upY, startVec.z);//ズレ防止
 
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime);//ドア開放時間
+
         time = 0;
         while (time < 1)
-        {
-            doorObj.transform.Translate(0, -upY * Time.deltaTime, 0);
+        {//ドア下降
+            doorObj.transform.Translate(0, (-upY * Time.deltaTime)/upTime, 0);
             yield return null;
             time += Time.deltaTime;
         }
-
         doorObj.transform.position=startVec;
         moveFrag = true;
         gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[0];
+        //画像戻し
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

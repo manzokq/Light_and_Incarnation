@@ -9,8 +9,8 @@ public class Boss_Blade : MonoBehaviour
     [SerializeField]
     private Animator anim;
     //攻撃
-    private int Boss_Archer_Atk1;
-    private int Boss_Archer_Atk2;
+    public int Boss_Blade_Atk1;
+    public int Boss_Blade_Atk2;
 
     private int Atk_;
     // Start is called before the first frame update
@@ -22,35 +22,33 @@ public class Boss_Blade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Boss_ boss = GetComponent<Boss_>();
-        Boss_Archer_Atk1 = boss.Boss_Atk1;
-        Boss_Archer_Atk2 = boss.Boss_Atk2;
+        Boss_Blade_Atk1 = Boss_.instance.Boss_Atk1;
+        Boss_Blade_Atk2 = Boss_.instance.Boss_Atk2;
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D.gameObject.CompareTag("Player"))
         {
-            Boss_Sword boss_Sword = GetComponent<Boss_Sword>();
-            Atk_ = boss_Sword.Atk_Sword;
+            Atk_ = Boss_Sword.Blade.Atk_Sword;
             if (Atk_ == 1)
             {
-                GameManagement.Instance.PlayerDamage(Boss_Archer_Atk1);
+                GameManagement.Instance.PlayerDamage(Boss_Blade_Atk1);
             }
 
             if (Atk_ == 2)
             {
-                GameManagement.Instance.PlayerDamage(Boss_Archer_Atk2);
+                GameManagement.Instance.PlayerDamage(Boss_Blade_Atk2);
             }
 
             Debug.LogWarning("プレイヤーにダメージ");
             cooltime = false;
             StartCoroutine(CoolTime());
-            //hp = GameManagement.Instance.PlayerAtk(hp);
-            //anim.SetBool("changeArcher", false);
-            //anim.SetBool("changeWitch", false);
-            //anim.SetBool("changeSwordman", false);
-            //anim.SetBool("changeIncarnation", false);
+            ResetAtk_Sword();
         }
+    }
+    public void ResetAtk_Sword()
+    {
+        Boss_Sword.Blade.Atc_();
     }
     IEnumerator CoolTime()
     {

@@ -19,7 +19,7 @@ public class ArcherAtack : MonoBehaviour
     [SerializeField]
     GroundCheck groundCheck;
 
-    private bool arrowAble = true;
+    public static bool arrowAble = true;
     private bool firearrowAble = true;
     private bool doublearrowAble = true;
     private bool longbowAble = true;
@@ -175,6 +175,14 @@ public class ArcherAtack : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         arrow.tag = "Arrow";
+    }
+    public void ClearArcherReset()
+    {
+        //animArcher.ResetTrigger("Arrow2");
+        //animArcher.Play("NewState");
+        arrowAble = true;
+        arrow.GetComponent<BoxCollider2D>().enabled = false;
+        arrow.GetComponent<SpriteRenderer>().enabled = false;
     }
     IEnumerator Atack1()
     {

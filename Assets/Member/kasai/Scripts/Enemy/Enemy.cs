@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     /// 右は1 左は-1
     /// </summary>
     private int _direction=1;
+    [SerializeField] private bool _directionTrigger = false;
     /// <summary>
     /// 動くかどうかのフラグ
     /// </summary>
@@ -52,24 +53,26 @@ public class Enemy : MonoBehaviour
         Atk2 = enemyDate.atk2;
         Speed = enemyDate.speed;
 
-        _direction = 1;            //方向を右に初期化
-        direction= Direction.Right;//方向を右に初期化
+        if(_directionTrigger)
+        {
+            _direction = -1;            //方向を右に初期化
+            direction = Direction.Left;//方向を右に初期化
+        }
+        else
+        {
+            _direction = 1;            //方向を右に初期化
+            direction = Direction.Right;//方向を右に初期化
+        }
+        
 
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        //デバッグ用
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Damaged();
-        //}
         //体力の判定
         if (this.Hp <= 0)
         {
-            //seを呼び出す
-            //
             this.gameObject.SetActive(false);
         }
         if(_moveFrag)
@@ -81,7 +84,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Move()
-    {//移動　アップデートで呼ばれてる
+    {//移動
         Vector2 scale = transform.localScale;
         rb.velocity = new Vector2(enemyDate.speed * _direction, rb.velocity.y);
         Anim.SetBool("Walk", true);
@@ -155,20 +158,6 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    //IEnumerator Damaged()
-    //{
-    //    Hp = GameManagement.Instance.PlayerAtk(Hp);
-    //    // 周期cycleで繰り返す値の取得
-    //    // 0～cycleの範囲の値が得られる
-    //    var repeatValue = Mathf.Repeat(_time, _cycle);
-
-    //    // 内部時刻timeにおける明滅状態を反映
-    //    // スプライト色のアルファ値を変更している
-    //    var color = spriteRenderer.color;
-    //    color.a = repeatValue >= _cycle * 0.5f ? 1 : 0;
-    //    spriteRenderer.color = color;
-    //    return null;
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)//エネミーの体力を減らす処理
     {
