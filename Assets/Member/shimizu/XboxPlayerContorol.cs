@@ -72,7 +72,7 @@ public class XboxPlayerContorol : MonoBehaviour
     void Update()
     {
         //死亡チェック
-        if (GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10))
+        if (GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10) || Input.GetKeyDown(KeyCode.Space))
         {
             loseTextsp.str = true;
             anim.SetBool("changeIncarnation", false);

@@ -14,7 +14,7 @@ public class Sceneseni : MonoBehaviour
     //透明度が変わるスピード
     float fadeSpeed = 0.75f;
     //画面をフェードさせるための画像をパブリックで取得
-    public SpriteRenderer fadeImage;
+    public Image fadeImage;
     float red, green, blue, alfa;
     //シーン遷移のための型
     string afterScene;
