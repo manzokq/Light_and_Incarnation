@@ -14,7 +14,8 @@ public class Sceneseni : MonoBehaviour
     //透明度が変わるスピード
     float fadeSpeed = 0.75f;
     //画面をフェードさせるための画像をパブリックで取得
-    public SpriteRenderer fadeImage;
+    [SerializeField]
+    Image fadeImage;
     float red, green, blue, alfa;
     //シーン遷移のための型
     string afterScene;
@@ -32,6 +33,10 @@ public class Sceneseni : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        if(fadeImage==null)
+        {
+            fadeImage = GetComponent<Image>();
+        }
         SetRGBA(0, 0, 0, 1);
         //シーン遷移が完了した際にフェードインを開始するように設定
         SceneManager.sceneLoaded += fadeInStart;
