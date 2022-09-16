@@ -26,7 +26,8 @@ public class Zombie_Kasai : Enemy
     protected override void Start()
     {
         base.Start();
-        playerObject = GameObject.FindWithTag("Player");
+        //playerObject = GameObject.FindWithTag("Player");
+        Invoke("PrayerSearch", 1f);
         chargeobj = chargeObject;
         chargeObject.SetActive(false);//çUåÇÇÃìñÇΩÇËîªíË
         _saveRecastTime = _recastTime;
@@ -34,10 +35,16 @@ public class Zombie_Kasai : Enemy
 
     }
 
+    void PrayerSearch()
+    {
+        playerObject = GameObject.FindWithTag("Player");
+    }
+
     protected override void Update()
     {
         base.Update();
-        StartCoroutine(ZombieAtkChoice());
+        if(playerObject!=null)
+            StartCoroutine(ZombieAtkChoice());
     }
     public IEnumerator ZombieAtkChoice()
     {

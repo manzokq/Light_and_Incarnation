@@ -35,7 +35,8 @@ public class Slime : Enemy
     protected override void Start()
     {
         base.Start();
-        playerObject = GameObject.FindWithTag("Player");
+        //playerObject = GameObject.FindWithTag("Player");
+        Invoke("PrayerSearch", 1f);
         poisonobj = _poison;
         chargeobj = chargeObject;
 
@@ -45,6 +46,11 @@ public class Slime : Enemy
         _saveRecastTime = _recastTime;
 
 
+    }
+
+    void PrayerSearch()
+    {
+        playerObject = GameObject.FindWithTag("Player");
     }
 
     protected override void Update()
@@ -68,7 +74,7 @@ public class Slime : Enemy
             //Debug.Log("‚ ‚½‚Á‚Ä‚È‚¢");
             _rayhit = false;
         }
-
+        if(playerObject!=null)
         StartCoroutine(AtkChoices());
     }
 
