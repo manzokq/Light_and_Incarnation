@@ -51,7 +51,7 @@ public class Boss_Sword : MonoBehaviour
     {
 
         Boss_ Boss_Contorol_Sword = GetComponent<Boss_>();
-        Debug.LogError(Boss_Contorol_Sword);
+        Debug.Log(Boss_Contorol_Sword);
         if ( Boss_Contorol_Sword != null && Boss_Contorol_Sword.Boss_atacking_Sword)
         {
             Boss_Cool_time += Time.deltaTime;
@@ -91,6 +91,7 @@ public class Boss_Sword : MonoBehaviour
                 swordmanRig.SetTrigger("SwordAtack1");
             }
         }
+        Invoke("Atc_", 2);
     }
 
     //“Ë‚«
@@ -109,6 +110,7 @@ public class Boss_Sword : MonoBehaviour
                 swordmanRig.SetTrigger("SwordAtack2");
             }
         }
+        Invoke("Atc_", 2);
     }
     public void Atc_()
     {

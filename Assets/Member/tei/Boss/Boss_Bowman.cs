@@ -89,6 +89,7 @@ public class Boss_Bowman : MonoBehaviour
                 archerRig.SetTrigger("ArcherAtack1");
             }
         }
+        Invoke("Atc_", 2);
     }
 
     public void Boss_Atk2()
@@ -106,6 +107,7 @@ public class Boss_Bowman : MonoBehaviour
                 archerRig.SetTrigger("ArcherAtack2");
             }
         }
+        Invoke("Atc_", 2);
     }
 
     public void Atc_()

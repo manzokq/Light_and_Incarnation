@@ -68,7 +68,7 @@ public class XboxPlayerContorol : MonoBehaviour
         loseTextsp = GameObject.Find("LoseText").GetComponent<LoseTextsp>();
         spren = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -686,7 +686,7 @@ public class XboxPlayerContorol : MonoBehaviour
         isArcher = false;
         changechara = 0;
         atack_judge_con = 0;
-        anim.SetBool("changeWitch", false);
+        anim.SetBool("changeWitch", true);
         anim.SetBool("changeSwordman", false);
         anim.SetBool("changeArcher", false);
         anim.SetBool("changeIncarnation", false);
