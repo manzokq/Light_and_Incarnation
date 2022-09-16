@@ -85,12 +85,17 @@ public class Slime : Enemy
             //Debug.Log("‚ ‚½‚Á‚Ä‚È‚¢");
             _rayhit = false;
         }
-        if(playerObject!=null)
-        StartCoroutine(AtkChoices());
+        
+        
         if(this.Hp<=0)
         {
             StopCoroutine(AtkChoices());
         }
+        if (playerObject != null)
+        {
+            StartCoroutine(AtkChoices());
+        }
+
     }
 
     public IEnumerator AtkChoices()
