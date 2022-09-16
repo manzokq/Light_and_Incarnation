@@ -27,7 +27,47 @@ public class GameOverText : MonoBehaviour
     private void Start()
     {
         transform.position = StartPoz;
-        textMeshProUGUI.text = GameScene;
+        if (GameSelection)
+        {
+
+            //チュートリアル
+            if (GameScene == "MapTutorial")
+            {//ダンジョンの最初から用
+                textMeshProUGUI.text = "Tutorial";
+            }
+            //ステージ１
+            else if (GameScene == "Map1")
+            {//ステージ１から用
+                textMeshProUGUI.text = "Map1";
+            }
+            else if (GameScene == "Map1RE")
+            {
+                textMeshProUGUI.text = "Map1";
+            }
+            //ステージ２
+            else if (GameScene == "Map2")
+            { //ステージ２から用
+                textMeshProUGUI.text = "Map2";
+            }
+            else if (GameScene == "Map2RE")
+            {
+                textMeshProUGUI.text = "Map2";
+            }
+            //中間地点
+            else if (GameScene == "MapBoss")
+            {//ボス戦から用
+
+                textMeshProUGUI.text = "Boss";
+            }
+            else
+            {//タイトルに戻る
+                textMeshProUGUI.text = "Tutorial";
+
+            }
+
+
+        }
+
         goNextScene = false;
         inputFrag = true;
     }
