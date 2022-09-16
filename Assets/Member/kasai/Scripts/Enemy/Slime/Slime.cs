@@ -31,11 +31,11 @@ public class Slime : Enemy
     [SerializeField] private float _poisonDelay = 2.0f;//ì≈Çê∂ê¨Ç∑ÇÈÇ∆Ç´ÇÃÉâÉO
     private float _saveRecastTime = 0;//_recastTimeÇÃï€ë∂óp
 
-
     protected override void Start()
     {
         base.Start();
-        playerObject = GameObject.FindWithTag("Player");
+        //playerObject = GameObject.FindWithTag("Player");
+        Invoke("PrayerSearch", 1f);
         poisonobj = _poison;
         chargeobj = chargeObject;
 
@@ -45,6 +45,11 @@ public class Slime : Enemy
         _saveRecastTime = _recastTime;
 
 
+    }
+
+    void PrayerSearch()
+    {
+        playerObject = GameObject.FindWithTag("Player");
     }
 
     protected override void Update()
@@ -61,15 +66,19 @@ public class Slime : Enemy
         {
             Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
             _rayhit = true;
-            Debug.Log("Ç†ÇΩÇ¡ÇΩ");
+            //Debug.Log("Ç†ÇΩÇ¡ÇΩ");
         }
         else
         {
             //Debug.Log("Ç†ÇΩÇ¡ÇƒÇ»Ç¢");
             _rayhit = false;
         }
-
+        if(playerObject!=null)
         StartCoroutine(AtkChoices());
+        if(this.Hp<=0)
+        {
+            StopCoroutine(AtkChoices());
+        }
     }
 
     public IEnumerator AtkChoices()

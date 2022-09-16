@@ -354,7 +354,22 @@ public class XboxPlayerContorol : MonoBehaviour
         rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
     }
     //ƒXƒ‰ƒCƒfƒBƒ“ƒO‚Å‚Ì‰ñ“]‚ğ’¼‚·
-
+    public void ClearReturnGirl()
+    {
+        GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
+        atack_judge_con = 0;
+        xatacking = false;
+        this.gameObject.GetComponent<ArcherAtack>();
+        this.gameObject.GetComponent<SwordmanAttack>();
+        ArcherAtack.arrowAble = true;
+        SwordmanAttack.slashAble = true;
+        isGirl = true;
+        isSwordman = false;
+        isArcher = false;
+        anim.SetBool("changeArcher", false);
+        anim.SetBool("changeSwordman", false);
+        anim.SetBool("changeWitch", true);
+    }
     IEnumerator AngleRepairRightArcher()
     {
 
@@ -389,16 +404,12 @@ public class XboxPlayerContorol : MonoBehaviour
     //•Ç“o‚è‚Ì‹““®
     IEnumerator Climb()
     {
-        
         rbody.velocity = new Vector2(0, 0);
         //rigidbody‚ğ–³Œø‰»
         rbody.isKinematic = true;
-        //ÀÛ‚É“o‚é
         for (int i = 0; i < num_climb; i++)
         {
-            
             //•Ç‚©‚ç—£‚ê‚½‚Æ‚«I—¹
-            
             if (!isWallright && ((Input.GetAxisRaw("L_Stick_H") < 0.2 && transform.localScale.x == 100) || (0.2 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
             {
 
@@ -419,7 +430,6 @@ public class XboxPlayerContorol : MonoBehaviour
                 var _endPos = transform.localPosition + new Vector3(-10, 20);
                 if (0.2 < Input.GetAxis("L_Stick_H") && transform.localScale.x == 100)
                 {
-                    //Debug.Log("“o‚ê‚Äru");
                     float timer = 0f;
                     while (timer < 1f)
                     {
@@ -429,7 +439,6 @@ public class XboxPlayerContorol : MonoBehaviour
                 }
                 else if (Input.GetAxisRaw("L_Stick_H") < -0.2 && transform.localScale.x == -100 && !isGround)
                 {
-                    //Debug.Log("“o‚ê‚Äru");
                     float timer = 0f;
                     while (timer < 1f)
                     {
