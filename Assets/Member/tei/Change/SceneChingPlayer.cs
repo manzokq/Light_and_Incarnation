@@ -127,6 +127,7 @@ public class SceneChingPlayer : MonoBehaviour
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("onSceneLoad");
+        XboxPlayerContorol.deathCheck = true;
         player.velocity = new Vector2(0, 0);
         WallCheck.isWall = false;
         girl.SetBool("GirlDeath",false);

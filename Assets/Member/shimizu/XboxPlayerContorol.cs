@@ -37,6 +37,7 @@ public class XboxPlayerContorol : MonoBehaviour
     private bool wallAble = true;
     private bool isWallright = false;
     private bool coroutine_able = true;
+    public static bool deathCheck = true;
     [SerializeField] private float num_climb, translate_climb, time_climb;
 
     private Vector3 scale = new Vector3(100, 100, 1);
@@ -74,8 +75,9 @@ public class XboxPlayerContorol : MonoBehaviour
     void Update()
     {
         //死亡チェック
-        if (GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10) || Input.GetKeyDown(KeyCode.Space))
+        if (GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10) || Input.GetKeyDown(KeyCode.Space) && deathCheck)
         {
+            deathCheck = false;
             loseTextsp.str = true;
             anim.SetBool("changeIncarnation", false);
             gilranim.SetBool("GirlDeath", true);
