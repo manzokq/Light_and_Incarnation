@@ -58,8 +58,8 @@ public class Dont : MonoBehaviour
             SceneManager.GetActiveScene().name == "GameOver")
         {
             Debug.Log("è¡Ç∑ÉVÅ[Éì");
-            if(player.activeSelf==true)
-            player.SetActive(false);
+            if (player != null)
+                player.SetActive(false);
 
         }
         else if (SceneManager.GetActiveScene().name == "MapTutorial" ||
@@ -67,7 +67,7 @@ public class Dont : MonoBehaviour
             SceneManager.GetActiveScene().name == "Map2RE" ||
             SceneManager.GetActiveScene().name == "MapBoss")
         {
-            //if (player.activeSelf == true)
+            if(player != null)
                 player.SetActive(true);
         }
         /*
