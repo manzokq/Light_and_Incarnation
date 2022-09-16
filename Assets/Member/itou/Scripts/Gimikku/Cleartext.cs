@@ -18,7 +18,13 @@ public class Cleartext : MonoBehaviour
          if(Input.GetKey(KeyCode.Space)|| Input.GetKeyDown("joystick button 1") || _push)
         {
             _push = false;
+            if(SceneManager.GetActiveScene().name=="GameOP")
             SceneManager.LoadScene("MapTutorial");
+            else if(SceneManager.GetActiveScene().name == "GameClear")
+            {
+                SceneManager.LoadScene("GameOP");
+            }
+
         }
     }
     IEnumerator cleartx()
