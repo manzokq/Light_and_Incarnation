@@ -9,6 +9,9 @@ public class Dont : MonoBehaviour
     // Start is called before the first frame update
     public static Dont instance = null;
 
+    [SerializeField]
+    GameObject player = null;
+
     //Canvas canvas;
     
 
@@ -53,7 +56,7 @@ public class Dont : MonoBehaviour
             SceneManager.GetActiveScene().name == "GameOver")
         {
             Debug.Log("è¡Ç∑ÉVÅ[Éì");
-            //Destroy(this.gameObject);
+            Destroy(player);
         }
         switch (SceneManager.GetActiveScene().name)
         {
@@ -93,14 +96,14 @@ public class Dont : MonoBehaviour
             case "GameClear":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound0);
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
                 break;
             case "GameOver":
                 BGMManager.Instance.Sound(BGMManager.SoundState.Stop);
                 BGMManager.Instance.Sound(BGMManager.SoundState.Sound3);
 
                 Debug.Log("è¡Ç¶ÇÈÇ◊Ç´");
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
                 break;
         }
     }
