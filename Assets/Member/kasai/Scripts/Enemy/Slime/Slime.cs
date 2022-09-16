@@ -63,7 +63,13 @@ public class Slime : Enemy
 
         //Debug.Log(hit.collider.gameObject);
 
-        if (hit.collider != null && hit.collider.gameObject.transform.parent.CompareTag("Player"))
+        //if (hit.collider != null && hit.collider.gameObject.transform.parent.CompareTag("Player"))
+        //{
+        //    Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
+        //    _rayhit = true;
+        //    Debug.Log("‚ ‚½‚Á‚½");
+        //}
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
         {
             Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
             _rayhit = true;
