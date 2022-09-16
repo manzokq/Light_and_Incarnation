@@ -39,7 +39,7 @@ public class Orbs : MonoBehaviour
     }
     IEnumerator orbsreset()
     {
-        Debug.Log("a");
+        //Debug.Log("a");
         yield return new WaitForSecondsRealtime(ret);
         Orb.GetComponent<CircleCollider2D>().enabled = true;
         rend.enabled = true;
