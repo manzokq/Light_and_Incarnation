@@ -60,16 +60,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        //デバッグ用
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Damaged();
-        //}
         //体力の判定
         if (this.Hp <= 0)
         {
-            //seを呼び出す
-            //
             this.gameObject.SetActive(false);
         }
         if(_moveFrag)
@@ -155,20 +148,6 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    //IEnumerator Damaged()
-    //{
-    //    Hp = GameManagement.Instance.PlayerAtk(Hp);
-    //    // 周期cycleで繰り返す値の取得
-    //    // 0～cycleの範囲の値が得られる
-    //    var repeatValue = Mathf.Repeat(_time, _cycle);
-
-    //    // 内部時刻timeにおける明滅状態を反映
-    //    // スプライト色のアルファ値を変更している
-    //    var color = spriteRenderer.color;
-    //    color.a = repeatValue >= _cycle * 0.5f ? 1 : 0;
-    //    spriteRenderer.color = color;
-    //    return null;
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)//エネミーの体力を減らす処理
     {

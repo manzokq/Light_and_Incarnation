@@ -37,9 +37,13 @@ public class Zombie_Kasai : Enemy
     protected override void Update()
     {
         base.Update();
-        StartCoroutine(ZombieAtkChoice());
+        StartCoroutine(ZombieAtkChoices());
+        if (this.Hp <= 0)
+        {
+            StopCoroutine(ZombieAtkChoices());
+        }
     }
-    public IEnumerator ZombieAtkChoice()
+    public IEnumerator ZombieAtkChoices()
     {
 
         if (!_processZombie)

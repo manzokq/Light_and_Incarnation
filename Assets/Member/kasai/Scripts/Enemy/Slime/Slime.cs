@@ -31,7 +31,6 @@ public class Slime : Enemy
     [SerializeField] private float _poisonDelay = 2.0f;//“Å‚ğ¶¬‚·‚é‚Æ‚«‚Ìƒ‰ƒO
     private float _saveRecastTime = 0;//_recastTime‚Ì•Û‘¶—p
 
-
     protected override void Start()
     {
         base.Start();
@@ -61,7 +60,7 @@ public class Slime : Enemy
         {
             Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
             _rayhit = true;
-            Debug.Log("‚ ‚½‚Á‚½");
+            //Debug.Log("‚ ‚½‚Á‚½");
         }
         else
         {
@@ -70,6 +69,10 @@ public class Slime : Enemy
         }
 
         StartCoroutine(AtkChoices());
+        if(this.Hp<=0)
+        {
+            StopCoroutine(AtkChoices());
+        }
     }
 
     public IEnumerator AtkChoices()
