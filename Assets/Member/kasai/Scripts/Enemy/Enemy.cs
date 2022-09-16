@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     /// ‰E‚Í1 ¶‚Í-1
     /// </summary>
     private int _direction=1;
-    [SerializeField] private bool _directionTrigger = true;
+    [SerializeField] private bool _directionTrigger = false;
     /// <summary>
     /// “®‚­‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
     /// </summary>
