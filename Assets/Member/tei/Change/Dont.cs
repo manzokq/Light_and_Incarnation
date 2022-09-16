@@ -49,10 +49,10 @@ public class Dont : MonoBehaviour
     {
         
         if (SceneManager.GetActiveScene().name == "GameClear" ||
-                SceneManager.GetActiveScene().name == "GameOP" ||
-                SceneManager.GetActiveScene().name == "GameOver")
+            SceneManager.GetActiveScene().name == "GameOP" ||
+            SceneManager.GetActiveScene().name == "GameOver")
         {
-           
+            Debug.Log("è¡Ç∑ÉVÅ[Éì");
             //Destroy(this.gameObject);
         }
         switch (SceneManager.GetActiveScene().name)
