@@ -63,7 +63,8 @@ public class Dont : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "MapTutorial" ||
             SceneManager.GetActiveScene().name == "Map1RE" ||
-            SceneManager.GetActiveScene().name == "Map2RE")
+            SceneManager.GetActiveScene().name == "Map2RE" ||
+            SceneManager.GetActiveScene().name == "MapBoss")
         {
             player.SetActive(true);
         }

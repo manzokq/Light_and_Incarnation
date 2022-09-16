@@ -98,6 +98,15 @@ public class SceneChingPlayer : MonoBehaviour
 
     void Change()
     {
+        if (SceneManager.GetActiveScene().name =="MapBoss")
+        {/*
+            girl.SetBool("changeWitch", true);
+            girl.SetBool("changeSwordman", false);
+            girl.SetBool("changeArcher", false);
+            girl.SetBool("changeIncarnation", false);
+            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
+            */
+        }
         if (SceneManager.GetActiveScene().name != getOut)
         {
             SceneManager.LoadScene(getOut);

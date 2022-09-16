@@ -32,7 +32,7 @@ public class OpenDoor : MonoBehaviour
         if (Input.GetKeyDown("joystick button 1"))
         {
 
-            Debug.Log(playerFrag);
+            //Debug.Log(playerFrag);
             if (playerFrag == true)
             {
                 if(moveFrag)
