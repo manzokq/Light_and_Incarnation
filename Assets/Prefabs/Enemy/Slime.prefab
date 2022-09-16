@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8697469494334002071}
   - component: {fileID: 8697469494334002065}
   - component: {fileID: 8697469494334002064}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SlimeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 8697469494551398743}
   - component: {fileID: 8697469494551398736}
   - component: {fileID: 8697469494551398737}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GroundSerchR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 8697469495137356946}
   - component: {fileID: 8697469495137356956}
   - component: {fileID: 8697469495137356957}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -296,6 +296,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   enemyDate: {fileID: 11400000, guid: bab79f49250fbbd488f805cfa9e7bb6b, type: 2}
   Hp: 0
+  _directionTrigger: 1
   _recast: 0.2
   chargeObject: {fileID: 8697469495239785880}
   _poison: {fileID: 935460642156863752, guid: a7b489ac9b839584981f1b6d5da1ad61, type: 3}
@@ -335,7 +336,7 @@ GameObject:
   - component: {fileID: 8697469495239785881}
   - component: {fileID: 8697469495239785883}
   - component: {fileID: 8697469495239785882}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +408,7 @@ GameObject:
   - component: {fileID: 8697469496117146838}
   - component: {fileID: 8697469496117146839}
   - component: {fileID: 8697469496117146832}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerSerch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
