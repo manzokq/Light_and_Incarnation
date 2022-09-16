@@ -91,7 +91,7 @@ public class Slime : Enemy
         {
             StopCoroutine(AtkChoices());
         }
-        if (playerObject != null)
+        if (playerObject != null&&this.Hp>0)
         {
             StartCoroutine(AtkChoices());
         }
