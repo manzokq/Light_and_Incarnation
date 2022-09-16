@@ -42,7 +42,7 @@ public class Boss_Arrow : MonoBehaviour
                 GameManagement.Instance.PlayerDamage(Boss_Archer_Atk2);
             }
 
-            Debug.LogWarning("プレイヤーにダメージ");
+            Debug.Log("プレイヤーにダメージ");
             cooltime = false;
             StartCoroutine(CoolTime());
             ResetAtk_Bowman();
