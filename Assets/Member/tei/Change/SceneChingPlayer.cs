@@ -45,19 +45,7 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void Start()
     {
-
         SceneManager.sceneLoaded += OnSceneLoad;
-        
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //    gate = Gatenum.None;
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
     }
 
     void Update()
@@ -72,16 +60,12 @@ public class SceneChingPlayer : MonoBehaviour
             {
                 Debug.Log("ドアが0だよ");
             }
-            
         }
     }
 
     //シーン切り替え
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("S" + Gate_Number);
-        //シーン遷移＆ゲート記憶
-        //チュートリアルと１
         if (collision.gameObject.tag=="Gate")
         {
             door = collision.gameObject;
@@ -99,15 +83,8 @@ public class SceneChingPlayer : MonoBehaviour
     void Change()
     {
         if (SceneManager.GetActiveScene().name =="MapBoss")
-        {/*
-            girl.SetBool("changeWitch", true);
-            girl.SetBool("changeSwordman", false);
-            girl.SetBool("changeArcher", false);
-            girl.SetBool("changeIncarnation", false);
-            GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
-            */
+        {
             this.gameObject.GetComponent<XboxPlayerContorol>().ClearReturnGirl();
-            
         }
         if (SceneManager.GetActiveScene().name != getOut)
         {
@@ -127,7 +104,7 @@ public class SceneChingPlayer : MonoBehaviour
             getOut = door.GetComponent<Gate>().ReturnExit1();
             comeIn = door.GetComponent<Gate>().ReturnExit2();
             gate = (Gatenum)Enum.ToObject(typeof(Gatenum), door.GetComponent<Gate>().ReturnGatenum());
-                
+                //ドアから入口出口、扉の番号を取得
         }
         else
         {
@@ -154,8 +131,6 @@ public class SceneChingPlayer : MonoBehaviour
         doors = GameObject.FindGameObjectsWithTag("Gate");
         foreach (var obj in doors)
         {
-
-            //Debug.LogError(obj.gameObject.GetComponent<Gate>().ReturnGatenum());
             if ((int)gate == obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
@@ -163,7 +138,7 @@ public class SceneChingPlayer : MonoBehaviour
                     child.transform.position.x,
                     child.transform.position.y,
                     child.transform.position.z);
-                Debug.Log("ドアがあった");
+                //シーン移動後に扉の近くの子オブジェに移動
             }
         }
 
@@ -172,11 +147,11 @@ public class SceneChingPlayer : MonoBehaviour
         {
             var target = GameObject.FindWithTag("target");
             this.gameObject.transform.position = target.gameObject.transform.position;
-            Debug.Log("ドアがなかったのでデフォルトの場所に遷移");
+            //Debug.Log("ドアがなかったのでデフォルトの場所に遷移");
         }
 
         gate = Gatenum.None;
-
+        //扉番号nをone
     }
 
 
