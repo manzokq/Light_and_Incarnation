@@ -341,6 +341,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2072574714271930961, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4441679512221410481, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1042,7 +1046,7 @@ Animator:
   m_GameObject: {fileID: 688246240}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f0c1c6b6cb02b9469ae0ec76227937d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 18b8b07885b991e46aa3eb073945b3bd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -49593,7 +49597,7 @@ Animator:
   m_GameObject: {fileID: 2081739494}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 66fff46bef4f7b443bca2deed2296943, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1a57555d5c11eda4bb63a99fb4b710b4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -49621,6 +49625,10 @@ PrefabInstance:
     - target: {fileID: 3963889721948532422, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: m_Name
       value: Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963889721948532422, guid: 70b4021759648424093f5d289e57867e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5998619463841253353, guid: 70b4021759648424093f5d289e57867e, type: 3}
       propertyPath: exit2
@@ -49725,6 +49733,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3403091716682344325, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 287da8f03f60e7a4b90a1cb01c9ef26a, type: 2}
     - target: {fileID: 4041386834423255470, guid: 0ada0f90e97b9ca40961318fd9104e10, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.41
