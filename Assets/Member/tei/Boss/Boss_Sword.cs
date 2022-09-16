@@ -27,13 +27,16 @@ public class Boss_Sword : MonoBehaviour
     [SerializeField, Header("çUåÇÉNÅ[ÉãÉ^ÉCÉÄ")]
     private float Boss_Atk_time = 1;
 
-    //çUåÇ
-    private int Boss_Sword_Atk1;
-    private int Boss_Sword_Atk2;
-    private int Boss_Sword_control;
-
     public int Atk_Sword;
 
+    public static Boss_Sword Blade;
+    public void Awake()
+    {
+        if (Blade == null)
+        {
+            Blade = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -46,11 +49,10 @@ public class Boss_Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Boss_ boss = GetComponent<Boss_>();
-        Boss_Sword_Atk1 = boss.Boss_Atk1;
-        Boss_Sword_Atk2 = boss.Boss_Atk2;
 
         Boss_ Boss_Contorol = GetComponent<Boss_>();
+        Debug.LogError(Boss_Contorol);
+        Debug.LogError(Boss_Contorol.Boss_atacking_Sword);
         if (Boss_Contorol.Boss_atacking_Sword)
         {
             Boss_Cool_time += Time.deltaTime;
@@ -88,7 +90,8 @@ public class Boss_Sword : MonoBehaviour
                 anim.SetBool("Slash",true);
                 animSword.SetTrigger("Slash2");
                 swordmanRig.SetTrigger("SwordAtack1");
-                StartCoroutine(Atack1());
+                //StartCoroutine(Atack1());
+                slashAble = true;
             }
         }
     }
@@ -107,30 +110,36 @@ public class Boss_Sword : MonoBehaviour
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
                 swordmanRig.SetTrigger("SwordAtack2");
-                StartCoroutine(Atack2());
+                //StartCoroutine(Atack2());
+                thrustAble = true;
             }
         }
     }
-
-
-    IEnumerator Atack1()
+    public void Atc_()
     {
-        yield return new WaitForSeconds(ct_atack1);
-        Boss_ Boss = GetComponent<Boss_>();
-        GameManagement.Instance.PlayerDamage(Boss_Sword_Atk1);
-        Boss.Boss_atacking_Sword = true;
         slashAble = true;
-        Atk_Sword = 0;
-    }
-
-    IEnumerator Atack2()
-    {
-        yield return new WaitForSeconds(ct_atack2);
-        Boss_ Boss_Contorol = GetComponent<Boss_>();
-        GameManagement.Instance.PlayerDamage(Boss_Sword_Atk2);
-        Boss_Contorol.Boss_atacking_Sword = true;
         thrustAble = true;
         Atk_Sword = 0;
     }
+
+    //IEnumerator Atack1()
+    //{
+    //    yield return new WaitForSeconds(ct_atack1);
+    //    Boss_ Boss = GetComponent<Boss_>();
+    //    GameManagement.Instance.PlayerDamage(Boss_Sword_Atk1);
+    //    Boss.Boss_atacking_Sword = true;
+    //    slashAble = true;
+    //    Atk_Sword = 0;
+    //}
+
+    //IEnumerator Atack2()
+    //{
+    //    yield return new WaitForSeconds(ct_atack2);
+    //    Boss_ Boss_Contorol = GetComponent<Boss_>();
+    //    GameManagement.Instance.PlayerDamage(Boss_Sword_Atk2);
+    //    Boss_Contorol.Boss_atacking_Sword = true;
+    //    thrustAble = true;
+    //    Atk_Sword = 0;
+    //}
 }
 
