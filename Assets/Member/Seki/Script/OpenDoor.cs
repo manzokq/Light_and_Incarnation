@@ -41,9 +41,11 @@ public class OpenDoor : MonoBehaviour
     }
     IEnumerator Move()
     {
+
         moveFrag = false;
         gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[1];
         //スイッチの画像切り替え
+
         float time = 0;
         while(time<upTime)
         {//ドアがupTimeの時間をかけて上昇
@@ -54,6 +56,7 @@ public class OpenDoor : MonoBehaviour
         doorObj.transform.position = new Vector3(startVec.x, startVec.y+upY, startVec.z);//ズレ防止
 
         yield return new WaitForSeconds(waitTime);//ドア開放時間
+
         time = 0;
         while (time < 1)
         {//ドア下降
@@ -65,6 +68,7 @@ public class OpenDoor : MonoBehaviour
         moveFrag = true;
         gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[0];
         //画像戻し
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
