@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     /// 右は1 左は-1
     /// </summary>
     private int _direction=1;
+    [SerializeField] private bool _directionTrigger = true;
     /// <summary>
     /// 動くかどうかのフラグ
     /// </summary>
@@ -52,8 +53,17 @@ public class Enemy : MonoBehaviour
         Atk2 = enemyDate.atk2;
         Speed = enemyDate.speed;
 
-        _direction = 1;            //方向を右に初期化
-        direction= Direction.Right;//方向を右に初期化
+        if(_directionTrigger)
+        {
+            _direction = -1;            //方向を右に初期化
+            direction = Direction.Left;//方向を右に初期化
+        }
+        else
+        {
+            _direction = 1;            //方向を右に初期化
+            direction = Direction.Right;//方向を右に初期化
+        }
+        
 
     }
 

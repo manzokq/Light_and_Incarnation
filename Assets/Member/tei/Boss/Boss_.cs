@@ -105,8 +105,17 @@ public class Boss_ : MonoBehaviour
     public GameObject Tp_pos_3;
 
     [SerializeField, Header("ƒA[ƒ`ƒƒ’â~")]
-    public float Bowman_Stop = 10;
+    public float Bowman_Stop = 15;
 
+    public static Boss_ instance;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -318,14 +327,11 @@ public class Boss_ : MonoBehaviour
             Boss_Ground = true;
         }
         //UŒ‚
-        if (!Invincible)
+        if (!Invincible && collision.gameObject.CompareTag("Arrow") || !Invincible &&collision.gameObject.CompareTag("Sword"))
         {
-            if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Sword"))
-            {
-                Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
-                Debug.Log("UŒ‚‚ğó‚¯‚½");
+            Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
+            Debug.Log("UŒ‚‚ğó‚¯‚½");
 
-            }
         }
     }
 
@@ -498,16 +504,18 @@ public class Boss_ : MonoBehaviour
 
     public void Boss_girl()
     {
-            //­—‚É–ß‚·
-            Debug.Log("Boss­—‚É•Ï‰»");
-            boss_isGirl = true;
-            boss_isSwordman = false;
-            boss_isArcher = false;
-            anim.SetBool("changeArcher", false);
-            anim.SetBool("changeSwordman", false);
-            anim.SetBool("changeWitch", true);
-            Range_Check = true;
-            boss_atack_judge = 0;
+        //­—‚É–ß‚·
+        Debug.Log("Boss­—‚É•Ï‰»");
+        boss_isGirl = true;
+        boss_isSwordman = false;
+        boss_isArcher = false;
+        anim.SetBool("changeArcher", false);
+        anim.SetBool("changeSwordman", false);
+        anim.SetBool("changeWitch", true);
+        Range_Check = true;
+        Boss_atacking_Sword = false;
+        Boss_atacking_Archer = false;
+        boss_atack_judge = 0;
         }
     }
 
