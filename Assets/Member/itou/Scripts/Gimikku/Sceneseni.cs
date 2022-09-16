@@ -51,11 +51,13 @@ public class Sceneseni : MonoBehaviour
     /// <param name="nextScene">‘JˆÚæ‚ÌƒV[ƒ“–¼</param>
     public void fadeOutStart(int red, int green, int blue, int alfa, string nextScene)
     {
-        SetRGBA(red, green, blue, alfa);
-        SetColor();
-        isFadeOut = true;
-        afterScene = nextScene;
+            SetRGBA(red, green, blue, alfa);
+            SetColor();
+            isFadeOut = true;
+            afterScene = nextScene;
+        
     }
+    
     // Update is called once per frame
     void Update()
     {

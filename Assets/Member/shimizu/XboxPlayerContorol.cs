@@ -49,6 +49,8 @@ public class XboxPlayerContorol : MonoBehaviour
 
     private LoseTextsp loseTextsp;
 
+    private float timer = 0;
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float slidingForce;
@@ -77,7 +79,8 @@ public class XboxPlayerContorol : MonoBehaviour
             loseTextsp.str = true;
             anim.SetBool("changeIncarnation", false);
             gilranim.SetBool("GirlDeath", true);
-            Sceneseni.instance.fadeOutStart(0, 0, 0, 0, "GameOver");
+            StartCoroutine(DelayFadeOut());
+            
         }
 
 
@@ -577,6 +580,13 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         
+    }
+
+    IEnumerator DelayFadeOut()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Sceneseni.instance.fadeOutStart(0, 0, 0, 0, "GameOver");
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
