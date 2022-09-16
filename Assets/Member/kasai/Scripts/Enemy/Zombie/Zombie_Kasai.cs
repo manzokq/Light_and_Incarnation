@@ -42,7 +42,7 @@ public class Zombie_Kasai : Enemy
         {
             StopCoroutine(ZombieAtkChoices());
         }
-        if (playerObject != null)
+        if (playerObject != null && this.Hp > 0)
         {
             StartCoroutine(ZombieAtkChoices());
         }
