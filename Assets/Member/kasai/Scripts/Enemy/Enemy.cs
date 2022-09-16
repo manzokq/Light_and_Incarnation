@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     /// 右は1 左は-1
     /// </summary>
     private int _direction=1;
+    [SerializeField] private bool _directionTrigger = false;
     /// <summary>
     /// 動くかどうかのフラグ
     /// </summary>
@@ -52,8 +53,17 @@ public class Enemy : MonoBehaviour
         Atk2 = enemyDate.atk2;
         Speed = enemyDate.speed;
 
-        _direction = 1;            //方向を右に初期化
-        direction= Direction.Right;//方向を右に初期化
+        if(_directionTrigger)
+        {
+            _direction = -1;            //方向を右に初期化
+            direction = Direction.Left;//方向を右に初期化
+        }
+        else
+        {
+            _direction = 1;            //方向を右に初期化
+            direction = Direction.Right;//方向を右に初期化
+        }
+        
 
     }
 
@@ -74,7 +84,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Move()
-    {//移動　アップデートで呼ばれてる
+    {//移動
         Vector2 scale = transform.localScale;
         rb.velocity = new Vector2(enemyDate.speed * _direction, rb.velocity.y);
         Anim.SetBool("Walk", true);
