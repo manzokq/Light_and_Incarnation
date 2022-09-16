@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Boss_Blade : MonoBehaviour
 {
-
     private bool cooltime = true;
     [SerializeField]
     private Animator anim;
@@ -27,20 +26,24 @@ public class Boss_Blade : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
+        Debug.LogError(collider2D.gameObject);
         if (collider2D.gameObject.CompareTag("Player"))
         {
             Atk_ = Boss_Sword.Blade.Atk_Sword;
+            Debug.Log(Atk_);
             if (Atk_ == 1)
             {
+                Debug.Log("剣攻撃-1");
                 GameManagement.Instance.PlayerDamage(Boss_Blade_Atk1);
             }
 
             if (Atk_ == 2)
             {
+                Debug.Log("剣攻撃-2");
                 GameManagement.Instance.PlayerDamage(Boss_Blade_Atk2);
             }
 
-            Debug.LogWarning("プレイヤーにダメージ");
+            Debug.Log("プレイヤーにダメージ");
             cooltime = false;
             StartCoroutine(CoolTime());
             ResetAtk_Sword();
