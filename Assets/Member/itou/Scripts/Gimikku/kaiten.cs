@@ -42,10 +42,10 @@ public class Kaiten : MonoBehaviour
     {
         if (direction)
         {
-           LeftRote();
+            LeftRote();
             direction = false;
         }
-        else if ( !direction)
+        else if (!direction)
         {
             RightRote();
             direction = true;
