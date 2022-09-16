@@ -359,16 +359,19 @@ public class XboxPlayerContorol : MonoBehaviour
         GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
         atack_judge_con = 0;
         xatacking = false;
-        this.gameObject.GetComponent<ArcherAtack>();
-        this.gameObject.GetComponent<SwordmanAttack>();
-        ArcherAtack.arrowAble = true;
-        SwordmanAttack.slashAble = true;
+        this.gameObject.GetComponent<ArcherAtack>().ClearArcherReset();
+        this.gameObject.GetComponent<SwordmanAttack>().ClearSwordReset();
         isGirl = true;
         isSwordman = false;
         isArcher = false;
         anim.SetBool("changeArcher", false);
         anim.SetBool("changeSwordman", false);
         anim.SetBool("changeWitch", true);
+    }
+    public void HideAtack()
+    {
+        this.gameObject.GetComponent<ArcherAtack>().ClearArcherReset();
+        this.gameObject.GetComponent<SwordmanAttack>().ClearSwordReset();
     }
     IEnumerator AngleRepairRightArcher()
     {

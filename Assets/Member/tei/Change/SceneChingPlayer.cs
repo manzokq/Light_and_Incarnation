@@ -114,6 +114,7 @@ public class SceneChingPlayer : MonoBehaviour
     }
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        this.gameObject.GetComponent<XboxPlayerContorol>().HideAtack();
         Debug.Log("onSceneLoad");
         XboxPlayerContorol.deathCheck = true;
         player.velocity = new Vector2(0, 0);

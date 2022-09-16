@@ -178,6 +178,13 @@ public class SwordmanAttack : MonoBehaviour
         yield return  new WaitForSeconds(1f);
         sword.tag = "Sword";
     }
+    public void ClearSwordReset()
+    {
+        animSword.ResetTrigger("Slash2");
+        animSword.Play("NewState");
+        slashAble = true;
+        sword.GetComponent<BoxCollider2D>().enabled = false;
+    }
     IEnumerator Atack1()
     {
         yield return new WaitForSeconds(ct_atack1);
