@@ -19,7 +19,7 @@ public class SwordmanAttack : MonoBehaviour
     [SerializeField]
     GroundCheck groundCheck;
 
-    private bool slashAble = true;
+    public static bool slashAble = true;
     private bool thrustAble = true;
     private bool chargeslashAble = true;
     private bool wallbreakAble = true;

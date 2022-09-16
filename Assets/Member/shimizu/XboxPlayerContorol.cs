@@ -358,6 +358,11 @@ public class XboxPlayerContorol : MonoBehaviour
     {
         GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
         atack_judge_con = 0;
+        xatacking = false;
+        this.gameObject.GetComponent<ArcherAtack>();
+        this.gameObject.GetComponent<SwordmanAttack>();
+        ArcherAtack.arrowAble = true;
+        SwordmanAttack.slashAble = true;
         isGirl = true;
         isSwordman = false;
         isArcher = false;
