@@ -19,7 +19,7 @@ public class ArcherAtack : MonoBehaviour
     [SerializeField]
     GroundCheck groundCheck;
 
-    private bool arrowAble = true;
+    public static bool arrowAble = true;
     private bool firearrowAble = true;
     private bool doublearrowAble = true;
     private bool longbowAble = true;
