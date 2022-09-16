@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Move()
-    {//移動　アップデートで呼ばれてる
+    {//移動
         Vector2 scale = transform.localScale;
         rb.velocity = new Vector2(enemyDate.speed * _direction, rb.velocity.y);
         Anim.SetBool("Walk", true);
