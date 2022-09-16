@@ -58,7 +58,7 @@ public class SceneChingPlayer : MonoBehaviour
             }
             else
             {
-                Debug.Log("ドアが0だよ");
+                //Debug.Log("ドアが0だよ");
             }
         }
     }
@@ -108,7 +108,7 @@ public class SceneChingPlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Gateスクリプトが見当たらない");
+            //Debug.Log("Gateスクリプトが見当たらない");
         }
         
     }
@@ -134,6 +134,7 @@ public class SceneChingPlayer : MonoBehaviour
         {
             if ((int)gate == obj.gameObject.GetComponent<Gate>().ReturnGatenum())
             {
+                //全ドアから扉番号が一致する扉を取得
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
                 this.gameObject.transform.position = new Vector3(
                     child.transform.position.x,
