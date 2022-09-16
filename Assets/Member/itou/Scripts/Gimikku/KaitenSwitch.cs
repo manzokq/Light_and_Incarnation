@@ -31,11 +31,13 @@ public class KaitenSwitch : MonoBehaviour
                 KaitenYuka.GetComponent<Kaiten>().RoteStart();
                 if(kaitennF)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[0];
+                    kaitennF = false;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[1];
                 }
                 else
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[1];
+                    kaitennF = true;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = _switchImage[0];
                 }
             }
         }
