@@ -104,6 +104,9 @@ public class Boss_ : MonoBehaviour
     public GameObject Tp_pso_2;
     public GameObject Tp_pos_3;
 
+    [SerializeField, Header("ÉAÅ[É`ÉÉí‚é~")]
+    public float Bowman_Stop = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -135,6 +138,9 @@ public class Boss_ : MonoBehaviour
         Teleport_Hp = Boss_HP / 2;
         Teleport_Hp2 = Boss_HP / 4;
         Teleport_Hp3 = Boss_HP / 5;
+
+        boss_scale.x = -2;
+        transform.localScale = boss_scale;
 
     }
 
@@ -302,8 +308,6 @@ public class Boss_ : MonoBehaviour
         {//çUåÇïsâ¬
             Boss_Sword_Attack = false;
         }
-
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -406,7 +410,7 @@ public class Boss_ : MonoBehaviour
             Vector2 pos_Boss = this.gameObject.transform.position;
             float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
             //í‚é~
-            if (range_Boss_player <= Boss_stop)
+            if (range_Boss_player <= Boss_stop || range_Boss_player >= Bowman_Stop)
             {
                 Boss_Stop = true;
                 rigidboody2d.velocity = Vector2.zero;
@@ -414,7 +418,7 @@ public class Boss_ : MonoBehaviour
             else if (range_Boss_player > Boss_stop)
             {
                 Boss_Stop = false;
-            } 
+            }
         }
     }
 
