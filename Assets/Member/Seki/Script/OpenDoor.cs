@@ -70,7 +70,6 @@ public class OpenDoor : MonoBehaviour
         //‰æ‘œ–ß‚µ
 
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -78,7 +77,6 @@ public class OpenDoor : MonoBehaviour
             playerFrag = true;
         }
     }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -86,7 +84,6 @@ public class OpenDoor : MonoBehaviour
             playerFrag = true;
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

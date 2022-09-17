@@ -96,21 +96,14 @@ public class SceneChingPlayer : MonoBehaviour
         }
         //今のシーンじゃない方に飛ぶ
     }
-
     void GetExit()
     {
         if(door.GetComponent<Gate>()!=null)
-        {
+        { //ドアから入口出口、扉の番号を取得
             getOut = door.GetComponent<Gate>().ReturnExit1();
             comeIn = door.GetComponent<Gate>().ReturnExit2();
             gate = (Gatenum)Enum.ToObject(typeof(Gatenum), door.GetComponent<Gate>().ReturnGatenum());
-                //ドアから入口出口、扉の番号を取得
         }
-        else
-        {
-            //Debug.Log("Gateスクリプトが見当たらない");
-        }
-        
     }
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
@@ -127,8 +120,6 @@ public class SceneChingPlayer : MonoBehaviour
         girl.Play("Locomotion");
         archer.Play("Locomotion");
         swordman.Play("Locomotion");
-
-
         doors = GameObject.FindGameObjectsWithTag("Gate");
         foreach (var obj in doors)
         {
@@ -143,19 +134,13 @@ public class SceneChingPlayer : MonoBehaviour
                 //シーン移動後に扉の近くの子オブジェに移動
             }
         }
-
-
         if (gate == Gatenum.None && GameObject.FindWithTag("target") != null)
         {
             var target = GameObject.FindWithTag("target");
             this.gameObject.transform.position = target.gameObject.transform.position;
             //Debug.Log("ドアがなかったのでデフォルトの場所に遷移");
         }
-
         gate = Gatenum.None;
-        //扉番号nをone
+        //扉番号をnone
     }
-
-
-
 }

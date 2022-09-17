@@ -22,19 +22,6 @@ public class KaitenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (_switchrigth.kidourigth)
-        //{
-        //    _switchrigth.kidourigth = false;
-        //    StartCoroutine(Rigth());
-        //}
-        //if (_switchleft.kidouleft)
-        //{
-        //    _switchleft.kidouleft = false;
-        //    StartCoroutine(Left());
-        //}
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
 
     }
 
@@ -69,7 +56,6 @@ public class KaitenScript : MonoBehaviour
         {
             if (time == 90)
             {
-
                 break;
             }
             else
@@ -88,7 +74,6 @@ public class KaitenScript : MonoBehaviour
         {
             if (time == 90)
             {
-
                 break;
             }
             else
