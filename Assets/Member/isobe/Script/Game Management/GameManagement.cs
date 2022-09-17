@@ -146,7 +146,7 @@ public class GameManagement : MonoBehaviour
         if (PlayerHP <= 0)
         {
             Debug.Log("ƒvƒŒƒCƒ„[‚ªŽ€‚ñ‚¾");
-            SceneManager.LoadScene("GameOver");
+            //SceneManager.LoadScene("GameOver");
         }
 
         //Player.Instance.PlayerHP -= Damage;
