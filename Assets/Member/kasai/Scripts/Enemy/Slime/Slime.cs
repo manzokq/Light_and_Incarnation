@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    private GameObject playerObject;//プレイヤー
+    //private GameObject playerObject;//プレイヤー
     //突進の当たり判定
     [SerializeField] private GameObject chargeObject;
     //生成する毒
@@ -35,7 +35,7 @@ public class Slime : Enemy
     {
         base.Start();
         //playerObject = GameObject.FindWithTag("Player");
-        Invoke("PrayerSearch", 1f);
+        //Invoke("PrayerSearch", 1f);
         poisonobj = _poison;
         chargeobj = chargeObject;
 
@@ -45,11 +45,6 @@ public class Slime : Enemy
         _saveRecastTime = _recastTime;
 
 
-    }
-
-    void PrayerSearch()
-    {
-        playerObject = GameObject.FindWithTag("Player");
     }
 
     protected override void Update()

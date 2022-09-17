@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private int _direction=1;
     [SerializeField] private bool _directionTrigger = false;
-    private GameObject playerObject;//プレイヤー
+    protected GameObject playerObject;//プレイヤー
     /// <summary>
     /// 動くかどうかのフラグ
     /// </summary>
@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
         Atk2 = enemyDate.atk2;
         Speed = enemyDate.speed;
 
+        PlayerDetection();
         Invoke("PlayerDetection", 1.0f);
 
         if (_directionTrigger)
@@ -90,6 +91,7 @@ public class Enemy : MonoBehaviour
     {
         playerObject = GameObject.FindWithTag("Player");
     }
+
     void Move()
     {//移動
         Vector2 scale = transform.localScale;
