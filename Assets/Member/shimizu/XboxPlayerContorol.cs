@@ -686,7 +686,14 @@ public class XboxPlayerContorol : MonoBehaviour
         isArcher = false;
         changechara = 0;
         atack_judge_con = 0;
-        anim.SetBool("changeWitch", false);
+        if (GameManagement.Instance.PlayerOrb >= 15)
+        {
+            anim.SetBool("changeWitch", true);
+        }
+        else if (GameManagement.Instance.PlayerOrb < 15)
+        {
+            anim.SetBool("changeWitch", false);
+        }
         anim.SetBool("changeSwordman", false);
         anim.SetBool("changeArcher", false);
         anim.SetBool("changeIncarnation", false);
