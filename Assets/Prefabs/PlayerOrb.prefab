@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 306167592718203809}
   - component: {fileID: 306167592718203808}
   - component: {fileID: 306167592718203815}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Orb: {fileID: 306167592718203814}
-  OrbScripts: {fileID: 0}
   rend: {fileID: 306167592718203809}
   ret: 500
   _orbRecover: 25

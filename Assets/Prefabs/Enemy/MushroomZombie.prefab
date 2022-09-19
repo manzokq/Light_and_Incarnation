@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8697469494334002071}
   - component: {fileID: 8697469494334002065}
   - component: {fileID: 8697469494334002064}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MushCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8697469494334002070}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.43, z: 0}
-  m_LocalScale: {x: 1.0516057, y: 0.5003463, z: 2.0519135}
+  m_LocalPosition: {x: 0, y: -0.62, z: 0}
+  m_LocalScale: {x: 1.0516057, y: 0.3506333, z: 2.0519135}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8697469495137356945}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 8697469494551398743}
   - component: {fileID: 8697469494551398736}
   - component: {fileID: 8697469494551398737}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GroundSerchR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 8697469495137356946}
   - component: {fileID: 8697469495137356957}
   - component: {fileID: -2082786865737407379}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MushroomZombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -316,9 +316,10 @@ MonoBehaviour:
   Anim: {fileID: 0}
   enemyDate: {fileID: 11400000, guid: b64a97fec245ee143b75643b3fa8e802, type: 2}
   Hp: 0
+  _directionTrigger: 0
   _recast: 0.2
   chargeObject: {fileID: 8697469495239785880}
-  _chargeRange: 2
+  _chargeRange: 1
   _rndMax: 3
   _recastTime: 3
 --- !u!1 &8697469495239785880
@@ -332,7 +333,7 @@ GameObject:
   - component: {fileID: 8697469495239785881}
   - component: {fileID: 8697469495239785883}
   - component: {fileID: 8697469495239785882}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +405,7 @@ GameObject:
   - component: {fileID: 8697469496117146838}
   - component: {fileID: 8697469496117146839}
   - component: {fileID: 8697469496117146832}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerSerch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

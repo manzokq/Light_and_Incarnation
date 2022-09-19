@@ -28,7 +28,7 @@ public class KaitenSwitch : MonoBehaviour
             Debug.Log(playerFrag);
             if (playerFrag == true)
             {
-                KaitenYuka.GetComponent<Kaiten>().RoteStart();
+                KaitenYuka.GetComponent<KaitenScript>().RoteStart();
                 if(kaitennF)
                 {
                     kaitennF = false;

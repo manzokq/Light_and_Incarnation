@@ -27,25 +27,27 @@ public class Boss_Bowman : MonoBehaviour
     [SerializeField, Header("çUåÇÉNÅ[ÉãÉ^ÉCÉÄ")]
     private float Boss_Atk_time = 2;
 
-    //çUåÇ
-    private int Boss_Archer_Atk1;
-    private int Boss_Archer_Atk2;
-
     public int Atk_Bowman;
+
+    public static Boss_Bowman Arrow;
+
+    public void Awake()
+    {
+        if (Arrow == null)
+        {
+            Arrow = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Boss_ boss = GetComponent<Boss_>();
-        Boss_Archer_Atk1 = boss.Boss_Atk1;
-        Boss_Archer_Atk2 = boss.Boss_Atk2;
 
         Boss_ Boss_Contorol = GetComponent<Boss_>();
         if (Boss_Contorol.Boss_atacking_Archer)
@@ -56,7 +58,7 @@ public class Boss_Bowman : MonoBehaviour
                 //Boss_Contorol.Boss_atacking_Archer = false;
                 Debug.Log("çUåÇíäëI");
                 Boss_Cool_time = 0;
-                Boss_random_Atk_Bowman = Random.Range(1, 3);
+                Boss_random_Atk_Bowman = Random.Range(1, 2);
                 switch (Boss_random_Atk_Bowman)
                 {
                     case 1:
@@ -85,12 +87,9 @@ public class Boss_Bowman : MonoBehaviour
                 anim.SetTrigger("Arrow");
                 animArcher.SetTrigger("Arrow2");
                 archerRig.SetTrigger("ArcherAtack1");
-                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Swordsman;
-                //GameManagement.Instance.Atk = GameManagement.AtkID.Atk1;
-                StartCoroutine(Atack1());
             }
-            //slashable = false;
         }
+        Invoke("Atc_", 2);
     }
 
     public void Boss_Atk2()
@@ -106,29 +105,14 @@ public class Boss_Bowman : MonoBehaviour
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
                 archerRig.SetTrigger("ArcherAtack2");
-                //GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Bowman;
-                //.Instance.Atk = GameManagement.AtkID.Atk1;
-                StartCoroutine(Atack2());
             }
         }
+        Invoke("Atc_", 2);
     }
 
-    IEnumerator Atack1()
+    public void Atc_()
     {
-        yield return new WaitForSeconds(ct_atack1);
-        Boss_ Boss = GetComponent<Boss_>();
-        GameManagement.Instance.PlayerDamage(Boss_Archer_Atk1);
-        Boss.Boss_atacking_Archer = true;
         arrowAble = true;
-        Atk_Bowman = 0;
-    }
-
-    IEnumerator Atack2()
-    {
-        yield return new WaitForSeconds(ct_atack2);
-        Boss_ Boss_Contorol = GetComponent<Boss_>();
-        GameManagement.Instance.PlayerDamage(Boss_Archer_Atk2);
-        Boss_Contorol.Boss_atacking_Archer = true;
         firearrowAble = true;
         Atk_Bowman = 0;
     }

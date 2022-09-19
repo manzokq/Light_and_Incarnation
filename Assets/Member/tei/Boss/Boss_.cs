@@ -55,7 +55,7 @@ public class Boss_ : MonoBehaviour
     private float bosshp;
     //無敵
     public bool Invincible = false;
-    [SerializeField,Header("ダメージ受けた時の無敵時間")]
+    [SerializeField, Header("ダメージ受けた時の無敵時間")]
     public float Invincible_Time;
 
     private float Invincibletime = 0;
@@ -105,8 +105,17 @@ public class Boss_ : MonoBehaviour
     public GameObject Tp_pos_3;
 
     [SerializeField, Header("アーチャ停止")]
-    public float Bowman_Stop = 10;
+    public float Bowman_Stop = 15;
 
+    public static Boss_ instance;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -122,15 +131,15 @@ public class Boss_ : MonoBehaviour
         //オブジェクトのRigidbody2Dを取得
         rigidboody2d = GetComponent<Rigidbody2D>();
         //Playerオブジェトを取得
-        if(Player==null)
+        if (Player == null)
         {
             Player = GameObject.FindWithTag("Player");
         }
-        
+
 
         anim = GetComponent<Animator>();
         anim.SetBool("changeIncarnation", true);
-        
+
         //体力判定用
         bosshp = Boss_HP;
         Boss_Hp_half = Boss_HP / 3;
@@ -153,11 +162,11 @@ public class Boss_ : MonoBehaviour
             //移動関数を呼び出し
             if (!Boss_Stop)
             {
-                if (!Invincible || boss_atack_judge == 1|| boss_atack_judge == 0)
+                if (!Invincible || boss_atack_judge == 1 || boss_atack_judge == 0)
                 {//近づく
                     boss_move();
                 }
-                if(boss_atack_judge == 2)
+                if (boss_atack_judge == 2)
                 {//弓なら離れる
                     boss_move_reverse_Bowman();
                 }
@@ -247,7 +256,7 @@ public class Boss_ : MonoBehaviour
             float y = -6;
             transform.position = new Vector2(x, y);
         }
-        if(Boss_HP <= Teleport_Hp2 && !Teleport_Hp_2)
+        if (Boss_HP <= Teleport_Hp2 && !Teleport_Hp_2)
         {
             Teleport_Hp_2 = true;
             Vector2 Gate = Tp_pso_2.transform.position;
@@ -255,7 +264,7 @@ public class Boss_ : MonoBehaviour
             float y = -6;
             transform.position = new Vector2(x, y);
         }
-        if(Boss_HP <= Teleport_Hp3 && !Teleport_Hp_3)
+        if (Boss_HP <= Teleport_Hp3 && !Teleport_Hp_3)
         {
             Teleport_Hp_3 = true;
             Vector2 Gate = Tp_pos_3.transform.position;
@@ -264,7 +273,7 @@ public class Boss_ : MonoBehaviour
             transform.position = new Vector2(x, y);
         }
 
-        if(boss_atack_judge == 2)
+        if (boss_atack_judge == 2)
         {
             if (rigidboody2d.velocity.x < -0.5)
             {
@@ -293,7 +302,7 @@ public class Boss_ : MonoBehaviour
         }
 
         Boss_Move_Stop();
-        Invoke("Threefold_()",3.0f);
+        Invoke("Threefold_()", 3.0f);
 
 
         //Bossswordアタック
@@ -318,14 +327,11 @@ public class Boss_ : MonoBehaviour
             Boss_Ground = true;
         }
         //攻撃
-        if (!Invincible)
+        if (!Invincible && collision.gameObject.CompareTag("Arrow") || !Invincible && collision.gameObject.CompareTag("Sword"))
         {
-            if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Sword"))
-            {
-                Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
-                Debug.Log("攻撃を受けた");
+            Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
+            Debug.Log("攻撃を受けた");
 
-            }
         }
     }
 
@@ -399,7 +405,7 @@ public class Boss_ : MonoBehaviour
         //移動を計算させるために二次元ベクトルを作る
         Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
         //移動速度を指定
-        rigidboody2d.velocity = direction * speed * - Escape;
+        rigidboody2d.velocity = direction * speed * -Escape;
     }
     //停止
     private void Boss_Move_Stop()
@@ -498,16 +504,18 @@ public class Boss_ : MonoBehaviour
 
     public void Boss_girl()
     {
-            //少女に戻す
-            Debug.Log("Boss少女に変化");
-            boss_isGirl = true;
-            boss_isSwordman = false;
-            boss_isArcher = false;
-            anim.SetBool("changeArcher", false);
-            anim.SetBool("changeSwordman", false);
-            anim.SetBool("changeWitch", true);
-            Range_Check = true;
-            boss_atack_judge = 0;
-        }
+        //少女に戻す
+        Debug.Log("Boss少女に変化");
+        boss_isGirl = true;
+        boss_isSwordman = false;
+        boss_isArcher = false;
+        anim.SetBool("changeArcher", false);
+        anim.SetBool("changeSwordman", false);
+        anim.SetBool("changeWitch", true);
+        Range_Check = true;
+        Boss_atacking_Sword = false;
+        Boss_atacking_Archer = false;
+        boss_atack_judge = 0;
     }
+}
 
