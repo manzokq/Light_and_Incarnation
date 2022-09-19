@@ -30,7 +30,6 @@ public class Boss_Blade : MonoBehaviour
         if (collider2D.gameObject.CompareTag("Player"))
         {
             Atk_ = Boss_Sword.Blade.Atk_Sword;
-            Debug.Log(Atk_);
             if (Atk_ == 1)
             {
                 Debug.Log("åïçUåÇ-1");

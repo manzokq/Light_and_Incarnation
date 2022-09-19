@@ -43,15 +43,12 @@ public class Boss_Sword : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
         Boss_ Boss_Contorol_Sword = GetComponent<Boss_>();
-        Debug.Log(Boss_Contorol_Sword);
         if ( Boss_Contorol_Sword != null && Boss_Contorol_Sword.Boss_atacking_Sword)
         {
             Boss_Cool_time += Time.deltaTime;
@@ -89,6 +86,7 @@ public class Boss_Sword : MonoBehaviour
                 anim.SetTrigger("Slash");
                 animSword.SetTrigger("Slash2");
                 swordmanRig.SetTrigger("SwordAtack1");
+                sword.GetComponent<CharaSE_Boss>().Boss_SwordAtackSE();
             }
         }
         Invoke("Atc_", 2);
@@ -108,6 +106,7 @@ public class Boss_Sword : MonoBehaviour
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
                 swordmanRig.SetTrigger("SwordAtack2");
+                sword.GetComponent<CharaSE_Boss>().Boss_SwordAtackSE();
             }
         }
         Invoke("Atc_", 2);
