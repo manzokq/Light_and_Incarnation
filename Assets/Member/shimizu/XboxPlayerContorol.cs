@@ -75,11 +75,12 @@ public class XboxPlayerContorol : MonoBehaviour
     void Update()
     {
         //死亡チェック
-        if ((GameManagement.Instance.PlayerHP < 0 || Input.GetKeyDown(KeyCode.F10) || Input.GetKeyDown(KeyCode.Space)) && deathCheck)
+        if ((GameManagement.Instance.PlayerHP <= 0 || Input.GetKeyDown(KeyCode.F10) || Input.GetKeyDown(KeyCode.Space)) && deathCheck)
         {
             deathCheck = false;
             loseTextsp.str = true;
             anim.SetBool("changeIncarnation", false);
+            gilranim.Play("ClearReturnGirl");
             gilranim.SetBool("GirlDeath", true);
             StartCoroutine(DelayFadeOut());
             
