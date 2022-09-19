@@ -33,7 +33,7 @@ public class GameManagement : MonoBehaviour
     private static int playerOrb;
 
     [SerializeField]
-    XboxPlayerContorol xboxPlayer;
+    private static XboxPlayerContorol xboxPlayer;
     public static GameManagement Instance { get => _instance; }
     static GameManagement _instance;
     [SerializeField, Range(0, 100)]
@@ -103,8 +103,11 @@ public class GameManagement : MonoBehaviour
             }
 
         Map = SceneManager.GetActiveScene().name;
-        var xbox = GameObject.FindGameObjectWithTag("Player");
-        xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
+        if (xboxPlayer == null)
+        {
+            var xbox = GameObject.FindGameObjectWithTag("Player");
+            xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
+        }
         StartCoroutine(GetOrb());
         Application.targetFrameRate = 60;
 
