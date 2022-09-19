@@ -87,6 +87,7 @@ public class Boss_Bowman : MonoBehaviour
                 anim.SetTrigger("Arrow");
                 animArcher.SetTrigger("Arrow2");
                 archerRig.SetTrigger("ArcherAtack1");
+                arrow.GetComponent<CharaSE_Boss>().Boss_ArrowAtackSE();
             }
         }
         Invoke("Atc_", 2);
@@ -105,6 +106,7 @@ public class Boss_Bowman : MonoBehaviour
                 anim.SetTrigger("FireArrow");
                 animArcher.SetTrigger("FireArrow2");
                 archerRig.SetTrigger("ArcherAtack2");
+                arrow.GetComponent<CharaSE_Boss>().Boss_ArrowAtackSE();
             }
         }
         Invoke("Atc_", 2);
