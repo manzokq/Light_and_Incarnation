@@ -33,7 +33,7 @@ public class SceneChingPlayer : MonoBehaviour
     GameObject door;
     GameObject[] doors;
 
-    int enterGatenum;
+    Vector3 spornVec = Vector3.zero;
 
     //プレーヤーが増殖しないように
     public static SceneChingPlayer instance = null;
@@ -68,6 +68,7 @@ public class SceneChingPlayer : MonoBehaviour
     {
         if (collision.gameObject.tag=="Gate")
         {
+
             door = collision.gameObject;
             GetExit();
             Change();
@@ -77,7 +78,7 @@ public class SceneChingPlayer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        gate = Gatenum.None;
+        //gate = Gatenum.None;
     }
 
     void Change()
@@ -108,7 +109,7 @@ public class SceneChingPlayer : MonoBehaviour
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         this.gameObject.GetComponent<XboxPlayerContorol>().HideAtack();
-        Debug.Log("onSceneLoad");
+        //Debug.Log("onSceneLoad");
         XboxPlayerContorol.deathCheck = true;
         player.velocity = new Vector2(0, 0);
         WallCheck.isWall = false;
@@ -127,19 +128,33 @@ public class SceneChingPlayer : MonoBehaviour
             {
                 //全ドアから扉番号が一致する扉を取得
                 GameObject child = obj.gameObject.transform.GetChild(0).gameObject;
-                this.gameObject.transform.position = new Vector3(
+                
+                    
+                   spornVec = new Vector3(
                     child.transform.position.x,
                     child.transform.position.y,
                     child.transform.position.z);
                 //シーン移動後に扉の近くの子オブジェに移動
+                Debug.Log(child.transform);
+                break;
             }
+            else
+            {
+                spornVec = Vector3.zero;
+            }
+            
         }
-        if (gate == Gatenum.None && GameObject.FindWithTag("target") != null)
+        if(spornVec!=Vector3.zero)
+        {
+            this.gameObject.transform.position = spornVec;
+        }
+        else if (gate == Gatenum.None && GameObject.FindWithTag("target") != null&&spornVec==Vector3.zero)
         {
             var target = GameObject.FindWithTag("target");
             this.gameObject.transform.position = target.gameObject.transform.position;
             //Debug.Log("ドアがなかったのでデフォルトの場所に遷移");
         }
+        spornVec = Vector3.zero;
         gate = Gatenum.None;
         //扉番号をnone
     }
