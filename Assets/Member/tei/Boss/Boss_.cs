@@ -238,7 +238,7 @@ public class Boss_ : MonoBehaviour
         if (Boss_HP <= 0)
         {
             //Winを出す
-            WinTextsp.instance.Str_();
+            WinTextsp.instance.str=true;
 
             //セットアクティブでゲート出す
             EndGate.SetActive(true);
