@@ -167,6 +167,16 @@ public class GameManagement : MonoBehaviour
 
         //Player.Instance.PlayerHP -= Damage;
     }
+    //HPMPリセット
+    public void PlayerHPMPReset()
+    {
+        PlayerHP = 100;
+        PlayerMP = 100;
+        PlayerOrb = 100;
+        playerHp = 100;
+        playerMp = 100;
+        playerOrb = 100;
+    }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ
     {
         Debug.Log(EnemyHP);

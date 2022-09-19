@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7079436340193171196}
   - component: {fileID: 9098643754965101381}
   - component: {fileID: 4832199739772731876}
-  - component: {fileID: 8501804994231597088}
+  - component: {fileID: 7062496325165332970}
   m_Layer: 5
   m_Name: WinText
   m_TagString: Untagged
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8501804994231597088
+--- !u!114 &7062496325165332970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 492689482428898087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb55ceab41943d4891ae9f1a63bf0af, type: 3}
+  m_Script: {fileID: 11500000, guid: d081716890989e44b90db8e35f347d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text1: {fileID: 4832199739772731876}
-  ms1: Lose
+  ms1: Win
   str: 0
   jyougen: 0
 --- !u!1 &752039175583058345
@@ -395,7 +395,6 @@ GameObject:
   - component: {fileID: 4510130368067798241}
   - component: {fileID: 1316305827727452216}
   - component: {fileID: 1906696547994679499}
-  - component: {fileID: 6281409000800659964}
   m_Layer: 5
   m_Name: LoseText
   m_TagString: Untagged
@@ -534,22 +533,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text1: {fileID: 1316305827727452216}
   ms1: Lose
-  str: 0
-  jyougen: 0
---- !u!114 &6281409000800659964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5447424102462078075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d081716890989e44b90db8e35f347d4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text1: {fileID: 0}
-  ms1: 
   str: 0
   jyougen: 0
 --- !u!1 &6445592726346387173
