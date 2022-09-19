@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private int _direction=1;
     [SerializeField] private bool _directionTrigger = false;
+    protected GameObject playerObject;//プレイヤー
     /// <summary>
     /// 動くかどうかのフラグ
     /// </summary>
@@ -53,7 +54,10 @@ public class Enemy : MonoBehaviour
         Atk2 = enemyDate.atk2;
         Speed = enemyDate.speed;
 
-        if(_directionTrigger)
+        PlayerDetection();
+        Invoke("PlayerDetection", 1.0f);
+
+        if (_directionTrigger)
         {
             _direction = -1;            //方向を右に初期化
             direction = Direction.Left;//方向を右に初期化
@@ -81,6 +85,11 @@ public class Enemy : MonoBehaviour
         }
 
 
+    }
+
+    void PlayerDetection()
+    {
+        playerObject = GameObject.FindWithTag("Player");
     }
 
     void Move()
