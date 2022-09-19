@@ -773,7 +773,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8501804994231597088, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1dc33d6a368cb024993b28f640f46a70, type: 3}
 --- !u!1001 &550727037
 PrefabInstance:
@@ -2123,7 +2124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfb5fde97fe43f45af7b0384e5e624a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xboxPlayer: {fileID: 0}
   PlayerHP: 53
   PlayerMP: 46
   PlayerOrb: 0
@@ -2548,7 +2548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540241, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: ms
-      value: "\u3000\u3000\u5316\u8EAB\u306B\u306F\u5341\u5B57\u30AD\u30FC\u306E\u3000\u3000\u3000\u3000\u3000\u3000\u5DE6\uFF1A\u5263\u58EB\u3001\u53F3:\u5F13\u4F7F\u3044\u306B\u306A\u308C\u308B\u3088\uFF01     "
+      value: "\u3000\u3000\u5316\u8EAB\u306B\u306F\u5341\u5B57\u30AD\u30FC\u306E\u3000\u3000\u3000\u3000\u3000\u3000\u5DE6\uFF1A\u5F13\u4F7F\u3044\u3001\u53F3:\u5263\u58EB\u306B\u306A\u308C\u308B\u3088\uFF01     "
       objectReference: {fileID: 0}
     - target: {fileID: 8147826961829540243, guid: 0573738b7a5280b4cbf9ee3cfb8505e4, type: 3}
       propertyPath: m_RootOrder
