@@ -11,7 +11,7 @@ public class WinTextsp : MonoBehaviour
     bool st = false;
     [SerializeField]
     public bool str = false;
-    public int jyougen;
+    public float jyougen;
     private Vector3 Pos1;
     GameObject PLAYER;
     public static WinTextsp instance;
