@@ -79,14 +79,14 @@ public class GameOverText : MonoBehaviour
         //↑キーが押された時
         if (Input.GetAxis("L_Stick_V") < -0.5f)
         {
-            Debug.Log("上");
+            //Debug.Log("上");
             this.transform.position = StartPoz;
             GameSelection = true;
         }
         //↓キーが押された時
         if (Input.GetAxis("L_Stick_V") > 0.5f)
         {
-            Debug.Log("下");
+            //Debug.Log("下");
             this.transform.position = EndPoz;
             GameSelection = false;
         }
@@ -99,7 +99,7 @@ public class GameOverText : MonoBehaviour
         //画面遷移
         if (goNextScene)
         {
-            Debug.Log("呼ばれたよ");
+            //Debug.Log("呼ばれたよ");
             goNextScene = false;
             //-90ifの条件を追加予定
             //ゲームを続ける
