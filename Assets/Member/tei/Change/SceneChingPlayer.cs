@@ -108,9 +108,14 @@ public class SceneChingPlayer : MonoBehaviour
     }
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        
         this.gameObject.GetComponent<XboxPlayerContorol>().HideAtack();
+        
+        
+        //GameObject.Find("girl").SetActive(true);
         //Debug.Log("onSceneLoad");
         XboxPlayerContorol.deathCheck = true;
+        XboxPlayerContorol.coroutine_able = true;
         player.velocity = new Vector2(0, 0);
         WallCheck.isWall = false;
         girl.SetBool("GirlDeath",false);

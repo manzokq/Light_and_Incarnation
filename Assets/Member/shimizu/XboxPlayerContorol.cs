@@ -36,7 +36,7 @@ public class XboxPlayerContorol : MonoBehaviour
 
     private bool wallAble = true;
     private bool isWallright = false;
-    private bool coroutine_able = true;
+    public static bool coroutine_able = true;
     public static bool deathCheck = true;
     [SerializeField] private float num_climb, translate_climb, time_climb;
 
@@ -65,6 +65,7 @@ public class XboxPlayerContorol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         loseTextsp = GameObject.Find("LoseText").GetComponent<LoseTextsp>();
         spren = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
@@ -75,16 +76,17 @@ public class XboxPlayerContorol : MonoBehaviour
     void Update()
     {
         //Ž€–Sƒ`ƒFƒbƒN
-        if ((GameManagement.Instance.PlayerHP <= 0 || Input.GetKeyDown(KeyCode.F10)) && deathCheck)
+        if ((GameManagement.Instance.PlayerHP <= 0 || Input.GetKeyDown(KeyCode.F10)) && deathCheck && GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         {
             
             deathCheck = false;
             loseTextsp.str = true;
+            anim.SetBool("changeArcher", false);
+            anim.SetBool("changeSwordman", false);
             anim.SetBool("changeIncarnation", false);
-            gilranim.Play("ClearReturnGirl");
-            gilranim.SetBool("GirlDeath", true);
-            StartCoroutine(DelayFadeOut());
             
+            StartCoroutine(DelayFadeOut());
+
         }
 
 
@@ -110,7 +112,6 @@ public class XboxPlayerContorol : MonoBehaviour
             isGirl = false;
             isSwordman = true;
             isArcher = false;
-            //Debug.Log("a");
             GameManagement.Instance.PlayerOrb -= 15;
             anim.SetBool("changeArcher", false);
             anim.SetBool("changeWitch", false);
@@ -123,7 +124,6 @@ public class XboxPlayerContorol : MonoBehaviour
             isGirl = false;
             isSwordman = false;
             isArcher = true;
-            //Debug.Log("b");
             GameManagement.Instance.PlayerOrb -= 15;
             anim.SetBool("changeWitch", false);
             anim.SetBool("changeSwordman", false);
@@ -133,7 +133,6 @@ public class XboxPlayerContorol : MonoBehaviour
         {
             GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
             atack_judge_con = 0;
-            //Debug.Log("c");
             isGirl = true;
             isSwordman = false;
             isArcher = false;
@@ -161,7 +160,7 @@ public class XboxPlayerContorol : MonoBehaviour
             speed = 1;
         }
 
-        if (coroutine_able && !head_sliding)
+        if (coroutine_able && !head_sliding && deathCheck)
         {
             if (speed == 1)
             {
@@ -290,21 +289,14 @@ public class XboxPlayerContorol : MonoBehaviour
             {
                 wallAble = false;
             }
-            //StartCoroutine(WallAbleTime());
 
         }
-        //Debug.Log(wallAble + "wallAble");
-
-        //Debug.Log(isGround + "isGround");
-        //Debug.Log(isWallright + "isWallright");
-        //Debug.Log(isHeading + "isheading");
         //•Ç“o‚è
         if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl && atack_judge_con == 0 && wallAble)
         {
             if (isWallright)
             {
                 climbCount++;
-                //Debug.Log(climbCount);
             }
             else
             {
@@ -316,9 +308,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 climbCount = 0;
                 if (atack_judge_con == 0)
                 {
-                    //.Log("‚¢‚Â‚æ‚Î‚Ä");
                     wallAble = false;
-                    //Debug.Log(wallAble + "wallAble");
                     gilranim.SetBool("GirlClimb", true);
                     StartCoroutine(Climb());
                 }
@@ -604,6 +594,8 @@ public class XboxPlayerContorol : MonoBehaviour
 
     IEnumerator DelayFadeOut()
     {
+        gilranim.Play("GirlDeathl");
+        gilranim.SetBool("GirlDeath", true);
         yield return new WaitForSeconds(0.5f);
         Sceneseni.instance.fadeOutStart(0, 0, 0, 0, "GameOver");
 
