@@ -71,7 +71,29 @@ public class GameManagement : MonoBehaviour
         }
         else
             Map = SceneManager.GetActiveScene().name;
-        //Debug.Log(Map);
+
+        if (xboxPlayer == null)
+        {
+            var xbox = GameObject.FindGameObjectWithTag("Player");
+            xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
+        }
+        //Debug.Log(xboxPlayer.atack_judge_con);
+        switch(xboxPlayer.atack_judge_con)
+        {
+            case 0:
+                PlayerCharacter = CharacterID.Girl;
+                break;
+            case 1:
+                PlayerCharacter = CharacterID.Swordsman;
+                break;
+            case 2:
+                PlayerCharacter = CharacterID.Bowman;
+                break;
+            default:
+
+                break;
+
+        }
 
     }
     private void Start()

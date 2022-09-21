@@ -131,11 +131,8 @@ public class Boss_ : MonoBehaviour
         //オブジェクトのRigidbody2Dを取得
         rigidboody2d = GetComponent<Rigidbody2D>();
         //Playerオブジェトを取得
-        if (Player == null)
-        {
-            Player = GameObject.FindWithTag("Player");
-        }
 
+        Invoke("PlayerSerch", 2);
 
         anim = GetComponent<Animator>();
         anim.SetBool("changeIncarnation", true);
@@ -151,6 +148,14 @@ public class Boss_ : MonoBehaviour
         boss_scale.x = -2;
         transform.localScale = boss_scale;
 
+    }
+
+    void PlayerSerch()
+    {
+        if (Player == null)
+        {
+            Player = GameObject.FindWithTag("Player");
+        }
     }
 
     // Update is called once per frame
@@ -304,19 +309,22 @@ public class Boss_ : MonoBehaviour
         Boss_Move_Stop();
         Invoke("Threefold_", 3.0f);
 
-
-        //Bossswordアタック
-        Vector2 pos_Player = Player.transform.position;
-        Vector2 pos_Boss = this.gameObject.transform.position;
-        float Sword_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        if (Sword_Boss_player <= Boss_Sword_Reach)
-        {//攻撃可
-            Boss_Sword_Attack = true;
+        if (Player != null)
+        {
+            //Bossswordアタック
+            Vector2 pos_Player = Player.transform.position;
+            Vector2 pos_Boss = this.gameObject.transform.position;
+            float Sword_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+            if (Sword_Boss_player <= Boss_Sword_Reach)
+            {//攻撃可
+                Boss_Sword_Attack = true;
+            }
+            if (Sword_Boss_player > Boss_Sword_Reach)
+            {//攻撃不可
+                Boss_Sword_Attack = false;
+            }
         }
-        if (Sword_Boss_player > Boss_Sword_Reach)
-        {//攻撃不可
-            Boss_Sword_Attack = false;
-        }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -368,49 +376,61 @@ public class Boss_ : MonoBehaviour
     //プレイヤーに近づく
     private void boss_move()
     {
-        //プレイヤーの位置取得
-        Vector2 targetPos = Player.transform.position;
-        //playerのx座標
-        float x = targetPos.x;
-        //playerのy座標
-        float y = 0;
-        //移動を計算させるために二次元ベクトルを作る
-        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-        //移動速度を指定
-        rigidboody2d.velocity = direction * boss_x_speed;
+        if (Player != null)
+        {
+            //プレイヤーの位置取得
+            Vector2 targetPos = Player.transform.position;
+            //playerのx座標
+            float x = targetPos.x;
+            //playerのy座標
+            float y = 0;
+            //移動を計算させるために二次元ベクトルを作る
+            Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+            //移動速度を指定
+            rigidboody2d.velocity = direction * boss_x_speed;
+        }
+
 
     }
     private void boss_move_reverse_Bowman()
     {
-        //プレイヤーの位置取得
-        Vector2 targetPos = Player.transform.position;
-        //playerのx座標
-        float x = targetPos.x;
-        //playerのy座標
-        float y = 0;
-        //移動を計算させるために二次元ベクトルを作る
-        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-        //移動速度を指定
-        rigidboody2d.velocity = direction * -speed / 2;
+        if (Player != null)
+        {
+            //プレイヤーの位置取得
+            Vector2 targetPos = Player.transform.position;
+            //playerのx座標
+            float x = targetPos.x;
+            //playerのy座標
+            float y = 0;
+            //移動を計算させるために二次元ベクトルを作る
+            Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+            //移動速度を指定
+            rigidboody2d.velocity = direction * -speed / 2;
+        }
+           
     }
     //プレイヤーから離れる
     private void boss_move_reverse()
     {
-        //プレイヤーの位置取得
-        Vector2 targetPos = Player.transform.position;
-        //playerのx座標
-        float x = targetPos.x;
-        //playerのy座標
-        float y = 0;
-        //移動を計算させるために二次元ベクトルを作る
-        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-        //移動速度を指定
-        rigidboody2d.velocity = direction * speed * -Escape;
+        if (Player != null)
+        {
+            //プレイヤーの位置取得
+            Vector2 targetPos = Player.transform.position;
+            //playerのx座標
+            float x = targetPos.x;
+            //playerのy座標
+            float y = 0;
+            //移動を計算させるために二次元ベクトルを作る
+            Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+            //移動速度を指定
+            rigidboody2d.velocity = direction * speed * -Escape;
+        }
+            
     }
     //停止
     private void Boss_Move_Stop()
     {
-        if (!Avoidance)
+        if (!Avoidance&&Player != null)
         {//距離計測
             Vector2 pos_Player = Player.transform.position;
             Vector2 pos_Boss = this.gameObject.transform.position;
@@ -431,75 +451,83 @@ public class Boss_ : MonoBehaviour
     //距離計測し移動速度変化
     private void Threefold_()
     {
-        //距離計測
-        Vector2 pos_Player = Player.transform.position;
-        Vector2 pos_Boss = this.gameObject.transform.position;
-        float Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        //加速のクールタイム
-        Time_Count += Time.deltaTime;
-        if (Threefold_Ct <= Time_Count)
+        if (Player != null)
         {
-            Time_Count = 0;
+            //距離計測
+            Vector2 pos_Player = Player.transform.position;
+            Vector2 pos_Boss = this.gameObject.transform.position;
+            float Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+            //加速のクールタイム
+            Time_Count += Time.deltaTime;
+            if (Threefold_Ct <= Time_Count)
+            {
+                Time_Count = 0;
 
-            if (Boss_player >= Threefold_range)
-            {//三倍で近づく
-             //プレイヤーの位置取得
-                Vector2 targetPos = Player.transform.position;
-                //playerのx座標
-                float x = targetPos.x;
-                //playerのy座標
-                float y = 0;
-                //移動を計算させるために二次元ベクトルを作る
-                Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-                //移動速度を指定
-                rigidboody2d.velocity = direction * boss_x_speed * Threefold_speed;
+                if (Boss_player >= Threefold_range)
+                {//三倍で近づく
+                 //プレイヤーの位置取得
+                    Vector2 targetPos = Player.transform.position;
+                    //playerのx座標
+                    float x = targetPos.x;
+                    //playerのy座標
+                    float y = 0;
+                    //移動を計算させるために二次元ベクトルを作る
+                    Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+                    //移動速度を指定
+                    rigidboody2d.velocity = direction * boss_x_speed * Threefold_speed;
+                }
             }
+            Threefold = false;
+
         }
-        Threefold = false;
 
     }
 
     //プレイヤーとの距離を計測し形態変化
     private void Range()
     {
-        //距離計測
-        Vector2 pos_Player = Player.transform.position;
-        Vector2 pos_Boss = this.gameObject.transform.position;
-        float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        //Debug.Log("距離は" + range_Boss_player);
-
-        //近づく変化
-
-
-        //弓に形態変化
-        if (range_Boss_player > Range_Change && !boss_isArcher)
+        if (Player != null)
         {
-            boss_isGirl = false;
-            boss_isSwordman = false;
-            boss_isArcher = true;
-            //Debug.Log("Boss弓に変化");
-            anim.SetBool("changeWitch", false);
-            anim.SetBool("changeSwordman", false);
-            anim.SetBool("changeArcher", true);
-            Boss_atacking_Archer = true;
-            Boss_atacking_Sword = false;
-            boss_atack_judge = 2;
+            //距離計測
+            Vector2 pos_Player = Player.transform.position;
+            Vector2 pos_Boss = this.gameObject.transform.position;
+            float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+            //Debug.Log("距離は" + range_Boss_player);
+
+            //近づく変化
+
+
+            //弓に形態変化
+            if (range_Boss_player > Range_Change && !boss_isArcher)
+            {
+                boss_isGirl = false;
+                boss_isSwordman = false;
+                boss_isArcher = true;
+                //Debug.Log("Boss弓に変化");
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeArcher", true);
+                Boss_atacking_Archer = true;
+                Boss_atacking_Sword = false;
+                boss_atack_judge = 2;
+            }
+            //剣に形態変化
+            if (range_Boss_player < Range_Change && !boss_isSwordman)
+            {
+                boss_isGirl = false;
+                boss_isSwordman = true;
+                boss_isArcher = false;
+                //Debug.Log("Boss剣士に変化");
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeSwordman", true);
+                Boss_atacking_Sword = true;
+                Boss_atacking_Archer = false;
+                boss_atack_judge = 1;
+            }
+            Range_Check = true;
         }
-        //剣に形態変化
-        if (range_Boss_player < Range_Change && !boss_isSwordman)
-        {
-            boss_isGirl = false;
-            boss_isSwordman = true;
-            boss_isArcher = false;
-            //Debug.Log("Boss剣士に変化");
-            anim.SetBool("changeArcher", false);
-            anim.SetBool("changeWitch", false);
-            anim.SetBool("changeSwordman", true);
-            Boss_atacking_Sword = true;
-            Boss_atacking_Archer = false;
-            boss_atack_judge = 1;
-        }
-        Range_Check = true;
+
     }
 
     public void Boss_girl()

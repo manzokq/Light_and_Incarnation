@@ -23,5 +23,13 @@ public class CharaSE : MonoBehaviour
     public void ArrowAtackSE()
     {
         SEManager.Instance.Sound(SEManager.SoundState.Sound4);
+    }/*
+    public void BossSwordAtackSE()
+    {
+        SEManager.Instance.Sound(SEManager.SoundState.Sound3);
     }
+    public void BossArrowAtackSE()
+    {
+        SEManager.Instance.Sound(SEManager.SoundState.Sound4);
+    }*/
 }

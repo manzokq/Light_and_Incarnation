@@ -174,8 +174,12 @@ public class XboxPlayerContorol : MonoBehaviour
                     * (moveSpeed + 4), rbody.velocity.y);
             }
         }
+
+        if(GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         gilranim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Swordsman)
         swordmananim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
         archeranim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
 
         //Debug.Log(isWallright);
