@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    private GameObject playerObject;//プレイヤー
+    //private GameObject playerObject;//プレイヤー
     //突進の当たり判定
     [SerializeField] private GameObject chargeObject;
     //生成する毒
@@ -35,7 +35,7 @@ public class Slime : Enemy
     {
         base.Start();
         //playerObject = GameObject.FindWithTag("Player");
-        Invoke("PrayerSearch", 1f);
+        //Invoke("PrayerSearch", 1f);
         poisonobj = _poison;
         chargeobj = chargeObject;
 
@@ -47,11 +47,6 @@ public class Slime : Enemy
 
     }
 
-    void PrayerSearch()
-    {
-        playerObject = GameObject.FindWithTag("Player");
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -60,11 +55,23 @@ public class Slime : Enemy
         Ray2D ray = new Ray2D(transform.position, transform.right);
 
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, _poisonRangeMax);
+        //Debug.Log(hit.collider.gameObject);
 
-
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
+        //if (hit.collider != null && hit.collider.gameObject.transform.parent.CompareTag("Player"))
+        //{
+        //    Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
+        //    _rayhit = true;
+        //    Debug.Log("あたった");
+        //}
+        //if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
+        //{
+        //    Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
+        //    _rayhit = true;
+        //    Debug.Log("あたった");
+        //}
+        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
             _rayhit = true;
             //Debug.Log("あたった");
         }
@@ -73,12 +80,17 @@ public class Slime : Enemy
             //Debug.Log("あたってない");
             _rayhit = false;
         }
-        if(playerObject!=null)
-        StartCoroutine(AtkChoices());
+        
+        
         if(this.Hp<=0)
         {
             StopCoroutine(AtkChoices());
         }
+        if (playerObject != null&&this.Hp>0)
+        {
+            StartCoroutine(AtkChoices());
+        }
+
     }
 
     public IEnumerator AtkChoices()

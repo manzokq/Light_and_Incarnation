@@ -19,13 +19,15 @@ public class Enemy : MonoBehaviour
     /// 右は1 左は-1
     /// </summary>
     private int _direction=1;
+    [SerializeField] private bool _directionTrigger = false;
+    protected GameObject playerObject;//プレイヤー
     /// <summary>
     /// 動くかどうかのフラグ
     /// </summary>
     private bool _moveFrag = true;
     private bool _process = false;
-    private int _repeat = 6;
-    [SerializeReference]private float _recast = 0.2f;
+    private int _repeat = 8;
+    [SerializeReference]private float _recast = 0.01f;
     
 
     //private bool movetest=false;
@@ -52,8 +54,20 @@ public class Enemy : MonoBehaviour
         Atk2 = enemyDate.atk2;
         Speed = enemyDate.speed;
 
-        _direction = 1;            //方向を右に初期化
-        direction= Direction.Right;//方向を右に初期化
+        PlayerDetection();
+        Invoke("PlayerDetection", 1.0f);
+
+        if (_directionTrigger)
+        {
+            _direction = -1;            //方向を右に初期化
+            direction = Direction.Left;//方向を右に初期化
+        }
+        else
+        {
+            _direction = 1;            //方向を右に初期化
+            direction = Direction.Right;//方向を右に初期化
+        }
+        
 
     }
 
@@ -73,8 +87,13 @@ public class Enemy : MonoBehaviour
 
     }
 
+    void PlayerDetection()
+    {
+        playerObject = GameObject.FindWithTag("Player");
+    }
+
     void Move()
-    {//移動　アップデートで呼ばれてる
+    {//移動
         Vector2 scale = transform.localScale;
         rb.velocity = new Vector2(enemyDate.speed * _direction, rb.velocity.y);
         Anim.SetBool("Walk", true);
@@ -142,7 +161,7 @@ public class Enemy : MonoBehaviour
             for (int i = 0; i < _repeat; i++)
             {
                 spriteRenderer.enabled = !spriteRenderer.enabled;
-                Debug.Log(spriteRenderer);
+                //Debug.Log(spriteRenderer);
                 yield return new WaitForSeconds(_recast);
                 _process = false;
             }

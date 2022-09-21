@@ -77,6 +77,7 @@ public class XboxPlayerContorol : MonoBehaviour
         //死亡チェック
         if ((GameManagement.Instance.PlayerHP <= 0 || Input.GetKeyDown(KeyCode.F10)) && deathCheck)
         {
+            
             deathCheck = false;
             loseTextsp.str = true;
             anim.SetBool("changeIncarnation", false);
@@ -109,7 +110,7 @@ public class XboxPlayerContorol : MonoBehaviour
             isGirl = false;
             isSwordman = true;
             isArcher = false;
-            Debug.Log("a");
+            //Debug.Log("a");
             GameManagement.Instance.PlayerOrb -= 15;
             anim.SetBool("changeArcher", false);
             anim.SetBool("changeWitch", false);
@@ -122,7 +123,7 @@ public class XboxPlayerContorol : MonoBehaviour
             isGirl = false;
             isSwordman = false;
             isArcher = true;
-            Debug.Log("b");
+            //Debug.Log("b");
             GameManagement.Instance.PlayerOrb -= 15;
             anim.SetBool("changeWitch", false);
             anim.SetBool("changeSwordman", false);
@@ -132,7 +133,7 @@ public class XboxPlayerContorol : MonoBehaviour
         {
             GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
             atack_judge_con = 0;
-            Debug.Log("c");
+            //Debug.Log("c");
             isGirl = true;
             isSwordman = false;
             isArcher = false;
@@ -173,8 +174,12 @@ public class XboxPlayerContorol : MonoBehaviour
                     * (moveSpeed + 4), rbody.velocity.y);
             }
         }
+
+        if(GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Girl)
         gilranim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Swordsman)
         swordmananim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
+        if (GameManagement.Instance.PlayerCharacter == GameManagement.CharacterID.Bowman)
         archeranim.SetFloat("Speed", rbody.velocity.normalized.magnitude * speed, 0.1f, Time.deltaTime);
 
         //Debug.Log(isWallright);
@@ -311,7 +316,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 climbCount = 0;
                 if (atack_judge_con == 0)
                 {
-                    Debug.Log("いつよばて");
+                    //.Log("いつよばて");
                     wallAble = false;
                     //Debug.Log(wallAble + "wallAble");
                     gilranim.SetBool("GirlClimb", true);
@@ -417,7 +422,7 @@ public class XboxPlayerContorol : MonoBehaviour
             if (!isWallright && ((Input.GetAxisRaw("L_Stick_H") < 0.2 && transform.localScale.x == 100) || (0.2 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
             {
 
-                Debug.Log("壁やめ");
+                //Debug.Log("壁やめ");
                 coroutine_able = true;
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;

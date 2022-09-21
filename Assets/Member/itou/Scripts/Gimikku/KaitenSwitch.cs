@@ -25,10 +25,10 @@ public class KaitenSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown("joystick button 1"))
         {
-            Debug.Log(playerFrag);
+            //Debug.Log(playerFrag);
             if (playerFrag == true)
             {
-                KaitenYuka.GetComponent<Kaiten>().RoteStart();
+                KaitenYuka.GetComponent<KaitenScript>().RoteStart();
                 if(kaitennF)
                 {
                     kaitennF = false;
@@ -48,7 +48,7 @@ public class KaitenSwitch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(playerFrag);
+        //Debug.Log(playerFrag);
         if (collision.gameObject.CompareTag("Player"))
         {
             playerFrag = true;

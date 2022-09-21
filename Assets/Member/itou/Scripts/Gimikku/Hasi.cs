@@ -17,7 +17,7 @@ public class Hasi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(gameObject.transform.localEulerAngles);
+        //Debug.Log(gameObject.transform.localEulerAngles);
             //Mathf.Abs(this.gameObject.transform.rotation.z));
         _StartAxis = Mathf.Abs((int)gameObject.transform.localEulerAngles.z);
         _RotateAxis = rotate- _StartAxis ;

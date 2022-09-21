@@ -30,7 +30,7 @@ public class WallCheck : MonoBehaviour
     {
         if (collision.tag == wallTag)
         {
-        Debug.Log("true‚¾‚æ");
+        //Debug.Log("true‚¾‚æ");
             isWallEnter = true;
         }
     }
@@ -38,7 +38,7 @@ public class WallCheck : MonoBehaviour
     {
         if (collision.tag == wallTag)
         {
-        Debug.Log("true‚¾‚æ");
+        //Debug.Log("true‚¾‚æ");
             isWallStay = true;
         }
     }
@@ -46,7 +46,7 @@ public class WallCheck : MonoBehaviour
     {
         if (collision.tag == wallTag)
         {
-        Debug.Log("false‚¾‚æ");
+        //Debug.Log("false‚¾‚æ");
             isWallExit = true;
         }
     }

@@ -27,34 +27,32 @@ public class Boss_Sword : MonoBehaviour
     [SerializeField, Header("çUåÇÉNÅ[ÉãÉ^ÉCÉÄ")]
     private float Boss_Atk_time = 1;
 
-    //çUåÇ
-    private int Boss_Sword_Atk1;
-    private int Boss_Sword_Atk2;
-    private int Boss_Sword_control;
-
     public int Atk_Sword;
 
+    public static Boss_Sword Blade;
+    public void Awake()
+    {
+        if (Blade == null)
+        {
+            Blade = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Boss_ boss = GetComponent<Boss_>();
-        Boss_Sword_Atk1 = boss.Boss_Atk1;
-        Boss_Sword_Atk2 = boss.Boss_Atk2;
-
-        Boss_ Boss_Contorol = GetComponent<Boss_>();
-        if (Boss_Contorol.Boss_atacking_Sword)
+        Boss_ Boss_Contorol_Sword = GetComponent<Boss_>();
+        if ( Boss_Contorol_Sword != null && Boss_Contorol_Sword.Boss_atacking_Sword)
         {
             Boss_Cool_time += Time.deltaTime;
-            if (Boss_Atk_time <= Boss_Cool_time && Boss_Contorol.Boss_Sword_Attack)
+            if (Boss_Atk_time <= Boss_Cool_time && Boss_Contorol_Sword.Boss_Sword_Attack)
             {
                 Debug.Log("çUåÇíäëI");
                 Boss_Cool_time = 0;
@@ -77,7 +75,7 @@ public class Boss_Sword : MonoBehaviour
     //éaåÇ
     public void Boss_Atk1()
     {
-        if (slashAble)
+        if (slashAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk1)
         {
             slashAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
@@ -85,18 +83,19 @@ public class Boss_Sword : MonoBehaviour
             if (swordman_judge == 1)
             {
                 Atk_Sword = 1;
-                anim.SetBool("Slash",true);
+                anim.SetTrigger("Slash");
                 animSword.SetTrigger("Slash2");
                 swordmanRig.SetTrigger("SwordAtack1");
-                StartCoroutine(Atack1());
+                sword.GetComponent<CharaSE_Boss>().Boss_SwordAtackSE();
             }
         }
+        Invoke("Atc_", 2);
     }
 
     //ìÀÇ´
     public void Boss_Atk2()
     {
-        if (thrustAble)
+        if (thrustAble && GameManagement.Instance.Atk == GameManagement.AtkID.Atk2)
         {
             thrustAble = false;
             Boss_ Boss_Control = GetComponent<Boss_>();
@@ -107,28 +106,14 @@ public class Boss_Sword : MonoBehaviour
                 anim.SetTrigger("Thrust");
                 animSword.SetTrigger("Thrust2");
                 swordmanRig.SetTrigger("SwordAtack2");
-                StartCoroutine(Atack2());
+                sword.GetComponent<CharaSE_Boss>().Boss_SwordAtackSE();
             }
         }
+        Invoke("Atc_", 2);
     }
-
-
-    IEnumerator Atack1()
+    public void Atc_()
     {
-        yield return new WaitForSeconds(ct_atack1);
-        Boss_ Boss = GetComponent<Boss_>();
-        GameManagement.Instance.PlayerDamage(Boss_Sword_Atk1);
-        Boss.Boss_atacking_Sword = true;
         slashAble = true;
-        Atk_Sword = 0;
-    }
-
-    IEnumerator Atack2()
-    {
-        yield return new WaitForSeconds(ct_atack2);
-        Boss_ Boss_Contorol = GetComponent<Boss_>();
-        GameManagement.Instance.PlayerDamage(Boss_Sword_Atk2);
-        Boss_Contorol.Boss_atacking_Sword = true;
         thrustAble = true;
         Atk_Sword = 0;
     }

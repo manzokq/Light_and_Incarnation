@@ -33,7 +33,7 @@ public class GameManagement : MonoBehaviour
     private static int playerOrb;
 
     [SerializeField]
-    XboxPlayerContorol xboxPlayer;
+    private static XboxPlayerContorol xboxPlayer;
     public static GameManagement Instance { get => _instance; }
     static GameManagement _instance;
     [SerializeField, Range(0, 100)]
@@ -71,7 +71,29 @@ public class GameManagement : MonoBehaviour
         }
         else
             Map = SceneManager.GetActiveScene().name;
-        Debug.Log(Map);
+
+        if (xboxPlayer == null)
+        {
+            var xbox = GameObject.FindGameObjectWithTag("Player");
+            xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
+        }
+        //Debug.Log(xboxPlayer.atack_judge_con);
+        switch(xboxPlayer.atack_judge_con)
+        {
+            case 0:
+                PlayerCharacter = CharacterID.Girl;
+                break;
+            case 1:
+                PlayerCharacter = CharacterID.Swordsman;
+                break;
+            case 2:
+                PlayerCharacter = CharacterID.Bowman;
+                break;
+            default:
+
+                break;
+
+        }
 
     }
     private void Start()
@@ -103,8 +125,11 @@ public class GameManagement : MonoBehaviour
             }
 
         Map = SceneManager.GetActiveScene().name;
-        var xbox = GameObject.FindGameObjectWithTag("Player");
-        xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
+        if (xboxPlayer == null)
+        {
+            var xbox = GameObject.FindGameObjectWithTag("Player");
+            xboxPlayer = xbox.GetComponent<XboxPlayerContorol>();
+        }
         StartCoroutine(GetOrb());
         Application.targetFrameRate = 60;
 
@@ -145,7 +170,7 @@ public class GameManagement : MonoBehaviour
 
         if (PlayerHP <= 0)
         {
-            Debug.Log("プレイヤーが死んだ");
+            //Debug.Log("プレイヤーが死んだ");
             //SceneManager.LoadScene("GameOver");
         }
 
@@ -164,9 +189,19 @@ public class GameManagement : MonoBehaviour
 
         //Player.Instance.PlayerHP -= Damage;
     }
+    //HPMPリセット
+    public void PlayerHPMPReset()
+    {
+        PlayerHP = 100;
+        PlayerMP = 100;
+        PlayerOrb = 100;
+        playerHp = 100;
+        playerMp = 100;
+        playerOrb = 100;
+    }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ
     {
-        Debug.Log(EnemyHP);
+        //Debug.Log(EnemyHP);
         switch (PlayerCharacter)
         {
             case CharacterID.Swordsman:
@@ -198,8 +233,8 @@ public class GameManagement : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log(EnemyHP);
-        Debug.Log("EnemyDame");
+        //Debug.Log(EnemyHP);
+        //Debug.Log("EnemyDame");
         return EnemyHP;
     }
     //MP追加予定

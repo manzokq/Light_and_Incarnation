@@ -27,7 +27,47 @@ public class GameOverText : MonoBehaviour
     private void Start()
     {
         transform.position = StartPoz;
-        textMeshProUGUI.text = GameScene;
+        if (GameSelection)
+        {
+
+            //チュートリアル
+            if (GameScene == "MapTutorial")
+            {//ダンジョンの最初から用
+                textMeshProUGUI.text = "Tutorial";
+            }
+            //ステージ１
+            else if (GameScene == "Map1")
+            {//ステージ１から用
+                textMeshProUGUI.text = "Map1";
+            }
+            else if (GameScene == "Map1RE")
+            {
+                textMeshProUGUI.text = "Map1";
+            }
+            //ステージ２
+            else if (GameScene == "Map2")
+            { //ステージ２から用
+                textMeshProUGUI.text = "Map2";
+            }
+            else if (GameScene == "Map2RE")
+            {
+                textMeshProUGUI.text = "Map2";
+            }
+            //中間地点
+            else if (GameScene == "MapBoss")
+            {//ボス戦から用
+
+                textMeshProUGUI.text = "Boss";
+            }
+            else
+            {//タイトルに戻る
+                textMeshProUGUI.text = "Tutorial";
+
+            }
+
+
+        }
+
         goNextScene = false;
         inputFrag = true;
     }
@@ -39,14 +79,14 @@ public class GameOverText : MonoBehaviour
         //↑キーが押された時
         if (Input.GetAxis("L_Stick_V") < -0.5f)
         {
-            Debug.Log("上");
+            //Debug.Log("上");
             this.transform.position = StartPoz;
             GameSelection = true;
         }
         //↓キーが押された時
         if (Input.GetAxis("L_Stick_V") > 0.5f)
         {
-            Debug.Log("下");
+            //Debug.Log("下");
             this.transform.position = EndPoz;
             GameSelection = false;
         }
@@ -59,7 +99,7 @@ public class GameOverText : MonoBehaviour
         //画面遷移
         if (goNextScene)
         {
-            Debug.Log("呼ばれたよ");
+            //Debug.Log("呼ばれたよ");
             goNextScene = false;
             //-90ifの条件を追加予定
             //ゲームを続ける

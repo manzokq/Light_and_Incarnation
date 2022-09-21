@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Zombie_Kasai : Enemy
 {
-    private GameObject playerObject;//プレイヤー
+    //private GameObject playerObject;//プレイヤー
 
     //プレイヤーとの距離
     private float _playerRange;
@@ -26,7 +26,6 @@ public class Zombie_Kasai : Enemy
     protected override void Start()
     {
         base.Start();
-        playerObject = GameObject.FindWithTag("Player");
         chargeobj = chargeObject;
         chargeObject.SetActive(false);//攻撃の当たり判定
         _saveRecastTime = _recastTime;
@@ -37,11 +36,16 @@ public class Zombie_Kasai : Enemy
     protected override void Update()
     {
         base.Update();
-        StartCoroutine(ZombieAtkChoices());
+        
         if (this.Hp <= 0)
         {
             StopCoroutine(ZombieAtkChoices());
         }
+        if (playerObject != null && this.Hp > 0)
+        {
+            StartCoroutine(ZombieAtkChoices());
+        }
+        
     }
     public IEnumerator ZombieAtkChoices()
     {

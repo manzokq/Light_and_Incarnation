@@ -55,7 +55,7 @@ public class Boss_ : MonoBehaviour
     private float bosshp;
     //無敵
     public bool Invincible = false;
-    [SerializeField,Header("ダメージ受けた時の無敵時間")]
+    [SerializeField, Header("ダメージ受けた時の無敵時間")]
     public float Invincible_Time;
 
     private float Invincibletime = 0;
@@ -105,8 +105,17 @@ public class Boss_ : MonoBehaviour
     public GameObject Tp_pos_3;
 
     [SerializeField, Header("アーチャ停止")]
-    public float Bowman_Stop = 10;
+    public float Bowman_Stop = 15;
 
+    public static Boss_ instance;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -122,15 +131,12 @@ public class Boss_ : MonoBehaviour
         //オブジェクトのRigidbody2Dを取得
         rigidboody2d = GetComponent<Rigidbody2D>();
         //Playerオブジェトを取得
-        if(Player==null)
-        {
-            Player = GameObject.FindWithTag("Player");
-        }
-        
+
+        Invoke("PlayerSerch", 2);
 
         anim = GetComponent<Animator>();
         anim.SetBool("changeIncarnation", true);
-        
+
         //体力判定用
         bosshp = Boss_HP;
         Boss_Hp_half = Boss_HP / 3;
@@ -144,6 +150,14 @@ public class Boss_ : MonoBehaviour
 
     }
 
+    void PlayerSerch()
+    {
+        if (Player == null)
+        {
+            Player = GameObject.FindWithTag("Player");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -153,11 +167,11 @@ public class Boss_ : MonoBehaviour
             //移動関数を呼び出し
             if (!Boss_Stop)
             {
-                if (!Invincible || boss_atack_judge == 1|| boss_atack_judge == 0)
+                if (!Invincible || boss_atack_judge == 1 || boss_atack_judge == 0)
                 {//近づく
                     boss_move();
                 }
-                if(boss_atack_judge == 2)
+                if (boss_atack_judge == 2)
                 {//弓なら離れる
                     boss_move_reverse_Bowman();
                 }
@@ -213,14 +227,14 @@ public class Boss_ : MonoBehaviour
         {
             Invincible = true;
             bosshp = Boss_HP;
-            Debug.Log("ダメージを受けた,無敵になる");
+            //Debug.Log("ダメージを受けた,無敵になる");
             Avoidance = true;
         }
 
         //体力減少
         if (Boss_HP <= Boss_Hp_half && !Boss_hp_half)
         {
-            Debug.Log("体力減少でステータス変化");
+            //Debug.Log("体力減少でステータス変化");
             Boss_Atk1 = Boss_Atk1 * 2;
             Boss_Atk2 = Boss_Atk2 * 2;
             Range_Time = Range_Time * 0.8f;
@@ -229,13 +243,13 @@ public class Boss_ : MonoBehaviour
         if (Boss_HP <= 0)
         {
             //Winを出す
-            WinTextsp.instance.Str_();
+            WinTextsp.instance.str=true;
 
             //セットアクティブでゲート出す
             EndGate.SetActive(true);
 
             Destroy(this.gameObject);
-            Debug.Log("ボスが倒れた");
+            //Debug.Log("ボスが倒れた");
 
         }
         //テレポート
@@ -247,7 +261,7 @@ public class Boss_ : MonoBehaviour
             float y = -6;
             transform.position = new Vector2(x, y);
         }
-        if(Boss_HP <= Teleport_Hp2 && !Teleport_Hp_2)
+        if (Boss_HP <= Teleport_Hp2 && !Teleport_Hp_2)
         {
             Teleport_Hp_2 = true;
             Vector2 Gate = Tp_pso_2.transform.position;
@@ -255,7 +269,7 @@ public class Boss_ : MonoBehaviour
             float y = -6;
             transform.position = new Vector2(x, y);
         }
-        if(Boss_HP <= Teleport_Hp3 && !Teleport_Hp_3)
+        if (Boss_HP <= Teleport_Hp3 && !Teleport_Hp_3)
         {
             Teleport_Hp_3 = true;
             Vector2 Gate = Tp_pos_3.transform.position;
@@ -264,7 +278,7 @@ public class Boss_ : MonoBehaviour
             transform.position = new Vector2(x, y);
         }
 
-        if(boss_atack_judge == 2)
+        if (boss_atack_judge == 2)
         {
             if (rigidboody2d.velocity.x < -0.5)
             {
@@ -293,21 +307,24 @@ public class Boss_ : MonoBehaviour
         }
 
         Boss_Move_Stop();
-        Invoke("Threefold_()",3.0f);
+        Invoke("Threefold_", 3.0f);
 
-
-        //Bossswordアタック
-        Vector2 pos_Player = Player.transform.position;
-        Vector2 pos_Boss = this.gameObject.transform.position;
-        float Sword_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        if (Sword_Boss_player <= Boss_Sword_Reach)
-        {//攻撃可
-            Boss_Sword_Attack = true;
+        if (Player != null)
+        {
+            //Bossswordアタック
+            Vector2 pos_Player = Player.transform.position;
+            Vector2 pos_Boss = this.gameObject.transform.position;
+            float Sword_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+            if (Sword_Boss_player <= Boss_Sword_Reach)
+            {//攻撃可
+                Boss_Sword_Attack = true;
+            }
+            if (Sword_Boss_player > Boss_Sword_Reach)
+            {//攻撃不可
+                Boss_Sword_Attack = false;
+            }
         }
-        if (Sword_Boss_player > Boss_Sword_Reach)
-        {//攻撃不可
-            Boss_Sword_Attack = false;
-        }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -318,20 +335,17 @@ public class Boss_ : MonoBehaviour
             Boss_Ground = true;
         }
         //攻撃
-        if (!Invincible)
+        if (!Invincible && collision.gameObject.CompareTag("Arrow") || !Invincible && collision.gameObject.CompareTag("Sword"))
         {
-            if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Sword"))
-            {
-                Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
-                Debug.Log("攻撃を受けた");
+            Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
+            //Debug.Log("攻撃を受けた");
 
-            }
         }
     }
 
     private void Invincible_check()
     {//無敵時間経過
-        Debug.Log("無敵時間");
+        //Debug.Log("無敵時間");
         Invincibletime += Time.deltaTime;
         if (Invincible_Time <= Invincibletime)
         {
@@ -344,7 +358,7 @@ public class Boss_ : MonoBehaviour
     {//通常行動に戻る
         //GetComponent<BoxCollider>().enabled = true;
         Invincible = false;
-        Debug.Log("無敵終了");
+        //Debug.Log("無敵終了");
         Avoidance = false;
     }
     //時間
@@ -362,49 +376,61 @@ public class Boss_ : MonoBehaviour
     //プレイヤーに近づく
     private void boss_move()
     {
-        //プレイヤーの位置取得
-        Vector2 targetPos = Player.transform.position;
-        //playerのx座標
-        float x = targetPos.x;
-        //playerのy座標
-        float y = 0;
-        //移動を計算させるために二次元ベクトルを作る
-        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-        //移動速度を指定
-        rigidboody2d.velocity = direction * boss_x_speed;
+        if (Player != null)
+        {
+            //プレイヤーの位置取得
+            Vector2 targetPos = Player.transform.position;
+            //playerのx座標
+            float x = targetPos.x;
+            //playerのy座標
+            float y = 0;
+            //移動を計算させるために二次元ベクトルを作る
+            Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+            //移動速度を指定
+            rigidboody2d.velocity = direction * boss_x_speed;
+        }
+
 
     }
     private void boss_move_reverse_Bowman()
     {
-        //プレイヤーの位置取得
-        Vector2 targetPos = Player.transform.position;
-        //playerのx座標
-        float x = targetPos.x;
-        //playerのy座標
-        float y = 0;
-        //移動を計算させるために二次元ベクトルを作る
-        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-        //移動速度を指定
-        rigidboody2d.velocity = direction * -speed / 2;
+        if (Player != null)
+        {
+            //プレイヤーの位置取得
+            Vector2 targetPos = Player.transform.position;
+            //playerのx座標
+            float x = targetPos.x;
+            //playerのy座標
+            float y = 0;
+            //移動を計算させるために二次元ベクトルを作る
+            Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+            //移動速度を指定
+            rigidboody2d.velocity = direction * -speed / 2;
+        }
+           
     }
     //プレイヤーから離れる
     private void boss_move_reverse()
     {
-        //プレイヤーの位置取得
-        Vector2 targetPos = Player.transform.position;
-        //playerのx座標
-        float x = targetPos.x;
-        //playerのy座標
-        float y = 0;
-        //移動を計算させるために二次元ベクトルを作る
-        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-        //移動速度を指定
-        rigidboody2d.velocity = direction * speed * - Escape;
+        if (Player != null)
+        {
+            //プレイヤーの位置取得
+            Vector2 targetPos = Player.transform.position;
+            //playerのx座標
+            float x = targetPos.x;
+            //playerのy座標
+            float y = 0;
+            //移動を計算させるために二次元ベクトルを作る
+            Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+            //移動速度を指定
+            rigidboody2d.velocity = direction * speed * -Escape;
+        }
+            
     }
     //停止
     private void Boss_Move_Stop()
     {
-        if (!Avoidance)
+        if (!Avoidance&&Player != null)
         {//距離計測
             Vector2 pos_Player = Player.transform.position;
             Vector2 pos_Boss = this.gameObject.transform.position;
@@ -425,89 +451,99 @@ public class Boss_ : MonoBehaviour
     //距離計測し移動速度変化
     private void Threefold_()
     {
-        //距離計測
-        Vector2 pos_Player = Player.transform.position;
-        Vector2 pos_Boss = this.gameObject.transform.position;
-        float Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        //加速のクールタイム
-        Time_Count += Time.deltaTime;
-        if (Threefold_Ct <= Time_Count)
+        if (Player != null)
         {
-            Time_Count = 0;
+            //距離計測
+            Vector2 pos_Player = Player.transform.position;
+            Vector2 pos_Boss = this.gameObject.transform.position;
+            float Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+            //加速のクールタイム
+            Time_Count += Time.deltaTime;
+            if (Threefold_Ct <= Time_Count)
+            {
+                Time_Count = 0;
 
-            if (Boss_player >= Threefold_range)
-            {//三倍で近づく
-             //プレイヤーの位置取得
-                Vector2 targetPos = Player.transform.position;
-                //playerのx座標
-                float x = targetPos.x;
-                //playerのy座標
-                float y = 0;
-                //移動を計算させるために二次元ベクトルを作る
-                Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-                //移動速度を指定
-                rigidboody2d.velocity = direction * boss_x_speed * Threefold_speed;
+                if (Boss_player >= Threefold_range)
+                {//三倍で近づく
+                 //プレイヤーの位置取得
+                    Vector2 targetPos = Player.transform.position;
+                    //playerのx座標
+                    float x = targetPos.x;
+                    //playerのy座標
+                    float y = 0;
+                    //移動を計算させるために二次元ベクトルを作る
+                    Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
+                    //移動速度を指定
+                    rigidboody2d.velocity = direction * boss_x_speed * Threefold_speed;
+                }
             }
+            Threefold = false;
+
         }
-        Threefold = false;
 
     }
 
     //プレイヤーとの距離を計測し形態変化
     private void Range()
     {
-        //距離計測
-        Vector2 pos_Player = Player.transform.position;
-        Vector2 pos_Boss = this.gameObject.transform.position;
-        float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        Debug.Log("距離は" + range_Boss_player);
-
-        //近づく変化
-
-
-        //弓に形態変化
-        if (range_Boss_player > Range_Change && !boss_isArcher)
+        if (Player != null)
         {
-            boss_isGirl = false;
-            boss_isSwordman = false;
-            boss_isArcher = true;
-            Debug.Log("Boss弓に変化");
-            anim.SetBool("changeWitch", false);
-            anim.SetBool("changeSwordman", false);
-            anim.SetBool("changeArcher", true);
-            Boss_atacking_Archer = true;
-            Boss_atacking_Sword = false;
-            boss_atack_judge = 2;
+            //距離計測
+            Vector2 pos_Player = Player.transform.position;
+            Vector2 pos_Boss = this.gameObject.transform.position;
+            float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
+            //Debug.Log("距離は" + range_Boss_player);
+
+            //近づく変化
+
+
+            //弓に形態変化
+            if (range_Boss_player > Range_Change && !boss_isArcher)
+            {
+                boss_isGirl = false;
+                boss_isSwordman = false;
+                boss_isArcher = true;
+                //Debug.Log("Boss弓に変化");
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeSwordman", false);
+                anim.SetBool("changeArcher", true);
+                Boss_atacking_Archer = true;
+                Boss_atacking_Sword = false;
+                boss_atack_judge = 2;
+            }
+            //剣に形態変化
+            if (range_Boss_player < Range_Change && !boss_isSwordman)
+            {
+                boss_isGirl = false;
+                boss_isSwordman = true;
+                boss_isArcher = false;
+                //Debug.Log("Boss剣士に変化");
+                anim.SetBool("changeArcher", false);
+                anim.SetBool("changeWitch", false);
+                anim.SetBool("changeSwordman", true);
+                Boss_atacking_Sword = true;
+                Boss_atacking_Archer = false;
+                boss_atack_judge = 1;
+            }
+            Range_Check = true;
         }
-        //剣に形態変化
-        if (range_Boss_player < Range_Change && !boss_isSwordman)
-        {
-            boss_isGirl = false;
-            boss_isSwordman = true;
-            boss_isArcher = false;
-            Debug.Log("Boss剣士に変化");
-            anim.SetBool("changeArcher", false);
-            anim.SetBool("changeWitch", false);
-            anim.SetBool("changeSwordman", true);
-            Boss_atacking_Sword = true;
-            Boss_atacking_Archer = false;
-            boss_atack_judge = 1;
-        }
-        Range_Check = true;
+
     }
 
     public void Boss_girl()
     {
-            //少女に戻す
-            Debug.Log("Boss少女に変化");
-            boss_isGirl = true;
-            boss_isSwordman = false;
-            boss_isArcher = false;
-            anim.SetBool("changeArcher", false);
-            anim.SetBool("changeSwordman", false);
-            anim.SetBool("changeWitch", true);
-            Range_Check = true;
-            boss_atack_judge = 0;
-        }
+        //少女に戻す
+        //Debug.Log("Boss少女に変化");
+        boss_isGirl = true;
+        boss_isSwordman = false;
+        boss_isArcher = false;
+        anim.SetBool("changeArcher", false);
+        anim.SetBool("changeSwordman", false);
+        anim.SetBool("changeWitch", true);
+        Range_Check = true;
+        Boss_atacking_Sword = false;
+        Boss_atacking_Archer = false;
+        boss_atack_judge = 0;
     }
+}
 
