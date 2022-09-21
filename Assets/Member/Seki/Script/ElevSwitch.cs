@@ -25,7 +25,7 @@ public class ElevSwitch : MonoBehaviour
     {
         if(Input.GetKeyDown("joystick button 1"))
         {
-            Debug.Log(playerFrag);
+            //Debug.Log(playerFrag);
             if(playerFrag == true)
             {
                 EleObj.GetComponent<Elevator>().eleSwitch = true;

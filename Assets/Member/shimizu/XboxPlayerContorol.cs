@@ -133,7 +133,7 @@ public class XboxPlayerContorol : MonoBehaviour
         {
             GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
             atack_judge_con = 0;
-            Debug.Log("c");
+            //Debug.Log("c");
             isGirl = true;
             isSwordman = false;
             isArcher = false;
@@ -418,7 +418,7 @@ public class XboxPlayerContorol : MonoBehaviour
             if (!isWallright && ((Input.GetAxisRaw("L_Stick_H") < 0.2 && transform.localScale.x == 100) || (0.2 < Input.GetAxis("L_Stick_H") && transform.localScale.x == -100)))
             {
 
-                Debug.Log("•Ç‚â‚ß");
+                //Debug.Log("•Ç‚â‚ß");
                 coroutine_able = true;
                 rbody.isKinematic = false;
                 rbody.constraints = RigidbodyConstraints2D.None;
