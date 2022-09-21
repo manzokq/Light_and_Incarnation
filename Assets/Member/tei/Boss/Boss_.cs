@@ -222,14 +222,14 @@ public class Boss_ : MonoBehaviour
         {
             Invincible = true;
             bosshp = Boss_HP;
-            Debug.Log("ダメージを受けた,無敵になる");
+            //Debug.Log("ダメージを受けた,無敵になる");
             Avoidance = true;
         }
 
         //体力減少
         if (Boss_HP <= Boss_Hp_half && !Boss_hp_half)
         {
-            Debug.Log("体力減少でステータス変化");
+            //Debug.Log("体力減少でステータス変化");
             Boss_Atk1 = Boss_Atk1 * 2;
             Boss_Atk2 = Boss_Atk2 * 2;
             Range_Time = Range_Time * 0.8f;
@@ -244,7 +244,7 @@ public class Boss_ : MonoBehaviour
             EndGate.SetActive(true);
 
             Destroy(this.gameObject);
-            Debug.Log("ボスが倒れた");
+            //Debug.Log("ボスが倒れた");
 
         }
         //テレポート
@@ -302,7 +302,7 @@ public class Boss_ : MonoBehaviour
         }
 
         Boss_Move_Stop();
-        Invoke("Threefold_()", 3.0f);
+        Invoke("Threefold_", 3.0f);
 
 
         //Bossswordアタック
@@ -330,14 +330,14 @@ public class Boss_ : MonoBehaviour
         if (!Invincible && collision.gameObject.CompareTag("Arrow") || !Invincible && collision.gameObject.CompareTag("Sword"))
         {
             Boss_HP = GameManagement.Instance.PlayerAtk(Boss_HP);
-            Debug.Log("攻撃を受けた");
+            //Debug.Log("攻撃を受けた");
 
         }
     }
 
     private void Invincible_check()
     {//無敵時間経過
-        Debug.Log("無敵時間");
+        //Debug.Log("無敵時間");
         Invincibletime += Time.deltaTime;
         if (Invincible_Time <= Invincibletime)
         {
@@ -350,7 +350,7 @@ public class Boss_ : MonoBehaviour
     {//通常行動に戻る
         //GetComponent<BoxCollider>().enabled = true;
         Invincible = false;
-        Debug.Log("無敵終了");
+        //Debug.Log("無敵終了");
         Avoidance = false;
     }
     //時間
@@ -466,7 +466,7 @@ public class Boss_ : MonoBehaviour
         Vector2 pos_Player = Player.transform.position;
         Vector2 pos_Boss = this.gameObject.transform.position;
         float range_Boss_player = Vector2.Distance(pos_Player, pos_Boss);
-        Debug.Log("距離は" + range_Boss_player);
+        //Debug.Log("距離は" + range_Boss_player);
 
         //近づく変化
 
@@ -477,7 +477,7 @@ public class Boss_ : MonoBehaviour
             boss_isGirl = false;
             boss_isSwordman = false;
             boss_isArcher = true;
-            Debug.Log("Boss弓に変化");
+            //Debug.Log("Boss弓に変化");
             anim.SetBool("changeWitch", false);
             anim.SetBool("changeSwordman", false);
             anim.SetBool("changeArcher", true);
@@ -491,7 +491,7 @@ public class Boss_ : MonoBehaviour
             boss_isGirl = false;
             boss_isSwordman = true;
             boss_isArcher = false;
-            Debug.Log("Boss剣士に変化");
+            //Debug.Log("Boss剣士に変化");
             anim.SetBool("changeArcher", false);
             anim.SetBool("changeWitch", false);
             anim.SetBool("changeSwordman", true);
@@ -505,7 +505,7 @@ public class Boss_ : MonoBehaviour
     public void Boss_girl()
     {
         //少女に戻す
-        Debug.Log("Boss少女に変化");
+        //Debug.Log("Boss少女に変化");
         boss_isGirl = true;
         boss_isSwordman = false;
         boss_isArcher = false;
