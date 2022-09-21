@@ -161,7 +161,7 @@ public class Enemy : MonoBehaviour
             for (int i = 0; i < _repeat; i++)
             {
                 spriteRenderer.enabled = !spriteRenderer.enabled;
-                Debug.Log(spriteRenderer);
+                //Debug.Log(spriteRenderer);
                 yield return new WaitForSeconds(_recast);
                 _process = false;
             }

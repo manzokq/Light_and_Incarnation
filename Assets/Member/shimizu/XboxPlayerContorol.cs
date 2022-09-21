@@ -110,7 +110,7 @@ public class XboxPlayerContorol : MonoBehaviour
             isGirl = false;
             isSwordman = true;
             isArcher = false;
-            Debug.Log("a");
+            //Debug.Log("a");
             GameManagement.Instance.PlayerOrb -= 15;
             anim.SetBool("changeArcher", false);
             anim.SetBool("changeWitch", false);
@@ -123,7 +123,7 @@ public class XboxPlayerContorol : MonoBehaviour
             isGirl = false;
             isSwordman = false;
             isArcher = true;
-            Debug.Log("b");
+            //Debug.Log("b");
             GameManagement.Instance.PlayerOrb -= 15;
             anim.SetBool("changeWitch", false);
             anim.SetBool("changeSwordman", false);
@@ -312,7 +312,7 @@ public class XboxPlayerContorol : MonoBehaviour
                 climbCount = 0;
                 if (atack_judge_con == 0)
                 {
-                    Debug.Log("‚¢‚Â‚æ‚Î‚Ä");
+                    //.Log("‚¢‚Â‚æ‚Î‚Ä");
                     wallAble = false;
                     //Debug.Log(wallAble + "wallAble");
                     gilranim.SetBool("GirlClimb", true);

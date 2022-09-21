@@ -71,7 +71,7 @@ public class GameManagement : MonoBehaviour
         }
         else
             Map = SceneManager.GetActiveScene().name;
-        Debug.Log(Map);
+        //Debug.Log(Map);
 
     }
     private void Start()
@@ -148,7 +148,7 @@ public class GameManagement : MonoBehaviour
 
         if (PlayerHP <= 0)
         {
-            Debug.Log("プレイヤーが死んだ");
+            //Debug.Log("プレイヤーが死んだ");
             //SceneManager.LoadScene("GameOver");
         }
 
@@ -179,7 +179,7 @@ public class GameManagement : MonoBehaviour
     }
     public int PlayerAtk(int EnemyHP)　//エネミーにダメージ
     {
-        Debug.Log(EnemyHP);
+        //Debug.Log(EnemyHP);
         switch (PlayerCharacter)
         {
             case CharacterID.Swordsman:
@@ -211,8 +211,8 @@ public class GameManagement : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log(EnemyHP);
-        Debug.Log("EnemyDame");
+        //Debug.Log(EnemyHP);
+        //Debug.Log("EnemyDame");
         return EnemyHP;
     }
     //MP追加予定

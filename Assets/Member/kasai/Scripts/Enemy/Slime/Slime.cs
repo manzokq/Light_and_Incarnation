@@ -71,9 +71,9 @@ public class Slime : Enemy
         //}
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction * _poisonRangeMax, Color.red);
             _rayhit = true;
-            Debug.Log("‚ ‚½‚Á‚½");
+            //Debug.Log("‚ ‚½‚Á‚½");
         }
         else
         {
