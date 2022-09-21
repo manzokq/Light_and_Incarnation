@@ -135,7 +135,7 @@ public class SceneChingPlayer : MonoBehaviour
                     child.transform.position.y,
                     child.transform.position.z);
                 //シーン移動後に扉の近くの子オブジェに移動
-                Debug.Log(child.transform);
+                //Debug.Log(child.transform);
                 break;
             }
             else
