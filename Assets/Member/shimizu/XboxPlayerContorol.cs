@@ -129,7 +129,7 @@ public class XboxPlayerContorol : MonoBehaviour
             anim.SetBool("changeSwordman", false);
             anim.SetBool("changeArcher", true);
         }
-        if (Input.GetAxisRaw("D_Pad_V") == 1 && !isGirl) //‘z’è‚Å‚Íª  ­—
+        if ((Input.GetAxisRaw("D_Pad_V") == 1|| (Input.GetAxisRaw("D_Pad_V")== - 1)) && !isGirl) //‘z’è‚Å‚Íª  ­—
         {
             GameManagement.Instance.PlayerCharacter = GameManagement.CharacterID.Girl;
             atack_judge_con = 0;
