@@ -50,6 +50,12 @@ public class Dont : MonoBehaviour
     {
 
     }
+    void SetAc()
+    {
+        player.SetActive(false);
+        player.SetActive(true);
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
 
@@ -57,9 +63,16 @@ public class Dont : MonoBehaviour
             SceneManager.GetActiveScene().name == "GameOP" ||
             SceneManager.GetActiveScene().name == "GameOver")
         {
-            Debug.Log("消すシーン");
+            //Debug.Log("消すシーン");
             if (player != null)
+            {
+                player.GetComponent<XboxPlayerContorol>().ClearReturnGirl();
                 player.SetActive(false);
+                //player.SetActive(true);
+                //Invoke("SetAc", 1f);
+
+            }
+               
 
         }
         else if (SceneManager.GetActiveScene().name == "MapTutorial" ||
@@ -68,7 +81,14 @@ public class Dont : MonoBehaviour
             SceneManager.GetActiveScene().name == "MapBoss")
         {
             if(player != null)
+            {
+                player.SetActive(false);
                 player.SetActive(true);
+
+                Invoke("SetAc", 0.1f);
+
+            }
+                
         }
         /*
         if (player == null)
