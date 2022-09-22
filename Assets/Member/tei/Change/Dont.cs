@@ -13,7 +13,7 @@ public class Dont : MonoBehaviour
     GameObject player, playerPrefab = null;
 
     //Canvas canvas;
-
+    static bool deathFrag = false;
 
     private void Awake()
     {
@@ -66,6 +66,7 @@ public class Dont : MonoBehaviour
             //Debug.Log("è¡Ç∑ÉVÅ[Éì");
             if (player != null)
             {
+                deathFrag = true;
                 player.GetComponent<XboxPlayerContorol>().ClearReturnGirl();
                 player.SetActive(false);
                 //player.SetActive(true);
@@ -82,10 +83,16 @@ public class Dont : MonoBehaviour
         {
             if(player != null)
             {
-                player.SetActive(false);
-                player.SetActive(true);
 
-                Invoke("SetAc", 0.1f);
+                if(deathFrag)
+                {
+                    deathFrag = false;
+                    player.SetActive(false);
+                    player.SetActive(true);
+
+                    Invoke("SetAc", 0.1f);
+                }
+                
 
             }
                 
