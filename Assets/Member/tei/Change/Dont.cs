@@ -57,9 +57,14 @@ public class Dont : MonoBehaviour
             SceneManager.GetActiveScene().name == "GameOP" ||
             SceneManager.GetActiveScene().name == "GameOver")
         {
-            Debug.Log("消すシーン");
+            //Debug.Log("消すシーン");
+            
             if (player != null)
+            {
+                player.GetComponent<XboxPlayerContorol>().ClearReturnGirl();
                 player.SetActive(false);
+            }
+                
 
         }
         else if (SceneManager.GetActiveScene().name == "MapTutorial" ||
